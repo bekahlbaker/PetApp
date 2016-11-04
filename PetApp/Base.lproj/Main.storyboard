@@ -11,10 +11,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--EntryVC-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="PetApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="EntryVC" customModule="PetApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -45,6 +45,9 @@
                                         <state key="normal" title="oh hai sign in k?">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="abC-fw-wPL" kind="show" id="zsD-8J-Lsn"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4SJ-WP-wY0" customClass="RoundedBorderClearBackgroundButton" customModule="PetApp" customModuleProvider="target">
                                         <constraints>
@@ -54,6 +57,9 @@
                                         <state key="normal" title="sign up plz?">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <segue destination="oZP-Ww-SQl" kind="show" id="SDZ-21-9fi"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                             </stackView>
@@ -86,10 +92,149 @@
             </objects>
             <point key="canvasLocation" x="117.59999999999999" y="122.78860569715144"/>
         </scene>
-        <!--View Controller-->
+        <!--Sign InVC-->
+        <scene sceneID="JFx-oA-S9O">
+            <objects>
+                <viewController id="abC-fw-wPL" customClass="SignInVC" customModule="PetApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="u0L-vq-NU9"/>
+                        <viewControllerLayoutGuide type="bottom" id="eaG-IK-EWm"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ae8-V2-dxi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="bBk-fJ-e4m">
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="intr username plz?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PJp-Vs-ty3">
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="oh hai intr pasword" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Xy-Dd-fa3">
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mVO-Zx-odl">
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <state key="normal" title="u no haz account? sign up!">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="oZP-Ww-SQl" kind="show" id="pfK-qb-DU3"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l3T-OA-puu">
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <state key="normal" title="so sad u forget pasword?">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="23y-r5-JF9" customClass="RoundedCornerButton" customModule="PetApp" customModuleProvider="target">
+                                <color key="backgroundColor" red="0.1137254902" green="0.91372549020000005" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="UHP-5f-crJ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="19"/>
+                                <state key="normal" title="U IZ DON">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="FOH-oA-jlS" kind="show" id="Rb2-3F-Blf"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="23y-r5-JF9" secondAttribute="trailing" constant="8" id="Fb5-NW-rXN"/>
+                            <constraint firstItem="bBk-fJ-e4m" firstAttribute="top" secondItem="u0L-vq-NU9" secondAttribute="bottom" constant="50" id="Jqb-Xf-IdF"/>
+                            <constraint firstItem="23y-r5-JF9" firstAttribute="leading" secondItem="ae8-V2-dxi" secondAttribute="leadingMargin" constant="8" id="Thi-Wf-1Dn"/>
+                            <constraint firstItem="bBk-fJ-e4m" firstAttribute="leading" secondItem="ae8-V2-dxi" secondAttribute="leadingMargin" constant="8" id="cff-G7-3jH"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="bBk-fJ-e4m" secondAttribute="trailing" constant="8" id="kP5-gj-fhn"/>
+                            <constraint firstItem="23y-r5-JF9" firstAttribute="top" secondItem="l3T-OA-puu" secondAttribute="bottom" constant="30" id="r9I-xG-qAs"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yIc-aG-kd9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="532" y="915"/>
+        </scene>
+        <!--Sign UpVC-->
+        <scene sceneID="G6z-d2-htL">
+            <objects>
+                <viewController id="oZP-Ww-SQl" customClass="SignUpVC" customModule="PetApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="l93-3Y-m6e"/>
+                        <viewControllerLayoutGuide type="bottom" id="cve-eG-bpZ"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="J0j-24-92X">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="NgD-XJ-e1P">
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="choosed ur username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nLd-6b-elC">
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="intr email plz?" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Zvi-dH-glJ">
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="creete pasword (6+ chracterz)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8oG-Nn-7jf">
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wFS-x0-AMS">
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <state key="normal" title="alreedy haz account? sign in!">
+                                            <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="abC-fw-wPL" kind="show" id="91i-3G-K55"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCK-3C-yEu" customClass="RoundedCornerButton" customModule="PetApp" customModuleProvider="target">
+                                <color key="backgroundColor" red="0.1137254902" green="0.91372549020000005" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="2pm-MU-lW8"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="19"/>
+                                <state key="normal" title="U IZ DON">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="FOH-oA-jlS" kind="show" id="IMu-dl-Sd3"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="BCK-3C-yEu" firstAttribute="leading" secondItem="J0j-24-92X" secondAttribute="leadingMargin" constant="8" id="4UN-fQ-DoK"/>
+                            <constraint firstItem="NgD-XJ-e1P" firstAttribute="leading" secondItem="J0j-24-92X" secondAttribute="leadingMargin" constant="8" id="6R7-3M-ZIH"/>
+                            <constraint firstItem="NgD-XJ-e1P" firstAttribute="top" secondItem="l93-3Y-m6e" secondAttribute="bottom" constant="50" id="ODO-19-HQI"/>
+                            <constraint firstItem="BCK-3C-yEu" firstAttribute="top" secondItem="wFS-x0-AMS" secondAttribute="bottom" constant="30" id="pQR-CY-qW5"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="BCK-3C-yEu" secondAttribute="trailing" constant="8" id="xTZ-Ie-izs"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="NgD-XJ-e1P" secondAttribute="trailing" constant="8" id="yD9-gO-Efe"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AVh-pW-vPi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="876" y="122.78860569715144"/>
+        </scene>
+        <!--FeedVC-->
         <scene sceneID="AZg-86-0Vz">
             <objects>
-                <viewController id="FOH-oA-jlS" sceneMemberID="viewController">
+                <viewController id="FOH-oA-jlS" customClass="FeedVC" customModule="PetApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="dyP-c2-y0W"/>
                         <viewControllerLayoutGuide type="bottom" id="6cU-uY-F5a"/>
@@ -98,21 +243,67 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dogsmile" translatesAutoresizingMaskIntoConstraints="NO" id="CYV-4T-2ah">
-                                <frame key="frameInset" minX="16" minY="53" width="343" height="297"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dogsmile" translatesAutoresizingMaskIntoConstraints="NO" id="CYV-4T-2ah">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="343" id="4oF-2J-oav"/>
+                                    <constraint firstAttribute="height" constant="297" id="rKn-ch-Ch1"/>
+                                </constraints>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pxA-0X-vtU">
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ret-wj-7BP">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="55" id="W6F-7R-0QJ"/>
+                                            <constraint firstAttribute="height" constant="40" id="nyU-Wa-m83"/>
+                                        </constraints>
+                                        <state key="normal" image="sign-out"/>
+                                        <connections>
+                                            <segue destination="BYZ-38-t0r" kind="show" id="OhY-6D-2BV"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.1137254902" green="0.91372549020000005" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="ret-wj-7BP" firstAttribute="leading" secondItem="pxA-0X-vtU" secondAttribute="leading" constant="8" id="bNC-Uk-FLC"/>
+                                    <constraint firstAttribute="height" constant="60" id="lsf-0V-MXO"/>
+                                    <constraint firstItem="ret-wj-7BP" firstAttribute="top" secondItem="pxA-0X-vtU" secondAttribute="top" constant="8" id="yuP-er-j6r"/>
+                                </constraints>
+                            </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="i iz so happy to haz our app!" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="VRU-jE-Pub">
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="54" id="LcB-If-3j1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="VRU-jE-Pub" firstAttribute="leading" secondItem="OEl-vz-gyI" secondAttribute="leadingMargin" id="Fl4-T0-G22"/>
+                            <constraint firstAttribute="trailing" secondItem="pxA-0X-vtU" secondAttribute="trailing" id="Iwa-cm-R3s"/>
+                            <constraint firstItem="pxA-0X-vtU" firstAttribute="leading" secondItem="OEl-vz-gyI" secondAttribute="leading" id="Iwe-uh-7WZ"/>
+                            <constraint firstItem="VRU-jE-Pub" firstAttribute="trailing" secondItem="OEl-vz-gyI" secondAttribute="trailingMargin" id="QUj-cV-h7G"/>
+                            <constraint firstItem="CYV-4T-2ah" firstAttribute="centerX" secondItem="OEl-vz-gyI" secondAttribute="centerX" id="RiE-HC-juL"/>
+                            <constraint firstItem="pxA-0X-vtU" firstAttribute="top" secondItem="OEl-vz-gyI" secondAttribute="top" id="bZA-nt-bgu"/>
+                            <constraint firstItem="VRU-jE-Pub" firstAttribute="top" secondItem="CYV-4T-2ah" secondAttribute="bottom" constant="8" id="l3d-b6-UEh"/>
+                            <constraint firstItem="CYV-4T-2ah" firstAttribute="top" secondItem="pxA-0X-vtU" secondAttribute="bottom" constant="48" id="z3M-ME-SEV"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OEL-cy-RY3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="864.79999999999995" y="122.78860569715144"/>
+            <point key="canvasLocation" x="1591" y="123"/>
         </scene>
     </scenes>
     <resources>
         <image name="doginwig" width="1920" height="1275"/>
         <image name="dogsmile" width="1920" height="1856"/>
+        <image name="sign-out" width="92" height="65"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="pfK-qb-DU3"/>
+        <segue reference="91i-3G-K55"/>
+        <segue reference="Rb2-3F-Blf"/>
+    </inferredMetricsTieBreakers>
 </document>
