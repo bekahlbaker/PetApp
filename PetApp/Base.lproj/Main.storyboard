@@ -86,8 +86,33 @@
             </objects>
             <point key="canvasLocation" x="117.59999999999999" y="122.78860569715144"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="AZg-86-0Vz">
+            <objects>
+                <viewController id="FOH-oA-jlS" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="dyP-c2-y0W"/>
+                        <viewControllerLayoutGuide type="bottom" id="6cU-uY-F5a"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="OEl-vz-gyI">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dogsmile" translatesAutoresizingMaskIntoConstraints="NO" id="CYV-4T-2ah">
+                                <frame key="frameInset" minX="16" minY="53" width="343" height="297"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OEL-cy-RY3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="864.79999999999995" y="122.78860569715144"/>
+        </scene>
     </scenes>
     <resources>
         <image name="doginwig" width="1920" height="1275"/>
+        <image name="dogsmile" width="1920" height="1856"/>
     </resources>
 </document>
