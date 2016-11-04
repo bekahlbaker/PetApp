@@ -12,6 +12,8 @@
 		27166B151DCCE63800A57821 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27166B131DCCE63800A57821 /* Main.storyboard */; };
 		27166B171DCCE63800A57821 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27166B161DCCE63800A57821 /* Assets.xcassets */; };
 		27166B1A1DCCE63800A57821 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27166B181DCCE63800A57821 /* LaunchScreen.storyboard */; };
+		27166B221DCCE7BD00A57821 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27166B211DCCE7BD00A57821 /* GoogleService-Info.plist */; };
+		B61761CB0A8D5494AA1962C9 /* Pods_PetApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1B3ADE42D2BA19DA972589 /* Pods_PetApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,10 @@
 		27166B161DCCE63800A57821 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		27166B191DCCE63800A57821 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		27166B1B1DCCE63800A57821 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		27166B211DCCE7BD00A57821 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6CD65ED0F38C43BADF665691 /* Pods-PetApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetApp/Pods-PetApp.debug.xcconfig"; sourceTree = "<group>"; };
+		CE1B3ADE42D2BA19DA972589 /* Pods_PetApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D33CB02ABE7EC0697EAF044B /* Pods-PetApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-PetApp/Pods-PetApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B61761CB0A8D5494AA1962C9 /* Pods_PetApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +47,8 @@
 			children = (
 				27166B0E1DCCE63800A57821 /* PetApp */,
 				27166B0D1DCCE63800A57821 /* Products */,
+				B92DB1227B52F6C1C94BB145 /* Pods */,
+				32AA3AA8459EA9C86F7B8203 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -60,8 +69,26 @@
 				27166B161DCCE63800A57821 /* Assets.xcassets */,
 				27166B181DCCE63800A57821 /* LaunchScreen.storyboard */,
 				27166B1B1DCCE63800A57821 /* Info.plist */,
+				27166B211DCCE7BD00A57821 /* GoogleService-Info.plist */,
 			);
 			path = PetApp;
+			sourceTree = "<group>";
+		};
+		32AA3AA8459EA9C86F7B8203 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CE1B3ADE42D2BA19DA972589 /* Pods_PetApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B92DB1227B52F6C1C94BB145 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6CD65ED0F38C43BADF665691 /* Pods-PetApp.debug.xcconfig */,
+				D33CB02ABE7EC0697EAF044B /* Pods-PetApp.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +98,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 27166B1E1DCCE63800A57821 /* Build configuration list for PBXNativeTarget "PetApp" */;
 			buildPhases = (
+				946AC9D43EF78C98BFC1D87C /* [CP] Check Pods Manifest.lock */,
 				27166B081DCCE63800A57821 /* Sources */,
 				27166B091DCCE63800A57821 /* Frameworks */,
 				27166B0A1DCCE63800A57821 /* Resources */,
+				E1DF07565479B73F1D41C25D /* [CP] Embed Pods Frameworks */,
+				F06D8BAF52C3031329811D7C /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -96,6 +126,8 @@
 				TargetAttributes = {
 					27166B0B1DCCE63800A57821 = {
 						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = SAWE6E694F;
+						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -126,10 +158,59 @@
 				27166B1A1DCCE63800A57821 /* LaunchScreen.storyboard in Resources */,
 				27166B171DCCE63800A57821 /* Assets.xcassets in Resources */,
 				27166B151DCCE63800A57821 /* Main.storyboard in Resources */,
+				27166B221DCCE7BD00A57821 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		946AC9D43EF78C98BFC1D87C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		E1DF07565479B73F1D41C25D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PetApp/Pods-PetApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F06D8BAF52C3031329811D7C /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PetApp/Pods-PetApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		27166B081DCCE63800A57821 /* Sources */ = {
@@ -258,9 +339,12 @@
 		};
 		27166B1F1DCCE63800A57821 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6CD65ED0F38C43BADF665691 /* Pods-PetApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = SAWE6E694F;
 				INFOPLIST_FILE = PetApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bekahlynnbaker.PetApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -270,9 +354,12 @@
 		};
 		27166B201DCCE63800A57821 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D33CB02ABE7EC0697EAF044B /* Pods-PetApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = SAWE6E694F;
 				INFOPLIST_FILE = PetApp/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bekahlynnbaker.PetApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -299,6 +386,7 @@
 				27166B201DCCE63800A57821 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

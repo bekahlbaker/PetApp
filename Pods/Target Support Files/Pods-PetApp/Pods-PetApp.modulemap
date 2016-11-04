@@ -1,0 +1,6 @@
+framework module Pods_PetApp {
+  umbrella header "Pods-PetApp-umbrella.h"
+
+  export *
+  module * { export * }
+}
