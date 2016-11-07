@@ -26,8 +26,10 @@
 		27166B401DCD108300A57821 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27166B3F1DCD108300A57821 /* Constants.swift */; };
 		274994701DCD2E470015B6F8 /* FirebaseAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2749946F1DCD2E470015B6F8 /* FirebaseAuth.swift */; };
 		274994721DCD36AB0015B6F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 274994711DCD36AB0015B6F8 /* Main.storyboard */; };
-		274994741DD0D2370015B6F8 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274994731DD0D2370015B6F8 /* ProfileVC.swift */; };
+		274994741DD0D2370015B6F8 /* ProfileVC1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274994731DD0D2370015B6F8 /* ProfileVC1.swift */; };
 		274994781DD0EDC50015B6F8 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274994771DD0EDC50015B6F8 /* CircleImage.swift */; };
+		2749947A1DD0F6220015B6F8 /* ProfileVC2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274994791DD0F6220015B6F8 /* ProfileVC2.swift */; };
+		2749947C1DD0F6300015B6F8 /* ProfileVC3.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2749947B1DD0F6300015B6F8 /* ProfileVC3.swift */; };
 		B61761CB0A8D5494AA1962C9 /* Pods_PetApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1B3ADE42D2BA19DA972589 /* Pods_PetApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,8 +56,10 @@
 		27166B411DCD10D500A57821 /* PetApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PetApp.entitlements; sourceTree = "<group>"; };
 		2749946F1DCD2E470015B6F8 /* FirebaseAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAuth.swift; sourceTree = "<group>"; };
 		274994711DCD36AB0015B6F8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		274994731DD0D2370015B6F8 /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		274994731DD0D2370015B6F8 /* ProfileVC1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC1.swift; sourceTree = "<group>"; };
 		274994771DD0EDC50015B6F8 /* CircleImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
+		274994791DD0F6220015B6F8 /* ProfileVC2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC2.swift; sourceTree = "<group>"; };
+		2749947B1DD0F6300015B6F8 /* ProfileVC3.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC3.swift; sourceTree = "<group>"; };
 		6CD65ED0F38C43BADF665691 /* Pods-PetApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetApp/Pods-PetApp.debug.xcconfig"; sourceTree = "<group>"; };
 		CE1B3ADE42D2BA19DA972589 /* Pods_PetApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D33CB02ABE7EC0697EAF044B /* Pods-PetApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-PetApp/Pods-PetApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -139,7 +143,9 @@
 				27166B2E1DCD03A500A57821 /* SignUpVC.swift */,
 				27166B301DCD03BD00A57821 /* EntryVC.swift */,
 				27166B321DCD03E200A57821 /* FeedVC.swift */,
-				274994731DD0D2370015B6F8 /* ProfileVC.swift */,
+				274994731DD0D2370015B6F8 /* ProfileVC1.swift */,
+				274994791DD0F6220015B6F8 /* ProfileVC2.swift */,
+				2749947B1DD0F6300015B6F8 /* ProfileVC3.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -322,17 +328,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2749947C1DD0F6300015B6F8 /* ProfileVC3.swift in Sources */,
 				27166B2B1DCCF5F300A57821 /* RoundedCornerButton.swift in Sources */,
 				27166B331DCD03E200A57821 /* FeedVC.swift in Sources */,
 				274994701DCD2E470015B6F8 /* FirebaseAuth.swift in Sources */,
 				27166B2D1DCCF67500A57821 /* RoundedBorderClearBackgroundButton.swift in Sources */,
 				27166B121DCCE63800A57821 /* SignInVC.swift in Sources */,
 				274994781DD0EDC50015B6F8 /* CircleImage.swift in Sources */,
+				2749947A1DD0F6220015B6F8 /* ProfileVC2.swift in Sources */,
 				27166B311DCD03BD00A57821 /* EntryVC.swift in Sources */,
 				27166B2F1DCD03A500A57821 /* SignUpVC.swift in Sources */,
 				27166B101DCCE63800A57821 /* AppDelegate.swift in Sources */,
 				27166B3E1DCD0F9500A57821 /* DataService.swift in Sources */,
-				274994741DD0D2370015B6F8 /* ProfileVC.swift in Sources */,
+				274994741DD0D2370015B6F8 /* ProfileVC1.swift in Sources */,
 				27166B401DCD108300A57821 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

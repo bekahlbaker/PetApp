@@ -20,7 +20,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doginwig" translatesAutoresizingMaskIntoConstraints="NO" id="A4p-64-0YQ"/>
@@ -49,7 +49,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="abC-fw-wPL" kind="show" id="zsD-8J-Lsn"/>
+                                            <segue destination="abC-fw-wPL" kind="show" identifier="toSignInVC" id="zsD-8J-Lsn"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4SJ-WP-wY0" customClass="RoundedBorderClearBackgroundButton" customModule="PetApp" customModuleProvider="target">
@@ -61,7 +61,7 @@
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
-                                            <segue destination="oZP-Ww-SQl" kind="show" id="SDZ-21-9fi"/>
+                                            <segue destination="oZP-Ww-SQl" kind="show" identifier="toSignUpVC" id="SDZ-21-9fi"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -96,7 +96,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-390" y="123"/>
+            <point key="canvasLocation" x="-647" y="13"/>
         </scene>
         <!--Sign InVC-->
         <scene sceneID="JFx-oA-S9O">
@@ -107,12 +107,12 @@
                         <viewControllerLayoutGuide type="bottom" id="eaG-IK-EWm"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ae8-V2-dxi">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="bBk-fJ-e4m">
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="intr username plz?" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="PJp-Vs-ty3">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="intr email plz?" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="PJp-Vs-ty3">
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
@@ -159,7 +159,7 @@
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="oZP-Ww-SQl" kind="showDetail" action="showViewController:sender:" id="pfK-qb-DU3"/>
+                                    <segue destination="oZP-Ww-SQl" kind="showDetail" identifier="toSignUpVC" action="showViewController:sender:" id="pfK-qb-DU3"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lOn-D7-3q2" customClass="RoundedCornerButton" customModule="PetApp" customModuleProvider="target">
@@ -232,7 +232,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yIc-aG-kd9" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-391.19999999999999" y="937.78110944527748"/>
+            <point key="canvasLocation" x="-1178" y="775"/>
         </scene>
         <!--Sign UpVC-->
         <scene sceneID="G6z-d2-htL">
@@ -243,17 +243,11 @@
                         <viewControllerLayoutGuide type="bottom" id="cve-eG-bpZ"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="J0j-24-92X">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="NgD-XJ-e1P">
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="choosed ur username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="nLd-6b-elC">
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="intr email plz?" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Zvi-dH-glJ">
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <nil key="textColor"/>
@@ -295,7 +289,7 @@
                                     <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <segue destination="abC-fw-wPL" kind="showDetail" action="showViewController:sender:" id="91i-3G-K55"/>
+                                    <segue destination="abC-fw-wPL" kind="showDetail" identifier="toSignInVC" action="showViewController:sender:" id="91i-3G-K55"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8qe-X3-PTc" customClass="RoundedCornerButton" customModule="PetApp" customModuleProvider="target">
@@ -369,18 +363,18 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AVh-pW-vPi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="447" y="938"/>
+            <point key="canvasLocation" x="-147" y="775"/>
         </scene>
-        <!--ProfileVC-->
+        <!--ProfileVC1-->
         <scene sceneID="0zO-G5-Qo1">
             <objects>
-                <viewController id="Abn-kb-o6X" customClass="ProfileVC" customModule="PetApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Abn-kb-o6X" customClass="ProfileVC1" customModule="PetApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="P9b-05-4ee"/>
                         <viewControllerLayoutGuide type="bottom" id="UBy-PW-f3b"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Pvr-YN-Jk7">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8OE-W3-LbA" customClass="RoundedCornerButton" customModule="PetApp" customModuleProvider="target">
@@ -389,15 +383,14 @@
                                     <constraint firstAttribute="height" constant="35" id="sNq-bs-jlD"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="19"/>
-                                <state key="normal" title="U IZ DON">
+                                <state key="normal" title="NEXT">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="logInPressed:" destination="oZP-Ww-SQl" eventType="touchUpInside" id="cOB-Qv-D9r"/>
-                                    <segue destination="FOH-oA-jlS" kind="show" id="JzH-fc-tj7"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="tel uz abowt urself k?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6w5-D8-wsj">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="set up profil plz?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6w5-D8-wsj">
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="19"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -413,8 +406,58 @@
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 <state key="normal" title="edit profil pikshur"/>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Eez-ki-35S">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WJF-dH-tSP">
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="19"/>
+                                <state key="normal" title="do latr"/>
+                                <connections>
+                                    <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="0Pn-7V-0xE"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="8OE-W3-LbA" firstAttribute="top" secondItem="vDo-eq-1Kt" secondAttribute="bottom" constant="22" id="2Qo-Sn-3PM"/>
+                            <constraint firstItem="6w5-D8-wsj" firstAttribute="top" secondItem="P9b-05-4ee" secondAttribute="bottom" constant="8" id="PJX-is-dnj"/>
+                            <constraint firstItem="vDo-eq-1Kt" firstAttribute="centerX" secondItem="Pvr-YN-Jk7" secondAttribute="centerX" id="Rg7-8F-1gK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8OE-W3-LbA" secondAttribute="trailing" constant="8" id="WMs-sT-4Xb"/>
+                            <constraint firstItem="WJF-dH-tSP" firstAttribute="centerX" secondItem="Pvr-YN-Jk7" secondAttribute="centerX" id="Yvi-Kq-oQp"/>
+                            <constraint firstItem="6w5-D8-wsj" firstAttribute="centerX" secondItem="Pvr-YN-Jk7" secondAttribute="centerX" id="Z9F-cz-cau"/>
+                            <constraint firstItem="8OE-W3-LbA" firstAttribute="leading" secondItem="Pvr-YN-Jk7" secondAttribute="leadingMargin" constant="8" id="cZo-6X-id5"/>
+                            <constraint firstItem="Hgo-fd-0bN" firstAttribute="centerX" secondItem="Pvr-YN-Jk7" secondAttribute="centerX" id="njw-Wc-tlw"/>
+                            <constraint firstItem="Hgo-fd-0bN" firstAttribute="top" secondItem="6w5-D8-wsj" secondAttribute="bottom" constant="22" id="u3h-Df-MyT"/>
+                            <constraint firstItem="8OE-W3-LbA" firstAttribute="centerX" secondItem="Pvr-YN-Jk7" secondAttribute="centerX" id="wcw-KS-chl"/>
+                            <constraint firstItem="WJF-dH-tSP" firstAttribute="top" secondItem="8OE-W3-LbA" secondAttribute="bottom" constant="20" id="yiI-QE-wjr"/>
+                            <constraint firstItem="vDo-eq-1Kt" firstAttribute="top" secondItem="Hgo-fd-0bN" secondAttribute="bottom" constant="11" id="zLn-D0-hzq"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="mAU-mp-Bgg" kind="show" identifier="toProfileVC2" id="wkk-z6-59g"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ab0-U0-xKD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1445" y="1532"/>
+        </scene>
+        <!--ProfileVC2-->
+        <scene sceneID="r8F-qN-SWZ">
+            <objects>
+                <viewController id="mAU-mp-Bgg" customClass="ProfileVC2" customModule="PetApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nSf-3W-xrT"/>
+                        <viewControllerLayoutGuide type="bottom" id="IEV-Kz-IKU"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Oyc-pB-3D0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="Eez-ki-35S">
                                 <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="choosed ur username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="nLd-6b-elC">
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ur ful neme" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4wy-BP-gkC">
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <nil key="textColor"/>
@@ -427,6 +470,82 @@
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GHu-1f-mvy" customClass="RoundedCornerButton" customModule="PetApp" customModuleProvider="target">
+                                <color key="backgroundColor" red="0.1137254902" green="0.91372549020000005" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="vel-AY-fug"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="19"/>
+                                <state key="normal" title="NEXT">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logInPressed:" destination="oZP-Ww-SQl" eventType="touchUpInside" id="qOq-or-UQ8"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fv-di-z73">
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="19"/>
+                                <state key="normal" title="do latr"/>
+                                <connections>
+                                    <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="Icq-Q7-zTD"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="set up profil plz?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nfc-my-5kq">
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8cp-dx-AYx">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="RyR-UV-m57"/>
+                                    <constraint firstAttribute="width" constant="40" id="q6h-8G-qYO"/>
+                                </constraints>
+                                <state key="normal" image="back"/>
+                                <connections>
+                                    <segue destination="Abn-kb-o6X" kind="show" identifier="toProfileVC1" id="BLQ-ZL-g1H"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Eez-ki-35S" secondAttribute="trailing" constant="8" id="2Jz-JS-Oe8"/>
+                            <constraint firstItem="8cp-dx-AYx" firstAttribute="top" secondItem="Oyc-pB-3D0" secondAttribute="top" constant="8" id="ESy-fL-mM8"/>
+                            <constraint firstItem="Eez-ki-35S" firstAttribute="top" secondItem="Nfc-my-5kq" secondAttribute="bottom" constant="22" id="Q7A-J6-Wrc"/>
+                            <constraint firstItem="Nfc-my-5kq" firstAttribute="top" secondItem="nSf-3W-xrT" secondAttribute="bottom" constant="8" id="Wxo-fh-pjs"/>
+                            <constraint firstItem="Eez-ki-35S" firstAttribute="leading" secondItem="Oyc-pB-3D0" secondAttribute="leadingMargin" constant="8" id="b0h-uc-6h7"/>
+                            <constraint firstItem="GHu-1f-mvy" firstAttribute="leading" secondItem="Oyc-pB-3D0" secondAttribute="leadingMargin" constant="8" id="cXa-Ie-bWb"/>
+                            <constraint firstItem="GHu-1f-mvy" firstAttribute="top" secondItem="Eez-ki-35S" secondAttribute="bottom" constant="22" id="hvF-ci-wVX"/>
+                            <constraint firstItem="9fv-di-z73" firstAttribute="centerX" secondItem="Oyc-pB-3D0" secondAttribute="centerX" id="jbp-b2-KdV"/>
+                            <constraint firstItem="8cp-dx-AYx" firstAttribute="leading" secondItem="Oyc-pB-3D0" secondAttribute="leading" constant="8" id="tcd-NZ-FDp"/>
+                            <constraint firstItem="Nfc-my-5kq" firstAttribute="centerX" secondItem="Oyc-pB-3D0" secondAttribute="centerX" id="uSk-RF-qWh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="GHu-1f-mvy" secondAttribute="trailing" constant="8" id="uWU-de-8Iq"/>
+                            <constraint firstItem="9fv-di-z73" firstAttribute="top" secondItem="GHu-1f-mvy" secondAttribute="bottom" constant="20" id="wIy-d1-Foy"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <segue destination="Akj-0z-DAY" kind="show" identifier="toProfileVC3" id="b2I-Id-yRo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h9E-Kq-SAa" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-647" y="1533"/>
+        </scene>
+        <!--ProfileVC3-->
+        <scene sceneID="uG4-Hw-dpb">
+            <objects>
+                <viewController id="Akj-0z-DAY" customClass="ProfileVC3" customModule="PetApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7dJ-cI-xo3"/>
+                        <viewControllerLayoutGuide type="bottom" id="Kae-ob-7tu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="gtI-7j-c7b">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="PoX-le-ha9">
+                                <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="how old iz u" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3nh-bw-Hx5">
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <nil key="textColor"/>
@@ -447,34 +566,65 @@
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WJF-dH-tSP">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fqf-ii-sGr" customClass="RoundedCornerButton" customModule="PetApp" customModuleProvider="target">
+                                <color key="backgroundColor" red="0.1137254902" green="0.91372549020000005" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="35" id="MaF-7C-SgT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="19"/>
+                                <state key="normal" title="U IZ DON">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="logInPressed:" destination="oZP-Ww-SQl" eventType="touchUpInside" id="S5O-eP-Mra"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxZ-IS-VZv">
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="19"/>
                                 <state key="normal" title="do latr"/>
+                                <connections>
+                                    <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="fRf-U5-vc2"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="set up profil plz?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNk-kD-H6f">
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8B1-JB-Tmi">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="VO8-GD-IEb"/>
+                                    <constraint firstAttribute="width" constant="40" id="s07-Mw-aP5"/>
+                                </constraints>
+                                <state key="normal" image="back"/>
+                                <connections>
+                                    <segue destination="mAU-mp-Bgg" kind="show" identifier="toProfileVC2" id="W56-mX-8iV"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="8OE-W3-LbA" firstAttribute="top" secondItem="Eez-ki-35S" secondAttribute="bottom" constant="20" id="FIe-0B-Hv7"/>
-                            <constraint firstItem="6w5-D8-wsj" firstAttribute="top" secondItem="P9b-05-4ee" secondAttribute="bottom" id="PJX-is-dnj"/>
-                            <constraint firstItem="vDo-eq-1Kt" firstAttribute="centerX" secondItem="Pvr-YN-Jk7" secondAttribute="centerX" id="Rg7-8F-1gK"/>
-                            <constraint firstItem="Eez-ki-35S" firstAttribute="leading" secondItem="Pvr-YN-Jk7" secondAttribute="leadingMargin" constant="8" id="UVO-Ah-Pna"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="8OE-W3-LbA" secondAttribute="trailing" constant="8" id="WMs-sT-4Xb"/>
-                            <constraint firstItem="WJF-dH-tSP" firstAttribute="centerX" secondItem="Pvr-YN-Jk7" secondAttribute="centerX" id="Yvi-Kq-oQp"/>
-                            <constraint firstItem="6w5-D8-wsj" firstAttribute="centerX" secondItem="Pvr-YN-Jk7" secondAttribute="centerX" id="Z9F-cz-cau"/>
-                            <constraint firstItem="8OE-W3-LbA" firstAttribute="leading" secondItem="Pvr-YN-Jk7" secondAttribute="leadingMargin" constant="8" id="cZo-6X-id5"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Eez-ki-35S" secondAttribute="trailing" constant="8" id="d3V-xD-iVE"/>
-                            <constraint firstItem="Hgo-fd-0bN" firstAttribute="centerX" secondItem="Pvr-YN-Jk7" secondAttribute="centerX" id="njw-Wc-tlw"/>
-                            <constraint firstItem="Hgo-fd-0bN" firstAttribute="top" secondItem="6w5-D8-wsj" secondAttribute="bottom" constant="22" id="u3h-Df-MyT"/>
-                            <constraint firstItem="Eez-ki-35S" firstAttribute="top" secondItem="vDo-eq-1Kt" secondAttribute="bottom" constant="16" id="wBn-Dy-jcl"/>
-                            <constraint firstItem="8OE-W3-LbA" firstAttribute="centerX" secondItem="Pvr-YN-Jk7" secondAttribute="centerX" id="wcw-KS-chl"/>
-                            <constraint firstItem="WJF-dH-tSP" firstAttribute="top" secondItem="8OE-W3-LbA" secondAttribute="bottom" constant="20" id="yiI-QE-wjr"/>
-                            <constraint firstItem="vDo-eq-1Kt" firstAttribute="top" secondItem="Hgo-fd-0bN" secondAttribute="bottom" constant="11" id="zLn-D0-hzq"/>
+                            <constraint firstItem="Fqf-ii-sGr" firstAttribute="top" secondItem="PoX-le-ha9" secondAttribute="bottom" constant="22" id="1SX-VP-o07"/>
+                            <constraint firstItem="eNk-kD-H6f" firstAttribute="centerX" secondItem="gtI-7j-c7b" secondAttribute="centerX" id="1jm-3a-9GD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Fqf-ii-sGr" secondAttribute="trailing" constant="8" id="58P-LE-y3f"/>
+                            <constraint firstItem="PoX-le-ha9" firstAttribute="leading" secondItem="gtI-7j-c7b" secondAttribute="leadingMargin" constant="8" id="Bqd-OF-9HC"/>
+                            <constraint firstItem="sxZ-IS-VZv" firstAttribute="centerX" secondItem="gtI-7j-c7b" secondAttribute="centerX" id="LyR-8j-eqR"/>
+                            <constraint firstItem="eNk-kD-H6f" firstAttribute="top" secondItem="7dJ-cI-xo3" secondAttribute="bottom" constant="8" id="XLV-Rd-ake"/>
+                            <constraint firstItem="8B1-JB-Tmi" firstAttribute="top" secondItem="gtI-7j-c7b" secondAttribute="topMargin" constant="8" id="YdT-KD-kCK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="PoX-le-ha9" secondAttribute="trailing" constant="8" id="ck3-WD-hT3"/>
+                            <constraint firstItem="sxZ-IS-VZv" firstAttribute="top" secondItem="Fqf-ii-sGr" secondAttribute="bottom" constant="22" id="d7l-A8-6ss"/>
+                            <constraint firstItem="8B1-JB-Tmi" firstAttribute="leading" secondItem="gtI-7j-c7b" secondAttribute="leading" constant="8" id="h1u-z5-k1o"/>
+                            <constraint firstItem="PoX-le-ha9" firstAttribute="top" secondItem="eNk-kD-H6f" secondAttribute="bottom" constant="22" id="pGK-BI-1L0"/>
+                            <constraint firstItem="Fqf-ii-sGr" firstAttribute="leading" secondItem="gtI-7j-c7b" secondAttribute="leadingMargin" constant="8" id="rqL-3u-ffW"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="AAt-T9-Zl1"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ab0-U0-xKD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="TgK-3V-3dm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1224" y="937"/>
+            <point key="canvasLocation" x="210" y="1533"/>
         </scene>
         <!--FeedVC-->
         <scene sceneID="AZg-86-0Vz">
@@ -485,7 +635,7 @@
                         <viewControllerLayoutGuide type="bottom" id="6cU-uY-F5a"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="OEl-vz-gyI">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dogsmile" translatesAutoresizingMaskIntoConstraints="NO" id="CYV-4T-2ah">
@@ -504,7 +654,7 @@
                                         <state key="normal" image="sign-out"/>
                                         <connections>
                                             <action selector="signOutPressed:" destination="FOH-oA-jlS" eventType="touchUpInside" id="bYt-Mw-YTY"/>
-                                            <segue destination="BYZ-38-t0r" kind="show" id="OhY-6D-2BV"/>
+                                            <segue destination="BYZ-38-t0r" kind="show" identifier="toEntryVC" id="OhY-6D-2BV"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -539,18 +689,21 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OEL-cy-RY3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1057" y="-53"/>
+            <point key="canvasLocation" x="1704" y="-210"/>
         </scene>
     </scenes>
     <resources>
         <image name="add-image" width="88" height="88"/>
+        <image name="back" width="512" height="512"/>
         <image name="doginwig" width="1920" height="1275"/>
         <image name="dogsmile" width="1920" height="1856"/>
         <image name="sign-out" width="92" height="65"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="pfK-qb-DU3"/>
+        <segue reference="GCf-Y1-rpQ"/>
+        <segue reference="SDZ-21-9fi"/>
         <segue reference="91i-3G-K55"/>
-        <segue reference="JzH-fc-tj7"/>
+        <segue reference="jZw-2l-8kF"/>
+        <segue reference="W56-mX-8iV"/>
     </inferredMetricsTieBreakers>
 </document>

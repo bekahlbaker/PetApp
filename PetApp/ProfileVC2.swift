@@ -1,5 +1,5 @@
 //
-//  ProfileVC.swift
+//  ProfileVC2.swift
 //  PetApp
 //
 //  Created by Rebekah Baker on 11/7/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ProfileVC: UIViewController {
+class ProfileVC2: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
