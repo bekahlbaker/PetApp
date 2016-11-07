@@ -7,29 +7,30 @@
 //
 
 import UIKit
+import Firebase
 
 class ProfileVC2: UIViewController {
-
+    
+    @IBOutlet weak var usernameField: UITextField!
+    @IBOutlet weak var fullNameField: UITextField!
+    @IBOutlet weak var parentsNameField: UITextField!
+    
+    @IBAction func nextBtnTapped(_ sender: AnyObject) {
+        let userInfo: Dictionary<String, Any> = [
+            "username": usernameField.text! as String,
+            "full-name": fullNameField.text! as String,
+            "parents-name": parentsNameField.text! as String
+        ]
+        
+        let firebasePost = DataService.ds.REF_CURRENT_USER
+        firebasePost.updateChildValues(userInfo)
+        
+        performSegue(withIdentifier: "toProfileVC3", sender: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

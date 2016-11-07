@@ -268,7 +268,7 @@
                                     <constraint firstAttribute="height" constant="35" id="2pm-MU-lW8"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="19"/>
-                                <state key="normal" title="GO 2 NEXT">
+                                <state key="normal" title="GO 2 NXT">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
@@ -383,11 +383,13 @@
                                     <constraint firstAttribute="height" constant="35" id="sNq-bs-jlD"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="19"/>
-                                <state key="normal" title="NEXT">
+                                <state key="normal" title="NXT">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="logInPressed:" destination="oZP-Ww-SQl" eventType="touchUpInside" id="cOB-Qv-D9r"/>
+                                    <action selector="nextBtnTapped:" destination="Abn-kb-o6X" eventType="touchUpInside" id="6uY-NS-hoV"/>
+                                    <segue destination="mAU-mp-Bgg" kind="show" id="hAA-S9-YSG"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="set up profil plz?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6w5-D8-wsj">
@@ -405,6 +407,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vDo-eq-1Kt">
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 <state key="normal" title="edit profil pikshur"/>
+                                <connections>
+                                    <action selector="addImageTapped:" destination="Abn-kb-o6X" eventType="touchUpInside" id="xXE-7H-AmH"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WJF-dH-tSP">
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="19"/>
@@ -431,6 +436,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="profileImage" destination="Hgo-fd-0bN" id="hBm-sT-Zzp"/>
                         <segue destination="mAU-mp-Bgg" kind="show" identifier="toProfileVC2" id="wkk-z6-59g"/>
                     </connections>
                 </viewController>
@@ -478,11 +484,12 @@
                                     <constraint firstAttribute="height" constant="35" id="vel-AY-fug"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="19"/>
-                                <state key="normal" title="NEXT">
+                                <state key="normal" title="NXT">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="logInPressed:" destination="oZP-Ww-SQl" eventType="touchUpInside" id="qOq-or-UQ8"/>
+                                    <action selector="nextBtnTapped:" destination="mAU-mp-Bgg" eventType="touchUpInside" id="7eu-Yr-1Nl"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fv-di-z73">
@@ -525,6 +532,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="fullNameField" destination="4wy-BP-gkC" id="5y9-UY-F3S"/>
+                        <outlet property="parentsNameField" destination="i6O-ev-DOQ" id="Oe5-0P-xuX"/>
+                        <outlet property="usernameField" destination="nLd-6b-elC" id="2JA-CH-pxc"/>
                         <segue destination="Akj-0z-DAY" kind="show" identifier="toProfileVC3" id="b2I-Id-yRo"/>
                     </connections>
                 </viewController>
@@ -556,13 +566,13 @@
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="ur breed" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="i7e-E5-EJo">
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
                             </stackView>
@@ -576,6 +586,7 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
+                                    <action selector="doneBtnTapped:" destination="Akj-0z-DAY" eventType="touchUpInside" id="aIX-oc-Jcv"/>
                                     <action selector="logInPressed:" destination="oZP-Ww-SQl" eventType="touchUpInside" id="S5O-eP-Mra"/>
                                 </connections>
                             </button>
@@ -619,6 +630,9 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="ageField" destination="3nh-bw-Hx5" id="nPH-Om-x8x"/>
+                        <outlet property="breedField" destination="i7e-E5-EJo" id="mrR-XK-0Vy"/>
+                        <outlet property="speciesField" destination="OmQ-2M-Ums" id="bKM-wQ-kqF"/>
                         <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="AAt-T9-Zl1"/>
                     </connections>
                 </viewController>
@@ -700,10 +714,10 @@
         <image name="sign-out" width="92" height="65"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="GCf-Y1-rpQ"/>
-        <segue reference="SDZ-21-9fi"/>
         <segue reference="91i-3G-K55"/>
+        <segue reference="SDZ-21-9fi"/>
+        <segue reference="0Pn-7V-0xE"/>
         <segue reference="jZw-2l-8kF"/>
-        <segue reference="W56-mX-8iV"/>
+        <segue reference="wkk-z6-59g"/>
     </inferredMetricsTieBreakers>
 </document>
