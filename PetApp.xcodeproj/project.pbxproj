@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		27166B101DCCE63800A57821 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27166B0F1DCCE63800A57821 /* AppDelegate.swift */; };
 		27166B121DCCE63800A57821 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27166B111DCCE63800A57821 /* SignInVC.swift */; };
-		27166B151DCCE63800A57821 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27166B131DCCE63800A57821 /* Main.storyboard */; };
 		27166B171DCCE63800A57821 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27166B161DCCE63800A57821 /* Assets.xcassets */; };
 		27166B1A1DCCE63800A57821 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27166B181DCCE63800A57821 /* LaunchScreen.storyboard */; };
 		27166B221DCCE7BD00A57821 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 27166B211DCCE7BD00A57821 /* GoogleService-Info.plist */; };
@@ -19,6 +18,16 @@
 		27166B2F1DCD03A500A57821 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27166B2E1DCD03A500A57821 /* SignUpVC.swift */; };
 		27166B311DCD03BD00A57821 /* EntryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27166B301DCD03BD00A57821 /* EntryVC.swift */; };
 		27166B331DCD03E200A57821 /* FeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27166B321DCD03E200A57821 /* FeedVC.swift */; };
+		27166B351DCD0D2800A57821 /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27166B341DCD0D2800A57821 /* Bolts.framework */; };
+		27166B371DCD0D3900A57821 /* FBSDKShareKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27166B361DCD0D3900A57821 /* FBSDKShareKit.framework */; };
+		27166B391DCD0D4000A57821 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27166B381DCD0D4000A57821 /* FBSDKLoginKit.framework */; };
+		27166B3B1DCD0D4700A57821 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27166B3A1DCD0D4700A57821 /* FBSDKCoreKit.framework */; };
+		27166B3E1DCD0F9500A57821 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27166B3D1DCD0F9500A57821 /* DataService.swift */; };
+		27166B401DCD108300A57821 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27166B3F1DCD108300A57821 /* Constants.swift */; };
+		274994701DCD2E470015B6F8 /* FirebaseAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2749946F1DCD2E470015B6F8 /* FirebaseAuth.swift */; };
+		274994721DCD36AB0015B6F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 274994711DCD36AB0015B6F8 /* Main.storyboard */; };
+		274994741DD0D2370015B6F8 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274994731DD0D2370015B6F8 /* ProfileVC.swift */; };
+		274994781DD0EDC50015B6F8 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274994771DD0EDC50015B6F8 /* CircleImage.swift */; };
 		B61761CB0A8D5494AA1962C9 /* Pods_PetApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1B3ADE42D2BA19DA972589 /* Pods_PetApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -26,7 +35,6 @@
 		27166B0C1DCCE63800A57821 /* PetApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27166B0F1DCCE63800A57821 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27166B111DCCE63800A57821 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
-		27166B141DCCE63800A57821 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		27166B161DCCE63800A57821 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		27166B191DCCE63800A57821 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		27166B1B1DCCE63800A57821 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -37,6 +45,17 @@
 		27166B2E1DCD03A500A57821 /* SignUpVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		27166B301DCD03BD00A57821 /* EntryVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntryVC.swift; sourceTree = "<group>"; };
 		27166B321DCD03E200A57821 /* FeedVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedVC.swift; sourceTree = "<group>"; };
+		27166B341DCD0D2800A57821 /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Bolts.framework; sourceTree = "<group>"; };
+		27166B361DCD0D3900A57821 /* FBSDKShareKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKShareKit.framework; sourceTree = "<group>"; };
+		27166B381DCD0D4000A57821 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		27166B3A1DCD0D4700A57821 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		27166B3D1DCD0F9500A57821 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
+		27166B3F1DCD108300A57821 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		27166B411DCD10D500A57821 /* PetApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PetApp.entitlements; sourceTree = "<group>"; };
+		2749946F1DCD2E470015B6F8 /* FirebaseAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAuth.swift; sourceTree = "<group>"; };
+		274994711DCD36AB0015B6F8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		274994731DD0D2370015B6F8 /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		274994771DD0EDC50015B6F8 /* CircleImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
 		6CD65ED0F38C43BADF665691 /* Pods-PetApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetApp/Pods-PetApp.debug.xcconfig"; sourceTree = "<group>"; };
 		CE1B3ADE42D2BA19DA972589 /* Pods_PetApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D33CB02ABE7EC0697EAF044B /* Pods-PetApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-PetApp/Pods-PetApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -47,7 +66,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				27166B3B1DCD0D4700A57821 /* FBSDKCoreKit.framework in Frameworks */,
 				B61761CB0A8D5494AA1962C9 /* Pods_PetApp.framework in Frameworks */,
+				27166B351DCD0D2800A57821 /* Bolts.framework in Frameworks */,
+				27166B391DCD0D4000A57821 /* FBSDKLoginKit.framework in Frameworks */,
+				27166B371DCD0D3900A57821 /* FBSDKShareKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,13 +98,15 @@
 		27166B0E1DCCE63800A57821 /* PetApp */ = {
 			isa = PBXGroup;
 			children = (
+				27166B411DCD10D500A57821 /* PetApp.entitlements */,
+				27166B3C1DCD0F7A00A57821 /* Services */,
 				27166B271DCCEE3100A57821 /* Model */,
 				27166B261DCCEE2500A57821 /* View */,
 				27166B251DCCEE2100A57821 /* Controller */,
 				27166B241DCCEE1A00A57821 /* Utilities */,
 				27166B231DCCEE1000A57821 /* Resources */,
 				27166B0F1DCCE63800A57821 /* AppDelegate.swift */,
-				27166B131DCCE63800A57821 /* Main.storyboard */,
+				274994711DCD36AB0015B6F8 /* Main.storyboard */,
 				27166B181DCCE63800A57821 /* LaunchScreen.storyboard */,
 			);
 			path = PetApp;
@@ -101,6 +126,8 @@
 		27166B241DCCEE1A00A57821 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				27166B3F1DCD108300A57821 /* Constants.swift */,
+				2749946F1DCD2E470015B6F8 /* FirebaseAuth.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -112,6 +139,7 @@
 				27166B2E1DCD03A500A57821 /* SignUpVC.swift */,
 				27166B301DCD03BD00A57821 /* EntryVC.swift */,
 				27166B321DCD03E200A57821 /* FeedVC.swift */,
+				274994731DD0D2370015B6F8 /* ProfileVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -121,6 +149,7 @@
 			children = (
 				27166B2A1DCCF5F300A57821 /* RoundedCornerButton.swift */,
 				27166B2C1DCCF67500A57821 /* RoundedBorderClearBackgroundButton.swift */,
+				274994771DD0EDC50015B6F8 /* CircleImage.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -132,9 +161,21 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		27166B3C1DCD0F7A00A57821 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				27166B3D1DCD0F9500A57821 /* DataService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
 		32AA3AA8459EA9C86F7B8203 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				27166B3A1DCD0D4700A57821 /* FBSDKCoreKit.framework */,
+				27166B381DCD0D4000A57821 /* FBSDKLoginKit.framework */,
+				27166B361DCD0D3900A57821 /* FBSDKShareKit.framework */,
+				27166B341DCD0D2800A57821 /* Bolts.framework */,
 				CE1B3ADE42D2BA19DA972589 /* Pods_PetApp.framework */,
 			);
 			name = Frameworks;
@@ -187,6 +228,11 @@
 						DevelopmentTeam = SAWE6E694F;
 						LastSwiftMigration = 0810;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Keychain = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -214,9 +260,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				27166B1A1DCCE63800A57821 /* LaunchScreen.storyboard in Resources */,
+				274994721DCD36AB0015B6F8 /* Main.storyboard in Resources */,
 				27166B291DCCF2F400A57821 /* Lobster1.4.otf in Resources */,
 				27166B171DCCE63800A57821 /* Assets.xcassets in Resources */,
-				27166B151DCCE63800A57821 /* Main.storyboard in Resources */,
 				27166B221DCCE7BD00A57821 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,25 +324,22 @@
 			files = (
 				27166B2B1DCCF5F300A57821 /* RoundedCornerButton.swift in Sources */,
 				27166B331DCD03E200A57821 /* FeedVC.swift in Sources */,
+				274994701DCD2E470015B6F8 /* FirebaseAuth.swift in Sources */,
 				27166B2D1DCCF67500A57821 /* RoundedBorderClearBackgroundButton.swift in Sources */,
 				27166B121DCCE63800A57821 /* SignInVC.swift in Sources */,
+				274994781DD0EDC50015B6F8 /* CircleImage.swift in Sources */,
 				27166B311DCD03BD00A57821 /* EntryVC.swift in Sources */,
 				27166B2F1DCD03A500A57821 /* SignUpVC.swift in Sources */,
 				27166B101DCCE63800A57821 /* AppDelegate.swift in Sources */,
+				27166B3E1DCD0F9500A57821 /* DataService.swift in Sources */,
+				274994741DD0D2370015B6F8 /* ProfileVC.swift in Sources */,
+				27166B401DCD108300A57821 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		27166B131DCCE63800A57821 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				27166B141DCCE63800A57821 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		27166B181DCCE63800A57821 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -406,7 +449,12 @@
 			baseConfigurationReference = 6CD65ED0F38C43BADF665691 /* Pods-PetApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PetApp/PetApp.entitlements;
 				DEVELOPMENT_TEAM = SAWE6E694F;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = PetApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -421,7 +469,12 @@
 			baseConfigurationReference = D33CB02ABE7EC0697EAF044B /* Pods-PetApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = PetApp/PetApp.entitlements;
 				DEVELOPMENT_TEAM = SAWE6E694F;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = PetApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
