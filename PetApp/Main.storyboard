@@ -248,7 +248,7 @@
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="NgD-XJ-e1P">
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="intr email plz?" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Zvi-dH-glJ">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="intr email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aPg-yI-9yI">
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
@@ -354,11 +354,11 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="emailField" destination="Zvi-dH-glJ" id="ukF-oH-cyx"/>
+                        <outlet property="emailField" destination="aPg-yI-9yI" id="WEO-VD-lrc"/>
                         <outlet property="passwordField" destination="8oG-Nn-7jf" id="lYM-dP-700"/>
                         <outlet property="usernameField" destination="nLd-6b-elC" id="lg5-m0-wER"/>
                         <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="GCf-Y1-rpQ"/>
-                        <segue destination="Abn-kb-o6X" kind="showDetail" identifier="toProfileVC" id="jZw-2l-8kF"/>
+                        <segue destination="Abn-kb-o6X" kind="showDetail" identifier="toProfileVC1" id="jZw-2l-8kF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AVh-pW-vPi" userLabel="First Responder" sceneMemberID="firstResponder"/>
