@@ -633,12 +633,62 @@
                         <outlet property="ageField" destination="3nh-bw-Hx5" id="nPH-Om-x8x"/>
                         <outlet property="breedField" destination="i7e-E5-EJo" id="mrR-XK-0Vy"/>
                         <outlet property="speciesField" destination="OmQ-2M-Ums" id="bKM-wQ-kqF"/>
-                        <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="AAt-T9-Zl1"/>
+                        <segue destination="8e3-ft-Uph" kind="show" identifier="toProfileVC" id="Mkx-s7-s3q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TgK-3V-3dm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="210" y="1533"/>
+        </scene>
+        <!--ProfileVC-->
+        <scene sceneID="Jnh-wp-Hi8">
+            <objects>
+                <viewController id="8e3-ft-Uph" customClass="ProfileVC" customModule="PetApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jWt-Gs-7f5"/>
+                        <viewControllerLayoutGuide type="bottom" id="eWV-PC-WBe"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zzj-oC-mws">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rjr-1D-EC8">
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="240" id="4mf-gS-w58"/>
+                                    <constraint firstAttribute="height" constant="128" id="lk0-fs-97I"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ldv-i4-pYb">
+                                <state key="normal" title="Home"/>
+                                <connections>
+                                    <segue destination="FOH-oA-jlS" kind="show" id="chB-23-lTf"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfw-59-jYt">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ldv-i4-pYb" firstAttribute="top" secondItem="nfw-59-jYt" secondAttribute="bottom" constant="136" id="7GM-bP-cTe"/>
+                            <constraint firstItem="rjr-1D-EC8" firstAttribute="centerX" secondItem="zzj-oC-mws" secondAttribute="centerX" id="D6S-8P-CfO"/>
+                            <constraint firstItem="nfw-59-jYt" firstAttribute="leading" secondItem="zzj-oC-mws" secondAttribute="leadingMargin" constant="22" id="KLN-6E-Pil"/>
+                            <constraint firstItem="Ldv-i4-pYb" firstAttribute="centerX" secondItem="zzj-oC-mws" secondAttribute="centerX" id="Llx-OF-xb0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nfw-59-jYt" secondAttribute="trailing" constant="22" id="QCs-m3-zFf"/>
+                            <constraint firstItem="nfw-59-jYt" firstAttribute="top" secondItem="rjr-1D-EC8" secondAttribute="bottom" constant="25" id="dF8-kz-Ooa"/>
+                            <constraint firstItem="rjr-1D-EC8" firstAttribute="top" secondItem="jWt-Gs-7f5" secondAttribute="bottom" id="oY7-0M-oRU"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="profileImg" destination="rjr-1D-EC8" id="jAj-aJ-4je"/>
+                        <outlet property="usernameLabel" destination="nfw-59-jYt" id="1UA-94-vUd"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HAk-d2-Wgc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1424.8" y="1002.5487256371815"/>
         </scene>
         <!--FeedVC-->
         <scene sceneID="AZg-86-0Vz">
@@ -716,8 +766,8 @@
     <inferredMetricsTieBreakers>
         <segue reference="91i-3G-K55"/>
         <segue reference="SDZ-21-9fi"/>
-        <segue reference="0Pn-7V-0xE"/>
+        <segue reference="chB-23-lTf"/>
+        <segue reference="W56-mX-8iV"/>
         <segue reference="jZw-2l-8kF"/>
-        <segue reference="wkk-z6-59g"/>
     </inferredMetricsTieBreakers>
 </document>

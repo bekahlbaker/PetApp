@@ -26,7 +26,7 @@ class ProfileVC3: UIViewController {
         let firebasePost = DataService.ds.REF_CURRENT_USER
         firebasePost.updateChildValues(userInfo)
         
-        performSegue(withIdentifier: "toFeedVC", sender: nil)
+        performSegue(withIdentifier: "toProfileVC", sender: nil)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
