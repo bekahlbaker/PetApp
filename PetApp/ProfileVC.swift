@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseStorageUI
 
 class ProfileVC: UIViewController {
 
@@ -19,7 +20,9 @@ class ProfileVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     
-
+        let reference = DataService.ds.REF_USER_PROFILE
+        let imageView: UIImageView = profileImg
+        imageView.sd_setImage(with: reference)
     
     }
 

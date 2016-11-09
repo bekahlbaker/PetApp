@@ -17,26 +17,32 @@ class ProfileVC1: UIViewController, UIImagePickerControllerDelegate, UINavigatio
     }
     
     @IBAction func nextBtnTapped(_ sender: AnyObject) {
-        let img = profileImage.image
         
-        if let imgData = UIImageJPEGRepresentation(img!, 0.2) {
-            
-            let imgUid = NSUUID().uuidString
-            let metadata = FIRStorageMetadata()
-            metadata.contentType = "images/jpeg"
-            
-            DataService.ds.REF_USER_PROFILE.child(imgUid).put(imgData, metadata: metadata) { (metadata, error) in
-                if error != nil {
-                    print(error)
-                } else {
-                    print("Successfully uploaded image to Firebase")
-                    let downloadUrl = metadata?.downloadURL()?.absoluteString
-                    if let url = downloadUrl {
-                        self.uploadToFirebase(imgUrl: url)
-                    }
-                }
+        let imageName = NSUUID().uuidString
+        
+        
+        let storageRef = FIRStorage.storage().reference().child("\(imageName).png")
+        
+        if let uploadData = UIImagePNGRepresentation(self.profileImage.image!) {
+                    storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
+                        if error != nil {
+                            print(error)
+                            return
+                        }
+                        
+                        print(metadata)
+                        
+                        if let profileImageUrl =  metadata?.downloadURL()?.absoluteString {
+                         let values = ["profileImgUrl": profileImageUrl]
+                            
+                        self.uploadToFirebase(values: values)
+                        
+                            print("Successfuly uploaded image to Firebase")
+                        }
+                        
+                    })
         }
-    }
+    
 }
     
     
@@ -62,16 +68,12 @@ class ProfileVC1: UIViewController, UIImagePickerControllerDelegate, UINavigatio
         imagePicker.dismiss(animated: true, completion: nil)
     }
     
-    func uploadToFirebase(imgUrl: String) {
-        let userInfo: Dictionary<String, Any> = [
-           "imageUrl": imgUrl as String
-        ]
-        
+    
+    func uploadToFirebase(values: [String: Any]) {
         let firebasePost = DataService.ds.REF_CURRENT_USER
-        firebasePost.updateChildValues(userInfo)
+        firebasePost.updateChildValues(values)
         
         performSegue(withIdentifier: "toProfileVC2", sender: nil)
     }
     
-
 }

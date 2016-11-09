@@ -26,7 +26,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                             print("Successfully authenticated with Firebase using email")
                             self.performSegue(withIdentifier: "toProfileVC1", sender: nil)
                             if let user = user {
-                                let userData = ["provider": user.providerID]
+                                let userData = ["provider": user.providerID, "email": email]
                                 DataService.ds.completeSignIn(id: user.uid, userData: userData)
                             }
                         }
