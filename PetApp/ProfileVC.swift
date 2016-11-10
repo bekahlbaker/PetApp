@@ -8,22 +8,49 @@
 
 import UIKit
 import Firebase
-import FirebaseStorageUI
+
 
 class ProfileVC: UIViewController {
 
     @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet weak var usernameLabel: UILabel!
-    
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        let reference = DataService.ds.REF_USER_PROFILE
-        let imageView: UIImageView = profileImg
-        imageView.sd_setImage(with: reference)
-    
+        
+        
+        DataService.ds.REF_CURRENT_USER.observe(.value, with: { (snapshot) in
+            
+            if let dictionary = snapshot.value as? [String: Any] {
+                print(snapshot)
+                self.usernameLabel.text = dictionary["username"] as? String
+            }
+            
+            })
+
+        
+        
+        //download profile image
+        
+//        let url = DataService.ds.REF_CURRENT_USER.child("profileImgUrl")
+//        
+//        print("THE PROFILE IMG URL IS \(url)")
+//        
+//        let localUrl = url as! String
+//        
+//        let reference = FIRStorage.storage().reference(forURL: url)
+//        
+//        reference.data(withMaxSize: 1 * 1024 * 1024) { (data, error) in
+//            if error != nil {
+//                print("Unable to download from Firebase storage")
+//                return
+//            }
+//            
+//            print("Image downloaded")
+//            self.profileImg.image = UIImage(data: data!)
+//        }
+        
     }
 
 }

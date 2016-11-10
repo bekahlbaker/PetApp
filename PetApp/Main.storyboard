@@ -737,14 +737,22 @@
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nov-g6-S4l">
+                                <state key="normal" title="Edit Profile"/>
+                                <connections>
+                                    <segue destination="8e3-ft-Uph" kind="show" id="qbT-ML-yXI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="VRU-jE-Pub" firstAttribute="leading" secondItem="OEl-vz-gyI" secondAttribute="leadingMargin" id="Fl4-T0-G22"/>
                             <constraint firstAttribute="trailing" secondItem="pxA-0X-vtU" secondAttribute="trailing" id="Iwa-cm-R3s"/>
                             <constraint firstItem="pxA-0X-vtU" firstAttribute="leading" secondItem="OEl-vz-gyI" secondAttribute="leading" id="Iwe-uh-7WZ"/>
+                            <constraint firstItem="6cU-uY-F5a" firstAttribute="top" secondItem="Nov-g6-S4l" secondAttribute="bottom" constant="107" id="JHx-hU-aX1"/>
                             <constraint firstItem="VRU-jE-Pub" firstAttribute="trailing" secondItem="OEl-vz-gyI" secondAttribute="trailingMargin" id="QUj-cV-h7G"/>
                             <constraint firstItem="CYV-4T-2ah" firstAttribute="centerX" secondItem="OEl-vz-gyI" secondAttribute="centerX" id="RiE-HC-juL"/>
+                            <constraint firstItem="Nov-g6-S4l" firstAttribute="centerX" secondItem="OEl-vz-gyI" secondAttribute="centerX" id="S3t-RO-fQq"/>
                             <constraint firstItem="pxA-0X-vtU" firstAttribute="top" secondItem="OEl-vz-gyI" secondAttribute="top" id="bZA-nt-bgu"/>
                             <constraint firstItem="VRU-jE-Pub" firstAttribute="top" secondItem="CYV-4T-2ah" secondAttribute="bottom" constant="8" id="l3d-b6-UEh"/>
                             <constraint firstItem="CYV-4T-2ah" firstAttribute="top" secondItem="pxA-0X-vtU" secondAttribute="bottom" constant="48" id="z3M-ME-SEV"/>
@@ -764,10 +772,11 @@
         <image name="sign-out" width="92" height="65"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="91i-3G-K55"/>
         <segue reference="SDZ-21-9fi"/>
         <segue reference="chB-23-lTf"/>
+        <segue reference="Mkx-s7-s3q"/>
         <segue reference="W56-mX-8iV"/>
+        <segue reference="91i-3G-K55"/>
         <segue reference="jZw-2l-8kF"/>
     </inferredMetricsTieBreakers>
 </document>
