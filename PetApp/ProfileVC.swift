@@ -19,6 +19,7 @@ class ProfileVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        //download profile info
         
         DataService.ds.REF_CURRENT_USER.observe(.value, with: { (snapshot) in
             
@@ -27,29 +28,35 @@ class ProfileVC: UIViewController {
                 self.usernameLabel.text = dictionary["username"] as? String
             }
             
+            
             })
 
         
         
         //download profile image
         
-//        let url = DataService.ds.REF_CURRENT_USER.child("profileImgUrl")
-//        
-//        print("THE PROFILE IMG URL IS \(url)")
-//        
-//        let localUrl = url as! String
-//        
-//        let reference = FIRStorage.storage().reference(forURL: url)
-//        
-//        reference.data(withMaxSize: 1 * 1024 * 1024) { (data, error) in
-//            if error != nil {
-//                print("Unable to download from Firebase storage")
-//                return
-//            }
-//            
-//            print("Image downloaded")
-//            self.profileImg.image = UIImage(data: data!)
-//        }
+        DataService.ds.REF_CURRENT_USER.observe(.value, with: { (snapshot) in
+            
+            
+            
+            if let dictionary = snapshot.value as? [String: Any] {
+                let url = dictionary["profileImgUrl"] as! String
+                let storage = FIRStorage.storage()
+                
+                let storageRef = storage.reference(forURL: url)
+                
+                storageRef.data(withMaxSize: 1 * 1024 * 1024) { (data, error) in
+                    if error != nil {
+                        print("Unablet to download image from firebase")
+                    } else {
+                        let profileImg = UIImage(data: data!)
+                        self.profileImg.image = profileImg
+                    }
+                }
+                
+
+            }
+        })
         
     }
 
