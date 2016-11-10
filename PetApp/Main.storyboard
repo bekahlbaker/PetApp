@@ -652,37 +652,71 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rjr-1D-EC8">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rjr-1D-EC8" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="4mf-gS-w58"/>
-                                    <constraint firstAttribute="height" constant="128" id="lk0-fs-97I"/>
+                                    <constraint firstAttribute="width" constant="80" id="i3b-Qg-rlK"/>
+                                    <constraint firstAttribute="height" constant="80" id="lUZ-07-jhm"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ldv-i4-pYb">
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ldv-i4-pYb">
+                                <frame key="frameInset" minX="167" minY="441" width="41" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Home"/>
                                 <connections>
                                     <segue destination="FOH-oA-jlS" kind="show" id="chB-23-lTf"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfw-59-jYt">
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" tag="8" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Wze-oy-mm1">
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfw-59-jYt">
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="full name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x42-TF-mJU">
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="parent's name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8fU-SY-jIJ">
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="age" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dWE-5O-aW1">
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="species" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rtQ-H8-Esp">
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="breed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iFi-rl-XEO">
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Ldv-i4-pYb" firstAttribute="top" secondItem="nfw-59-jYt" secondAttribute="bottom" constant="136" id="7GM-bP-cTe"/>
-                            <constraint firstItem="rjr-1D-EC8" firstAttribute="centerX" secondItem="zzj-oC-mws" secondAttribute="centerX" id="D6S-8P-CfO"/>
-                            <constraint firstItem="nfw-59-jYt" firstAttribute="leading" secondItem="zzj-oC-mws" secondAttribute="leadingMargin" constant="22" id="KLN-6E-Pil"/>
-                            <constraint firstItem="Ldv-i4-pYb" firstAttribute="centerX" secondItem="zzj-oC-mws" secondAttribute="centerX" id="Llx-OF-xb0"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="nfw-59-jYt" secondAttribute="trailing" constant="22" id="QCs-m3-zFf"/>
-                            <constraint firstItem="nfw-59-jYt" firstAttribute="top" secondItem="rjr-1D-EC8" secondAttribute="bottom" constant="25" id="dF8-kz-Ooa"/>
-                            <constraint firstItem="rjr-1D-EC8" firstAttribute="top" secondItem="jWt-Gs-7f5" secondAttribute="bottom" id="oY7-0M-oRU"/>
+                            <constraint firstItem="rjr-1D-EC8" firstAttribute="centerX" secondItem="zzj-oC-mws" secondAttribute="centerX" id="0dE-WT-nPo"/>
+                            <constraint firstItem="Wze-oy-mm1" firstAttribute="leading" secondItem="zzj-oC-mws" secondAttribute="leadingMargin" constant="8" id="6wU-KR-AOh"/>
+                            <constraint firstItem="Wze-oy-mm1" firstAttribute="top" secondItem="rjr-1D-EC8" secondAttribute="bottom" constant="46" id="fd8-1r-RDW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Wze-oy-mm1" secondAttribute="trailing" constant="8" id="h2e-MA-yWB"/>
+                            <constraint firstItem="rjr-1D-EC8" firstAttribute="top" secondItem="jWt-Gs-7f5" secondAttribute="bottom" constant="16" id="rQb-kC-6kj"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="ageLbl" destination="dWE-5O-aW1" id="QqV-JT-cg6"/>
+                        <outlet property="breedLbl" destination="iFi-rl-XEO" id="DsA-nK-UFy"/>
+                        <outlet property="fullNameLbl" destination="x42-TF-mJU" id="x2U-8U-e0d"/>
+                        <outlet property="parentsNameLbl" destination="8fU-SY-jIJ" id="YvD-C0-gKi"/>
                         <outlet property="profileImg" destination="rjr-1D-EC8" id="jAj-aJ-4je"/>
+                        <outlet property="speciesLbl" destination="rtQ-H8-Esp" id="bbu-FN-QZn"/>
                         <outlet property="usernameLabel" destination="nfw-59-jYt" id="1UA-94-vUd"/>
                     </connections>
                 </viewController>
@@ -775,8 +809,8 @@
         <segue reference="SDZ-21-9fi"/>
         <segue reference="chB-23-lTf"/>
         <segue reference="Mkx-s7-s3q"/>
-        <segue reference="W56-mX-8iV"/>
-        <segue reference="91i-3G-K55"/>
+        <segue reference="wkk-z6-59g"/>
         <segue reference="jZw-2l-8kF"/>
+        <segue reference="91i-3G-K55"/>
     </inferredMetricsTieBreakers>
 </document>
