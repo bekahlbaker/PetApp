@@ -24,11 +24,11 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                             print("Unable to authenticate with Firebase using email - \(error)")
                         } else {
                             print("Successfully authenticated with Firebase using email")
-                            self.performSegue(withIdentifier: "toProfileVC1", sender: nil)
                             if let user = user {
                                 let userData = ["provider": user.providerID, "email": email]
                                 DataService.ds.completeSignIn(id: user.uid, userData: userData)
                             }
+                            self.performSegue(withIdentifier: "toProfileVC", sender: nil)
                         }
                     })
                 }

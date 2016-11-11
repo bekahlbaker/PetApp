@@ -356,109 +356,54 @@
                     <connections>
                         <outlet property="emailField" destination="aPg-yI-9yI" id="WEO-VD-lrc"/>
                         <outlet property="passwordField" destination="8oG-Nn-7jf" id="lYM-dP-700"/>
-                        <outlet property="usernameField" destination="nLd-6b-elC" id="lg5-m0-wER"/>
                         <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="GCf-Y1-rpQ"/>
-                        <segue destination="Abn-kb-o6X" kind="showDetail" identifier="toProfileVC1" id="jZw-2l-8kF"/>
+                        <segue destination="8e3-ft-Uph" kind="show" identifier="toProfileVC" id="tXI-lO-4qc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AVh-pW-vPi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-147" y="775"/>
         </scene>
-        <!--ProfileVC1-->
-        <scene sceneID="0zO-G5-Qo1">
+        <!--ProfileVC-->
+        <scene sceneID="Jnh-wp-Hi8">
             <objects>
-                <viewController id="Abn-kb-o6X" customClass="ProfileVC1" customModule="PetApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="8e3-ft-Uph" customClass="ProfileVC" customModule="PetApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="P9b-05-4ee"/>
-                        <viewControllerLayoutGuide type="bottom" id="UBy-PW-f3b"/>
+                        <viewControllerLayoutGuide type="top" id="jWt-Gs-7f5"/>
+                        <viewControllerLayoutGuide type="bottom" id="eWV-PC-WBe"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Pvr-YN-Jk7">
+                    <view key="view" contentMode="scaleToFill" id="zzj-oC-mws">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8OE-W3-LbA" customClass="RoundedCornerButton" customModule="PetApp" customModuleProvider="target">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-image" translatesAutoresizingMaskIntoConstraints="NO" id="rjr-1D-EC8" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
                                 <color key="backgroundColor" red="0.1137254902" green="0.91372549020000005" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="sNq-bs-jlD"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="19"/>
-                                <state key="normal" title="NXT">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="logInPressed:" destination="oZP-Ww-SQl" eventType="touchUpInside" id="cOB-Qv-D9r"/>
-                                    <action selector="nextBtnTapped:" destination="Abn-kb-o6X" eventType="touchUpInside" id="6uY-NS-hoV"/>
-                                    <segue destination="mAU-mp-Bgg" kind="show" id="hAA-S9-YSG"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="set up profil plz?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6w5-D8-wsj">
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="19"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-image" translatesAutoresizingMaskIntoConstraints="NO" id="Hgo-fd-0bN" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
-                                <color key="backgroundColor" red="0.1137254902" green="0.91372549020000005" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="N9b-b5-0DQ"/>
-                                    <constraint firstAttribute="width" constant="80" id="cNZ-dd-aji"/>
+                                    <constraint firstAttribute="width" constant="80" id="i3b-Qg-rlK"/>
+                                    <constraint firstAttribute="height" constant="80" id="lUZ-07-jhm"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vDo-eq-1Kt">
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ldv-i4-pYb">
+                                <state key="normal" title="cansel"/>
+                                <connections>
+                                    <segue destination="FOH-oA-jlS" kind="show" id="chB-23-lTf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GNB-uH-JWJ">
+                                <state key="normal" title="sav"/>
+                                <connections>
+                                    <action selector="saveBtnPressed:" destination="8e3-ft-Uph" eventType="touchUpInside" id="eSn-px-YdB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NvB-k9-cwp">
                                 <state key="normal" title="edit profil pikshur"/>
                                 <connections>
-                                    <action selector="addImageTapped:" destination="Abn-kb-o6X" eventType="touchUpInside" id="xXE-7H-AmH"/>
+                                    <action selector="addImageTapped:" destination="8e3-ft-Uph" eventType="touchUpInside" id="o6F-oW-mNN"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WJF-dH-tSP">
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="19"/>
-                                <state key="normal" title="do latr"/>
-                                <connections>
-                                    <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="0Pn-7V-0xE"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="8OE-W3-LbA" firstAttribute="top" secondItem="vDo-eq-1Kt" secondAttribute="bottom" constant="22" id="2Qo-Sn-3PM"/>
-                            <constraint firstItem="6w5-D8-wsj" firstAttribute="top" secondItem="P9b-05-4ee" secondAttribute="bottom" constant="8" id="PJX-is-dnj"/>
-                            <constraint firstItem="vDo-eq-1Kt" firstAttribute="centerX" secondItem="Pvr-YN-Jk7" secondAttribute="centerX" id="Rg7-8F-1gK"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="8OE-W3-LbA" secondAttribute="trailing" constant="8" id="WMs-sT-4Xb"/>
-                            <constraint firstItem="WJF-dH-tSP" firstAttribute="centerX" secondItem="Pvr-YN-Jk7" secondAttribute="centerX" id="Yvi-Kq-oQp"/>
-                            <constraint firstItem="6w5-D8-wsj" firstAttribute="centerX" secondItem="Pvr-YN-Jk7" secondAttribute="centerX" id="Z9F-cz-cau"/>
-                            <constraint firstItem="8OE-W3-LbA" firstAttribute="leading" secondItem="Pvr-YN-Jk7" secondAttribute="leadingMargin" constant="8" id="cZo-6X-id5"/>
-                            <constraint firstItem="Hgo-fd-0bN" firstAttribute="centerX" secondItem="Pvr-YN-Jk7" secondAttribute="centerX" id="njw-Wc-tlw"/>
-                            <constraint firstItem="Hgo-fd-0bN" firstAttribute="top" secondItem="6w5-D8-wsj" secondAttribute="bottom" constant="22" id="u3h-Df-MyT"/>
-                            <constraint firstItem="8OE-W3-LbA" firstAttribute="centerX" secondItem="Pvr-YN-Jk7" secondAttribute="centerX" id="wcw-KS-chl"/>
-                            <constraint firstItem="WJF-dH-tSP" firstAttribute="top" secondItem="8OE-W3-LbA" secondAttribute="bottom" constant="20" id="yiI-QE-wjr"/>
-                            <constraint firstItem="vDo-eq-1Kt" firstAttribute="top" secondItem="Hgo-fd-0bN" secondAttribute="bottom" constant="11" id="zLn-D0-hzq"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="profileImage" destination="Hgo-fd-0bN" id="hBm-sT-Zzp"/>
-                        <segue destination="mAU-mp-Bgg" kind="show" identifier="toProfileVC2" id="wkk-z6-59g"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ab0-U0-xKD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1445" y="1532"/>
-        </scene>
-        <!--ProfileVC2-->
-        <scene sceneID="r8F-qN-SWZ">
-            <objects>
-                <viewController id="mAU-mp-Bgg" customClass="ProfileVC2" customModule="PetApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="nSf-3W-xrT"/>
-                        <viewControllerLayoutGuide type="bottom" id="IEV-Kz-IKU"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="Oyc-pB-3D0">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="Eez-ki-35S">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Eez-ki-35S">
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="choosed ur username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="nLd-6b-elC">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="uzerneme" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="nLd-6b-elC">
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
@@ -476,86 +421,6 @@
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                </subviews>
-                            </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GHu-1f-mvy" customClass="RoundedCornerButton" customModule="PetApp" customModuleProvider="target">
-                                <color key="backgroundColor" red="0.1137254902" green="0.91372549020000005" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="vel-AY-fug"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="19"/>
-                                <state key="normal" title="NXT">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="logInPressed:" destination="oZP-Ww-SQl" eventType="touchUpInside" id="qOq-or-UQ8"/>
-                                    <action selector="nextBtnTapped:" destination="mAU-mp-Bgg" eventType="touchUpInside" id="7eu-Yr-1Nl"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fv-di-z73">
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="19"/>
-                                <state key="normal" title="do latr"/>
-                                <connections>
-                                    <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="Icq-Q7-zTD"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="set up profil plz?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nfc-my-5kq">
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="19"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8cp-dx-AYx">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="RyR-UV-m57"/>
-                                    <constraint firstAttribute="width" constant="40" id="q6h-8G-qYO"/>
-                                </constraints>
-                                <state key="normal" image="back"/>
-                                <connections>
-                                    <segue destination="Abn-kb-o6X" kind="show" identifier="toProfileVC1" id="BLQ-ZL-g1H"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="Eez-ki-35S" secondAttribute="trailing" constant="8" id="2Jz-JS-Oe8"/>
-                            <constraint firstItem="8cp-dx-AYx" firstAttribute="top" secondItem="Oyc-pB-3D0" secondAttribute="top" constant="8" id="ESy-fL-mM8"/>
-                            <constraint firstItem="Eez-ki-35S" firstAttribute="top" secondItem="Nfc-my-5kq" secondAttribute="bottom" constant="22" id="Q7A-J6-Wrc"/>
-                            <constraint firstItem="Nfc-my-5kq" firstAttribute="top" secondItem="nSf-3W-xrT" secondAttribute="bottom" constant="8" id="Wxo-fh-pjs"/>
-                            <constraint firstItem="Eez-ki-35S" firstAttribute="leading" secondItem="Oyc-pB-3D0" secondAttribute="leadingMargin" constant="8" id="b0h-uc-6h7"/>
-                            <constraint firstItem="GHu-1f-mvy" firstAttribute="leading" secondItem="Oyc-pB-3D0" secondAttribute="leadingMargin" constant="8" id="cXa-Ie-bWb"/>
-                            <constraint firstItem="GHu-1f-mvy" firstAttribute="top" secondItem="Eez-ki-35S" secondAttribute="bottom" constant="22" id="hvF-ci-wVX"/>
-                            <constraint firstItem="9fv-di-z73" firstAttribute="centerX" secondItem="Oyc-pB-3D0" secondAttribute="centerX" id="jbp-b2-KdV"/>
-                            <constraint firstItem="8cp-dx-AYx" firstAttribute="leading" secondItem="Oyc-pB-3D0" secondAttribute="leading" constant="8" id="tcd-NZ-FDp"/>
-                            <constraint firstItem="Nfc-my-5kq" firstAttribute="centerX" secondItem="Oyc-pB-3D0" secondAttribute="centerX" id="uSk-RF-qWh"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="GHu-1f-mvy" secondAttribute="trailing" constant="8" id="uWU-de-8Iq"/>
-                            <constraint firstItem="9fv-di-z73" firstAttribute="top" secondItem="GHu-1f-mvy" secondAttribute="bottom" constant="20" id="wIy-d1-Foy"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="fullNameField" destination="4wy-BP-gkC" id="5y9-UY-F3S"/>
-                        <outlet property="parentsNameField" destination="i6O-ev-DOQ" id="Oe5-0P-xuX"/>
-                        <outlet property="usernameField" destination="nLd-6b-elC" id="2JA-CH-pxc"/>
-                        <segue destination="Akj-0z-DAY" kind="show" identifier="toProfileVC3" id="b2I-Id-yRo"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="h9E-Kq-SAa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-647" y="1533"/>
-        </scene>
-        <!--ProfileVC3-->
-        <scene sceneID="uG4-Hw-dpb">
-            <objects>
-                <viewController id="Akj-0z-DAY" customClass="ProfileVC3" customModule="PetApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="7dJ-cI-xo3"/>
-                        <viewControllerLayoutGuide type="bottom" id="Kae-ob-7tu"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="gtI-7j-c7b">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="PoX-le-ha9">
-                                <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="how old iz u" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3nh-bw-Hx5">
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <nil key="textColor"/>
@@ -574,155 +439,62 @@
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="a smal about u" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="AK2-mz-5hG">
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fqf-ii-sGr" customClass="RoundedCornerButton" customModule="PetApp" customModuleProvider="target">
-                                <color key="backgroundColor" red="0.1137254902" green="0.91372549020000005" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="MaF-7C-SgT"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="19"/>
-                                <state key="normal" title="U IZ DON">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="doneBtnTapped:" destination="Akj-0z-DAY" eventType="touchUpInside" id="aIX-oc-Jcv"/>
-                                    <action selector="logInPressed:" destination="oZP-Ww-SQl" eventType="touchUpInside" id="S5O-eP-Mra"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxZ-IS-VZv">
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="19"/>
-                                <state key="normal" title="do latr"/>
-                                <connections>
-                                    <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="fRf-U5-vc2"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="set up profil plz?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eNk-kD-H6f">
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="19"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCw-Eh-XMo">
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8B1-JB-Tmi">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="VO8-GD-IEb"/>
-                                    <constraint firstAttribute="width" constant="40" id="s07-Mw-aP5"/>
-                                </constraints>
-                                <state key="normal" image="back"/>
-                                <connections>
-                                    <segue destination="mAU-mp-Bgg" kind="show" identifier="toProfileVC2" id="W56-mX-8iV"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="Fqf-ii-sGr" firstAttribute="top" secondItem="PoX-le-ha9" secondAttribute="bottom" constant="22" id="1SX-VP-o07"/>
-                            <constraint firstItem="eNk-kD-H6f" firstAttribute="centerX" secondItem="gtI-7j-c7b" secondAttribute="centerX" id="1jm-3a-9GD"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Fqf-ii-sGr" secondAttribute="trailing" constant="8" id="58P-LE-y3f"/>
-                            <constraint firstItem="PoX-le-ha9" firstAttribute="leading" secondItem="gtI-7j-c7b" secondAttribute="leadingMargin" constant="8" id="Bqd-OF-9HC"/>
-                            <constraint firstItem="sxZ-IS-VZv" firstAttribute="centerX" secondItem="gtI-7j-c7b" secondAttribute="centerX" id="LyR-8j-eqR"/>
-                            <constraint firstItem="eNk-kD-H6f" firstAttribute="top" secondItem="7dJ-cI-xo3" secondAttribute="bottom" constant="8" id="XLV-Rd-ake"/>
-                            <constraint firstItem="8B1-JB-Tmi" firstAttribute="top" secondItem="gtI-7j-c7b" secondAttribute="topMargin" constant="8" id="YdT-KD-kCK"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="PoX-le-ha9" secondAttribute="trailing" constant="8" id="ck3-WD-hT3"/>
-                            <constraint firstItem="sxZ-IS-VZv" firstAttribute="top" secondItem="Fqf-ii-sGr" secondAttribute="bottom" constant="22" id="d7l-A8-6ss"/>
-                            <constraint firstItem="8B1-JB-Tmi" firstAttribute="leading" secondItem="gtI-7j-c7b" secondAttribute="leading" constant="8" id="h1u-z5-k1o"/>
-                            <constraint firstItem="PoX-le-ha9" firstAttribute="top" secondItem="eNk-kD-H6f" secondAttribute="bottom" constant="22" id="pGK-BI-1L0"/>
-                            <constraint firstItem="Fqf-ii-sGr" firstAttribute="leading" secondItem="gtI-7j-c7b" secondAttribute="leadingMargin" constant="8" id="rqL-3u-ffW"/>
+                            <constraint firstItem="Eez-ki-35S" firstAttribute="leading" secondItem="zzj-oC-mws" secondAttribute="leadingMargin" constant="8" id="1q3-hA-cfr"/>
+                            <constraint firstItem="yCw-Eh-XMo" firstAttribute="centerX" secondItem="zzj-oC-mws" secondAttribute="centerX" id="218-ZO-MWq"/>
+                            <constraint firstItem="Ldv-i4-pYb" firstAttribute="leading" secondItem="zzj-oC-mws" secondAttribute="leadingMargin" constant="8" id="2ME-l4-329"/>
+                            <constraint firstItem="yCw-Eh-XMo" firstAttribute="top" secondItem="jWt-Gs-7f5" secondAttribute="bottom" constant="8" id="8Ow-YM-mPd"/>
+                            <constraint firstItem="Eez-ki-35S" firstAttribute="top" secondItem="NvB-k9-cwp" secondAttribute="bottom" constant="24" id="Bco-d8-pKN"/>
+                            <constraint firstItem="NvB-k9-cwp" firstAttribute="centerX" secondItem="zzj-oC-mws" secondAttribute="centerX" id="Jg3-pr-r8d"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="GNB-uH-JWJ" secondAttribute="trailing" constant="8" id="QT8-ml-SgA"/>
+                            <constraint firstItem="rjr-1D-EC8" firstAttribute="centerX" secondItem="zzj-oC-mws" secondAttribute="centerX" id="Y8P-yi-y91"/>
+                            <constraint firstItem="Ldv-i4-pYb" firstAttribute="top" secondItem="jWt-Gs-7f5" secondAttribute="bottom" constant="8" id="mOM-5o-fRx"/>
+                            <constraint firstItem="rjr-1D-EC8" firstAttribute="top" secondItem="yCw-Eh-XMo" secondAttribute="bottom" constant="24" id="mxa-hK-SXR"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Eez-ki-35S" secondAttribute="trailing" constant="8" id="qcK-yw-0EG"/>
+                            <constraint firstItem="NvB-k9-cwp" firstAttribute="top" secondItem="rjr-1D-EC8" secondAttribute="bottom" constant="8" id="uYc-Ju-QYh"/>
+                            <constraint firstItem="GNB-uH-JWJ" firstAttribute="top" secondItem="jWt-Gs-7f5" secondAttribute="bottom" constant="8" id="vUD-Ei-Uqe"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="wVV-HZ-Llz" appends="YES" id="5vA-Mg-GB0"/>
+                        </connections>
                     </view>
                     <connections>
-                        <outlet property="ageField" destination="3nh-bw-Hx5" id="nPH-Om-x8x"/>
-                        <outlet property="breedField" destination="i7e-E5-EJo" id="mrR-XK-0Vy"/>
-                        <outlet property="speciesField" destination="OmQ-2M-Ums" id="bKM-wQ-kqF"/>
-                        <segue destination="8e3-ft-Uph" kind="show" identifier="toProfileVC" id="Mkx-s7-s3q"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="TgK-3V-3dm" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="210" y="1533"/>
-        </scene>
-        <!--ProfileVC-->
-        <scene sceneID="Jnh-wp-Hi8">
-            <objects>
-                <viewController id="8e3-ft-Uph" customClass="ProfileVC" customModule="PetApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jWt-Gs-7f5"/>
-                        <viewControllerLayoutGuide type="bottom" id="eWV-PC-WBe"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="zzj-oC-mws">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rjr-1D-EC8" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="i3b-Qg-rlK"/>
-                                    <constraint firstAttribute="height" constant="80" id="lUZ-07-jhm"/>
-                                </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ldv-i4-pYb">
-                                <frame key="frameInset" minX="167" minY="441" width="41" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Home"/>
-                                <connections>
-                                    <segue destination="FOH-oA-jlS" kind="show" id="chB-23-lTf"/>
-                                </connections>
-                            </button>
-                            <stackView opaque="NO" tag="8" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Wze-oy-mm1">
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfw-59-jYt">
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="full name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x42-TF-mJU">
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="parent's name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8fU-SY-jIJ">
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="age" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dWE-5O-aW1">
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="species" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rtQ-H8-Esp">
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="breed" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iFi-rl-XEO">
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="rjr-1D-EC8" firstAttribute="centerX" secondItem="zzj-oC-mws" secondAttribute="centerX" id="0dE-WT-nPo"/>
-                            <constraint firstItem="Wze-oy-mm1" firstAttribute="leading" secondItem="zzj-oC-mws" secondAttribute="leadingMargin" constant="8" id="6wU-KR-AOh"/>
-                            <constraint firstItem="Wze-oy-mm1" firstAttribute="top" secondItem="rjr-1D-EC8" secondAttribute="bottom" constant="46" id="fd8-1r-RDW"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Wze-oy-mm1" secondAttribute="trailing" constant="8" id="h2e-MA-yWB"/>
-                            <constraint firstItem="rjr-1D-EC8" firstAttribute="top" secondItem="jWt-Gs-7f5" secondAttribute="bottom" constant="16" id="rQb-kC-6kj"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="ageLbl" destination="dWE-5O-aW1" id="QqV-JT-cg6"/>
-                        <outlet property="breedLbl" destination="iFi-rl-XEO" id="DsA-nK-UFy"/>
-                        <outlet property="fullNameLbl" destination="x42-TF-mJU" id="x2U-8U-e0d"/>
-                        <outlet property="parentsNameLbl" destination="8fU-SY-jIJ" id="YvD-C0-gKi"/>
+                        <outlet property="aboutLbl" destination="AK2-mz-5hG" id="kEL-ja-4Fm"/>
+                        <outlet property="ageLbl" destination="3nh-bw-Hx5" id="1bt-nx-blo"/>
+                        <outlet property="breedLbl" destination="i7e-E5-EJo" id="CaV-Sr-bU9"/>
+                        <outlet property="fullNameLbl" destination="4wy-BP-gkC" id="rcs-5d-kLe"/>
+                        <outlet property="parentsNameLbl" destination="i6O-ev-DOQ" id="Cnl-Pd-HyI"/>
+                        <outlet property="profileImage" destination="rjr-1D-EC8" id="E7U-tB-VrK"/>
                         <outlet property="profileImg" destination="rjr-1D-EC8" id="jAj-aJ-4je"/>
-                        <outlet property="speciesLbl" destination="rtQ-H8-Esp" id="bbu-FN-QZn"/>
-                        <outlet property="usernameLabel" destination="nfw-59-jYt" id="1UA-94-vUd"/>
+                        <outlet property="speciesLbl" destination="OmQ-2M-Ums" id="xZ8-Gi-0Gx"/>
+                        <outlet property="usernameLabel" destination="nLd-6b-elC" id="UQI-0H-bCK"/>
+                        <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="CKt-xD-EWT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HAk-d2-Wgc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="wVV-HZ-Llz">
+                    <connections>
+                        <action selector="tapGestureTapped:" destination="8e3-ft-Uph" id="0ae-6G-vYu"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1424.8" y="1002.5487256371815"/>
+            <point key="canvasLocation" x="1049" y="775"/>
         </scene>
         <!--FeedVC-->
         <scene sceneID="AZg-86-0Vz">
@@ -800,17 +572,14 @@
     </scenes>
     <resources>
         <image name="add-image" width="88" height="88"/>
-        <image name="back" width="512" height="512"/>
         <image name="doginwig" width="1920" height="1275"/>
         <image name="dogsmile" width="1920" height="1856"/>
         <image name="sign-out" width="92" height="65"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="GCf-Y1-rpQ"/>
         <segue reference="SDZ-21-9fi"/>
-        <segue reference="chB-23-lTf"/>
-        <segue reference="Mkx-s7-s3q"/>
-        <segue reference="wkk-z6-59g"/>
-        <segue reference="jZw-2l-8kF"/>
         <segue reference="91i-3G-K55"/>
+        <segue reference="tXI-lO-4qc"/>
     </inferredMetricsTieBreakers>
 </document>
