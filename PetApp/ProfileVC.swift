@@ -130,7 +130,7 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         
 
         
-        performSegue(withIdentifier: "toFeedVC", sender: nil)
+        performSegue(withIdentifier: "toUserVC", sender: nil)
         
     }
     
