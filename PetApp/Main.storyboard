@@ -27,7 +27,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xmd-Ue-nuc" customClass="RoundedCornerButton" customModule="PetApp" customModuleProvider="target">
                                 <color key="backgroundColor" red="0.23137254901960785" green="0.34901960784313724" blue="0.59607843137254901" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="FQ1-t4-805"/>
+                                    <constraint firstAttribute="height" constant="40" id="FQ1-t4-805"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                 <state key="normal" title="Login with Facebook">
@@ -40,9 +40,9 @@
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dVJ-Pr-3pa">
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cPD-YW-3kY" customClass="RoundedCornerButton" customModule="PetApp" customModuleProvider="target">
-                                        <color key="backgroundColor" red="0.11372549019607843" green="0.9137254901960784" blue="0.71372549019607845" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.30588235294117649" green="0.80392156862745101" blue="0.76862745098039209" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="XZ9-ij-DYW"/>
+                                            <constraint firstAttribute="height" constant="40" id="XZ9-ij-DYW"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                         <state key="normal" title="Sign In">
@@ -54,7 +54,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4SJ-WP-wY0" customClass="RoundedBorderClearBackgroundButton" customModule="PetApp" customModuleProvider="target">
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="35" id="4o4-Z2-EAO"/>
+                                            <constraint firstAttribute="height" constant="40" id="4o4-Z2-EAO"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                         <state key="normal" title="Sign Up">
@@ -137,9 +137,9 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="23y-r5-JF9" customClass="RoundedCornerButton" customModule="PetApp" customModuleProvider="target">
-                                <color key="backgroundColor" red="0.1137254902" green="0.91372549020000005" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.30588235294117649" green="0.80392156862745101" blue="0.76862745098039209" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="UHP-5f-crJ"/>
+                                    <constraint firstAttribute="height" constant="40" id="UHP-5f-crJ"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="19"/>
                                 <state key="normal" title="Sign In">
@@ -165,7 +165,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lOn-D7-3q2" customClass="RoundedCornerButton" customModule="PetApp" customModuleProvider="target">
                                 <color key="backgroundColor" red="0.23137254900000001" green="0.34901960780000002" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="wSO-e9-cku"/>
+                                    <constraint firstAttribute="height" constant="40" id="wSO-e9-cku"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                 <state key="normal" title="Login with Facebook">
@@ -204,8 +204,8 @@
                             <constraint firstItem="bBk-fJ-e4m" firstAttribute="top" secondItem="sYl-M0-VAb" secondAttribute="bottom" constant="35" id="NSF-uX-Q3i"/>
                             <constraint firstAttribute="trailingMargin" secondItem="mVO-Zx-odl" secondAttribute="trailing" constant="8" id="RSJ-CS-Vho"/>
                             <constraint firstItem="mVO-Zx-odl" firstAttribute="leading" secondItem="ae8-V2-dxi" secondAttribute="leadingMargin" constant="8" id="SB9-s2-waB"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="lOn-D7-3q2" secondAttribute="trailing" constant="8" id="TKv-tp-N78"/>
                             <constraint firstItem="23y-r5-JF9" firstAttribute="leading" secondItem="ae8-V2-dxi" secondAttribute="leadingMargin" constant="8" id="Thi-Wf-1Dn"/>
-                            <constraint firstAttribute="trailing" secondItem="lOn-D7-3q2" secondAttribute="trailing" constant="8" id="UVm-ze-3U2"/>
                             <constraint firstItem="LKn-aA-ax4" firstAttribute="leading" secondItem="3fp-yQ-pg7" secondAttribute="leading" constant="32" id="WEN-dL-5yE"/>
                             <constraint firstItem="ErS-NA-DWU" firstAttribute="leading" secondItem="ae8-V2-dxi" secondAttribute="leadingMargin" constant="8" id="adr-Ax-XQG"/>
                             <constraint firstItem="mVO-Zx-odl" firstAttribute="centerX" secondItem="ae8-V2-dxi" secondAttribute="centerX" id="bVt-Rv-iFU"/>
@@ -216,11 +216,11 @@
                             <constraint firstItem="mD7-iZ-blS" firstAttribute="leading" secondItem="ae8-V2-dxi" secondAttribute="leading" id="gPY-kz-ZNb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="bBk-fJ-e4m" secondAttribute="trailing" constant="8" id="kP5-gj-fhn"/>
                             <constraint firstItem="eaG-IK-EWm" firstAttribute="top" secondItem="mD7-iZ-blS" secondAttribute="bottom" id="lzw-ha-vfl"/>
-                            <constraint firstItem="lOn-D7-3q2" firstAttribute="leading" secondItem="ae8-V2-dxi" secondAttribute="leading" constant="8" id="pMa-cl-eLg"/>
                             <constraint firstItem="23y-r5-JF9" firstAttribute="top" secondItem="l3T-OA-puu" secondAttribute="bottom" constant="30" id="r9I-xG-qAs"/>
                             <constraint firstAttribute="trailingMargin" secondItem="LKn-aA-ax4" secondAttribute="trailing" constant="8" id="uG2-dI-ZXT"/>
                             <constraint firstItem="LKn-aA-ax4" firstAttribute="top" secondItem="23y-r5-JF9" secondAttribute="bottom" constant="39" id="umC-6C-Zvw"/>
                             <constraint firstAttribute="trailing" secondItem="mD7-iZ-blS" secondAttribute="trailing" id="vmo-uC-42W"/>
+                            <constraint firstItem="lOn-D7-3q2" firstAttribute="leading" secondItem="ae8-V2-dxi" secondAttribute="leadingMargin" constant="8" id="vqt-fS-9cg"/>
                             <constraint firstItem="ErS-NA-DWU" firstAttribute="top" secondItem="23y-r5-JF9" secondAttribute="bottom" constant="39" id="x5n-fr-Nfq"/>
                         </constraints>
                     </view>
@@ -254,7 +254,7 @@
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Create passwprd (6+ characters)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8oG-Nn-7jf">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Create password (6+ characters)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8oG-Nn-7jf">
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
@@ -263,9 +263,9 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCK-3C-yEu" customClass="RoundedCornerButton" customModule="PetApp" customModuleProvider="target">
-                                <color key="backgroundColor" red="0.1137254902" green="0.91372549020000005" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.30588235289999999" green="0.80392156859999997" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="2pm-MU-lW8"/>
+                                    <constraint firstAttribute="height" constant="40" id="2pm-MU-lW8"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="19"/>
                                 <state key="normal" title="Next">
@@ -295,7 +295,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8qe-X3-PTc" customClass="RoundedCornerButton" customModule="PetApp" customModuleProvider="target">
                                 <color key="backgroundColor" red="0.23137254900000001" green="0.34901960780000002" blue="0.59607843140000005" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="WqG-mm-Eoo"/>
+                                    <constraint firstAttribute="height" constant="40" id="WqG-mm-Eoo"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                 <state key="normal" title="Login with Facebook">
@@ -331,6 +331,7 @@
                             <constraint firstItem="WgZ-1S-O0N" firstAttribute="top" secondItem="BCK-3C-yEu" secondAttribute="bottom" constant="39" id="953-Vd-8Qa"/>
                             <constraint firstItem="gvm-AZ-zTX" firstAttribute="centerX" secondItem="J0j-24-92X" secondAttribute="centerX" id="Bjn-GV-DlB"/>
                             <constraint firstItem="qWs-K5-cfd" firstAttribute="leading" secondItem="J0j-24-92X" secondAttribute="leadingMargin" constant="8" id="E5c-np-x40"/>
+                            <constraint firstItem="8qe-X3-PTc" firstAttribute="leading" secondItem="J0j-24-92X" secondAttribute="leadingMargin" constant="8" id="EXb-Aq-hFE"/>
                             <constraint firstItem="BCK-3C-yEu" firstAttribute="top" secondItem="8oG-Nn-7jf" secondAttribute="bottom" constant="35" id="Gvi-vJ-DWG"/>
                             <constraint firstItem="wFS-x0-AMS" firstAttribute="leading" secondItem="J0j-24-92X" secondAttribute="leadingMargin" constant="8" id="Ika-XW-eVI"/>
                             <constraint firstItem="UBa-Gu-asH" firstAttribute="leading" secondItem="J0j-24-92X" secondAttribute="leadingMargin" constant="8" id="MDf-1z-TJc"/>
@@ -339,11 +340,10 @@
                             <constraint firstItem="WgZ-1S-O0N" firstAttribute="leading" secondItem="gvm-AZ-zTX" secondAttribute="leading" constant="32" id="Qge-E4-dxI"/>
                             <constraint firstAttribute="trailingMargin" secondItem="wFS-x0-AMS" secondAttribute="trailing" constant="8" id="TKF-fh-ClJ"/>
                             <constraint firstAttribute="trailingMargin" secondItem="WgZ-1S-O0N" secondAttribute="trailing" constant="8" id="XQz-k5-9bH"/>
-                            <constraint firstAttribute="trailing" secondItem="8qe-X3-PTc" secondAttribute="trailing" constant="8" id="Ykf-8Y-Exn"/>
                             <constraint firstItem="cve-eG-bpZ" firstAttribute="top" secondItem="wFS-x0-AMS" secondAttribute="bottom" constant="8" id="ZYB-Vg-Mmo"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qWs-K5-cfd" secondAttribute="trailing" constant="8" id="aqO-CZ-CIa"/>
                             <constraint firstItem="8qe-X3-PTc" firstAttribute="top" secondItem="gvm-AZ-zTX" secondAttribute="bottom" constant="22" id="bnQ-1k-sVR"/>
-                            <constraint firstItem="8qe-X3-PTc" firstAttribute="leading" secondItem="J0j-24-92X" secondAttribute="leading" constant="8" id="dXs-Xm-4fO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="8qe-X3-PTc" secondAttribute="trailing" constant="8" id="dgO-lP-vro"/>
                             <constraint firstAttribute="trailing" secondItem="OsR-Fd-xfH" secondAttribute="trailing" id="hw7-CP-5bo"/>
                             <constraint firstItem="gvm-AZ-zTX" firstAttribute="top" secondItem="BCK-3C-yEu" secondAttribute="bottom" constant="25" id="kvb-I9-dLz"/>
                             <constraint firstItem="OsR-Fd-xfH" firstAttribute="leading" secondItem="J0j-24-92X" secondAttribute="leading" id="mo0-je-KdO"/>
@@ -792,10 +792,10 @@
         <image name="sign-out" width="92" height="65"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Of5-ag-cBt"/>
+        <segue reference="GCf-Y1-rpQ"/>
+        <segue reference="pfK-qb-DU3"/>
+        <segue reference="91i-3G-K55"/>
+        <segue reference="tXI-lO-4qc"/>
         <segue reference="hsq-Ye-C3g"/>
-        <segue reference="uUf-UU-q2S"/>
-        <segue reference="SDZ-21-9fi"/>
-        <segue reference="zsD-8J-Lsn"/>
     </inferredMetricsTieBreakers>
 </document>
