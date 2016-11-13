@@ -18,14 +18,14 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     @IBOutlet weak var breedLbl: UILabel!
     @IBOutlet weak var parentsNameLbl: UILabel!
     @IBOutlet weak var aboutLbl: UILabel!
-    @IBOutlet weak var collection: UICollectionView!
-    
+    @IBOutlet weak var collectionView: UICollectionView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collection.dataSource = self
-        collection.delegate = self
+        collectionView.dataSource = self
+        collectionView.delegate = self
+        
 
         //download profile info
         
@@ -72,8 +72,29 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         })
         
     }
+
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-       
+        if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UserPicCell", for: indexPath) as? UserPicCell {
+            cell.configureCell()
+            return cell
+        }
+        return UICollectionViewCell()
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return 10
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: 105 , height: 105)
     }
 }

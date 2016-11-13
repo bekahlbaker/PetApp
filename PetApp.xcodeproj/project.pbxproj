@@ -26,7 +26,9 @@
 		27166B401DCD108300A57821 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27166B3F1DCD108300A57821 /* Constants.swift */; };
 		274474411DD39978007EBABF /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274474401DD39978007EBABF /* User.swift */; };
 		274474431DD6929B007EBABF /* UserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274474421DD6929B007EBABF /* UserVC.swift */; };
-		274474451DD69F62007EBABF /* PicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274474441DD69F62007EBABF /* PicCell.swift */; };
+		274474471DD6A5DA007EBABF /* UserPicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274474461DD6A5DA007EBABF /* UserPicCell.swift */; };
+		2744744B1DD7965C007EBABF /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2744744A1DD7965C007EBABF /* FeedCell.swift */; };
+		2744744D1DD8EF78007EBABF /* DropShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2744744C1DD8EF78007EBABF /* DropShadow.swift */; };
 		274994701DCD2E470015B6F8 /* FirebaseAuth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2749946F1DCD2E470015B6F8 /* FirebaseAuth.swift */; };
 		274994721DCD36AB0015B6F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 274994711DCD36AB0015B6F8 /* Main.storyboard */; };
 		274994781DD0EDC50015B6F8 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274994771DD0EDC50015B6F8 /* CircleImage.swift */; };
@@ -57,7 +59,9 @@
 		27166B411DCD10D500A57821 /* PetApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PetApp.entitlements; sourceTree = "<group>"; };
 		274474401DD39978007EBABF /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		274474421DD6929B007EBABF /* UserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserVC.swift; sourceTree = "<group>"; };
-		274474441DD69F62007EBABF /* PicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PicCell.swift; sourceTree = "<group>"; };
+		274474461DD6A5DA007EBABF /* UserPicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPicCell.swift; sourceTree = "<group>"; };
+		2744744A1DD7965C007EBABF /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
+		2744744C1DD8EF78007EBABF /* DropShadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DropShadow.swift; sourceTree = "<group>"; };
 		2749946F1DCD2E470015B6F8 /* FirebaseAuth.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirebaseAuth.swift; sourceTree = "<group>"; };
 		274994711DCD36AB0015B6F8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		274994771DD0EDC50015B6F8 /* CircleImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
@@ -157,7 +161,9 @@
 				27166B2A1DCCF5F300A57821 /* RoundedCornerButton.swift */,
 				27166B2C1DCCF67500A57821 /* RoundedBorderClearBackgroundButton.swift */,
 				274994771DD0EDC50015B6F8 /* CircleImage.swift */,
-				274474441DD69F62007EBABF /* PicCell.swift */,
+				274474461DD6A5DA007EBABF /* UserPicCell.swift */,
+				2744744A1DD7965C007EBABF /* FeedCell.swift */,
+				2744744C1DD8EF78007EBABF /* DropShadow.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -333,17 +339,19 @@
 			files = (
 				2749947E1DD287530015B6F8 /* ProfileVC.swift in Sources */,
 				27166B2B1DCCF5F300A57821 /* RoundedCornerButton.swift in Sources */,
-				274474451DD69F62007EBABF /* PicCell.swift in Sources */,
+				274474471DD6A5DA007EBABF /* UserPicCell.swift in Sources */,
 				27166B331DCD03E200A57821 /* FeedVC.swift in Sources */,
 				274474411DD39978007EBABF /* User.swift in Sources */,
 				274994701DCD2E470015B6F8 /* FirebaseAuth.swift in Sources */,
 				27166B2D1DCCF67500A57821 /* RoundedBorderClearBackgroundButton.swift in Sources */,
 				27166B121DCCE63800A57821 /* SignInVC.swift in Sources */,
 				274474431DD6929B007EBABF /* UserVC.swift in Sources */,
+				2744744D1DD8EF78007EBABF /* DropShadow.swift in Sources */,
 				274994781DD0EDC50015B6F8 /* CircleImage.swift in Sources */,
 				27166B311DCD03BD00A57821 /* EntryVC.swift in Sources */,
 				27166B2F1DCD03A500A57821 /* SignUpVC.swift in Sources */,
 				27166B101DCCE63800A57821 /* AppDelegate.swift in Sources */,
+				2744744B1DD7965C007EBABF /* FeedCell.swift in Sources */,
 				27166B3E1DCD0F9500A57821 /* DataService.swift in Sources */,
 				27166B401DCD108300A57821 /* Constants.swift in Sources */,
 			);
