@@ -10,6 +10,7 @@ import UIKit
 import Foundation
 import Firebase
 import SwiftKeychainWrapper
+import FBSDKLoginKit
 
 let DB_BASE = FIRDatabase.database().reference()
 let STORAGE_BASE = FIRStorage.storage().reference()
@@ -77,6 +78,10 @@ class DataService {
     }
     
     func downloadUserProfile(){
+        
+    }
+    
+    func authenticateWithFacebook() {
         
     }
     
