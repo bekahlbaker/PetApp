@@ -28,11 +28,9 @@ class ResetPassVC: UIViewController {
                     switch errCode {
                     case .errorCodeInvalidEmail:
                         print("Invalid email")
-                        self.errorLbl.isHidden = false
                         self.errorLbl.text = "Please enter a valid email address."
                     case .errorCodeUserNotFound:
                         print("User not found.")
-                        self.errorLbl.isHidden = false
                         self.errorLbl.text = "There is not an account for that email. Do you need to sign up?"
                         self.signUpBtn.isHidden = false
                     default:
@@ -52,8 +50,7 @@ class ResetPassVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.errorLbl.isHidden = true
+
         self.signUpBtn.isHidden = true
         self.successLbl.isHidden = true
         self.signInBtn.isHidden = true

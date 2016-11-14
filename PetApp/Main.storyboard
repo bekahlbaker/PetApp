@@ -330,7 +330,7 @@
                                     <segue destination="abC-fw-wPL" kind="show" identifier="toSignInVC" id="qjm-9E-NXw"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email not found." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJP-Ur-GvX">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJP-Ur-GvX">
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                 <color key="textColor" red="0.97254901959999995" green="0.015686274510000001" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -402,6 +402,11 @@
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hu2-zp-dkM">
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                        <color key="textColor" red="0.97254901959999995" green="0.015686274510000001" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCK-3C-yEu" customClass="RoundedCornerButton" customModule="PetApp" customModuleProvider="target">
@@ -464,6 +469,17 @@
                                     <constraint firstAttribute="height" constant="1" id="cW0-6C-hHc"/>
                                 </constraints>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="29S-Y5-8BN">
+                                <frame key="frameInset" minX="166" minY="267" width="43" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <state key="normal" title="Sign In">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="abC-fw-wPL" kind="show" identifier="toSignInVC" id="PM7-ev-GOT"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -474,7 +490,6 @@
                             <constraint firstItem="gvm-AZ-zTX" firstAttribute="centerX" secondItem="J0j-24-92X" secondAttribute="centerX" id="Bjn-GV-DlB"/>
                             <constraint firstItem="qWs-K5-cfd" firstAttribute="leading" secondItem="J0j-24-92X" secondAttribute="leadingMargin" constant="8" id="E5c-np-x40"/>
                             <constraint firstItem="8qe-X3-PTc" firstAttribute="leading" secondItem="J0j-24-92X" secondAttribute="leadingMargin" constant="8" id="EXb-Aq-hFE"/>
-                            <constraint firstItem="BCK-3C-yEu" firstAttribute="top" secondItem="8oG-Nn-7jf" secondAttribute="bottom" constant="35" id="Gvi-vJ-DWG"/>
                             <constraint firstItem="wFS-x0-AMS" firstAttribute="leading" secondItem="J0j-24-92X" secondAttribute="leadingMargin" constant="8" id="Ika-XW-eVI"/>
                             <constraint firstItem="UBa-Gu-asH" firstAttribute="leading" secondItem="J0j-24-92X" secondAttribute="leadingMargin" constant="8" id="MDf-1z-TJc"/>
                             <constraint firstItem="UBa-Gu-asH" firstAttribute="trailing" secondItem="gvm-AZ-zTX" secondAttribute="trailing" constant="-32" id="MEl-7I-R8X"/>
@@ -490,6 +505,7 @@
                             <constraint firstItem="gvm-AZ-zTX" firstAttribute="top" secondItem="BCK-3C-yEu" secondAttribute="bottom" constant="25" id="kvb-I9-dLz"/>
                             <constraint firstItem="OsR-Fd-xfH" firstAttribute="leading" secondItem="J0j-24-92X" secondAttribute="leading" id="mo0-je-KdO"/>
                             <constraint firstItem="UBa-Gu-asH" firstAttribute="top" secondItem="BCK-3C-yEu" secondAttribute="bottom" constant="39" id="ruA-gq-LWf"/>
+                            <constraint firstItem="BCK-3C-yEu" firstAttribute="top" secondItem="hu2-zp-dkM" secondAttribute="bottom" constant="35" id="x8c-gH-2wn"/>
                             <constraint firstAttribute="trailingMargin" secondItem="BCK-3C-yEu" secondAttribute="trailing" constant="8" id="xTZ-Ie-izs"/>
                             <constraint firstItem="cve-eG-bpZ" firstAttribute="top" secondItem="OsR-Fd-xfH" secondAttribute="bottom" id="y3R-6E-25w"/>
                             <constraint firstAttribute="trailingMargin" secondItem="NgD-XJ-e1P" secondAttribute="trailing" constant="8" id="yD9-gO-Efe"/>
@@ -497,7 +513,9 @@
                     </view>
                     <connections>
                         <outlet property="emailField" destination="aPg-yI-9yI" id="WEO-VD-lrc"/>
+                        <outlet property="errorLbl" destination="hu2-zp-dkM" id="fXM-4y-QlB"/>
                         <outlet property="passwordField" destination="8oG-Nn-7jf" id="lYM-dP-700"/>
+                        <outlet property="signInBtn" destination="29S-Y5-8BN" id="jqd-k9-pSf"/>
                         <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="GCf-Y1-rpQ"/>
                         <segue destination="8e3-ft-Uph" kind="show" identifier="toProfileVC" id="tXI-lO-4qc"/>
                     </connections>
@@ -936,9 +954,9 @@
     <inferredMetricsTieBreakers>
         <segue reference="N7H-GA-ORb"/>
         <segue reference="qjm-9E-NXw"/>
-        <segue reference="FTw-v6-tCL"/>
-        <segue reference="hsq-Ye-C3g"/>
         <segue reference="Q43-Jq-XXi"/>
         <segue reference="tXI-lO-4qc"/>
+        <segue reference="GCf-Y1-rpQ"/>
+        <segue reference="hsq-Ye-C3g"/>
     </inferredMetricsTieBreakers>
 </document>

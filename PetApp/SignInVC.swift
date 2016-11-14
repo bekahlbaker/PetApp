@@ -35,6 +35,8 @@ class SignInVC: UIViewController, UITextFieldDelegate {
                         case .errorCodeInvalidEmail:
                             print("Invalid email")
                             self.errorLbl.text = "Please enter a valid email address."
+                            self.resetPassBtn.isHidden = true
+                            self.signUpBtn.isHidden = true
                         case .errorCodeUserNotFound:
                             print("User not found.")
                             self.errorLbl.text = "There is not an account for that email. Do you need to sign up?"
@@ -43,6 +45,8 @@ class SignInVC: UIViewController, UITextFieldDelegate {
                         case .errorCodeTooManyRequests:
                             print("Too many requests")
                             self.errorLbl.text = "Too many requests. Please wait before trying to sign in again."
+                            self.resetPassBtn.isHidden = true
+                            self.signUpBtn.isHidden = true
                         case .errorCodeWrongPassword:
                             print("Wrong password")
                             self.errorLbl.text = "Password is incorrect. Do you need to reset your password?"
