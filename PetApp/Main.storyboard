@@ -195,7 +195,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eFv-9J-UgZ">
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                 <state key="normal" title="Reset password">
-                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="Zep-g9-DFo" kind="show" id="UM0-L3-T82"/>
@@ -204,7 +204,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcy-ke-xmD">
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                 <state key="normal" title="Sign Up">
-                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
                                     <segue destination="oZP-Ww-SQl" kind="show" id="xu2-ih-vp3"/>
@@ -270,12 +270,111 @@
                     <view key="view" contentMode="scaleToFill" id="RxL-4m-D6i">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetPic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mvb-pT-dPI">
+                                <fontDescription key="fontDescription" name="Lobster1.4" family="Lobster 1.4" pointSize="60"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter the email address for your account.   A link will be sent for you to reset your password." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1J-0T-70C">
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Xkw-cS-mMv">
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJc-0U-hXS" customClass="RoundedCornerButton" customModule="PetApp" customModuleProvider="target">
+                                <color key="backgroundColor" red="0.30588235289999999" green="0.80392156859999997" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="3xB-CT-IZD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="19"/>
+                                <state key="normal" title="Send Reset Email">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginPressed:" destination="abC-fw-wPL" eventType="touchUpInside" id="yZU-WU-o8X"/>
+                                    <action selector="sendEmailTapped:" destination="Zep-g9-DFo" eventType="touchUpInside" id="jpN-0o-n9w"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2FZ-qq-z4b">
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <state key="normal" title="Cancel">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="toEntryVC" id="N7H-GA-ORb"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your password reset email has been sent. Please check your inbox and follow the instructions. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Yf-0A-8WK">
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pSh-u1-Qbb">
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <state key="normal" title="Sign Up">
+                                    <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <segue destination="oZP-Ww-SQl" kind="show" identifier="toSignUpVC" id="Q43-Jq-XXi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CEQ-Yv-MLn">
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <state key="normal" title="Sign In"/>
+                                <connections>
+                                    <segue destination="abC-fw-wPL" kind="show" identifier="toSignInVC" id="qjm-9E-NXw"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email not found." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJP-Ur-GvX">
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                <color key="textColor" red="0.97254901959999995" green="0.015686274510000001" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="CEQ-Yv-MLn" firstAttribute="centerX" secondItem="RxL-4m-D6i" secondAttribute="centerX" id="1VW-t3-oeO"/>
+                            <constraint firstItem="Mvb-pT-dPI" firstAttribute="top" secondItem="CIg-1S-Y7E" secondAttribute="bottom" id="5dt-QP-8bz"/>
+                            <constraint firstItem="9Yf-0A-8WK" firstAttribute="top" secondItem="dJc-0U-hXS" secondAttribute="bottom" constant="16" id="70m-Mj-f0m"/>
+                            <constraint firstItem="dJc-0U-hXS" firstAttribute="leading" secondItem="RxL-4m-D6i" secondAttribute="leadingMargin" constant="8" id="7S9-XR-dAO"/>
+                            <constraint firstItem="dJc-0U-hXS" firstAttribute="top" secondItem="pSh-u1-Qbb" secondAttribute="bottom" constant="8" id="C7f-JC-8NH"/>
+                            <constraint firstItem="MJP-Ur-GvX" firstAttribute="top" secondItem="Xkw-cS-mMv" secondAttribute="bottom" constant="8" id="E5U-RL-7Uk"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Mvb-pT-dPI" secondAttribute="trailing" constant="8" id="IRH-Dl-DiK"/>
+                            <constraint firstItem="2FZ-qq-z4b" firstAttribute="leading" secondItem="RxL-4m-D6i" secondAttribute="leadingMargin" id="MBj-rg-3tZ"/>
+                            <constraint firstItem="2FZ-qq-z4b" firstAttribute="top" secondItem="CIg-1S-Y7E" secondAttribute="bottom" id="Mb4-in-QHP"/>
+                            <constraint firstItem="m1J-0T-70C" firstAttribute="trailing" secondItem="RxL-4m-D6i" secondAttribute="trailingMargin" constant="8" id="QRG-BR-Mie"/>
+                            <constraint firstItem="m1J-0T-70C" firstAttribute="leading" secondItem="RxL-4m-D6i" secondAttribute="leadingMargin" constant="8" id="SGA-t5-y7i"/>
+                            <constraint firstItem="Xkw-cS-mMv" firstAttribute="top" secondItem="m1J-0T-70C" secondAttribute="bottom" constant="24" id="UVC-RK-p1e"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Xkw-cS-mMv" secondAttribute="trailing" constant="8" id="VqI-mr-Rdp"/>
+                            <constraint firstItem="CEQ-Yv-MLn" firstAttribute="top" secondItem="9Yf-0A-8WK" secondAttribute="bottom" constant="8" id="XU9-qQ-eer"/>
+                            <constraint firstItem="Xkw-cS-mMv" firstAttribute="leading" secondItem="RxL-4m-D6i" secondAttribute="leadingMargin" constant="8" id="Y8y-AF-FNs"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="9Yf-0A-8WK" secondAttribute="trailing" constant="8" id="YoV-Ts-qyJ"/>
+                            <constraint firstItem="MJP-Ur-GvX" firstAttribute="leading" secondItem="RxL-4m-D6i" secondAttribute="leadingMargin" constant="8" id="d1y-Ne-1qO"/>
+                            <constraint firstItem="9Yf-0A-8WK" firstAttribute="leading" secondItem="RxL-4m-D6i" secondAttribute="leadingMargin" constant="8" id="ekp-SS-Eqh"/>
+                            <constraint firstItem="m1J-0T-70C" firstAttribute="top" secondItem="Mvb-pT-dPI" secondAttribute="bottom" constant="35" id="h5v-pk-GIl"/>
+                            <constraint firstItem="pSh-u1-Qbb" firstAttribute="top" secondItem="MJP-Ur-GvX" secondAttribute="bottom" constant="8" id="iBA-Xg-D75"/>
+                            <constraint firstItem="pSh-u1-Qbb" firstAttribute="centerX" secondItem="RxL-4m-D6i" secondAttribute="centerX" id="oat-KY-0Wo"/>
+                            <constraint firstItem="Mvb-pT-dPI" firstAttribute="leading" secondItem="RxL-4m-D6i" secondAttribute="leadingMargin" constant="8" id="opc-Qp-ypU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="MJP-Ur-GvX" secondAttribute="trailing" constant="8" id="ri3-Vi-U26"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="dJc-0U-hXS" secondAttribute="trailing" constant="8" id="u2m-Au-bi6"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="Xkw-cS-mMv" id="GyK-zO-VXH"/>
+                        <outlet property="errorLbl" destination="MJP-Ur-GvX" id="0uB-yo-IgD"/>
+                        <outlet property="signInBtn" destination="CEQ-Yv-MLn" id="1GG-Hg-SZ4"/>
+                        <outlet property="signUpBtn" destination="pSh-u1-Qbb" id="0RU-vV-pDr"/>
+                        <outlet property="successLbl" destination="9Yf-0A-8WK" id="E62-vp-YMP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AjF-TF-fwN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1178" y="1536"/>
+            <point key="canvasLocation" x="-1178.4000000000001" y="1535.9820089955024"/>
         </scene>
         <!--Sign UpVC-->
         <scene sceneID="G6z-d2-htL">
@@ -835,10 +934,11 @@
         <image name="sign-out" width="92" height="65"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="N7H-GA-ORb"/>
+        <segue reference="qjm-9E-NXw"/>
         <segue reference="FTw-v6-tCL"/>
-        <segue reference="91i-3G-K55"/>
-        <segue reference="pfK-qb-DU3"/>
-        <segue reference="tXI-lO-4qc"/>
         <segue reference="hsq-Ye-C3g"/>
+        <segue reference="Q43-Jq-XXi"/>
+        <segue reference="tXI-lO-4qc"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -7,29 +7,55 @@
 //
 
 import UIKit
+import Firebase
 
 class ResetPassVC: UIViewController {
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet weak var errorLbl: UILabel!
+    @IBOutlet weak var signUpBtn: UIButton!
+    @IBOutlet weak var signInBtn: UIButton!
+    @IBOutlet weak var successLbl: UILabel!
+    
+    @IBAction func sendEmailTapped(_ sender: AnyObject) {
+    
+        let email = emailTextField.text
 
-        // Do any additional setup after loading the view.
-    }
+        FIRAuth.auth()?.sendPasswordReset(withEmail: email!, completion: { (error) in
+            if let error = error {
+                if let errCode = FIRAuthErrorCode(rawValue: error._code) {
+                    
+                    switch errCode {
+                    case .errorCodeInvalidEmail:
+                        print("Invalid email")
+                        self.errorLbl.isHidden = false
+                        self.errorLbl.text = "Please enter a valid email address."
+                    case .errorCodeUserNotFound:
+                        print("User not found.")
+                        self.errorLbl.isHidden = false
+                        self.errorLbl.text = "There is not an account for that email. Do you need to sign up?"
+                        self.signUpBtn.isHidden = false
+                    default:
+                        print("Create User Error: \(error)")
+                    }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+                }
+            } else {
+                print("Password reset email successfully sent.")
+                self.successLbl.isHidden = false
+                self.signInBtn.isHidden = false
+            }
+
+        })
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.errorLbl.isHidden = true
+        self.signUpBtn.isHidden = true
+        self.successLbl.isHidden = true
+        self.signInBtn.isHidden = true
     }
-    */
-
 }
