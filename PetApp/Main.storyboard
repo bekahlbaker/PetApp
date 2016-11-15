@@ -774,9 +774,18 @@
                                     <segue destination="FOH-oA-jlS" kind="show" id="Of5-ag-cBt"/>
                                 </connections>
                             </button>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PD1-yE-WIi">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="j2U-ca-Bkc"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="Item" id="Wii-JP-hMk"/>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="PD1-yE-WIi" secondAttribute="trailing" id="986-EZ-udx"/>
                             <constraint firstItem="nt8-GV-Xet" firstAttribute="leading" secondItem="90l-9E-mdI" secondAttribute="leading" constant="8" id="EXu-DX-PbA"/>
                             <constraint firstItem="gwe-8N-mdG" firstAttribute="top" secondItem="VAi-r0-nHT" secondAttribute="bottom" id="Gc2-0k-cAZ"/>
                             <constraint firstItem="gwe-8N-mdG" firstAttribute="leading" secondItem="90l-9E-mdI" secondAttribute="leadingMargin" constant="8" id="Gx7-f8-KVG"/>
@@ -786,9 +795,11 @@
                             <constraint firstAttribute="trailingMargin" secondItem="gwe-8N-mdG" secondAttribute="trailing" constant="8" id="Oyv-VX-5hP"/>
                             <constraint firstAttribute="trailing" secondItem="STb-4U-ugJ" secondAttribute="trailing" constant="1" id="Uwl-Qu-ebp"/>
                             <constraint firstAttribute="trailing" secondItem="nt8-GV-Xet" secondAttribute="trailing" constant="8" id="VP6-jB-ihA"/>
+                            <constraint firstItem="PD1-yE-WIi" firstAttribute="leading" secondItem="90l-9E-mdI" secondAttribute="leading" id="W9e-sv-3le"/>
                             <constraint firstItem="STb-4U-ugJ" firstAttribute="top" secondItem="nt8-GV-Xet" secondAttribute="bottom" constant="24" id="WSD-K0-2ej"/>
                             <constraint firstItem="nt8-GV-Xet" firstAttribute="top" secondItem="gwe-8N-mdG" secondAttribute="bottom" constant="8" id="taS-2P-3AC"/>
                             <constraint firstItem="l56-ZS-HeV" firstAttribute="top" secondItem="90l-9E-mdI" secondAttribute="top" constant="16" id="utr-S2-nPK"/>
+                            <constraint firstItem="2Y3-hy-U40" firstAttribute="top" secondItem="PD1-yE-WIi" secondAttribute="bottom" id="wfG-Fh-d7x"/>
                         </constraints>
                     </view>
                     <connections>
@@ -849,10 +860,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedCell" rowHeight="405" id="XT7-dt-d1F" customClass="FeedCell" customModule="PetApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="405"/>
+                                        <rect key="frame" x="0.0" y="28" width="1000" height="405"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XT7-dt-d1F" id="sxM-VQ-Gq8">
-                                            <frame key="frameInset" width="375" height="405"/>
+                                            <frame key="frameInset" width="1000" height="405"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="naC-8z-wRM" customClass="DropShadow" customModule="PetApp" customModuleProvider="target">
@@ -961,11 +972,11 @@
         <image name="sign-out" width="92" height="65"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="N7H-GA-ORb"/>
-        <segue reference="zsD-8J-Lsn"/>
-        <segue reference="VOj-p2-r25"/>
-        <segue reference="SDZ-21-9fi"/>
-        <segue reference="Wv7-2o-FR2"/>
         <segue reference="Mms-eL-C5o"/>
+        <segue reference="uUf-UU-q2S"/>
+        <segue reference="Of5-ag-cBt"/>
+        <segue reference="PM7-ev-GOT"/>
+        <segue reference="SDZ-21-9fi"/>
+        <segue reference="N7H-GA-ORb"/>
     </inferredMetricsTieBreakers>
 </document>
