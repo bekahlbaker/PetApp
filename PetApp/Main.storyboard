@@ -723,7 +723,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="gwe-8N-mdG">
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-image" translatesAutoresizingMaskIntoConstraints="NO" id="o55-Vn-WyN" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
-                                        <color key="backgroundColor" red="0.1137254902" green="0.91372549020000005" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.30588235289999999" green="0.80392156859999997" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="80" id="4r9-dx-x63"/>
                                             <constraint firstAttribute="height" constant="80" id="zw6-Sg-pgL"/>
@@ -779,7 +779,17 @@
                                     <constraint firstAttribute="height" constant="50" id="j2U-ca-Bkc"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem title="Item" id="Wii-JP-hMk"/>
+                                    <barButtonItem image="home" id="Wii-JP-hMk">
+                                        <color key="tintColor" red="0.30588235289999999" green="0.80392156859999997" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="1ER-sV-dw3"/>
+                                    <barButtonItem image="user" id="tMd-1k-kSz">
+                                        <color key="tintColor" red="0.30588235289999999" green="0.80392156859999997" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="4Vw-7t-u6J"/>
+                                    <barButtonItem image="info" id="Xjy-JI-dwB">
+                                        <color key="tintColor" red="0.30588235289999999" green="0.80392156859999997" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -860,10 +870,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedCell" rowHeight="405" id="XT7-dt-d1F" customClass="FeedCell" customModule="PetApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="1000" height="405"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="405"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XT7-dt-d1F" id="sxM-VQ-Gq8">
-                                            <frame key="frameInset" width="1000" height="405"/>
+                                            <frame key="frameInset" width="375" height="405"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="naC-8z-wRM" customClass="DropShadow" customModule="PetApp" customModuleProvider="target">
@@ -968,8 +978,11 @@
         <image name="dog" width="640" height="426"/>
         <image name="doginwig" width="1920" height="1275"/>
         <image name="dogsmile" width="1920" height="1856"/>
+        <image name="home" width="40" height="40"/>
+        <image name="info" width="40" height="40"/>
         <image name="paw_print" width="640" height="640"/>
         <image name="sign-out" width="92" height="65"/>
+        <image name="user" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Mms-eL-C5o"/>
