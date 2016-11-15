@@ -38,6 +38,8 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         imagePicker.allowsEditing = true
         imagePicker.delegate = self
         
+        
+        
         //download profile info & image
         
         DataService.ds.REF_CURRENT_USER.observe(.value, with: { (snapshot) in
@@ -73,6 +75,8 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     
     @IBAction func saveBtnPressed(_ sender: AnyObject) {
       //save profile image
+        
+        
         
         let imageName = NSUUID().uuidString
         let storageRef = FIRStorage.storage().reference().child("\(imageName).png")
