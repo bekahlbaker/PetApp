@@ -2,15 +2,14 @@
 //  User.swift
 //  PetApp
 //
-//  Created by Rebekah Baker on 11/9/16.
+//  Created by Rebekah Baker on 11/14/16.
 //  Copyright © 2016 Rebekah Baker. All rights reserved.
 //
 
-import UIKit
+import Foundation
+import Firebase
 
-class User: NSObject {
+class User {
     
-    var name: String?
-    var email: String?
-    var profileImageUrl: String?
+
 }

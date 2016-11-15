@@ -26,25 +26,23 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         present(imagePicker, animated: true, completion: nil)
     }
     @IBAction func tapGestureTapped(_ sender: AnyObject) {
-                present(imagePicker, animated: true, completion: nil)
+        present(imagePicker, animated: true, completion: nil)
     }
     var imagePicker: UIImagePickerController!
     var imageSelected = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
         
         imagePicker = UIImagePickerController()
         imagePicker.allowsEditing = true
         imagePicker.delegate = self
         
-        //download profile info
+        //download profile info & image
         
         DataService.ds.REF_CURRENT_USER.observe(.value, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: Any] {
-                print(snapshot)
                 self.usernameLabel.text = dictionary["username"] as? String
                 self.fullNameLbl.text = dictionary["full-name"] as? String
                 self.parentsNameLbl.text = dictionary["parents-name"] as? String
@@ -52,64 +50,43 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 self.speciesLbl.text = dictionary["species"] as? String
                 self.breedLbl.text = dictionary["breed"] as? String
                 self.aboutLbl.text = dictionary["about"] as? String
-            }
-            
-            
-            })
-        
-        //download profile image
-        
-        DataService.ds.REF_CURRENT_USER.observe(.value, with: { (snapshot) in
-
-            if let dictionary = snapshot.value as? [String: Any] {
-                
                 if let url = dictionary["profileImgUrl"] as? String {
                     let storage = FIRStorage.storage()
-                    
                     let storageRef = storage.reference(forURL: url)
-                    
                     storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
                         if error != nil {
-                            print("Unablet to download image from firebase")
+                            print("Unable to download image from firebase")
                         } else {
                             let profileImg = UIImage(data: data!)
                             self.profileImg.image = profileImg
                         }
                     }
-
+                    
                 } else {
                     self.profileImg.image = UIImage(named: "add-image")
                 }
             }
+            
+            
         })
-        
     }
     
     @IBAction func saveBtnPressed(_ sender: AnyObject) {
-        
       //save profile image
         
         let imageName = NSUUID().uuidString
-
         let storageRef = FIRStorage.storage().reference().child("\(imageName).png")
-        
         if let uploadData = UIImagePNGRepresentation(self.profileImage.image!) {
             storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
                 if error != nil {
                     print(error)
                     return
                 }
-                
-                print(metadata)
-                
                 if let profileImageUrl =  metadata?.downloadURL()?.absoluteString {
                     let values = ["profileImgUrl": profileImageUrl]
-                    
                     self.uploadToFirebase(values: values)
-                    
                     print("Successfuly uploaded image to Firebase")
                 }
-                
             })
         }
 
@@ -127,11 +104,7 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         
         let firebasePost = DataService.ds.REF_CURRENT_USER
         firebasePost.updateChildValues(userInfo)
-        
-
-        
         performSegue(withIdentifier: "toUserVC", sender: nil)
-        
     }
     
     
@@ -149,6 +122,11 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     func uploadToFirebase(values: [String: Any]) {
         let firebasePost = DataService.ds.REF_CURRENT_USER
         firebasePost.updateChildValues(values)
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+        super.touchesBegan(touches, with: event)
     }
 
 }

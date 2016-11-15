@@ -92,6 +92,7 @@
                     </view>
                     <connections>
                         <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="dXV-T8-2Jd"/>
+                        <segue destination="8e3-ft-Uph" kind="show" identifier="toProfileVC" id="VOj-p2-r25"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -536,25 +537,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cat2" translatesAutoresizingMaskIntoConstraints="NO" id="lwO-zk-Ete">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="155" id="mgU-88-fwl"/>
+                                    <constraint firstAttribute="width" constant="200" id="xY7-f3-1lY"/>
+                                </constraints>
+                            </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-image" translatesAutoresizingMaskIntoConstraints="NO" id="rjr-1D-EC8" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
-                                <color key="backgroundColor" red="0.1137254902" green="0.91372549020000005" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.30588235289999999" green="0.80392156859999997" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="80" id="i3b-Qg-rlK"/>
                                     <constraint firstAttribute="height" constant="80" id="lUZ-07-jhm"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ldv-i4-pYb">
-                                <state key="normal" title="Cancel"/>
-                                <connections>
-                                    <segue destination="HIm-Vc-Fus" kind="show" identifier="toUserVC" id="pMh-tt-cts"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GNB-uH-JWJ">
-                                <state key="normal" title="Save"/>
-                                <connections>
-                                    <action selector="saveBtnPressed:" destination="8e3-ft-Uph" eventType="touchUpInside" id="eSn-px-YdB"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NvB-k9-cwp">
                                 <state key="normal" title="Edit Profile Picture"/>
                                 <connections>
@@ -563,7 +558,7 @@
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Eez-ki-35S">
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="nLd-6b-elC">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="nLd-6b-elC">
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
@@ -607,28 +602,41 @@
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Edit Profile" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCw-Eh-XMo">
-                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rSv-Ar-hi7">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="58" id="lbi-2I-ENI"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Edit Profile" id="3Rc-yB-ex9">
+                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="5bC-ew-sgv">
+                                            <connections>
+                                                <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="Wv7-2o-FR2"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="0xo-Dd-zBw">
+                                            <connections>
+                                                <action selector="saveBtnPressed:" destination="8e3-ft-Uph" id="wos-mB-Q1W"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="Eez-ki-35S" firstAttribute="leading" secondItem="zzj-oC-mws" secondAttribute="leadingMargin" constant="8" id="1q3-hA-cfr"/>
-                            <constraint firstItem="yCw-Eh-XMo" firstAttribute="centerX" secondItem="zzj-oC-mws" secondAttribute="centerX" id="218-ZO-MWq"/>
-                            <constraint firstItem="Ldv-i4-pYb" firstAttribute="leading" secondItem="zzj-oC-mws" secondAttribute="leadingMargin" constant="8" id="2ME-l4-329"/>
-                            <constraint firstItem="yCw-Eh-XMo" firstAttribute="top" secondItem="jWt-Gs-7f5" secondAttribute="bottom" constant="8" id="8Ow-YM-mPd"/>
+                            <constraint firstItem="rSv-Ar-hi7" firstAttribute="top" secondItem="zzj-oC-mws" secondAttribute="top" id="3HL-tG-9h7"/>
                             <constraint firstItem="Eez-ki-35S" firstAttribute="top" secondItem="NvB-k9-cwp" secondAttribute="bottom" constant="24" id="Bco-d8-pKN"/>
                             <constraint firstItem="NvB-k9-cwp" firstAttribute="centerX" secondItem="zzj-oC-mws" secondAttribute="centerX" id="Jg3-pr-r8d"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="GNB-uH-JWJ" secondAttribute="trailing" constant="8" id="QT8-ml-SgA"/>
-                            <constraint firstItem="rjr-1D-EC8" firstAttribute="centerX" secondItem="zzj-oC-mws" secondAttribute="centerX" id="Y8P-yi-y91"/>
-                            <constraint firstItem="Ldv-i4-pYb" firstAttribute="top" secondItem="jWt-Gs-7f5" secondAttribute="bottom" constant="8" id="mOM-5o-fRx"/>
-                            <constraint firstItem="rjr-1D-EC8" firstAttribute="top" secondItem="yCw-Eh-XMo" secondAttribute="bottom" constant="24" id="mxa-hK-SXR"/>
+                            <constraint firstItem="eWV-PC-WBe" firstAttribute="top" secondItem="lwO-zk-Ete" secondAttribute="bottom" id="SCg-cj-Mkx"/>
+                            <constraint firstItem="rSv-Ar-hi7" firstAttribute="leading" secondItem="zzj-oC-mws" secondAttribute="leading" id="SOq-fK-Jzr"/>
+                            <constraint firstAttribute="trailing" secondItem="rSv-Ar-hi7" secondAttribute="trailing" id="mot-zv-lLo"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Eez-ki-35S" secondAttribute="trailing" constant="8" id="qcK-yw-0EG"/>
+                            <constraint firstItem="rjr-1D-EC8" firstAttribute="top" secondItem="rSv-Ar-hi7" secondAttribute="bottom" constant="16" id="sbh-8T-YQg"/>
+                            <constraint firstItem="rjr-1D-EC8" firstAttribute="centerX" secondItem="zzj-oC-mws" secondAttribute="centerX" id="u23-1s-WUw"/>
                             <constraint firstItem="NvB-k9-cwp" firstAttribute="top" secondItem="rjr-1D-EC8" secondAttribute="bottom" constant="8" id="uYc-Ju-QYh"/>
-                            <constraint firstItem="GNB-uH-JWJ" firstAttribute="top" secondItem="jWt-Gs-7f5" secondAttribute="bottom" constant="8" id="vUD-Ei-Uqe"/>
+                            <constraint firstItem="lwO-zk-Ete" firstAttribute="leading" secondItem="zzj-oC-mws" secondAttribute="leading" id="xhO-Y1-S3I"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="wVV-HZ-Llz" appends="YES" id="5vA-Mg-GB0"/>
@@ -654,7 +662,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="828" y="775"/>
+            <point key="canvasLocation" x="828" y="774.96251874062978"/>
         </scene>
         <!--UserVC-->
         <scene sceneID="O30-zH-4V0">
@@ -945,6 +953,7 @@
     </scenes>
     <resources>
         <image name="add-image" width="88" height="88"/>
+        <image name="cat2" width="640" height="480"/>
         <image name="dog" width="640" height="426"/>
         <image name="doginwig" width="1920" height="1275"/>
         <image name="dogsmile" width="1920" height="1856"/>
@@ -953,10 +962,10 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="N7H-GA-ORb"/>
-        <segue reference="qjm-9E-NXw"/>
-        <segue reference="Q43-Jq-XXi"/>
-        <segue reference="tXI-lO-4qc"/>
-        <segue reference="GCf-Y1-rpQ"/>
-        <segue reference="hsq-Ye-C3g"/>
+        <segue reference="zsD-8J-Lsn"/>
+        <segue reference="VOj-p2-r25"/>
+        <segue reference="SDZ-21-9fi"/>
+        <segue reference="Wv7-2o-FR2"/>
+        <segue reference="Mms-eL-C5o"/>
     </inferredMetricsTieBreakers>
 </document>

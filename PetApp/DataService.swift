@@ -15,6 +15,7 @@ import FBSDKLoginKit
 let DB_BASE = FIRDatabase.database().reference()
 let STORAGE_BASE = FIRStorage.storage().reference()
 
+
 class DataService {
     
     static let ds = DataService()
@@ -77,8 +78,9 @@ class DataService {
         KeychainWrapper.standard.set(id, forKey: KEY_UID)
     }
     
-    func downloadUserProfile(){
+    func downloadUserProfile() {
         
+
     }
     
     func authenticateWithFacebook() {

@@ -40,7 +40,7 @@ class EntryVC: UIViewController {
                 print("Successfully authenticated with Facebook")
                 let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
                 DataService.ds.firebaseAuthenticate(credential)
-                self.performSegue(withIdentifier: "toFeedVC", sender: nil)
+                self.performSegue(withIdentifier: "toProfileVC", sender: nil)
             }
             
         }
