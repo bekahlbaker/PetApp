@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Kingfisher
 
 class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -38,28 +39,30 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
                 self.breedLbl.text = dictionary["breed"] as? String
                 self.aboutLbl.text = dictionary["about"] as? String
                 if let url = dictionary["profileImgUrl"] as? String {
-                    let storage = FIRStorage.storage()
-                    
-                    let storageRef = storage.reference(forURL: url)
-                    
-                    storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
-                        if error != nil {
-                            print("Unable to download image from firebase")
-                        } else {
-                            let profileImg = UIImage(data: data!)
-                            self.profileImg.image = profileImg
-                            
+                    //use Kingfisher
+                    if let imageUrl = URL(string: url) {
+                        self.profileImg.kf.indicatorType = .activity
+                        self.profileImg.kf.setImage(with: imageUrl)
+                        print("Using kingfisher image.")
+                    } else {
+                        let storage = FIRStorage.storage()
+                        let storageRef = storage.reference(forURL: url)
+                        storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
+                            if error != nil {
+                                print("Unable to download image from firebase")
+                            } else {
+                                let profileImg = UIImage(data: data!)
+                                self.profileImg.image = profileImg
+                                print("Using firebase image")
+                            }
                         }
+                        
                     }
-                    
-                } else {
-                    self.profileImg.image = UIImage(named: "add-image")
                 }
             }
             
             
         })
-        
     }
 
     
