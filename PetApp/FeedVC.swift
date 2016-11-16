@@ -12,11 +12,6 @@ import SwiftKeychainWrapper
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBAction func signOutPressed(_ sender: AnyObject) {
-        KeychainWrapper.standard.removeObject(forKey: KEY_UID)
-        print("User removed")
-        try! FIRAuth.auth()?.signOut()
-        }
 
     @IBOutlet weak var tableView: UITableView!
 

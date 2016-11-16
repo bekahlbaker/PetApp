@@ -9,16 +9,22 @@
 import UIKit
 import Firebase
 import Kingfisher
+import SwiftKeychainWrapper
 
 class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     @IBOutlet weak var profileImg: CircleImage!
-    @IBOutlet weak var usernameLbl: UILabel!
+    @IBOutlet weak var username: UINavigationItem!
     @IBOutlet weak var fullNameLbl: UILabel!
+    @IBOutlet weak var ageAndBreedLbl: UILabel!
     @IBOutlet weak var ageLbl: UILabel!
     @IBOutlet weak var breedLbl: UILabel!
     @IBOutlet weak var parentsNameLbl: UILabel!
+    @IBOutlet weak var locationLbl: UILabel!
     @IBOutlet weak var aboutLbl: UILabel!
+    @IBOutlet weak var postsLbl: UILabel!
+    @IBOutlet weak var followingLbl: UILabel!
+    @IBOutlet weak var followersLbl: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
 
     override func viewDidLoad() {
@@ -32,12 +38,41 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         DataService.ds.REF_CURRENT_USER.observe(.value, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: Any] {
-                self.usernameLbl.text = dictionary["username"] as? String
-                self.fullNameLbl.text = dictionary["full-name"] as? String
-                self.parentsNameLbl.text = dictionary["parents-name"] as? String
-                self.ageLbl.text = dictionary["age"] as? String
-                self.breedLbl.text = dictionary["breed"] as? String
-                self.aboutLbl.text = dictionary["about"] as? String
+                
+                if let username = dictionary["username"] as? String {
+                    self.username.title = username
+                }
+                
+                if let name = dictionary["full-name"] as? String {
+                    self.fullNameLbl.text = name
+                }
+        
+//                if let age = dictionary["age"] as? String {
+//                    if age != "" {
+//                     self.ageLbl.text = "\(age) yo"   
+//                    }
+//                }
+                
+                if let breed = dictionary["breed"] as? String {
+                    if breed != "" {
+                        self.ageAndBreedLbl.text = breed
+                    } else {
+                        if let species = dictionary["species"] as? String {
+                            if species != "" {
+                                self.ageAndBreedLbl.text = species
+                            }
+                        }
+                    }
+                }
+                
+                if let parent = dictionary["parents-name"] as? String {
+                    self.parentsNameLbl.text = "Parent: \(parent)."
+                }
+                
+                if let about = dictionary["about"] as? String {
+                    self.aboutLbl.text = about
+                }
+                
                 if let url = dictionary["profileImgUrl"] as? String {
                     //use Kingfisher
                     if let imageUrl = URL(string: url) {
@@ -64,7 +99,16 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
             
         })
     }
-
+    
+    
+    
+    @IBAction func logOutTapped(_ sender: AnyObject) {
+        KeychainWrapper.standard.removeObject(forKey: KEY_UID)
+        print("User removed")
+        try! FIRAuth.auth()?.signOut()
+        performSegue(withIdentifier: "toEntryVC", sender: nil)
+    }
+    
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UserPicCell", for: indexPath) as? UserPicCell {
