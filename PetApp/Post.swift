@@ -37,7 +37,8 @@ class Post {
         return _postKey
     }
     
-    init(caption: String, imageURL: String, likes: Int) {
+    init(username: String, caption: String, imageURL: String, likes: Int) {
+        self._username = username
         self._caption = caption
         self._imageURL = imageURL
         self._likes = likes
@@ -46,7 +47,7 @@ class Post {
     init(postKey: String, postData: Dictionary<String, AnyObject>) {
         self._postKey = postKey
         
-        if let username = postData["user"] as? String {
+        if let username = postData["username"] as? String {
             self._username = username
         }
         

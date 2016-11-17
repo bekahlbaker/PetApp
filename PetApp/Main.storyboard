@@ -1043,7 +1043,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="caption" destination="mjC-5q-P8C" id="So8-6c-L7q"/>
                                             <outlet property="feedImageView" destination="OYw-6X-lWR" id="CAu-EC-KtC"/>
+                                            <outlet property="username" destination="qSW-xz-UaH" id="BRi-Ku-WLA"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1121,12 +1123,47 @@
                     <view key="view" contentMode="scaleToFill" id="els-HE-nDL">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ghq-e8-Ok3">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="6zz-ff-xVy"/>
+                                    <constraint firstAttribute="width" constant="99" id="sSu-37-uhw"/>
+                                </constraints>
+                                <state key="normal" title="Save Post"/>
+                                <connections>
+                                    <action selector="savePost:" destination="iiK-pT-sg2" eventType="touchUpInside" id="U3D-JK-dw7"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3jo-I9-JHH">
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g4c-mM-1LH">
+                                <frame key="frameInset" minX="26" minY="617" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <segue destination="FOH-oA-jlS" kind="show" id="6KC-sP-v97"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="3jo-I9-JHH" firstAttribute="leading" secondItem="els-HE-nDL" secondAttribute="leadingMargin" id="BCb-0n-A58"/>
+                            <constraint firstItem="Ghq-e8-Ok3" firstAttribute="top" secondItem="3jo-I9-JHH" secondAttribute="bottom" constant="8" id="EhN-r4-wXA"/>
+                            <constraint firstItem="3jo-I9-JHH" firstAttribute="trailing" secondItem="els-HE-nDL" secondAttribute="trailingMargin" id="INE-Bw-5MX"/>
+                            <constraint firstItem="Ghq-e8-Ok3" firstAttribute="centerX" secondItem="els-HE-nDL" secondAttribute="centerX" id="p1c-3s-74f"/>
+                            <constraint firstItem="3jo-I9-JHH" firstAttribute="top" secondItem="4Cf-Jo-Rtw" secondAttribute="bottom" constant="260" id="vYd-Oz-Hld"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="captionTextField" destination="3jo-I9-JHH" id="vWt-rp-tiw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QYj-Ks-BlV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2082" y="-197"/>
+            <point key="canvasLocation" x="2080.8000000000002" y="-197.45127436281859"/>
         </scene>
     </scenes>
     <resources>

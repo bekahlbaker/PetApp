@@ -12,6 +12,10 @@ import Firebase
 class FeedCell: UITableViewCell {
 
     @IBOutlet weak var feedImageView: UIImageView!
+    @IBOutlet weak var username: UILabel!
+    @IBOutlet weak var caption: UITextView!
+    
+    var post: Post!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -19,8 +23,11 @@ class FeedCell: UITableViewCell {
         
     }
     
-    func configureCell() {
-        feedImageView.image = UIImage(named: "doginwig")
+    func configureCell(post: Post) {
+        self.post = post
+        
+        self.caption.text = post.caption
+        self.username.text = post.username
     }
 
 }
