@@ -13,6 +13,7 @@ import SwiftKeychainWrapper
 
 class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
+    @IBOutlet weak var coverImg: UIImageView!
     @IBOutlet weak var profileImg: CircleImage!
     @IBOutlet weak var username: UINavigationItem!
     @IBOutlet weak var fullNameLbl: UILabel!
@@ -83,12 +84,13 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
                     self.aboutLbl.text = about
                 }
                 
+                //download profile img
                 if let url = dictionary["profileImgUrl"] as? String {
                     //use Kingfisher
                     if let imageUrl = URL(string: url) {
                         self.profileImg.kf.indicatorType = .activity
                         self.profileImg.kf.setImage(with: imageUrl)
-                        print("Using kingfisher image.")
+                        print("Using kingfisher image for profile.")
                     } else {
                         let storage = FIRStorage.storage()
                         let storageRef = storage.reference(forURL: url)
@@ -98,7 +100,29 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
                             } else {
                                 let profileImg = UIImage(data: data!)
                                 self.profileImg.image = profileImg
-                                print("Using firebase image")
+                                print("Using firebase image for profile")
+                            }
+                        }
+                        
+                    }
+                }
+                //download cover photo
+                if let url = dictionary["coverImgUrl"] as? String {
+                    //use Kingfisher
+                    if let imageUrl = URL(string: url) {
+                        self.profileImg.kf.indicatorType = .activity
+                        self.coverImg.kf.setImage(with: imageUrl)
+                        print("Using kingfisher image for cover.")
+                    } else {
+                        let storage = FIRStorage.storage()
+                        let storageRef = storage.reference(forURL: url)
+                        storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
+                            if error != nil {
+                                print("Unable to download image from firebase")
+                            } else {
+                                let coverImg = UIImage(data: data!)
+                                self.coverImg.image = coverImg
+                                print("Using firebase image for cover")
                             }
                         }
                         
@@ -138,10 +162,5 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
     }
-//    
-//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//
-//        return CGSize(width: 105 , height: 105)
-//    }
     
 }

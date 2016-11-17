@@ -534,26 +534,86 @@
                         <viewControllerLayoutGuide type="bottom" id="eWV-PC-WBe"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="zzj-oC-mws">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cat2" translatesAutoresizingMaskIntoConstraints="NO" id="lwO-zk-Ete">
+                            <visualEffectView opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xqg-yM-YUa">
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="K9q-z1-hff">
+                                    <frame key="frameInset"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loxley-boy" translatesAutoresizingMaskIntoConstraints="NO" id="COh-ku-7ml">
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="320" id="8Kp-ff-yat"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="COh-ku-7ml" firstAttribute="top" secondItem="K9q-z1-hff" secondAttribute="top" id="B6I-tB-y31"/>
+                                        <constraint firstItem="COh-ku-7ml" firstAttribute="leading" secondItem="K9q-z1-hff" secondAttribute="leading" id="LYE-kC-urU"/>
+                                        <constraint firstAttribute="trailing" secondItem="COh-ku-7ml" secondAttribute="trailing" id="fHv-RU-zPI"/>
+                                    </constraints>
+                                </view>
+                                <blurEffect style="light"/>
+                            </visualEffectView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rSv-Ar-hi7">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="155" id="mgU-88-fwl"/>
-                                    <constraint firstAttribute="width" constant="200" id="xY7-f3-1lY"/>
+                                    <constraint firstAttribute="height" constant="64" id="lbi-2I-ENI"/>
                                 </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-image" translatesAutoresizingMaskIntoConstraints="NO" id="rjr-1D-EC8" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
-                                <color key="backgroundColor" red="0.30588235289999999" green="0.80392156859999997" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <items>
+                                    <navigationItem title="Edit Profile" id="3Rc-yB-ex9">
+                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="5bC-ew-sgv">
+                                            <connections>
+                                                <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="Wv7-2o-FR2"/>
+                                            </connections>
+                                        </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="0xo-Dd-zBw">
+                                            <connections>
+                                                <action selector="saveBtnPressed:" destination="8e3-ft-Uph" id="wos-mB-Q1W"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u4z-cR-Fxw">
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="i3b-Qg-rlK"/>
-                                    <constraint firstAttribute="height" constant="80" id="lUZ-07-jhm"/>
+                                    <constraint firstAttribute="width" constant="200" id="L9o-yM-nWX"/>
+                                    <constraint firstAttribute="height" constant="30" id="eoq-jp-Rj3"/>
                                 </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NvB-k9-cwp">
-                                <state key="normal" title="Edit Profile Picture"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <state key="normal" title="Edit Cover Photo">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
-                                    <action selector="addImageTapped:" destination="8e3-ft-Uph" eventType="touchUpInside" id="o6F-oW-mNN"/>
+                                    <action selector="editCoverPhotoTapped:" destination="8e3-ft-Uph" eventType="touchUpInside" id="3dw-ZL-GgU"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-image" translatesAutoresizingMaskIntoConstraints="NO" id="x6N-fR-Pwe" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="Cx2-kB-27d"/>
+                                    <constraint firstAttribute="width" constant="80" id="b8u-A7-dfF"/>
+                                </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="Gr2-jg-ACR" appends="YES" id="dV3-zP-uMe"/>
+                                </connections>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fng-Yj-c1c">
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="HCR-aJ-Q5K"/>
+                                    <constraint firstAttribute="width" constant="200" id="MNK-gY-qzq"/>
+                                    <constraint firstAttribute="width" constant="200" id="sKI-hp-qqh"/>
+                                    <constraint firstAttribute="height" constant="30" id="ubo-vy-ksW"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                <state key="normal" title="Edit Profile Picture">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addImageTapped:" destination="8e3-ft-Uph" eventType="touchUpInside" id="SFu-SO-6kF"/>
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Eez-ki-35S">
@@ -602,63 +662,45 @@
                                     </textField>
                                 </subviews>
                             </stackView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rSv-Ar-hi7">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="lbi-2I-ENI"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem title="Edit Profile" id="3Rc-yB-ex9">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="5bC-ew-sgv">
-                                            <connections>
-                                                <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="Wv7-2o-FR2"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="0xo-Dd-zBw">
-                                            <connections>
-                                                <action selector="saveBtnPressed:" destination="8e3-ft-Uph" id="wos-mB-Q1W"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="u4z-cR-Fxw" firstAttribute="top" secondItem="rSv-Ar-hi7" secondAttribute="bottom" constant="16" id="0fe-2R-6Jm"/>
                             <constraint firstItem="Eez-ki-35S" firstAttribute="leading" secondItem="zzj-oC-mws" secondAttribute="leadingMargin" constant="8" id="1q3-hA-cfr"/>
                             <constraint firstItem="rSv-Ar-hi7" firstAttribute="top" secondItem="zzj-oC-mws" secondAttribute="top" id="3HL-tG-9h7"/>
-                            <constraint firstItem="Eez-ki-35S" firstAttribute="top" secondItem="NvB-k9-cwp" secondAttribute="bottom" constant="24" id="Bco-d8-pKN"/>
-                            <constraint firstItem="NvB-k9-cwp" firstAttribute="centerX" secondItem="zzj-oC-mws" secondAttribute="centerX" id="Jg3-pr-r8d"/>
-                            <constraint firstItem="eWV-PC-WBe" firstAttribute="top" secondItem="lwO-zk-Ete" secondAttribute="bottom" id="SCg-cj-Mkx"/>
+                            <constraint firstItem="fng-Yj-c1c" firstAttribute="top" secondItem="x6N-fR-Pwe" secondAttribute="bottom" constant="8" id="3ab-HN-x19"/>
+                            <constraint firstItem="xqg-yM-YUa" firstAttribute="leading" secondItem="zzj-oC-mws" secondAttribute="leading" id="4fi-OX-Qjm"/>
+                            <constraint firstItem="fng-Yj-c1c" firstAttribute="centerX" secondItem="zzj-oC-mws" secondAttribute="centerX" id="6Y4-Yc-6MB"/>
+                            <constraint firstItem="Eez-ki-35S" firstAttribute="top" secondItem="fng-Yj-c1c" secondAttribute="bottom" constant="16" id="Cf2-YD-eux"/>
+                            <constraint firstItem="eWV-PC-WBe" firstAttribute="top" secondItem="xqg-yM-YUa" secondAttribute="bottom" id="GbH-kZ-wzs"/>
+                            <constraint firstItem="xqg-yM-YUa" firstAttribute="top" secondItem="rSv-Ar-hi7" secondAttribute="bottom" id="Klt-76-BaA"/>
+                            <constraint firstItem="x6N-fR-Pwe" firstAttribute="top" secondItem="u4z-cR-Fxw" secondAttribute="bottom" constant="24" id="Qns-kz-IRz"/>
                             <constraint firstItem="rSv-Ar-hi7" firstAttribute="leading" secondItem="zzj-oC-mws" secondAttribute="leading" id="SOq-fK-Jzr"/>
+                            <constraint firstItem="u4z-cR-Fxw" firstAttribute="centerX" secondItem="zzj-oC-mws" secondAttribute="centerX" id="St2-5y-W2X"/>
                             <constraint firstAttribute="trailing" secondItem="rSv-Ar-hi7" secondAttribute="trailing" id="mot-zv-lLo"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Eez-ki-35S" secondAttribute="trailing" constant="8" id="qcK-yw-0EG"/>
-                            <constraint firstItem="rjr-1D-EC8" firstAttribute="top" secondItem="rSv-Ar-hi7" secondAttribute="bottom" constant="16" id="sbh-8T-YQg"/>
-                            <constraint firstItem="rjr-1D-EC8" firstAttribute="centerX" secondItem="zzj-oC-mws" secondAttribute="centerX" id="u23-1s-WUw"/>
-                            <constraint firstItem="NvB-k9-cwp" firstAttribute="top" secondItem="rjr-1D-EC8" secondAttribute="bottom" constant="8" id="uYc-Ju-QYh"/>
-                            <constraint firstItem="lwO-zk-Ete" firstAttribute="leading" secondItem="zzj-oC-mws" secondAttribute="leading" id="xhO-Y1-S3I"/>
+                            <constraint firstItem="x6N-fR-Pwe" firstAttribute="centerX" secondItem="zzj-oC-mws" secondAttribute="centerX" id="rGr-L1-JNo"/>
+                            <constraint firstAttribute="trailing" secondItem="xqg-yM-YUa" secondAttribute="trailing" id="sSi-ha-0vF"/>
                         </constraints>
-                        <connections>
-                            <outletCollection property="gestureRecognizers" destination="wVV-HZ-Llz" appends="YES" id="5vA-Mg-GB0"/>
-                        </connections>
                     </view>
                     <connections>
                         <outlet property="aboutLbl" destination="AK2-mz-5hG" id="kEL-ja-4Fm"/>
                         <outlet property="ageLbl" destination="3nh-bw-Hx5" id="1bt-nx-blo"/>
                         <outlet property="breedLbl" destination="i7e-E5-EJo" id="CaV-Sr-bU9"/>
+                        <outlet property="coverPhoto" destination="COh-ku-7ml" id="ukE-Wu-Y8n"/>
                         <outlet property="fullNameLbl" destination="4wy-BP-gkC" id="rcs-5d-kLe"/>
                         <outlet property="parentsNameLbl" destination="i6O-ev-DOQ" id="Cnl-Pd-HyI"/>
-                        <outlet property="profileImage" destination="rjr-1D-EC8" id="E7U-tB-VrK"/>
-                        <outlet property="profileImg" destination="rjr-1D-EC8" id="jAj-aJ-4je"/>
+                        <outlet property="profileImg" destination="x6N-fR-Pwe" id="OSm-hZ-W3I"/>
                         <outlet property="speciesLbl" destination="OmQ-2M-Ums" id="xZ8-Gi-0Gx"/>
                         <outlet property="usernameLabel" destination="nLd-6b-elC" id="UQI-0H-bCK"/>
                         <segue destination="HIm-Vc-Fus" kind="show" identifier="toUserVC" id="Mms-eL-C5o"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HAk-d2-Wgc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="wVV-HZ-Llz">
+                <tapGestureRecognizer id="Gr2-jg-ACR">
                     <connections>
-                        <action selector="tapGestureTapped:" destination="8e3-ft-Uph" id="0ae-6G-vYu"/>
+                        <action selector="tapGestureTapped:" destination="8e3-ft-Uph" id="hYD-gP-c4X"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -890,6 +932,7 @@
                         <outlet property="aboutLbl" destination="JI9-5T-4Do" id="B1l-OA-2Rq"/>
                         <outlet property="ageAndBreedLbl" destination="rdy-ZW-Z79" id="OVV-xU-O8f"/>
                         <outlet property="collectionView" destination="STb-4U-ugJ" id="0EM-6u-fPp"/>
+                        <outlet property="coverImg" destination="dTn-h0-2IO" id="ESF-ha-5u8"/>
                         <outlet property="followersLbl" destination="Poc-j1-mpI" id="l5B-xL-bSd"/>
                         <outlet property="followingLbl" destination="8PR-Wp-PQY" id="kEP-4e-g3l"/>
                         <outlet property="fullNameLbl" destination="bOG-PH-o12" id="mW4-3Z-tV9"/>
@@ -903,7 +946,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J14-8c-mV2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2428.2608695652175" y="787.90760869565224"/>
+            <point key="canvasLocation" x="1740" y="775"/>
         </scene>
         <!--FeedVC-->
         <scene sceneID="AZg-86-0Vz">
@@ -1037,7 +1080,6 @@
     </scenes>
     <resources>
         <image name="add-image" width="88" height="88"/>
-        <image name="cat2" width="640" height="480"/>
         <image name="dog" width="640" height="426"/>
         <image name="doginwig" width="1920" height="1275"/>
         <image name="home" width="40" height="40"/>
@@ -1048,11 +1090,11 @@
         <image name="user" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="PM7-ev-GOT"/>
+        <segue reference="SDZ-21-9fi"/>
+        <segue reference="lia-Ce-C0t"/>
         <segue reference="Mms-eL-C5o"/>
         <segue reference="Ive-65-i5K"/>
         <segue reference="Mkn-yb-Fhf"/>
-        <segue reference="lia-Ce-C0t"/>
-        <segue reference="SDZ-21-9fi"/>
-        <segue reference="zsD-8J-Lsn"/>
     </inferredMetricsTieBreakers>
 </document>

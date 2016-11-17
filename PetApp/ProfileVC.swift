@@ -22,26 +22,40 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     @IBOutlet weak var breedLbl: UITextField!
     @IBOutlet weak var aboutLbl: UITextField!
     
-    @IBOutlet weak var profileImage: CircleImage!
+    var imagePicker = UIImagePickerController()
+    var imagePicked = 0
+    
+    @IBOutlet weak var coverPhoto: UIImageView!
+    @IBAction func editCoverPhotoTapped(_ sender: AnyObject) {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            print("Cover photo chosen")
+            imagePicked = 1
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    
     @IBAction func addImageTapped(_ sender: AnyObject) {
-        present(imagePicker, animated: true, completion: nil)
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            print("Profile photo chosen")
+            imagePicked = 2
+            self.present(imagePicker, animated: true, completion: nil)
+        }
     }
     @IBAction func tapGestureTapped(_ sender: AnyObject) {
-        present(imagePicker, animated: true, completion: nil)
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            print("Profile photo chosen")
+            imagePicked = 2
+            self.present(imagePicker, animated: true, completion: nil)
+        }
     }
-    var imagePicker: UIImagePickerController!
-    var imageSelected = false
-    
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        imagePicker = UIImagePickerController()
-        imagePicker.allowsEditing = true
+
         imagePicker.delegate = self
-        
-        
+        imagePicker.sourceType = .photoLibrary
+        imagePicker.allowsEditing = true
         
         //download profile info & image
         
@@ -55,12 +69,13 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 self.speciesLbl.text = dictionary["species"] as? String
                 self.breedLbl.text = dictionary["breed"] as? String
                 self.aboutLbl.text = dictionary["about"] as? String
+                //download profile img
                 if let url = dictionary["profileImgUrl"] as? String {
                     //use Kingfisher
                     if let imageUrl = URL(string: url) {
                         self.profileImg.kf.indicatorType = .activity
                         self.profileImg.kf.setImage(with: imageUrl)
-                        print("Using kingfisher image.")
+                        print("Using kingfisher image for profile.")
                     } else {
                         let storage = FIRStorage.storage()
                         let storageRef = storage.reference(forURL: url)
@@ -70,10 +85,32 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                             } else {
                                 let profileImg = UIImage(data: data!)
                                 self.profileImg.image = profileImg
-                                print("Using firebase image")
+                                print("Using firebase image for profile")
                             }
                         }
    
+                    }
+                }
+                //download cover photo
+                if let url = dictionary["coverImgUrl"] as? String {
+                    //use Kingfisher
+                    if let imageUrl = URL(string: url) {
+                        self.profileImg.kf.indicatorType = .activity
+                        self.coverPhoto.kf.setImage(with: imageUrl)
+                        print("Using kingfisher image for cover.")
+                    } else {
+                        let storage = FIRStorage.storage()
+                        let storageRef = storage.reference(forURL: url)
+                        storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
+                            if error != nil {
+                                print("Unable to download image from firebase")
+                            } else {
+                                let coverImg = UIImage(data: data!)
+                                self.coverPhoto.image = coverImg
+                                print("Using firebase image for cover")
+                            }
+                        }
+                        
                     }
                 }
             }
@@ -84,12 +121,9 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     
     @IBAction func saveBtnPressed(_ sender: AnyObject) {
       //save profile image
-        
-        
-        
         let imageName = NSUUID().uuidString
         let storageRef = FIRStorage.storage().reference().child("\(imageName).png")
-        if let uploadData = UIImagePNGRepresentation(self.profileImage.image!) {
+        if let uploadData = UIImagePNGRepresentation(self.profileImg.image!) {
             storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
                 if error != nil {
                     print(error)
@@ -102,9 +136,26 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 }
             })
         }
-
-        //save profile info
         
+        //save cover image
+        
+        let coverImageName = NSUUID().uuidString
+        let storageReference = FIRStorage.storage().reference().child("\(coverImageName).png")
+        if let uploadData = UIImagePNGRepresentation(self.coverPhoto.image!) {
+            storageReference.put(uploadData, metadata: nil, completion: { (metadata, error) in
+                if error != nil {
+                    print(error)
+                    return
+                }
+                if let coverImageUrl =  metadata?.downloadURL()?.absoluteString {
+                    let values = ["coverImgUrl": coverImageUrl]
+                    self.uploadToFirebase(values: values)
+                    print("Successfuly uploaded cover image to Firebase")
+                }
+            })
+        }
+        
+        //save profile info
         let userInfo: Dictionary<String, Any> = [
             "username": usernameLabel.text! as String,
             "full-name": fullNameLbl.text! as String,
@@ -121,14 +172,18 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     }
     
     
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
-            profileImage.image = image
-            imageSelected = true
-        } else {
-            print("Valid image not selected")
+        
+        let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage
+        
+        if imagePicked == 1 {
+            coverPhoto.image = pickedImage
+        } else if imagePicked == 2 {
+            profileImg.image = pickedImage
         }
-        imagePicker.dismiss(animated: true, completion: nil)
+        
+        dismiss(animated: true, completion: nil)
     }
     
     
