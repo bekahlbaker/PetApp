@@ -556,7 +556,7 @@
                                 </view>
                                 <blurEffect style="light"/>
                             </visualEffectView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rSv-Ar-hi7">
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rSv-Ar-hi7">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="lbi-2I-ENI"/>
                                 </constraints>
@@ -564,7 +564,7 @@
                                     <navigationItem title="Edit Profile" id="3Rc-yB-ex9">
                                         <barButtonItem key="leftBarButtonItem" style="plain" systemItem="cancel" id="5bC-ew-sgv">
                                             <connections>
-                                                <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="Wv7-2o-FR2"/>
+                                                <segue destination="HIm-Vc-Fus" kind="show" identifier="toUserVC" id="LZT-qn-P3o"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="plain" systemItem="save" id="0xo-Dd-zBw">
@@ -893,7 +893,7 @@
                                     <constraint firstAttribute="width" constant="80" id="LYZ-Xa-yid"/>
                                 </constraints>
                             </imageView>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Hj-Tj-bm9">
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Hj-Tj-bm9">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="64" id="e1l-ag-CTa"/>
                                 </constraints>
@@ -965,18 +965,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pxA-0X-vtU">
-                                <color key="backgroundColor" red="0.1137254902" green="0.91372549020000005" blue="0.71372549019999998" alpha="1" colorSpace="calibratedRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="lsf-0V-MXO"/>
-                                </constraints>
-                            </view>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ORC-9N-zBw">
-                                <state key="normal" title="My Profile"/>
-                                <connections>
-                                    <segue destination="HIm-Vc-Fus" kind="show" identifier="toUserVC" id="hsq-Ye-C3g"/>
-                                </connections>
-                            </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="405" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mY4-Tr-zgP">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1060,18 +1048,58 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7A6-yj-kNB">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="Kv3-cX-DNC"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem id="WDz-bH-VdH"/>
+                                </items>
+                            </navigationBar>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetPic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvl-VZ-xfI">
+                                <fontDescription key="fontDescription" name="Lobster1.4" family="Lobster 1.4" pointSize="35"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="G4N-OC-tPL">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="usb-iM-2gZ"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem image="home" id="hZn-OJ-qNQ">
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="05c-CH-jfy"/>
+                                    <barButtonItem image="add-image" id="IrG-ok-gRD">
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <segue destination="iiK-pT-sg2" kind="show" identifier="toPostVC" id="61E-j1-iUC"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="WcU-6n-o12"/>
+                                    <barButtonItem image="user" id="mgv-PS-KDV">
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <segue destination="HIm-Vc-Fus" kind="show" identifier="toUserVC" id="whq-87-tqY"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="mY4-Tr-zgP" firstAttribute="leading" secondItem="OEl-vz-gyI" secondAttribute="leading" id="2Wt-HM-Cz1"/>
                             <constraint firstAttribute="trailing" secondItem="mY4-Tr-zgP" secondAttribute="trailing" id="5fB-NT-Gc7"/>
-                            <constraint firstItem="ORC-9N-zBw" firstAttribute="trailing" secondItem="OEl-vz-gyI" secondAttribute="trailingMargin" id="9n8-7K-pqc"/>
-                            <constraint firstAttribute="trailing" secondItem="pxA-0X-vtU" secondAttribute="trailing" id="Iwa-cm-R3s"/>
-                            <constraint firstItem="pxA-0X-vtU" firstAttribute="leading" secondItem="OEl-vz-gyI" secondAttribute="leading" id="Iwe-uh-7WZ"/>
-                            <constraint firstItem="ORC-9N-zBw" firstAttribute="top" secondItem="pxA-0X-vtU" secondAttribute="bottom" constant="8" id="Wes-J3-8YA"/>
-                            <constraint firstItem="6cU-uY-F5a" firstAttribute="top" secondItem="mY4-Tr-zgP" secondAttribute="bottom" id="Zlr-sJ-Z3s"/>
-                            <constraint firstItem="pxA-0X-vtU" firstAttribute="top" secondItem="OEl-vz-gyI" secondAttribute="top" id="bZA-nt-bgu"/>
-                            <constraint firstItem="mY4-Tr-zgP" firstAttribute="top" secondItem="ORC-9N-zBw" secondAttribute="bottom" constant="8" id="tGi-q0-for"/>
+                            <constraint firstItem="6cU-uY-F5a" firstAttribute="top" secondItem="G4N-OC-tPL" secondAttribute="bottom" id="7bQ-R8-Zit"/>
+                            <constraint firstItem="G4N-OC-tPL" firstAttribute="leading" secondItem="OEl-vz-gyI" secondAttribute="leading" id="K7c-9v-Cqn"/>
+                            <constraint firstAttribute="trailing" secondItem="7A6-yj-kNB" secondAttribute="trailing" id="MFm-zg-9mE"/>
+                            <constraint firstItem="7A6-yj-kNB" firstAttribute="top" secondItem="OEl-vz-gyI" secondAttribute="top" id="Moo-me-7Hi"/>
+                            <constraint firstAttribute="trailing" secondItem="G4N-OC-tPL" secondAttribute="trailing" id="Qle-5Z-dMW"/>
+                            <constraint firstItem="mvl-VZ-xfI" firstAttribute="centerX" secondItem="OEl-vz-gyI" secondAttribute="centerX" id="R4f-e4-Og6"/>
+                            <constraint firstItem="G4N-OC-tPL" firstAttribute="top" secondItem="mY4-Tr-zgP" secondAttribute="bottom" id="STJ-2C-8t9"/>
+                            <constraint firstItem="mY4-Tr-zgP" firstAttribute="top" secondItem="7A6-yj-kNB" secondAttribute="bottom" id="krB-FE-yvm"/>
+                            <constraint firstItem="7A6-yj-kNB" firstAttribute="leading" secondItem="OEl-vz-gyI" secondAttribute="leading" id="rIC-Dz-XoK"/>
+                            <constraint firstItem="mvl-VZ-xfI" firstAttribute="top" secondItem="OEl-vz-gyI" secondAttribute="topMargin" constant="16" id="ziO-dh-Px2"/>
                         </constraints>
                     </view>
                     <connections>
@@ -1080,7 +1108,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OEL-cy-RY3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1703.2" y="-210.04497751124438"/>
+            <point key="canvasLocation" x="1205.5999999999999" y="-197.45127436281859"/>
+        </scene>
+        <!--PostVC-->
+        <scene sceneID="8XU-Ck-4Ii">
+            <objects>
+                <viewController id="iiK-pT-sg2" customClass="PostVC" customModule="PetApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4Cf-Jo-Rtw"/>
+                        <viewControllerLayoutGuide type="bottom" id="Bz7-tP-ohO"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="els-HE-nDL">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QYj-Ks-BlV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2082" y="-197"/>
         </scene>
     </scenes>
     <resources>
@@ -1094,11 +1140,11 @@
         <image name="user" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="PM7-ev-GOT"/>
-        <segue reference="SDZ-21-9fi"/>
+        <segue reference="whq-87-tqY"/>
+        <segue reference="Mkn-yb-Fhf"/>
         <segue reference="lia-Ce-C0t"/>
-        <segue reference="Mms-eL-C5o"/>
         <segue reference="Ive-65-i5K"/>
-        <segue reference="Wv7-2o-FR2"/>
+        <segue reference="SDZ-21-9fi"/>
+        <segue reference="PM7-ev-GOT"/>
     </inferredMetricsTieBreakers>
 </document>
