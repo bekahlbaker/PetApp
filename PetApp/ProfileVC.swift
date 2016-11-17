@@ -15,6 +15,7 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
 
     @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet weak var usernameLabel: UITextField!
+    @IBOutlet weak var errorLbl: UILabel!
     @IBOutlet weak var fullNameLbl: UITextField!
     @IBOutlet weak var parentsNameLbl: UITextField!
     @IBOutlet weak var ageLbl: UITextField!
@@ -123,55 +124,62 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     }
     
     @IBAction func saveBtnPressed(_ sender: AnyObject) {
-      //save profile image
-        let imageName = NSUUID().uuidString
-        let storageRef = FIRStorage.storage().reference().child("\(imageName).png")
-        if let uploadData = UIImagePNGRepresentation(self.profileImg.image!) {
-            storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
-                if error != nil {
-                    print(error)
-                    return
-                }
-                if let profileImageUrl =  metadata?.downloadURL()?.absoluteString {
-                    let values = ["profileImgUrl": profileImageUrl]
-                    self.uploadToFirebase(values: values)
-                    print("Successfuly uploaded image to Firebase")
-                }
-            })
+        
+        if usernameLabel.text == "" {
+            errorLbl.text = "Please enter a username."
+        } else {
+            //save profile image
+            let imageName = NSUUID().uuidString
+            let storageRef = FIRStorage.storage().reference().child("\(imageName).png")
+            if let uploadData = UIImagePNGRepresentation(self.profileImg.image!) {
+                storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
+                    if error != nil {
+                        print(error)
+                        return
+                    }
+                    if let profileImageUrl =  metadata?.downloadURL()?.absoluteString {
+                        let values = ["profileImgUrl": profileImageUrl]
+                        self.uploadToFirebase(values: values)
+                        print("Successfuly uploaded image to Firebase")
+                    }
+                })
+            }
+            
+            //save cover image
+            
+            let coverImageName = NSUUID().uuidString
+            let storageReference = FIRStorage.storage().reference().child("\(coverImageName).png")
+            if let uploadData = UIImagePNGRepresentation(self.coverPhoto.image!) {
+                storageReference.put(uploadData, metadata: nil, completion: { (metadata, error) in
+                    if error != nil {
+                        print(error)
+                        return
+                    }
+                    if let coverImageUrl =  metadata?.downloadURL()?.absoluteString {
+                        let values = ["coverImgUrl": coverImageUrl]
+                        self.uploadToFirebase(values: values)
+                        print("Successfuly uploaded cover image to Firebase")
+                    }
+                })
+            }
+            
+            //save profile info
+            let userInfo: Dictionary<String, Any> = [
+                "username": usernameLabel.text! as String,
+                "full-name": fullNameLbl.text! as String,
+                "parents-name": parentsNameLbl.text! as String,
+                "age": ageLbl.text! as String,
+                "species": speciesLbl.text! as String,
+                "breed": breedLbl.text! as String,
+                "about": aboutLbl.text! as String
+            ]
+            
+            let firebasePost = DataService.ds.REF_CURRENT_USER
+            firebasePost.updateChildValues(userInfo)
+            performSegue(withIdentifier: "toUserVC", sender: nil)
+ 
         }
         
-        //save cover image
-        
-        let coverImageName = NSUUID().uuidString
-        let storageReference = FIRStorage.storage().reference().child("\(coverImageName).png")
-        if let uploadData = UIImagePNGRepresentation(self.coverPhoto.image!) {
-            storageReference.put(uploadData, metadata: nil, completion: { (metadata, error) in
-                if error != nil {
-                    print(error)
-                    return
-                }
-                if let coverImageUrl =  metadata?.downloadURL()?.absoluteString {
-                    let values = ["coverImgUrl": coverImageUrl]
-                    self.uploadToFirebase(values: values)
-                    print("Successfuly uploaded cover image to Firebase")
-                }
-            })
-        }
-        
-        //save profile info
-        let userInfo: Dictionary<String, Any> = [
-            "username": usernameLabel.text! as String,
-            "full-name": fullNameLbl.text! as String,
-            "parents-name": parentsNameLbl.text! as String,
-            "age": ageLbl.text! as String,
-            "species": speciesLbl.text! as String,
-            "breed": breedLbl.text! as String,
-            "about": aboutLbl.text! as String
-        ]
-        
-        let firebasePost = DataService.ds.REF_CURRENT_USER
-        firebasePost.updateChildValues(userInfo)
-        performSegue(withIdentifier: "toUserVC", sender: nil)
     }
     
     func textFieldChanged(textField: UITextField) {

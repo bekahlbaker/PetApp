@@ -87,7 +87,9 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
                 }
                 
                 if let parent = dictionary["parents-name"] as? String {
-                    self.parentsNameLbl.text = "Parent: \(parent)."
+                    if parent != "" {
+                        self.parentsNameLbl.text = "Parent: \(parent)"
+                    }
                 }
                 
                 if let about = dictionary["about"] as? String {

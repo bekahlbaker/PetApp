@@ -616,8 +616,13 @@
                                     <action selector="addImageTapped:" destination="8e3-ft-Uph" eventType="touchUpInside" id="SFu-SO-6kF"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Eez-ki-35S">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="Eez-ki-35S">
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gua-JH-ei4">
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                        <color key="textColor" red="0.97254901959999995" green="0.015686274510000001" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="nLd-6b-elC">
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <nil key="textColor"/>
@@ -689,6 +694,7 @@
                         <outlet property="ageLbl" destination="3nh-bw-Hx5" id="1bt-nx-blo"/>
                         <outlet property="breedLbl" destination="i7e-E5-EJo" id="CaV-Sr-bU9"/>
                         <outlet property="coverPhoto" destination="COh-ku-7ml" id="ukE-Wu-Y8n"/>
+                        <outlet property="errorLbl" destination="gua-JH-ei4" id="6Hg-7A-QVb"/>
                         <outlet property="fullNameLbl" destination="4wy-BP-gkC" id="rcs-5d-kLe"/>
                         <outlet property="parentsNameLbl" destination="i6O-ev-DOQ" id="Cnl-Pd-HyI"/>
                         <outlet property="profileImg" destination="x6N-fR-Pwe" id="OSm-hZ-W3I"/>
@@ -720,7 +726,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RzF-iN-rZR">
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loxley-boy" translatesAutoresizingMaskIntoConstraints="NO" id="dTn-h0-2IO"/>
+                                    <imageView userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dTn-h0-2IO"/>
                                     <visualEffectView opaque="NO" alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="J39-Kk-LFF">
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ynh-nX-N6H">
                                             <frame key="frameInset"/>
@@ -728,28 +734,27 @@
                                         </view>
                                         <blurEffect style="light"/>
                                     </visualEffectView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loxley" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bOG-PH-o12">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bOG-PH-o12">
                                         <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2 yo Labrador" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdy-ZW-Z79">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdy-ZW-Z79">
                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Parent: Sam Baker" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BrC-Ti-GRI">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BrC-Ti-GRI">
                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dallas, TX" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOn-KV-GE0">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eOn-KV-GE0">
                                         <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JI9-5T-4Do">
-                                        <string key="text">Bacon ipsum dolor amet pig ham hock pork chop tri-tip. Bresaola beef ribs filet mignon frankfurter, turkey brisket fatback landjaeger biltong cow chicken flank.</string>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JI9-5T-4Do">
                                         <fontDescription key="fontDescription" name="Avenir-MediumOblique" family="Avenir" pointSize="13"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -811,6 +816,7 @@
                                     <constraint firstItem="rdy-ZW-Z79" firstAttribute="top" secondItem="bOG-PH-o12" secondAttribute="bottom" constant="8" id="FV1-dH-gch"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="BrC-Ti-GRI" secondAttribute="trailing" constant="8" id="LzF-Yo-54a"/>
                                     <constraint firstItem="J39-Kk-LFF" firstAttribute="leading" secondItem="RzF-iN-rZR" secondAttribute="leading" id="Lzu-7D-Jx1"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="C8a-9W-Yc2" secondAttribute="bottom" id="Lzz-y6-qMv"/>
                                     <constraint firstItem="BrC-Ti-GRI" firstAttribute="top" secondItem="rdy-ZW-Z79" secondAttribute="bottom" id="N0C-jE-bZG"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="C8a-9W-Yc2" secondAttribute="trailing" id="NvO-T7-xIk"/>
                                     <constraint firstAttribute="trailingMargin" secondItem="rdy-ZW-Z79" secondAttribute="trailing" constant="8" id="O2O-EM-D8E"/>
@@ -821,7 +827,6 @@
                                     <constraint firstAttribute="height" constant="320" id="gjl-y6-sbJ"/>
                                     <constraint firstItem="eOn-KV-GE0" firstAttribute="leading" secondItem="RzF-iN-rZR" secondAttribute="leadingMargin" constant="8" id="jE8-jR-n8n"/>
                                     <constraint firstItem="rdy-ZW-Z79" firstAttribute="leading" secondItem="RzF-iN-rZR" secondAttribute="leadingMargin" constant="8" id="mHc-fp-eum"/>
-                                    <constraint firstItem="C8a-9W-Yc2" firstAttribute="top" secondItem="JI9-5T-4Do" secondAttribute="bottom" constant="8" id="o7J-a7-9QI"/>
                                     <constraint firstItem="eOn-KV-GE0" firstAttribute="top" secondItem="BrC-Ti-GRI" secondAttribute="bottom" constant="8" id="p7R-by-lJr"/>
                                     <constraint firstAttribute="bottom" secondItem="dTn-h0-2IO" secondAttribute="bottom" id="uHT-Lc-IkF"/>
                                     <constraint firstItem="JI9-5T-4Do" firstAttribute="leading" secondItem="RzF-iN-rZR" secondAttribute="leadingMargin" id="xPX-PT-laJ"/>
@@ -880,7 +885,7 @@
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loxley" translatesAutoresizingMaskIntoConstraints="NO" id="o55-Vn-WyN" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-image" translatesAutoresizingMaskIntoConstraints="NO" id="o55-Vn-WyN" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
                                 <color key="backgroundColor" red="0.30588235289999999" green="0.80392156859999997" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -1083,7 +1088,6 @@
         <image name="dog" width="640" height="426"/>
         <image name="doginwig" width="1920" height="1275"/>
         <image name="home" width="40" height="40"/>
-        <image name="loxley" width="640" height="480"/>
         <image name="loxley-boy" width="660" height="480"/>
         <image name="loxley-party" width="575" height="480"/>
         <image name="paw-icon" width="512" height="512"/>
@@ -1095,6 +1099,6 @@
         <segue reference="lia-Ce-C0t"/>
         <segue reference="Mms-eL-C5o"/>
         <segue reference="Ive-65-i5K"/>
-        <segue reference="Mkn-yb-Fhf"/>
+        <segue reference="Wv7-2o-FR2"/>
     </inferredMetricsTieBreakers>
 </document>
