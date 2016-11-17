@@ -57,21 +57,31 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
                 if let name = dictionary["full-name"] as? String {
                     self.fullNameLbl.text = name
                 }
-        
-//                if let age = dictionary["age"] as? String {
-//                    if age != "" {
-//                     self.ageLbl.text = "\(age) yo"   
-//                    }
-//                }
                 
                 if let breed = dictionary["breed"] as? String {
-                    if breed != "" {
-                        self.ageAndBreedLbl.text = breed
-                    } else {
-                        if let species = dictionary["species"] as? String {
-                            if species != "" {
-                                self.ageAndBreedLbl.text = species
+                    if let age = dictionary["age"] as? String {
+                        if age != "" {
+                            self.ageAndBreedLbl.text = "\(age)"
+                            if breed != "" {
+                                self.ageAndBreedLbl.text = "\(age) \(breed)"
+                            } else {
+                                if let species = dictionary["species"] as? String {
+                                    if species != "" {
+                                        self.ageAndBreedLbl.text = "\(age) \(species)"
+                                    }
+                                }
                             }
+                        } else {
+                            if breed != "" {
+                                self.ageAndBreedLbl.text = "\(breed)"
+                            } else {
+                                if let species = dictionary["species"] as? String {
+                                    if species != "" {
+                                        self.ageAndBreedLbl.text = "\(species)"
+                                    }
+                                }
+                            }
+
                         }
                     }
                 }

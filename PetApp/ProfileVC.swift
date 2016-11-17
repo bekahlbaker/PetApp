@@ -11,7 +11,7 @@ import Firebase
 import Kingfisher
 
 
-class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet weak var usernameLabel: UITextField!
@@ -56,6 +56,9 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = true
+        
+        ageLbl.delegate = self
+        ageLbl.addTarget(self, action: #selector(ProfileVC.textFieldChanged(textField:)) , for: UIControlEvents.editingChanged)
         
         //download profile info & image
         
@@ -171,6 +174,12 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         performSegue(withIdentifier: "toUserVC", sender: nil)
     }
     
+    func textFieldChanged(textField: UITextField) {
+        let ageEntered = ageLbl.text
+        if textField.text != "" {
+            textField.text = "\(ageEntered!) yo"
+        }
+    }
     
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
