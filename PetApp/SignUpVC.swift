@@ -15,16 +15,18 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
 
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var password2: UITextField!
+    
     @IBOutlet weak var errorLbl: UILabel!
     
     @IBOutlet weak var signInBtn: UIButton!
     
     @IBAction func logInPressed(_ sender: RoundedCornerButton) {
-        if let email = emailField.text, let password = passwordField.text {
-            
-            if passwordField.text == "" {
-                self.errorLbl.text = "Please enter a valid password."
-            }
+        if passwordField.text == "" {
+            self.errorLbl.text = "Please enter a valid password."
+        } else if passwordField.text != password2.text {
+            self.errorLbl.text = "Your passwords do not match. Please try again."
+        } else if let email = emailField.text, let password = passwordField.text {
 
                     FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
                         if error != nil {

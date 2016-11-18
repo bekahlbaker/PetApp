@@ -18,8 +18,6 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     @IBOutlet weak var username: UINavigationItem!
     @IBOutlet weak var fullNameLbl: UILabel!
     @IBOutlet weak var ageAndBreedLbl: UILabel!
-    @IBOutlet weak var ageLbl: UILabel!
-    @IBOutlet weak var breedLbl: UILabel!
     @IBOutlet weak var parentsNameLbl: UILabel!
     @IBOutlet weak var locationLbl: UILabel!
     @IBOutlet weak var aboutLbl: UILabel!
@@ -90,6 +88,10 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
                     if parent != "" {
                         self.parentsNameLbl.text = "Parent: \(parent)"
                     }
+                }
+                
+                if let location = dictionary["location"] as? String {
+                    self.locationLbl.text = location
                 }
                 
                 if let about = dictionary["about"] as? String {

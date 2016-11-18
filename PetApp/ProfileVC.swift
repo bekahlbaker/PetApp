@@ -21,6 +21,7 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     @IBOutlet weak var ageLbl: UITextField!
     @IBOutlet weak var speciesLbl: UITextField!
     @IBOutlet weak var breedLbl: UITextField!
+    @IBOutlet weak var locationLbl: UITextField!
     @IBOutlet weak var aboutLbl: UITextField!
     
     var imagePicker = UIImagePickerController()
@@ -61,6 +62,8 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         ageLbl.delegate = self
         ageLbl.addTarget(self, action: #selector(ProfileVC.textFieldChanged(textField:)) , for: UIControlEvents.editingChanged)
         
+        
+        
         //download profile info & image
         
         DataService.ds.REF_CURRENT_USER.observe(.value, with: { (snapshot) in
@@ -72,6 +75,7 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 self.ageLbl.text = dictionary["age"] as? String
                 self.speciesLbl.text = dictionary["species"] as? String
                 self.breedLbl.text = dictionary["breed"] as? String
+                self.locationLbl.text = dictionary["location"] as? String
                 self.aboutLbl.text = dictionary["about"] as? String
                 //download profile img
                 if let url = dictionary["profileImgUrl"] as? String {
@@ -166,23 +170,6 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 })
             }
             
-            
-//            let coverImageName = NSUUID().uuidString
-//            let storageReference = FIRStorage.storage().reference().child("\(coverImageName).png")
-//            if let uploadData = UIImagePNGRepresentation(self.coverPhoto.image!) {
-//                storageReference.put(uploadData, metadata: nil, completion: { (metadata, error) in
-//                    if error != nil {
-//                        print(error)
-//                        return
-//                    }
-//                    if let coverImageUrl =  metadata?.downloadURL()?.absoluteString {
-//                        let values = ["coverImgUrl": coverImageUrl]
-//                        self.uploadToFirebase(values: values)
-//                        print("Successfuly uploaded cover image to Firebase")
-//                    }
-//                })
-//            }
-            
             //save profile info
             let userInfo: Dictionary<String, Any> = [
                 "username": usernameLabel.text! as String,
@@ -191,6 +178,7 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 "age": ageLbl.text! as String,
                 "species": speciesLbl.text! as String,
                 "breed": breedLbl.text! as String,
+                "location": locationLbl.text! as String,
                 "about": aboutLbl.text! as String
             ]
             
@@ -207,6 +195,13 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         if textField.text != "" {
             textField.text = "\(ageEntered!) yo"
         }
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let maxLength = 150
+        guard let text = textField.text else { return true }
+        let newLength = text.characters.count + string.characters.count - range.length
+        return newLength <= maxLength
     }
     
 

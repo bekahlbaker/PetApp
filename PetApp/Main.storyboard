@@ -403,6 +403,12 @@
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your password again" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="f6f-87-u4N">
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hu2-zp-dkM">
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                         <color key="textColor" red="0.97254901959999995" green="0.015686274510000001" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -470,9 +476,7 @@
                                     <constraint firstAttribute="height" constant="1" id="cW0-6C-hHc"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="29S-Y5-8BN">
-                                <frame key="frameInset" minX="166" minY="267" width="43" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="29S-Y5-8BN">
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                 <state key="normal" title="Sign In">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -491,6 +495,7 @@
                             <constraint firstItem="gvm-AZ-zTX" firstAttribute="centerX" secondItem="J0j-24-92X" secondAttribute="centerX" id="Bjn-GV-DlB"/>
                             <constraint firstItem="qWs-K5-cfd" firstAttribute="leading" secondItem="J0j-24-92X" secondAttribute="leadingMargin" constant="8" id="E5c-np-x40"/>
                             <constraint firstItem="8qe-X3-PTc" firstAttribute="leading" secondItem="J0j-24-92X" secondAttribute="leadingMargin" constant="8" id="EXb-Aq-hFE"/>
+                            <constraint firstItem="29S-Y5-8BN" firstAttribute="top" secondItem="hu2-zp-dkM" secondAttribute="bottom" constant="-7" id="Ie3-v3-prf"/>
                             <constraint firstItem="wFS-x0-AMS" firstAttribute="leading" secondItem="J0j-24-92X" secondAttribute="leadingMargin" constant="8" id="Ika-XW-eVI"/>
                             <constraint firstItem="UBa-Gu-asH" firstAttribute="leading" secondItem="J0j-24-92X" secondAttribute="leadingMargin" constant="8" id="MDf-1z-TJc"/>
                             <constraint firstItem="UBa-Gu-asH" firstAttribute="trailing" secondItem="gvm-AZ-zTX" secondAttribute="trailing" constant="-32" id="MEl-7I-R8X"/>
@@ -502,6 +507,7 @@
                             <constraint firstAttribute="trailingMargin" secondItem="qWs-K5-cfd" secondAttribute="trailing" constant="8" id="aqO-CZ-CIa"/>
                             <constraint firstItem="8qe-X3-PTc" firstAttribute="top" secondItem="gvm-AZ-zTX" secondAttribute="bottom" constant="22" id="bnQ-1k-sVR"/>
                             <constraint firstAttribute="trailingMargin" secondItem="8qe-X3-PTc" secondAttribute="trailing" constant="8" id="dgO-lP-vro"/>
+                            <constraint firstItem="29S-Y5-8BN" firstAttribute="centerX" secondItem="J0j-24-92X" secondAttribute="centerX" id="h4q-OL-R46"/>
                             <constraint firstAttribute="trailing" secondItem="OsR-Fd-xfH" secondAttribute="trailing" id="hw7-CP-5bo"/>
                             <constraint firstItem="gvm-AZ-zTX" firstAttribute="top" secondItem="BCK-3C-yEu" secondAttribute="bottom" constant="25" id="kvb-I9-dLz"/>
                             <constraint firstItem="OsR-Fd-xfH" firstAttribute="leading" secondItem="J0j-24-92X" secondAttribute="leading" id="mo0-je-KdO"/>
@@ -515,6 +521,7 @@
                     <connections>
                         <outlet property="emailField" destination="aPg-yI-9yI" id="WEO-VD-lrc"/>
                         <outlet property="errorLbl" destination="hu2-zp-dkM" id="fXM-4y-QlB"/>
+                        <outlet property="password2" destination="f6f-87-u4N" id="avk-9u-4fU"/>
                         <outlet property="passwordField" destination="8oG-Nn-7jf" id="lYM-dP-700"/>
                         <outlet property="signInBtn" destination="29S-Y5-8BN" id="jqd-k9-pSf"/>
                         <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="GCf-Y1-rpQ"/>
@@ -650,6 +657,12 @@
                                         <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="44q-PY-byf">
+                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Bio" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="AK2-mz-5hG">
                                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                         <nil key="textColor"/>
@@ -689,6 +702,7 @@
                         <outlet property="coverPhoto" destination="COh-ku-7ml" id="ukE-Wu-Y8n"/>
                         <outlet property="errorLbl" destination="gua-JH-ei4" id="6Hg-7A-QVb"/>
                         <outlet property="fullNameLbl" destination="4wy-BP-gkC" id="rcs-5d-kLe"/>
+                        <outlet property="locationLbl" destination="44q-PY-byf" id="mpV-Rx-kDc"/>
                         <outlet property="parentsNameLbl" destination="i6O-ev-DOQ" id="Cnl-Pd-HyI"/>
                         <outlet property="profileImg" destination="x6N-fR-Pwe" id="OSm-hZ-W3I"/>
                         <outlet property="speciesLbl" destination="OmQ-2M-Ums" id="xZ8-Gi-0Gx"/>
@@ -1225,11 +1239,11 @@
         <image name="user" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="zsD-8J-Lsn"/>
-        <segue reference="lia-Ce-C0t"/>
-        <segue reference="tPG-g3-xlk"/>
-        <segue reference="Ooz-fL-gDA"/>
-        <segue reference="Ive-65-i5K"/>
+        <segue reference="FTw-v6-tCL"/>
+        <segue reference="PM7-ev-GOT"/>
         <segue reference="SDZ-21-9fi"/>
+        <segue reference="lia-Ce-C0t"/>
+        <segue reference="Mms-eL-C5o"/>
+        <segue reference="tXI-lO-4qc"/>
     </inferredMetricsTieBreakers>
 </document>

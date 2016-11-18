@@ -61,25 +61,30 @@ class FeedCell: UITableViewCell {
                     
                 let profileImgUrl = dictionary["profileImgUrl"] as? String
                 let storage = FIRStorage.storage()
-                let storageRef = storage.reference(forURL: profileImgUrl!)
-                storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
-                if error != nil {
-                    print("Unable to download image from firebase")
-                } else {
-                    //use Kingfisher
-                    if let imageUrl = URL(string: profileImgUrl!) {
-                        self.profileImg.kf.indicatorType = .activity
-                        self.profileImg.kf.setImage(with: imageUrl)
-                        print("Using kingfisher image for profile.")
-                    }else {
-                        let profileImg = UIImage(data: data!)
-                        self.profileImg.image = profileImg
-                        print("Using firebase image for profile")
+                if profileImgUrl != nil {
+                    let storageRef = storage.reference(forURL: profileImgUrl!)
+                        storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
+                        if error != nil {
+                            print("Unable to download image from firebase")
+                        } else {
+                            //use Kingfisher
+                            if let imageUrl = URL(string: profileImgUrl!) {
+                                self.profileImg.kf.indicatorType = .activity
+                                self.profileImg.kf.setImage(with: imageUrl)
+                                print("Using kingfisher image for profile.")
+                            }else {
+                                let profileImg = UIImage(data: data!)
+                                self.profileImg.image = profileImg
+                                print("Using firebase image for profile")
+                            }
+                            
+                        }
                     }
 
+                } else {
+                    print("No profile image")
                 }
             }
-        }
     })
 }
 
