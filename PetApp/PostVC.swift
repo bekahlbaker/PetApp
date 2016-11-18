@@ -18,6 +18,7 @@ class PostVC: UIViewController {
         }
     
     var currentUser: String!
+    var profileImgUrl: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,9 +27,10 @@ class PostVC: UIViewController {
             
             if let dictionary = snapshot.value as? [String: Any] {
                 let currentUser = dictionary["username"] as? String
+//                let profileImgUrl = dictionary["profileImgUrl"] as? String
             
-            print("Username: \(currentUser!)")
-            self.currentUser = currentUser
+                self.currentUser = currentUser
+//                self.profileImgUrl = profileImgUrl
             }
 
         })
@@ -38,6 +40,7 @@ class PostVC: UIViewController {
         let post: Dictionary<String, Any> = [
             "caption": captionTextField.text! as String,
             "username": self.currentUser as String,
+//            "profileImgUrl": self.profileImgUrl as String
         ]
         
         let firebasePost = DataService.ds.REF_POSTS.childByAutoId()

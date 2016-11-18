@@ -11,6 +11,7 @@ import Firebase
 
 class Post {
     private var _username: String!
+    private var _profileImgUrl: String!
     private var _caption: String!
     private var _imageURL: String!
     private var _likes: Int!
@@ -19,6 +20,10 @@ class Post {
     
     var username: String {
         return _username
+    }
+    
+    var profileImgUrl: String {
+        return _profileImgUrl
     }
     
     var caption: String {
@@ -37,8 +42,9 @@ class Post {
         return _postKey
     }
     
-    init(username: String, caption: String, imageURL: String, likes: Int) {
+    init(username: String, profileImgUrl: String, caption: String, imageURL: String, likes: Int) {
         self._username = username
+        self._profileImgUrl = profileImgUrl
         self._caption = caption
         self._imageURL = imageURL
         self._likes = likes
@@ -51,11 +57,15 @@ class Post {
             self._username = username
         }
         
+        if let profileImgUrl = postData["profileImgUrl"] as? String {
+            self._profileImgUrl = profileImgUrl
+        }
+        
         if let caption = postData["caption"] as? String {
             self._caption = caption
         }
         
-        if let imageURL = postData["imageUrl"] as? String {
+        if let imageURL = postData["imageURL"] as? String {
             self._imageURL = imageURL
         }
         

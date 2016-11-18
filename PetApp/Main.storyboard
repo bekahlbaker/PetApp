@@ -1045,6 +1045,10 @@
                                         <connections>
                                             <outlet property="caption" destination="mjC-5q-P8C" id="So8-6c-L7q"/>
                                             <outlet property="feedImageView" destination="OYw-6X-lWR" id="CAu-EC-KtC"/>
+                                            <outlet property="likes" destination="4jZ-HB-nLh" id="SVv-yG-N2I"/>
+                                            <outlet property="likesBtnTapped" destination="ufH-fg-98K" id="t6j-k4-apL"/>
+                                            <outlet property="likesImg" destination="ufH-fg-98K" id="ILA-vj-Vv1"/>
+                                            <outlet property="profileImg" destination="UD5-au-Ivn" id="igu-fj-EDf"/>
                                             <outlet property="username" destination="qSW-xz-UaH" id="BRi-Ku-WLA"/>
                                         </connections>
                                     </tableViewCell>
