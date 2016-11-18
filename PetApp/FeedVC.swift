@@ -39,8 +39,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
             self.tableView.reloadData()
         })
-        
-        
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

@@ -983,7 +983,8 @@
                                                         <constraint firstAttribute="height" constant="175" id="QIr-Wj-0Pw"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dog" translatesAutoresizingMaskIntoConstraints="NO" id="UD5-au-Ivn" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UD5-au-Ivn" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
+                                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="UjQ-dp-ANX"/>
                                                         <constraint firstAttribute="width" constant="60" id="ydT-wM-HLO"/>
@@ -1128,17 +1129,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ghq-e8-Ok3">
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="6zz-ff-xVy"/>
-                                    <constraint firstAttribute="width" constant="99" id="sSu-37-uhw"/>
-                                </constraints>
-                                <state key="normal" title="Save Post"/>
-                                <connections>
-                                    <action selector="savePost:" destination="iiK-pT-sg2" eventType="touchUpInside" id="U3D-JK-dw7"/>
-                                </connections>
-                            </button>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3jo-I9-JHH">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Caption" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3jo-I9-JHH">
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -1151,18 +1142,49 @@
                                     <segue destination="FOH-oA-jlS" kind="show" id="6KC-sP-v97"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-image" translatesAutoresizingMaskIntoConstraints="NO" id="zGo-cJ-yz9">
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Mag-G1-1eJ"/>
+                                    <constraint firstAttribute="height" constant="200" id="u9P-hb-aV2"/>
+                                </constraints>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M8N-Ws-NoO">
+                                <connections>
+                                    <action selector="imagePickerTapped:" destination="iiK-pT-sg2" eventType="touchUpInside" id="1Lg-hK-0km"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ghq-e8-Ok3">
+                                <frame key="frameInset" minX="139" minY="318" width="99" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="6zz-ff-xVy"/>
+                                    <constraint firstAttribute="width" constant="99" id="sSu-37-uhw"/>
+                                </constraints>
+                                <state key="normal" title="Save Post"/>
+                                <connections>
+                                    <action selector="savePost:" destination="iiK-pT-sg2" eventType="touchUpInside" id="U3D-JK-dw7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="3jo-I9-JHH" firstAttribute="leading" secondItem="els-HE-nDL" secondAttribute="leadingMargin" id="BCb-0n-A58"/>
                             <constraint firstItem="Ghq-e8-Ok3" firstAttribute="top" secondItem="3jo-I9-JHH" secondAttribute="bottom" constant="8" id="EhN-r4-wXA"/>
+                            <constraint firstItem="zGo-cJ-yz9" firstAttribute="centerX" secondItem="els-HE-nDL" secondAttribute="centerX" id="Gk5-BW-uFe"/>
+                            <constraint firstItem="M8N-Ws-NoO" firstAttribute="centerY" secondItem="zGo-cJ-yz9" secondAttribute="centerY" id="Hbi-0W-Il8"/>
                             <constraint firstItem="3jo-I9-JHH" firstAttribute="trailing" secondItem="els-HE-nDL" secondAttribute="trailingMargin" id="INE-Bw-5MX"/>
+                            <constraint firstItem="zGo-cJ-yz9" firstAttribute="top" secondItem="4Cf-Jo-Rtw" secondAttribute="bottom" constant="16" id="J1P-DZ-Hrb"/>
+                            <constraint firstItem="M8N-Ws-NoO" firstAttribute="width" secondItem="zGo-cJ-yz9" secondAttribute="width" id="JrU-5j-uOC"/>
+                            <constraint firstItem="3jo-I9-JHH" firstAttribute="top" secondItem="zGo-cJ-yz9" secondAttribute="bottom" constant="34" id="bpk-GX-lJf"/>
+                            <constraint firstItem="M8N-Ws-NoO" firstAttribute="centerX" secondItem="zGo-cJ-yz9" secondAttribute="centerX" id="gHW-g1-BbL"/>
+                            <constraint firstItem="M8N-Ws-NoO" firstAttribute="height" secondItem="zGo-cJ-yz9" secondAttribute="height" id="lQJ-bl-cq2"/>
                             <constraint firstItem="Ghq-e8-Ok3" firstAttribute="centerX" secondItem="els-HE-nDL" secondAttribute="centerX" id="p1c-3s-74f"/>
-                            <constraint firstItem="3jo-I9-JHH" firstAttribute="top" secondItem="4Cf-Jo-Rtw" secondAttribute="bottom" constant="260" id="vYd-Oz-Hld"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="captionTextField" destination="3jo-I9-JHH" id="vWt-rp-tiw"/>
+                        <outlet property="postImage" destination="zGo-cJ-yz9" id="PD0-xx-Pbu"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QYj-Ks-BlV" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1172,7 +1194,6 @@
     </scenes>
     <resources>
         <image name="add-image" width="88" height="88"/>
-        <image name="dog" width="640" height="426"/>
         <image name="doginwig" width="1920" height="1275"/>
         <image name="home" width="40" height="40"/>
         <image name="loxley-boy" width="660" height="480"/>
@@ -1181,11 +1202,11 @@
         <image name="user" width="50" height="50"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="whq-87-tqY"/>
-        <segue reference="Mkn-yb-Fhf"/>
+        <segue reference="VOj-p2-r25"/>
         <segue reference="lia-Ce-C0t"/>
-        <segue reference="Ive-65-i5K"/>
+        <segue reference="whq-87-tqY"/>
+        <segue reference="6KC-sP-v97"/>
         <segue reference="SDZ-21-9fi"/>
-        <segue reference="PM7-ev-GOT"/>
+        <segue reference="zsD-8J-Lsn"/>
     </inferredMetricsTieBreakers>
 </document>

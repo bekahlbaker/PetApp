@@ -9,19 +9,55 @@
 import UIKit
 import Firebase
 
-class PostVC: UIViewController {
+class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     @IBOutlet weak var captionTextField: UITextField!
     
+    @IBOutlet weak var postImage: UIImageView!
+    @IBAction func imagePickerTapped(_ sender: AnyObject) {
+        present(postImagePicker, animated: true, completion: nil)
+    }
+    
     @IBAction func savePost(_ sender: AnyObject) {
-            postToFirebase()
+        
+        guard let img = postImage.image, imageSelected == true else {
+            print("Please choose an image")
+            return
+        }
+        
+        if let imgData = UIImagePNGRepresentation(img){
+            
+            let imgUid = NSUUID().uuidString
+            let metadata = FIRStorageMetadata()
+            metadata.contentType = "image/png"
+            
+            DataService.ds.REF_POST_IMGS.child(imgUid).put(imgData, metadata: metadata) { (metadata, error) in
+                if error != nil {
+                    print("Unable to image to Firebase")
+                } else {
+                    print("Successfully uploaded image to Firebase")
+                    let downloadUrl = metadata?.downloadURL()?.absoluteString
+                    if let url = downloadUrl {
+                        self.postToFirebase(imageURL: url)
+                    }
+                }
+                
+            }
+            
+        }
+
         }
     
     var currentUser: String!
-    var profileImgUrl: String!
+    var postImagePicker: UIImagePickerController!
+    var imageSelected = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        postImagePicker = UIImagePickerController()
+        postImagePicker.delegate = self
+        postImagePicker.allowsEditing = true
 
         DataService.ds.REF_CURRENT_USER.observe(.value, with: { (snapshot) in
             
@@ -36,15 +72,31 @@ class PostVC: UIViewController {
         })
     }
     
-    func postToFirebase() {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+            postImage.image = image
+            imageSelected = true
+        } else {
+            print("Valid image not selected.")
+        }
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func postToFirebase(imageURL: String) {
         let post: Dictionary<String, Any> = [
             "caption": captionTextField.text! as String,
             "username": self.currentUser as String,
+            "imageURL": imageURL as String
 //            "profileImgUrl": self.profileImgUrl as String
         ]
         
         let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
         firebasePost.setValue(post)
+        
+        captionTextField.text = ""
+        imageSelected = false
+        postImage.image = UIImage(named: "add-image")
         
         print("POST: \(post)")
 

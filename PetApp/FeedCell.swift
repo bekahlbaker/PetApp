@@ -28,19 +28,37 @@ class FeedCell: UITableViewCell {
         
     }
     
-    func configureCell(post: Post) {
+    func configureCell(post: Post, img: UIImage? = nil) {
         self.post = post
         
         self.caption.text = post.caption
         self.username.text = post.username
-            
+        
+        if img != nil {
+            self.feedImageView.image = img
+        } else {
+            let ref = FIRStorage.storage().reference(forURL: post.imageURL)
+            ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+                if error != nil {
+                    print("Unable to Download image from Firebase storage.")
+                } else {
+                    print("Image downloaded from FB Storage.")
+                    if let imgData = data {
+                        if let img = UIImage(data: imgData) {
+                            self.feedImageView.image = img
+                        }
+                    }
+                }
+                
+            })
+        }
+        
+        //download profile img
         DataService.ds.REF_CURRENT_USER.observe(.value, with: { (snapshot) in
                 
             if let dictionary = snapshot.value as? [String: Any] {
                     
                 let profileImgUrl = dictionary["profileImgUrl"] as? String
-
-                //download profile img
                 let storage = FIRStorage.storage()
                 let storageRef = storage.reference(forURL: profileImgUrl!)
                 storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
