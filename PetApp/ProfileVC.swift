@@ -196,14 +196,6 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             textField.text = "\(ageEntered!) yo"
         }
     }
-    
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let maxLength = 150
-        guard let text = textField.text else { return true }
-        let newLength = text.characters.count + string.characters.count - range.length
-        return newLength <= maxLength
-    }
-    
 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
