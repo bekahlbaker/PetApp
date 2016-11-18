@@ -130,9 +130,11 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         } else {
             //save profile image
             let imageName = NSUUID().uuidString
-            let storageRef = FIRStorage.storage().reference().child("\(imageName).png")
+            let metadata = FIRStorageMetadata()
+            metadata.contentType = "image/png"
+            
             if let uploadData = UIImagePNGRepresentation(self.profileImg.image!) {
-                storageRef.put(uploadData, metadata: nil, completion: { (metadata, error) in
+               DataService.ds.REF_USER_PROFILE.child(imageName).put(uploadData, metadata: metadata, completion: { (metadata, error) in
                     if error != nil {
                         print(error)
                         return
@@ -146,11 +148,12 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             }
             
             //save cover image
-            
             let coverImageName = NSUUID().uuidString
-            let storageReference = FIRStorage.storage().reference().child("\(coverImageName).png")
+            let coverMetadata = FIRStorageMetadata()
+            coverMetadata.contentType = "image/png"
+            
             if let uploadData = UIImagePNGRepresentation(self.coverPhoto.image!) {
-                storageReference.put(uploadData, metadata: nil, completion: { (metadata, error) in
+                DataService.ds.REF_USER_COVER.child(coverImageName).put(uploadData, metadata: coverMetadata, completion: { (metadata, error) in
                     if error != nil {
                         print(error)
                         return
@@ -162,6 +165,23 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                     }
                 })
             }
+            
+            
+//            let coverImageName = NSUUID().uuidString
+//            let storageReference = FIRStorage.storage().reference().child("\(coverImageName).png")
+//            if let uploadData = UIImagePNGRepresentation(self.coverPhoto.image!) {
+//                storageReference.put(uploadData, metadata: nil, completion: { (metadata, error) in
+//                    if error != nil {
+//                        print(error)
+//                        return
+//                    }
+//                    if let coverImageUrl =  metadata?.downloadURL()?.absoluteString {
+//                        let values = ["coverImgUrl": coverImageUrl]
+//                        self.uploadToFirebase(values: values)
+//                        print("Successfuly uploaded cover image to Firebase")
+//                    }
+//                })
+//            }
             
             //save profile info
             let userInfo: Dictionary<String, Any> = [

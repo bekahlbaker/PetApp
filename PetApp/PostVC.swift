@@ -11,7 +11,7 @@ import Firebase
 
 class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    @IBOutlet weak var captionTextField: UITextField!
+    @IBOutlet weak var captionTextField: UITextView!
     
     @IBOutlet weak var postImage: UIImageView!
     @IBAction func imagePickerTapped(_ sender: AnyObject) {
@@ -39,6 +39,7 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                     let downloadUrl = metadata?.downloadURL()?.absoluteString
                     if let url = downloadUrl {
                         self.postToFirebase(imageURL: url)
+                    self.performSegue(withIdentifier: "toFeedVC", sender: nil)
                     }
                 }
                 

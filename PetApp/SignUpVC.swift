@@ -47,6 +47,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                                     print("Create User Error: \(error)")
                                 }
                                 
+                            }
                         } else {
                             print("Successfully authenticated with Firebase using email")
                             if let user = user {
@@ -55,7 +56,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                             }
                             self.performSegue(withIdentifier: "toProfileVC", sender: nil)
                         }
-                        }
+
                     })
                 }
         }
