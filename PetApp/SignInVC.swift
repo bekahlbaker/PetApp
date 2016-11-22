@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 import SwiftKeychainWrapper
-import FBSDKLoginKit
+//import FBSDKLoginKit
 
 class SignInVC: UIViewController, UITextFieldDelegate {
 
@@ -85,24 +85,24 @@ class SignInVC: UIViewController, UITextFieldDelegate {
         super.touchesBegan(touches, with: event)
     }
     
-    @IBAction func loginWithFacebookPressed(_ sender: AnyObject) {
-        
-        let facebookLogin = FBSDKLoginManager()
-        
-        facebookLogin.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
-            if error != nil {
-                print("Unable to authenticate with Facebook - \(error)")
-            } else if result?.isCancelled == true {
-                print("User cancelled Facebook authentication")
-            } else {
-                print("Successfully authenticated with Facebook")
-                let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
-                DataService.ds.firebaseAuthenticate(credential)
-                self.performSegue(withIdentifier: "toFeedVC", sender: nil)
-            }
-            
-        }
-    }
+//    @IBAction func loginWithFacebookPressed(_ sender: AnyObject) {
+//        
+//        let facebookLogin = FBSDKLoginManager()
+//        
+//        facebookLogin.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
+//            if error != nil {
+//                print("Unable to authenticate with Facebook - \(error)")
+//            } else if result?.isCancelled == true {
+//                print("User cancelled Facebook authentication")
+//            } else {
+//                print("Successfully authenticated with Facebook")
+//                let credential = FIRFacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+//                DataService.ds.firebaseAuthenticate(credential)
+//                self.performSegue(withIdentifier: "toFeedVC", sender: nil)
+//            }
+//            
+//        }
+//    }
  
 }
 

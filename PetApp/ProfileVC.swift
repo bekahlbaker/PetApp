@@ -54,7 +54,9 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+//        checkForUsername(username: self.usernameLabel.text!)
+        
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = true
@@ -62,14 +64,11 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         ageLbl.delegate = self
         ageLbl.addTarget(self, action: #selector(ProfileVC.textFieldChanged(textField:)) , for: UIControlEvents.editingChanged)
         
-        
-        
         //download profile info & image
         
         DataService.ds.REF_CURRENT_USER.observe(.value, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: Any] {
-                self.usernameLabel.text = dictionary["username"] as? String
                 self.fullNameLbl.text = dictionary["full-name"] as? String
                 self.parentsNameLbl.text = dictionary["parents-name"] as? String
                 self.ageLbl.text = dictionary["age"] as? String
@@ -127,12 +126,12 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         })
     }
     
+    //SAVE and UPLOAD profile info & image
+    
     @IBAction func saveBtnPressed(_ sender: AnyObject) {
         
-        if usernameLabel.text == "" {
-            errorLbl.text = "Please enter a username."
-        } else {
-            //save profile image
+        
+        
             let imageName = NSUUID().uuidString
             let metadata = FIRStorageMetadata()
             metadata.contentType = "image/png"
@@ -171,23 +170,25 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             }
             
             //save profile info
-            let userInfo: Dictionary<String, Any> = [
-                "username": usernameLabel.text! as String,
-                "full-name": fullNameLbl.text! as String,
-                "parents-name": parentsNameLbl.text! as String,
-                "age": ageLbl.text! as String,
-                "species": speciesLbl.text! as String,
-                "breed": breedLbl.text! as String,
-                "location": locationLbl.text! as String,
-                "about": aboutLbl.text! as String
-            ]
             
-            let firebasePost = DataService.ds.REF_CURRENT_USER
-            firebasePost.updateChildValues(userInfo)
-            performSegue(withIdentifier: "toUserVC", sender: nil)
- 
-        }
-        
+            if usernameLabel.text == "" {
+                errorLbl.text = "Please enter a username."
+            }else {
+                let userInfo: Dictionary<String, Any> = [
+                    "username": usernameLabel.text! as String,
+                    "full-name": fullNameLbl.text! as String,
+                    "parents-name": parentsNameLbl.text! as String,
+                    "age": ageLbl.text! as String,
+                    "species": speciesLbl.text! as String,
+                    "breed": breedLbl.text! as String,
+                    "location": locationLbl.text! as String,
+                    "about": aboutLbl.text! as String
+                ]
+                
+                let firebasePost = DataService.ds.REF_CURRENT_USER
+                firebasePost.updateChildValues(userInfo)
+                performSegue(withIdentifier: "toUserVC", sender: nil)
+            }
     }
     
     func textFieldChanged(textField: UITextField) {
@@ -210,12 +211,11 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         dismiss(animated: true, completion: nil)
     }
     
-    
     func uploadToFirebase(values: [String: Any]) {
         let firebasePost = DataService.ds.REF_CURRENT_USER
         firebasePost.updateChildValues(values)
     }
-    
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
         super.touchesBegan(touches, with: event)
