@@ -426,7 +426,6 @@
                         <outlet property="password2" destination="f6f-87-u4N" id="avk-9u-4fU"/>
                         <outlet property="passwordField" destination="8oG-Nn-7jf" id="lYM-dP-700"/>
                         <outlet property="signInBtn" destination="29S-Y5-8BN" id="jqd-k9-pSf"/>
-                        <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="GCf-Y1-rpQ"/>
                         <segue destination="fAe-DI-edP" kind="show" identifier="toUsernameVC" id="SJM-lh-SJu"/>
                     </connections>
                 </viewController>
@@ -446,32 +445,63 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mUP-yB-nyH">
-                                <frame key="frameInset" minX="36" minY="121" width="323" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Choose your username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mUP-yB-nyH">
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <nil key="textColor"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ivO-UL-Bc3">
-                                <frame key="frameInset" minX="100" minY="237" width="195" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Button"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetPic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kbg-tp-Q4h">
+                                <fontDescription key="fontDescription" name="Lobster1.4" family="Lobster 1.4" pointSize="60"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZv-zB-1zN">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="8Rk-ud-DSP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <color key="textColor" red="0.97254901959999995" green="0.015686274510000001" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ivO-UL-Bc3" customClass="RoundedCornerButton" customModule="PetApp" customModuleProvider="target">
+                                <color key="backgroundColor" red="0.30588235289999999" green="0.80392156859999997" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Pjs-gT-KtP"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="19"/>
+                                <state key="normal" title="Next">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
                                 <connections>
                                     <action selector="checkUsernameTapped:" destination="fAe-DI-edP" eventType="touchUpInside" id="b3z-DD-sEX"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="kbg-tp-Q4h" firstAttribute="leading" secondItem="OXr-Bk-ZHJ" secondAttribute="leadingMargin" constant="8" id="0XG-kz-SM3"/>
+                            <constraint firstItem="ivO-UL-Bc3" firstAttribute="leading" secondItem="OXr-Bk-ZHJ" secondAttribute="leadingMargin" constant="8" id="FIh-97-wJB"/>
+                            <constraint firstItem="mUP-yB-nyH" firstAttribute="top" secondItem="kbg-tp-Q4h" secondAttribute="bottom" constant="35" id="HVE-kd-z0s"/>
+                            <constraint firstItem="TZv-zB-1zN" firstAttribute="leading" secondItem="OXr-Bk-ZHJ" secondAttribute="leadingMargin" constant="8" id="Kkq-mZ-Exx"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="TZv-zB-1zN" secondAttribute="trailing" constant="8" id="QfD-5Q-6yL"/>
+                            <constraint firstItem="TZv-zB-1zN" firstAttribute="top" secondItem="mUP-yB-nyH" secondAttribute="bottom" constant="8" id="SJ3-8y-euV"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ivO-UL-Bc3" secondAttribute="trailing" constant="8" id="Ul4-Ms-8tU"/>
+                            <constraint firstItem="kbg-tp-Q4h" firstAttribute="trailing" secondItem="OXr-Bk-ZHJ" secondAttribute="trailingMargin" constant="8" id="YgP-oW-oqi"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="mUP-yB-nyH" secondAttribute="trailing" constant="8" id="dfV-XW-ya9"/>
+                            <constraint firstItem="mUP-yB-nyH" firstAttribute="leading" secondItem="OXr-Bk-ZHJ" secondAttribute="leadingMargin" constant="8" id="fU2-UM-rGh"/>
+                            <constraint firstItem="ivO-UL-Bc3" firstAttribute="top" secondItem="TZv-zB-1zN" secondAttribute="bottom" constant="35" id="g4m-BF-NnU"/>
+                            <constraint firstItem="kbg-tp-Q4h" firstAttribute="top" secondItem="Nri-gl-sBI" secondAttribute="bottom" constant="8" id="t11-vw-tJf"/>
+                        </constraints>
                     </view>
                     <connections>
+                        <outlet property="errorLbl" destination="TZv-zB-1zN" id="diN-iU-dQo"/>
                         <outlet property="usernameTextField" destination="mUP-yB-nyH" id="FvH-8i-6oQ"/>
                         <segue destination="8e3-ft-Uph" kind="show" identifier="toProfileVC" id="FTl-Ea-BmB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WDd-GG-6wM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="293.60000000000002" y="1516.1919040479761"/>
+            <point key="canvasLocation" x="658" y="796"/>
         </scene>
         <!--ProfileVC-->
         <scene sceneID="Jnh-wp-Hi8">
@@ -686,7 +716,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="828" y="774.96251874062978"/>
+            <point key="canvasLocation" x="1495" y="796"/>
         </scene>
         <!--UserVC-->
         <scene sceneID="O30-zH-4V0">
@@ -924,7 +954,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J14-8c-mV2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1740" y="774.96251874062978"/>
+            <point key="canvasLocation" x="2338" y="796"/>
         </scene>
         <!--FeedVC-->
         <scene sceneID="AZg-86-0Vz">
@@ -1209,10 +1239,10 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="lia-Ce-C0t"/>
-        <segue reference="Mms-eL-C5o"/>
+        <segue reference="LZT-qn-P3o"/>
         <segue reference="FTl-Ea-BmB"/>
         <segue reference="SDZ-21-9fi"/>
-        <segue reference="GCf-Y1-rpQ"/>
         <segue reference="PM7-ev-GOT"/>
+        <segue reference="Mkn-yb-Fhf"/>
     </inferredMetricsTieBreakers>
 </document>

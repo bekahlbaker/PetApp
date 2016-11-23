@@ -14,7 +14,6 @@ import Kingfisher
 class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var profileImg: UIImageView!
-    @IBOutlet weak var usernameLabel: UITextField!
     @IBOutlet weak var errorLbl: UILabel!
     @IBOutlet weak var fullNameLbl: UITextField!
     @IBOutlet weak var parentsNameLbl: UITextField!
@@ -54,8 +53,6 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        checkForUsername(username: self.usernameLabel.text!)
         
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
@@ -170,12 +167,8 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             }
             
             //save profile info
-            
-            if usernameLabel.text == "" {
-                errorLbl.text = "Please enter a username."
-            }else {
+        
                 let userInfo: Dictionary<String, Any> = [
-                    "username": usernameLabel.text! as String,
                     "full-name": fullNameLbl.text! as String,
                     "parents-name": parentsNameLbl.text! as String,
                     "age": ageLbl.text! as String,
@@ -188,7 +181,6 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 let firebasePost = DataService.ds.REF_CURRENT_USER
                 firebasePost.updateChildValues(userInfo)
                 performSegue(withIdentifier: "toUserVC", sender: nil)
-            }
     }
     
     func textFieldChanged(textField: UITextField) {

@@ -10,24 +10,24 @@ import UIKit
 
 class UsernameVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var usernameTextField: UITextField!
-
+    @IBOutlet weak var errorLbl: UILabel!
     @IBAction func checkUsernameTapped(_ sender: AnyObject) {
         
         if usernameTaken == true {
-            print("That username is take. Please try again.")
-        }
-        
-//            DataService.ds.REF_ACTIVE_USERS.child("username").child(self.usernameTextField.text!)
-        
-        
-        if usernameTextField.text == "" {
+            print("That username is taken. Please try again.")
+        } else if usernameTextField.text == "" {
             print("Please enter a username.")
+            self.errorLbl.text = "Please enter a username."
         }else {
             let userInfo: Dictionary<String, Any> = [
                 "username": usernameTextField.text! as String]
             
-            let firebasePost = DataService.ds.REF_ACTIVE_USERS
-            firebasePost.childByAutoId().setValue(userInfo)
+            DataService.ds.REF_ACTIVE_USERS
+            .childByAutoId().setValue(userInfo)
+            
+            DataService.ds.REF_CURRENT_USER
+            .updateChildValues(userInfo)
+
             performSegue(withIdentifier: "toProfileVC", sender: nil)
         }
 
@@ -55,9 +55,11 @@ class UsernameVC: UIViewController, UITextFieldDelegate {
                 if !snapshot.exists(){
                     print("USER: username is available")
                     self.usernameTaken = false
+                    self.errorLbl.text = ""
                 } else {
                     print("USER: username is taken")
                     self.usernameTaken = true
+                    self.errorLbl.text = "That username is taken. Please try again."
                 }
             }) { error in
                 print(error.localizedDescription)
