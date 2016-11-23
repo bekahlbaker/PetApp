@@ -445,11 +445,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Choose your username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mUP-yB-nyH">
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Choose your username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="mUP-yB-nyH">
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                        <integer key="value" value="25"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetPic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kbg-tp-Q4h">
                                 <fontDescription key="fontDescription" name="Lobster1.4" family="Lobster 1.4" pointSize="60"/>
@@ -515,7 +520,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loxley-boy" translatesAutoresizingMaskIntoConstraints="NO" id="COh-ku-7ml">
+                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="COh-ku-7ml">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="320" id="NtA-58-ufW"/>
                                 </constraints>
@@ -558,7 +563,7 @@
                                     <action selector="editCoverPhotoTapped:" destination="8e3-ft-Uph" eventType="touchUpInside" id="3dw-ZL-GgU"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-image" translatesAutoresizingMaskIntoConstraints="NO" id="x6N-fR-Pwe" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-md" translatesAutoresizingMaskIntoConstraints="NO" id="x6N-fR-Pwe" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -732,7 +737,7 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RzF-iN-rZR">
                                 <subviews>
-                                    <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loxley-boy" translatesAutoresizingMaskIntoConstraints="NO" id="dTn-h0-2IO">
+                                    <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dTn-h0-2IO">
                                         <constraints>
                                             <constraint firstAttribute="height" constant="320" id="dUW-eQ-GI6"/>
                                         </constraints>
@@ -875,7 +880,7 @@
                                     <constraint firstAttribute="height" constant="44" id="9mJ-2q-fKQ"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem image="home" id="Wii-JP-hMk">
+                                    <barButtonItem image="home-sm" id="Wii-JP-hMk">
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="Mkn-yb-Fhf"/>
@@ -883,13 +888,13 @@
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="1ER-sV-dw3"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="4Vw-7t-u6J"/>
-                                    <barButtonItem image="user" id="tMd-1k-kSz">
+                                    <barButtonItem image="user-1" id="tMd-1k-kSz">
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-image" translatesAutoresizingMaskIntoConstraints="NO" id="o55-Vn-WyN" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-md" translatesAutoresizingMaskIntoConstraints="NO" id="o55-Vn-WyN" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="AAK-mZ-t0p"/>
@@ -1076,18 +1081,18 @@
                                     <constraint firstAttribute="height" constant="44" id="usb-iM-2gZ"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem image="home" id="hZn-OJ-qNQ">
+                                    <barButtonItem image="home-sm" id="hZn-OJ-qNQ">
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="05c-CH-jfy"/>
-                                    <barButtonItem image="add-image" id="IrG-ok-gRD">
+                                    <barButtonItem image="camera-sm" id="IrG-ok-gRD">
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <segue destination="iiK-pT-sg2" kind="show" identifier="toPostVC" id="61E-j1-iUC"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="WcU-6n-o12"/>
-                                    <barButtonItem image="user" id="mgv-PS-KDV">
+                                    <barButtonItem image="user-sm" id="mgv-PS-KDV">
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <segue destination="HIm-Vc-Fus" kind="show" identifier="toUserVC" id="whq-87-tqY"/>
@@ -1132,7 +1137,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="add-image" translatesAutoresizingMaskIntoConstraints="NO" id="zGo-cJ-yz9">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="camera-md" translatesAutoresizingMaskIntoConstraints="NO" id="zGo-cJ-yz9">
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -1149,14 +1154,14 @@
                                 <frame key="frameInset" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem image="home" id="jFz-0a-sJB">
+                                    <barButtonItem image="home-sm" id="jFz-0a-sJB">
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="2Wc-1a-CFb"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Eo0-km-A7b"/>
-                                    <barButtonItem image="user" id="lty-jn-zgg">
+                                    <barButtonItem image="user-sm" id="lty-jn-zgg">
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <segue destination="HIm-Vc-Fus" kind="show" identifier="toUserVC" id="tPG-g3-xlk"/>
@@ -1227,22 +1232,24 @@
         </scene>
     </scenes>
     <resources>
-        <image name="add-image" width="88" height="88"/>
+        <image name="add-md" width="50" height="50"/>
         <image name="blur" width="640" height="426"/>
+        <image name="camera-md" width="200" height="200"/>
+        <image name="camera-sm" width="35" height="35"/>
         <image name="doginwig" width="1920" height="1275"/>
-        <image name="home" width="40" height="40"/>
-        <image name="loxley-boy" width="660" height="480"/>
+        <image name="home-sm" width="35" height="35"/>
         <image name="loxley-party" width="575" height="480"/>
         <image name="loxley-sea" width="853" height="480"/>
         <image name="paw-icon" width="512" height="512"/>
-        <image name="user" width="50" height="50"/>
+        <image name="user-1" width="35" height="35"/>
+        <image name="user-sm" width="35" height="35"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="lia-Ce-C0t"/>
-        <segue reference="LZT-qn-P3o"/>
-        <segue reference="FTl-Ea-BmB"/>
+        <segue reference="whq-87-tqY"/>
+        <segue reference="Mkn-yb-Fhf"/>
+        <segue reference="Ive-65-i5K"/>
         <segue reference="SDZ-21-9fi"/>
         <segue reference="PM7-ev-GOT"/>
-        <segue reference="Mkn-yb-Fhf"/>
     </inferredMetricsTieBreakers>
 </document>
