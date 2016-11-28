@@ -28,7 +28,11 @@ class FeedCell: UITableViewCell {
         
     }
     
+    //post: Post, img: UIImage? = nil
+    
     func configureCell(post: Post, img: UIImage? = nil) {
+//        imageView?.image = UIImage(named: "loxley-party")
+        
         self.post = post
         
         self.caption.text = post.caption

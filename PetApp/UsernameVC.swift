@@ -48,10 +48,7 @@ class UsernameVC: UIViewController, UITextFieldDelegate {
     
     func usernameValidation(username: String) {
         
-        DataService.ds.REF_ACTIVE_USERS
-            .queryOrdered(byChild: "username")
-            .queryEqual(toValue: username)
-            .observeSingleEvent(of: .value, with: { snapshot in
+        DataService.ds.REF_ACTIVE_USERS.queryOrdered(byChild: "username").queryEqual(toValue: username).observeSingleEvent(of: .value, with: { snapshot in
                 if !snapshot.exists(){
                     print("USER: username is available")
                     self.usernameTaken = false

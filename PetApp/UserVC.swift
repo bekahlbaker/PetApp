@@ -25,9 +25,20 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     @IBOutlet weak var followingLbl: UILabel!
     @IBOutlet weak var followersLbl: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        DataService.ds.REF_CURRENT_USER.observe(.value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: Any] {
+                if let currentUser = dictionary["username"] as? String {
+                    print("BEKAH: \(currentUser)")
+                     self.usernameCheck(username: currentUser)
+                }
+            }
+        })
+        
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -50,6 +61,7 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
                 
                 if let username = dictionary["username"] as? String {
                     self.username.title = username
+                    print("USERVC: \(username)")
                 }
                 
                 if let name = dictionary["full-name"] as? String {
@@ -176,5 +188,25 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
     }
+    
+    
+    func usernameCheck(username: String) {
+        
+        DataService.ds.REF_POSTS.queryOrdered(byChild: "username").queryEqual(toValue: username).observeSingleEvent(of: .value, with: { snapshot in
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                for snap in snapshot {
+                    print("USER: \(snap)")
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        let key = snap.key
+                        let post = Post(postKey: key, postData: postDict)
+//                        self.posts.insert(post, at: 0)
+                    }
+                }
+            }
+
+            })
+    }
+    
+    
     
 }

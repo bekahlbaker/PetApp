@@ -1245,11 +1245,11 @@
         <image name="user-sm" width="35" height="35"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lia-Ce-C0t"/>
-        <segue reference="whq-87-tqY"/>
-        <segue reference="Mkn-yb-Fhf"/>
-        <segue reference="Ive-65-i5K"/>
         <segue reference="SDZ-21-9fi"/>
+        <segue reference="lia-Ce-C0t"/>
+        <segue reference="Mms-eL-C5o"/>
+        <segue reference="Ive-65-i5K"/>
+        <segue reference="Mkn-yb-Fhf"/>
         <segue reference="PM7-ev-GOT"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -57,7 +57,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let post = posts[indexPath.row]
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as? FeedCell {
-            
+//
+//            cell.configureCell()
+//            return cell
+        
             if let img = FeedVC.imageCache.object(forKey: post.imageURL as NSString) {
                 print("Getting image from cache")
                 cell.configureCell(post: post, img: img)
@@ -66,7 +69,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 cell.configureCell(post: post)
                 return cell
             }
-            
+        
         } else {
             return FeedCell()
         }

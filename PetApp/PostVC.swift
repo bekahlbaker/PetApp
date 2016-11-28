@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SwiftKeychainWrapper
 
 class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -49,7 +50,6 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
 
         }
     
-    var currentUser: String!
     var postImagePicker: UIImagePickerController!
     var imageSelected = false
 
@@ -59,17 +59,7 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         postImagePicker = UIImagePickerController()
         postImagePicker.delegate = self
         postImagePicker.allowsEditing = true
-
-        DataService.ds.REF_CURRENT_USER.observe(.value, with: { (snapshot) in
-            
-            if let dictionary = snapshot.value as? [String: Any] {
-                if let currentUser = dictionary["username"] as? String {
-                    self.currentUser = currentUser
-                    print("CURRENT USER IS: \(currentUser)")
-                }
-            }
-
-        })
+        
     }
     
     
@@ -84,20 +74,33 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     }
     
     func postToFirebase(imageURL: String) {
+        
+        DataService.ds.REF_CURRENT_USER.observe(.value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: Any] {
+                if let currentUser = dictionary["username"] as? String {
+                    print("BEKAH: \(currentUser)")
+
         let post: Dictionary<String, Any> = [
-            "caption": captionTextField.text! as String,
-            "username": self.currentUser as String,
+            "caption": self.captionTextField.text! as String,
+            "username": currentUser as String,
             "imageURL": imageURL as String
         ]
         
-        let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
+        let uid = KeychainWrapper.standard.string(forKey: KEY_UID)
+                    
+        let firebasePost = DataService.ds.REF_POSTS.child(uid!)
         firebasePost.setValue(post)
         
-        captionTextField.text = ""
-        imageSelected = false
-        postImage.image = UIImage(named: "add-image")
+        self.captionTextField.text = ""
+        self.imageSelected = false
+        self.postImage.image = UIImage(named: "add-image")
         
         print("POST: \(post)")
+                    
+                }
+            }
+        })
+        
 
     }
 
