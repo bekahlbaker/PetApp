@@ -63,11 +63,10 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         DataService.ds.REF_CURRENT_USER.observe(.value, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: Any] {
-                let currentUser = dictionary["username"] as? String
-//                let profileImgUrl = dictionary["profileImgUrl"] as? String
-            
-                self.currentUser = currentUser
-//                self.profileImgUrl = profileImgUrl
+                if let currentUser = dictionary["username"] as? String {
+                    self.currentUser = currentUser
+                    print("CURRENT USER IS: \(currentUser)")
+                }
             }
 
         })
@@ -89,7 +88,6 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
             "caption": captionTextField.text! as String,
             "username": self.currentUser as String,
             "imageURL": imageURL as String
-//            "profileImgUrl": self.profileImgUrl as String
         ]
         
         let firebasePost = DataService.ds.REF_POSTS.childByAutoId()

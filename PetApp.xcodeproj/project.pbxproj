@@ -38,7 +38,6 @@
 		274994781DD0EDC50015B6F8 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274994771DD0EDC50015B6F8 /* CircleImage.swift */; };
 		2749947E1DD287530015B6F8 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2749947D1DD287530015B6F8 /* ProfileVC.swift */; };
 		27BD7DEC1DDF935300B9DB9A /* TextFieldMaxLengths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BD7DEB1DDF935300B9DB9A /* TextFieldMaxLengths.swift */; };
-		27BD7DEF1DE36A5000B9DB9A /* ProfileVC+Username.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BD7DEE1DE36A5000B9DB9A /* ProfileVC+Username.swift */; };
 		27BD7DF11DE4FBF800B9DB9A /* UsernameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BD7DF01DE4FBF800B9DB9A /* UsernameVC.swift */; };
 		B61761CB0A8D5494AA1962C9 /* Pods_PetApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1B3ADE42D2BA19DA972589 /* Pods_PetApp.framework */; };
 /* End PBXBuildFile section */
@@ -78,7 +77,6 @@
 		274994771DD0EDC50015B6F8 /* CircleImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
 		2749947D1DD287530015B6F8 /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		27BD7DEB1DDF935300B9DB9A /* TextFieldMaxLengths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldMaxLengths.swift; sourceTree = "<group>"; };
-		27BD7DEE1DE36A5000B9DB9A /* ProfileVC+Username.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ProfileVC+Username.swift"; sourceTree = "<group>"; };
 		27BD7DF01DE4FBF800B9DB9A /* UsernameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsernameVC.swift; sourceTree = "<group>"; };
 		6CD65ED0F38C43BADF665691 /* Pods-PetApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetApp/Pods-PetApp.debug.xcconfig"; sourceTree = "<group>"; };
 		CE1B3ADE42D2BA19DA972589 /* Pods_PetApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -104,7 +102,6 @@
 		27166B031DCCE63800A57821 = {
 			isa = PBXGroup;
 			children = (
-				27BD7DED1DE36A2E00B9DB9A /* Extensions */,
 				27166B0E1DCCE63800A57821 /* PetApp */,
 				27166B0D1DCCE63800A57821 /* Products */,
 				B92DB1227B52F6C1C94BB145 /* Pods */,
@@ -203,14 +200,6 @@
 				27166B3D1DCD0F9500A57821 /* DataService.swift */,
 			);
 			name = Services;
-			sourceTree = "<group>";
-		};
-		27BD7DED1DE36A2E00B9DB9A /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				27BD7DEE1DE36A5000B9DB9A /* ProfileVC+Username.swift */,
-			);
-			name = Extensions;
 			sourceTree = "<group>";
 		};
 		32AA3AA8459EA9C86F7B8203 /* Frameworks */ = {
@@ -373,7 +362,6 @@
 				27166B331DCD03E200A57821 /* FeedVC.swift in Sources */,
 				274994701DCD2E470015B6F8 /* FirebaseAuth.swift in Sources */,
 				27166B2D1DCCF67500A57821 /* RoundedBorderClearBackgroundButton.swift in Sources */,
-				27BD7DEF1DE36A5000B9DB9A /* ProfileVC+Username.swift in Sources */,
 				27166B121DCCE63800A57821 /* SignInVC.swift in Sources */,
 				274474431DD6929B007EBABF /* UserVC.swift in Sources */,
 				2744744D1DD8EF78007EBABF /* DropShadow.swift in Sources */,
