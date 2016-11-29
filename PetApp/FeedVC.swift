@@ -17,7 +17,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var posts = [Post]()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
-    static var allPosts = [Post]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +35,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                         let key = snap.key
                         let post = Post(postKey: key, postData: postDict)
                         self.posts.insert(post, at: 0)
-                        FeedVC.allPosts.insert(post, at: 0)
                     }
                 }
             }

@@ -225,23 +225,4 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
     }
-    
-//    func findUserPosts(username: String) {
-//        UserVC.userPosts = []
-//        
-//        DataService.ds.REF_POSTS.queryOrdered(byChild: "username").queryEqual(toValue: username).observeSingleEvent(of: .value, with: { snapshot in
-//            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-//                for snap in snapshot {
-//                    print("USER: \(snap)")
-//                    if let dictionary = snap.value as? Dictionary<String, AnyObject> {
-//                        if let imageUrl = dictionary["imageURL"] as? String {
-//                            UserVC.userPosts.insert(imageUrl, at: 0)
-//                        }
-//                    }
-//                }
-//            }
-//            self.collectionView.reloadData()
-//        })
-//    }
-
 }

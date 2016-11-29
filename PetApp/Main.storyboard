@@ -1004,7 +1004,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paw-icon" translatesAutoresizingMaskIntoConstraints="NO" id="ufH-fg-98K">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty-heart" translatesAutoresizingMaskIntoConstraints="NO" id="ufH-fg-98K">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="DFA-0S-CXq"/>
                                                         <constraint firstAttribute="height" constant="40" id="yYg-dC-8DB"/>
@@ -1055,7 +1055,6 @@
                                             <outlet property="caption" destination="mjC-5q-P8C" id="So8-6c-L7q"/>
                                             <outlet property="feedImageView" destination="OYw-6X-lWR" id="CAu-EC-KtC"/>
                                             <outlet property="likes" destination="4jZ-HB-nLh" id="SVv-yG-N2I"/>
-                                            <outlet property="likesBtnTapped" destination="ufH-fg-98K" id="t6j-k4-apL"/>
                                             <outlet property="likesImg" destination="ufH-fg-98K" id="ILA-vj-Vv1"/>
                                             <outlet property="profileImg" destination="UD5-au-Ivn" id="igu-fj-EDf"/>
                                             <outlet property="username" destination="qSW-xz-UaH" id="BRi-Ku-WLA"/>
@@ -1237,10 +1236,10 @@
         <image name="camera-md" width="200" height="200"/>
         <image name="camera-sm" width="35" height="35"/>
         <image name="doginwig" width="1920" height="1275"/>
+        <image name="empty-heart" width="70" height="70"/>
         <image name="home-sm" width="35" height="35"/>
         <image name="loxley-party" width="575" height="480"/>
         <image name="loxley-sea" width="853" height="480"/>
-        <image name="paw-icon" width="512" height="512"/>
         <image name="user-1" width="35" height="35"/>
         <image name="user-sm" width="35" height="35"/>
     </resources>

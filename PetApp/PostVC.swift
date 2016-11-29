@@ -83,7 +83,8 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         let post: Dictionary<String, Any> = [
             "caption": self.captionTextField.text! as String,
             "username": currentUser as String,
-            "imageURL": imageURL as String
+            "imageURL": imageURL as String,
+            "likes": 0 as Int
         ]
         
 //        let uid = KeychainWrapper.standard.string(forKey: KEY_UID)
