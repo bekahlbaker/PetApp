@@ -78,10 +78,14 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         collectionView!.collectionViewLayout = layout
         
         //download user info & image
+        
+        DataService.ds.REF_USERS.queryOrdered(byChild: "username").queryEqual(toValue: "username_4").observe(.value, with: { (snapshot) in
 
-        DataService.ds.REF_CURRENT_USER.observe(.value, with: { (snapshot) in
+//        DataService.ds.REF_CURRENT_USER.observe(.value, with: { (snapshot) in
+        if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+            for snap in snapshot {
             
-            if let dictionary = snapshot.value as? [String: Any] {
+            if let dictionary = snap.value as? [String: Any] {
                 
                 if let username = dictionary["username"] as? String {
                     self.username.title = username
@@ -178,7 +182,8 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
                     }
                 }
             }
-            
+            }
+            }
             
         })
 

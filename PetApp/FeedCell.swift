@@ -65,9 +65,12 @@ class FeedCell: UITableViewCell {
         }
         
         //download profile img
-        DataService.ds.REF_CURRENT_USER.observe(.value, with: { (snapshot) in
+        DataService.ds.REF_USERS.queryOrdered(byChild: "username").queryEqual(toValue: post.username).observe(.value, with: { (snapshot) in
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                for snap in snapshot {
                 
-            if let dictionary = snapshot.value as? [String: Any] {
+            if let dictionary = snap.value as? [String: Any] {
                     
                 let profileImgUrl = dictionary["profileImgUrl"] as? String
                 let storage = FIRStorage.storage()
@@ -95,6 +98,8 @@ class FeedCell: UITableViewCell {
                     print("No profile image")
                 }
             }
+        }
+    }
     })
         
         likesRef.observeSingleEvent(of: .value, with:  { (snapshot) in
