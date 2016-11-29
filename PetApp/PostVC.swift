@@ -86,9 +86,9 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
             "imageURL": imageURL as String
         ]
         
-        let uid = KeychainWrapper.standard.string(forKey: KEY_UID)
+//        let uid = KeychainWrapper.standard.string(forKey: KEY_UID)
                     
-        let firebasePost = DataService.ds.REF_POSTS.child(uid!)
+        let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
         firebasePost.setValue(post)
         
         self.captionTextField.text = ""

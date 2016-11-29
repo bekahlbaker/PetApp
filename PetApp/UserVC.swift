@@ -26,20 +26,44 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     @IBOutlet weak var followersLbl: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var posts = [Post]()
+    static var userImageCache: NSCache<NSString, UIImage> = NSCache()
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         DataService.ds.REF_CURRENT_USER.observe(.value, with: { (snapshot) in
+            
             if let dictionary = snapshot.value as? [String: Any] {
                 if let currentUser = dictionary["username"] as? String {
                     print("BEKAH: \(currentUser)")
-                     self.usernameCheck(username: currentUser)
+                    
+                    DataService.ds.REF_POSTS.queryOrdered(byChild: "username").queryEqual(toValue: currentUser).observe(.value, with: { (snapshot) in
+                        
+                        self.posts = []
+                        
+                        if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                            for snap in snapshot {
+                                print("SNAP: \(snap)")
+                                if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                                    let key = snap.key
+                                    let post = Post(postKey: key, postData: postDict)
+                                    self.posts.insert(post, at: 0)
+                                }
+                            }
+                        }
+                        self.collectionView.reloadData()
+                        self.postsLbl.text = String(self.posts.count)
+                    })
+
+                    
+                    
                 }
             }
+            
         })
-        
-        
+
         collectionView.dataSource = self
         collectionView.delegate = self
         
@@ -61,7 +85,6 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
                 
                 if let username = dictionary["username"] as? String {
                     self.username.title = username
-                    print("USERVC: \(username)")
                 }
                 
                 if let name = dictionary["full-name"] as? String {
@@ -158,9 +181,9 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
             
             
         })
+
     }
-    
-    
+
     @IBAction func logOutTapped(_ sender: AnyObject) {
         KeychainWrapper.standard.removeObject(forKey: KEY_UID)
         print("User removed")
@@ -170,43 +193,55 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        let post = posts[indexPath.row]
+        
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UserPicCell", for: indexPath) as? UserPicCell {
-            cell.configureCell()
-            return cell
+//            cell.configureCell()
+//            return cell
+//        }
+            if let img = UserVC.userImageCache.object(forKey: post.imageURL as NSString) {
+                cell.configureCell(post: post, img: img)
+                return cell
+            } else {
+                cell.configureCell(post: post)
+                return cell
+            }
+            
+        } else {
+            return UserPicCell()
         }
-        return UICollectionViewCell()
+
     }
-    
+
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         return 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return posts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
     }
     
-    
-    func usernameCheck(username: String) {
-        
-        DataService.ds.REF_POSTS.queryOrdered(byChild: "username").queryEqual(toValue: username).observeSingleEvent(of: .value, with: { snapshot in
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                for snap in snapshot {
-                    print("USER: \(snap)")
-                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                        let key = snap.key
-                        let post = Post(postKey: key, postData: postDict)
-//                        self.posts.insert(post, at: 0)
-                    }
-                }
-            }
+//    func findUserPosts(username: String) {
+//        UserVC.userPosts = []
+//        
+//        DataService.ds.REF_POSTS.queryOrdered(byChild: "username").queryEqual(toValue: username).observeSingleEvent(of: .value, with: { snapshot in
+//            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+//                for snap in snapshot {
+//                    print("USER: \(snap)")
+//                    if let dictionary = snap.value as? Dictionary<String, AnyObject> {
+//                        if let imageUrl = dictionary["imageURL"] as? String {
+//                            UserVC.userPosts.insert(imageUrl, at: 0)
+//                        }
+//                    }
+//                }
+//            }
+//            self.collectionView.reloadData()
+//        })
+//    }
 
-            })
-    }
-    
-    
-    
 }
