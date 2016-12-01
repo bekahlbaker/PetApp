@@ -17,14 +17,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBAction func usernameTapped(_ sender: AnyObject) {
         performSegue(withIdentifier: "ViewUserVC", sender: nil)
-        
-//        let myVC = storyboard?.instantiateViewController(withIdentifier: "ViewUserVC") as! ViewUserVC
-//        myVC.usernamePassed = FeedCell.usernameToPass
-//        navigationController?.pushViewController(myVC, animated: true)
     }
     
-    
-
     @IBOutlet weak var tableView: UITableView!
     
     var posts = [Post]()
@@ -42,7 +36,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 for snap in snapshot {
-//                    print("SNAP: \(snap)")
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
                         let key = snap.key
                         let post = Post(postKey: key, postData: postDict)
@@ -70,10 +63,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let post = posts[indexPath.row]
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as? FeedCell {
-//
-//            cell.configureCell()
-//            return cell
-        
+
             if let img = FeedVC.imageCache.object(forKey: post.imageURL as NSString), let profileImg = FeedVC.imageCache.object(forKey: post.profileImgUrl as NSString) {
                 print("Getting images from cache")
                 cell.configureCell(post: post, img: img, profileImg: profileImg)

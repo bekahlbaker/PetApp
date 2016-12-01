@@ -44,7 +44,6 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
                         
                         if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                             for snap in snapshot {
-//                                print("SNAP: \(snap)")
                                 if let postDict = snap.value as? Dictionary<String, AnyObject> {
                                     let key = snap.key
                                     let post = Post(postKey: key, postData: postDict)
@@ -54,10 +53,7 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
                         }
                         self.collectionView.reloadData()
                         self.postsLbl.text = String(self.posts.count)
-                    })
-
-                    
-                    
+                    }) 
                 }
             }
             
@@ -77,13 +73,7 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         collectionView!.collectionViewLayout = layout
         
         //download user info & image
-        
-//        DataService.ds.REF_USERS.queryOrdered(byChild: "username").queryEqual(toValue: "username_4").observe(.value, with: { (snapshot) in
-
         DataService.ds.REF_CURRENT_USER.observe(.value, with: { (snapshot) in
-//        if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-//            for snap in snapshot {
-            
             if let dictionary = snapshot.value as? [String: Any] {
                 
                 if let username = dictionary["username"] as? String {
@@ -199,9 +189,6 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         let post = posts[indexPath.row]
         
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UserPicCell", for: indexPath) as? UserPicCell {
-//            cell.configureCell()
-//            return cell
-//        }
             if let img = UserVC.userImageCache.object(forKey: post.imageURL as NSString) {
                 cell.configureCell(post: post, img: img)
                 return cell

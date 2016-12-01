@@ -40,7 +40,6 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
             
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 for snap in snapshot {
-//                    print("SNAP: \(snap)")
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
                         let key = snap.key
                         let post = Post(postKey: key, postData: postDict)
@@ -66,7 +65,6 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         collectionView!.collectionViewLayout = layout
         
         //download user info & image
-        
         DataService.ds.REF_USERS.queryOrdered(byChild: "username").queryEqual(toValue: self.usernamePassed).observe(.value, with: { (snapshot) in
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 for snap in snapshot {
@@ -125,11 +123,11 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
                         //download profile img
                         if let url = dictionary["profileImgUrl"] as? String {
                             //use Kingfisher
-//                            if let imageUrl = URL(string: url) {
-//                                self.profileImg.kf.indicatorType = .activity
-//                                self.profileImg.kf.setImage(with: imageUrl)
-//                                print("Using kingfisher image for profile.")
-//                            } else {
+                            if let imageUrl = URL(string: url) {
+                                self.profileImg.kf.indicatorType = .activity
+                                self.profileImg.kf.setImage(with: imageUrl)
+                                print("Using kingfisher image for profile.")
+                            } else {
                                 let storage = FIRStorage.storage()
                                 let storageRef = storage.reference(forURL: url)
                                 storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
@@ -141,17 +139,17 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
                                         print("Using firebase image for profile")
                                     }
                                 }
-//                                
-//                            }
+                                
+                            }
                         }
                         //download cover photo
                         if let url = dictionary["coverImgUrl"] as? String {
                             //use Kingfisher
-//                            if let imageUrl = URL(string: url) {
-//                                self.profileImg.kf.indicatorType = .activity
-//                                self.coverImg.kf.setImage(with: imageUrl)
-//                                print("Using kingfisher image for cover.")
-//                            } else {
+                            if let imageUrl = URL(string: url) {
+                                self.profileImg.kf.indicatorType = .activity
+                                self.coverImg.kf.setImage(with: imageUrl)
+                                print("Using kingfisher image for cover.")
+                            } else {
                                 let storage = FIRStorage.storage()
                                 let storageRef = storage.reference(forURL: url)
                                 storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
@@ -164,7 +162,7 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
                                     }
                                 }
                                 
-//                            }
+                            }
                         }
                     }
                     
@@ -178,9 +176,6 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         let post = posts[indexPath.row]
     
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UserPicCell", for: indexPath) as? UserPicCell {
-            //            cell.configureCell()
-            //            return cell
-            //        }
             if let img = UserVC.userImageCache.object(forKey: post.imageURL as NSString) {
                 cell.configureCell(post: post, img: img)
                 return cell
@@ -207,5 +202,4 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     
     }
 
-    
 }

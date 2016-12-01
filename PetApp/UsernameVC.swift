@@ -30,8 +30,6 @@ class UsernameVC: UIViewController, UITextFieldDelegate {
 
             performSegue(withIdentifier: "toProfileVC", sender: nil)
         }
-
-        
     }
     
     var usernameTaken = false
@@ -41,10 +39,7 @@ class UsernameVC: UIViewController, UITextFieldDelegate {
 
         usernameTextField.delegate = self
         usernameTextField.addTarget(self, action: #selector(UsernameVC.textFieldDidEndEditing(_:)), for: UIControlEvents.editingChanged)
-
-        
     }
-    
     
     func usernameValidation(username: String) {
         
