@@ -38,6 +38,7 @@
 		274994781DD0EDC50015B6F8 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274994771DD0EDC50015B6F8 /* CircleImage.swift */; };
 		2749947E1DD287530015B6F8 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2749947D1DD287530015B6F8 /* ProfileVC.swift */; };
 		2788DE481DEF614500078A41 /* ViewUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2788DE471DEF614500078A41 /* ViewUserVC.swift */; };
+		2788DE4B1DF09F6C00078A41 /* PostVC+CoreImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2788DE4A1DF09F6C00078A41 /* PostVC+CoreImage.swift */; };
 		27BD7DEC1DDF935300B9DB9A /* TextFieldMaxLengths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BD7DEB1DDF935300B9DB9A /* TextFieldMaxLengths.swift */; };
 		27BD7DF11DE4FBF800B9DB9A /* UsernameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BD7DF01DE4FBF800B9DB9A /* UsernameVC.swift */; };
 		B61761CB0A8D5494AA1962C9 /* Pods_PetApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1B3ADE42D2BA19DA972589 /* Pods_PetApp.framework */; };
@@ -78,6 +79,7 @@
 		274994771DD0EDC50015B6F8 /* CircleImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
 		2749947D1DD287530015B6F8 /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		2788DE471DEF614500078A41 /* ViewUserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewUserVC.swift; sourceTree = "<group>"; };
+		2788DE4A1DF09F6C00078A41 /* PostVC+CoreImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PostVC+CoreImage.swift"; sourceTree = "<group>"; };
 		27BD7DEB1DDF935300B9DB9A /* TextFieldMaxLengths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldMaxLengths.swift; sourceTree = "<group>"; };
 		27BD7DF01DE4FBF800B9DB9A /* UsernameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsernameVC.swift; sourceTree = "<group>"; };
 		6CD65ED0F38C43BADF665691 /* Pods-PetApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetApp/Pods-PetApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -122,6 +124,7 @@
 		27166B0E1DCCE63800A57821 /* PetApp */ = {
 			isa = PBXGroup;
 			children = (
+				2788DE491DF09F1100078A41 /* Extensions */,
 				27166B411DCD10D500A57821 /* PetApp.entitlements */,
 				27166B3C1DCD0F7A00A57821 /* Services */,
 				27166B271DCCEE3100A57821 /* Model */,
@@ -203,6 +206,14 @@
 				27166B3D1DCD0F9500A57821 /* DataService.swift */,
 			);
 			name = Services;
+			sourceTree = "<group>";
+		};
+		2788DE491DF09F1100078A41 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				2788DE4A1DF09F6C00078A41 /* PostVC+CoreImage.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		32AA3AA8459EA9C86F7B8203 /* Frameworks */ = {
@@ -370,6 +381,7 @@
 				274474431DD6929B007EBABF /* UserVC.swift in Sources */,
 				2744744D1DD8EF78007EBABF /* DropShadow.swift in Sources */,
 				274994781DD0EDC50015B6F8 /* CircleImage.swift in Sources */,
+				2788DE4B1DF09F6C00078A41 /* PostVC+CoreImage.swift in Sources */,
 				27BD7DF11DE4FBF800B9DB9A /* UsernameVC.swift in Sources */,
 				27166B311DCD03BD00A57821 /* EntryVC.swift in Sources */,
 				27166B2F1DCD03A500A57821 /* SignUpVC.swift in Sources */,

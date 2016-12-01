@@ -1213,14 +1213,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="405" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mY4-Tr-zgP">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="508" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mY4-Tr-zgP">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedCell" rowHeight="405" id="XT7-dt-d1F" customClass="FeedCell" customModule="PetApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="405"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedCell" rowHeight="508" id="XT7-dt-d1F" customClass="FeedCell" customModule="PetApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="508"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XT7-dt-d1F" id="sxM-VQ-Gq8">
-                                            <frame key="frameInset" width="375" height="405"/>
+                                            <frame key="frameInset" width="375" height="508"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="naC-8z-wRM" customClass="DropShadow" customModule="PetApp" customModuleProvider="target">
@@ -1243,8 +1243,8 @@
                                                 </view>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OYw-6X-lWR">
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="200" id="QIr-Wj-0Pw"/>
-                                                        <constraint firstAttribute="width" constant="290" id="fev-aF-9dY"/>
+                                                        <constraint firstAttribute="height" constant="300" id="QIr-Wj-0Pw"/>
+                                                        <constraint firstAttribute="width" constant="300" id="fev-aF-9dY"/>
                                                     </constraints>
                                                 </imageView>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UD5-au-Ivn" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
@@ -1390,11 +1390,12 @@
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="200" id="9uL-uJ-Ad8"/>
-                                    <constraint firstAttribute="width" constant="290" id="EcP-0P-fqV"/>
+                                    <constraint firstAttribute="height" constant="300" id="9uL-uJ-Ad8"/>
+                                    <constraint firstAttribute="width" constant="300" id="EcP-0P-fqV"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M8N-Ws-NoO">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iaT-PM-N7O"/>
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M8N-Ws-NoO">
                                 <connections>
                                     <action selector="imagePickerTapped:" destination="iiK-pT-sg2" eventType="touchUpInside" id="1Lg-hK-0km"/>
                                 </connections>
@@ -1428,7 +1429,7 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Write a caption..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="v7g-2x-6Ar">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="v7g-2x-6Ar">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="100" id="wN8-E1-Qi0"/>
@@ -1449,29 +1450,43 @@
                                     <action selector="savePost:" destination="iiK-pT-sg2" eventType="touchUpInside" id="U3D-JK-dw7"/>
                                 </connections>
                             </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T4z-6s-bC7">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="80" id="zvR-8o-DUF"/>
+                                </constraints>
+                            </scrollView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="iaT-PM-N7O" firstAttribute="centerX" secondItem="zGo-cJ-yz9" secondAttribute="centerX" id="3ep-dC-ZLf"/>
                             <constraint firstItem="zGo-cJ-yz9" firstAttribute="centerX" secondItem="els-HE-nDL" secondAttribute="centerX" id="4eu-qi-sil"/>
                             <constraint firstItem="Ghq-e8-Ok3" firstAttribute="top" secondItem="v7g-2x-6Ar" secondAttribute="bottom" constant="16" id="FJK-SJ-N5P"/>
+                            <constraint firstItem="iaT-PM-N7O" firstAttribute="height" secondItem="zGo-cJ-yz9" secondAttribute="height" id="G3S-gZ-oIb"/>
                             <constraint firstItem="M8N-Ws-NoO" firstAttribute="height" secondItem="zGo-cJ-yz9" secondAttribute="height" id="Gsl-5O-WO7"/>
+                            <constraint firstItem="T4z-6s-bC7" firstAttribute="trailing" secondItem="els-HE-nDL" secondAttribute="trailingMargin" id="MsR-R9-T4l"/>
                             <constraint firstItem="v7g-2x-6Ar" firstAttribute="leading" secondItem="els-HE-nDL" secondAttribute="leadingMargin" id="N90-DB-kyC"/>
                             <constraint firstItem="v7g-2x-6Ar" firstAttribute="trailing" secondItem="els-HE-nDL" secondAttribute="trailingMargin" id="RMm-2q-y5H"/>
+                            <constraint firstItem="T4z-6s-bC7" firstAttribute="top" secondItem="M8N-Ws-NoO" secondAttribute="bottom" constant="8" id="V0T-bZ-Ryb"/>
+                            <constraint firstItem="T4z-6s-bC7" firstAttribute="leading" secondItem="els-HE-nDL" secondAttribute="leadingMargin" id="VgV-RH-JDv"/>
                             <constraint firstItem="M8N-Ws-NoO" firstAttribute="centerY" secondItem="zGo-cJ-yz9" secondAttribute="centerY" id="YDx-6y-aND"/>
                             <constraint firstItem="klm-Fe-GaV" firstAttribute="leading" secondItem="els-HE-nDL" secondAttribute="leading" id="bW3-Bl-Jwy"/>
+                            <constraint firstItem="iaT-PM-N7O" firstAttribute="centerY" secondItem="zGo-cJ-yz9" secondAttribute="centerY" id="bsa-Au-AAx"/>
                             <constraint firstAttribute="trailing" secondItem="klm-Fe-GaV" secondAttribute="trailing" id="dA1-pv-bcy"/>
                             <constraint firstItem="M8N-Ws-NoO" firstAttribute="centerX" secondItem="zGo-cJ-yz9" secondAttribute="centerX" id="di8-nZ-Vi7"/>
                             <constraint firstItem="M8N-Ws-NoO" firstAttribute="width" secondItem="zGo-cJ-yz9" secondAttribute="width" id="hkh-wq-HsC"/>
                             <constraint firstItem="zGo-cJ-yz9" firstAttribute="top" secondItem="klm-Fe-GaV" secondAttribute="bottom" constant="25" id="jNe-l2-EWU"/>
                             <constraint firstItem="Ghq-e8-Ok3" firstAttribute="leading" secondItem="els-HE-nDL" secondAttribute="leadingMargin" id="k4t-lL-tJB"/>
                             <constraint firstItem="klm-Fe-GaV" firstAttribute="top" secondItem="els-HE-nDL" secondAttribute="top" id="odi-HG-lZg"/>
-                            <constraint firstItem="v7g-2x-6Ar" firstAttribute="top" secondItem="M8N-Ws-NoO" secondAttribute="bottom" constant="8" id="xJf-y5-esl"/>
+                            <constraint firstItem="iaT-PM-N7O" firstAttribute="width" secondItem="zGo-cJ-yz9" secondAttribute="width" id="sjY-9d-JWn"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Ghq-e8-Ok3" secondAttribute="trailing" id="xZA-q8-hsa"/>
+                            <constraint firstItem="v7g-2x-6Ar" firstAttribute="top" secondItem="T4z-6s-bC7" secondAttribute="bottom" constant="8" id="y1Q-db-k2J"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="captionTextField" destination="v7g-2x-6Ar" id="zz3-rh-fbu"/>
-                        <outlet property="postImage" destination="zGo-cJ-yz9" id="PD0-xx-Pbu"/>
+                        <outlet property="filterScrollView" destination="T4z-6s-bC7" id="FjN-PS-qdF"/>
+                        <outlet property="imageToFilter" destination="iaT-PM-N7O" id="ka8-a3-4wF"/>
+                        <outlet property="originalImage" destination="zGo-cJ-yz9" id="BLb-wY-dVp"/>
                         <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="Ooz-fL-gDA"/>
                     </connections>
                 </viewController>
@@ -1492,10 +1507,10 @@
         <image name="user-sm" width="35" height="35"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="c4z-D9-GQg"/>
-        <segue reference="whq-87-tqY"/>
-        <segue reference="lia-Ce-C0t"/>
         <segue reference="Ive-65-i5K"/>
+        <segue reference="tPG-g3-xlk"/>
+        <segue reference="Ooz-fL-gDA"/>
+        <segue reference="lia-Ce-C0t"/>
         <segue reference="SDZ-21-9fi"/>
         <segue reference="zsD-8J-Lsn"/>
     </inferredMetricsTieBreakers>
