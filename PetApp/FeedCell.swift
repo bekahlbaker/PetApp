@@ -13,13 +13,17 @@ import Kingfisher
 class FeedCell: UITableViewCell {
 
     @IBOutlet weak var feedImageView: UIImageView!
-    @IBOutlet weak var username: UILabel!
     @IBOutlet weak var caption: UITextView!
     @IBOutlet weak var profileImg: CircleImage!
     @IBOutlet weak var likesImg: UIImageView!
     @IBOutlet weak var likes: UILabel!
+    @IBOutlet weak var usernameBtn: UIButton!
     
-    
+    @IBAction func usernameTapped(_ sender: AnyObject) {
+
+    }
+
+    static var usernameToPass: String!
     var post: Post!
     var likesRef: FIRDatabaseReference!
     
@@ -34,14 +38,17 @@ class FeedCell: UITableViewCell {
     }
     
     
-    func configureCell(post: Post, img: UIImage? = nil) {
+    func configureCell(post: Post, img: UIImage? = nil, profileImg: UIImage? = nil) {
         
         self.post = post
-        
         likesRef = DataService.ds.REF_CURRENT_USER.child("likes").child(post.postKeys)
-        
         self.caption.text = post.caption
-        self.username.text = post.username
+        
+//        var usernameToBePassed = FeedCell.usernameToPass
+//        usernameToBePassed = post.username
+        self.usernameBtn.setTitle(post.username, for: .normal)
+        self.getUsernameToPass()
+        
         self.likes.text = String(post.likes)
         
         if img != nil {
@@ -62,45 +69,29 @@ class FeedCell: UITableViewCell {
                 }
                 
             })
+            
         }
         
-        //download profile img
-        DataService.ds.REF_USERS.queryOrdered(byChild: "username").queryEqual(toValue: post.username).observe(.value, with: { (snapshot) in
-            
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                for snap in snapshot {
-                
-            if let dictionary = snap.value as? [String: Any] {
-                    
-                let profileImgUrl = dictionary["profileImgUrl"] as? String
-                let storage = FIRStorage.storage()
-                if profileImgUrl != nil {
-                    let storageRef = storage.reference(forURL: profileImgUrl!)
-                        storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
-                        if error != nil {
-                            print("Unable to download image from firebase")
-                        } else {
-                            //use Kingfisher
-                            if let imageUrl = URL(string: profileImgUrl!) {
-                                self.profileImg.kf.indicatorType = .activity
-                                self.profileImg.kf.setImage(with: imageUrl)
-                                print("Using kingfisher image for profile.")
-                            }else {
-                                let profileImg = UIImage(data: data!)
-                                self.profileImg.image = profileImg
-                                print("Using firebase image for profile")
-                            }
-                            
+        if profileImg != nil {
+            self.profileImg.image = profileImg
+        } else {
+            let ref = FIRStorage.storage().reference(forURL: post.profileImgUrl)
+            ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+                if error != nil {
+                    print("Unable to Download image from Firebase storage.")
+                } else {
+                    print("Image downloaded from FB Storage.")
+                    if let imgData = data {
+                        if let profileImg = UIImage(data: imgData) {
+                            self.profileImg.image = profileImg
+                            FeedVC.imageCache.setObject(profileImg, forKey: post.profileImgUrl as NSString)
                         }
                     }
-
-                } else {
-                    print("No profile image")
                 }
-            }
+                
+            })
+            
         }
-    }
-    })
         
         likesRef.observeSingleEvent(of: .value, with:  { (snapshot) in
             if let _ = snapshot.value as? NSNull {
@@ -126,4 +117,8 @@ class FeedCell: UITableViewCell {
         })
     }
     
+    func getUsernameToPass() {
+        FeedCell.usernameToPass = ""
+        FeedCell.usernameToPass = post.username
+    }
 }

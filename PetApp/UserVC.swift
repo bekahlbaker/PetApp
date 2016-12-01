@@ -28,7 +28,6 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     
     var posts = [Post]()
     static var userImageCache: NSCache<NSString, UIImage> = NSCache()
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,7 +44,7 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
                         
                         if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                             for snap in snapshot {
-                                print("SNAP: \(snap)")
+//                                print("SNAP: \(snap)")
                                 if let postDict = snap.value as? Dictionary<String, AnyObject> {
                                     let key = snap.key
                                     let post = Post(postKey: key, postData: postDict)
@@ -79,13 +78,13 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         
         //download user info & image
         
-        DataService.ds.REF_USERS.queryOrdered(byChild: "username").queryEqual(toValue: "username_4").observe(.value, with: { (snapshot) in
+//        DataService.ds.REF_USERS.queryOrdered(byChild: "username").queryEqual(toValue: "username_4").observe(.value, with: { (snapshot) in
 
-//        DataService.ds.REF_CURRENT_USER.observe(.value, with: { (snapshot) in
-        if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-            for snap in snapshot {
+        DataService.ds.REF_CURRENT_USER.observe(.value, with: { (snapshot) in
+//        if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+//            for snap in snapshot {
             
-            if let dictionary = snap.value as? [String: Any] {
+            if let dictionary = snapshot.value as? [String: Any] {
                 
                 if let username = dictionary["username"] as? String {
                     self.username.title = username
@@ -181,8 +180,6 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
                         
                     }
                 }
-            }
-            }
             }
             
         })

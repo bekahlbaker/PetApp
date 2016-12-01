@@ -79,13 +79,15 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
             if let dictionary = snapshot.value as? [String: Any] {
                 if let currentUser = dictionary["username"] as? String {
                     print("BEKAH: \(currentUser)")
-
-        let post: Dictionary<String, Any> = [
-            "caption": self.captionTextField.text! as String,
-            "username": currentUser as String,
-            "imageURL": imageURL as String,
-            "likes": 0 as Int
-        ]
+                    let profileImgUrl = dictionary["profileImgUrl"]
+    
+                    let post: Dictionary<String, Any> = [
+                    "caption": self.captionTextField.text! as String,
+                    "username": currentUser as String,
+                    "imageURL": imageURL as String,
+                    "likes": 0 as Int,
+                    "profileImgUrl": profileImgUrl as! String
+                    ]
         
 //        let uid = KeychainWrapper.standard.string(forKey: KEY_UID)
                     

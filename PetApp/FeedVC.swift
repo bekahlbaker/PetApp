@@ -11,7 +11,19 @@ import Firebase
 import SwiftKeychainWrapper
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
+     var activeRow = 0
 
+
+    @IBAction func usernameTapped(_ sender: AnyObject) {
+        performSegue(withIdentifier: "ViewUserVC", sender: nil)
+        
+//        let myVC = storyboard?.instantiateViewController(withIdentifier: "ViewUserVC") as! ViewUserVC
+//        myVC.usernamePassed = FeedCell.usernameToPass
+//        navigationController?.pushViewController(myVC, animated: true)
+    }
+    
+    
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -30,7 +42,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 for snap in snapshot {
-                    print("SNAP: \(snap)")
+//                    print("SNAP: \(snap)")
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
                         let key = snap.key
                         let post = Post(postKey: key, postData: postDict)
@@ -51,6 +63,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return posts.count
         
     }
+
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -61,9 +74,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 //            cell.configureCell()
 //            return cell
         
-            if let img = FeedVC.imageCache.object(forKey: post.imageURL as NSString) {
-                print("Getting image from cache")
-                cell.configureCell(post: post, img: img)
+            if let img = FeedVC.imageCache.object(forKey: post.imageURL as NSString), let profileImg = FeedVC.imageCache.object(forKey: post.profileImgUrl as NSString) {
+                print("Getting images from cache")
+                cell.configureCell(post: post, img: img, profileImg: profileImg)
                 return cell
             } else {
                 cell.configureCell(post: post)
@@ -74,5 +87,17 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             return FeedCell()
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
 
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ViewUserVC" {
+            let myVC = segue.destination as! ViewUserVC
+            myVC.usernamePassed = FeedCell.usernameToPass
+            print(myVC.usernamePassed)
+        }
+    }
+    
 }
