@@ -33,7 +33,7 @@ extension PostVC {
             filterButton.frame = CGRect(x: xCoord, y: yCoord, width: buttonWidth, height: buttonHeight)
             filterButton.tag = itemCount
             filterButton.addTarget(self, action: #selector(PostVC.filterButtonTapped(sender:)), for: .touchUpInside)
-            filterButton.layer.cornerRadius = 6
+//            filterButton.layer.cornerRadius = 6
             filterButton.clipsToBounds = true
             
             // CODE FOR FILTERS WILL BE ADDED HERE...
@@ -49,7 +49,11 @@ extension PostVC {
             let imageForButton = UIImage(cgImage: filteredImageRef!);
             
             // Assign filtered image to the button
-            filterButton.setBackgroundImage(imageForButton, for: .normal)
+            if itemCount == 0 {
+                filterButton.setBackgroundImage(originalImage.image, for: .normal)
+            } else {
+             filterButton.setBackgroundImage(imageForButton, for: .normal)   
+            }
             
             // Add Buttons in the Scroll View
             xCoord +=  buttonWidth + gapBetweenButtons

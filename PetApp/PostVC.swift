@@ -11,7 +11,7 @@ import Firebase
 import SwiftKeychainWrapper
 import CoreImage
 
-class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
     
     @IBOutlet weak var captionTextField: UITextView!
 
@@ -76,6 +76,25 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         postImagePicker.delegate = self
         postImagePicker.allowsEditing = true
         
+        captionTextField.text = "Write a caption..."
+        captionTextField.textColor = UIColor.lightGray
+        
+        captionTextField.delegate = self
+        
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if textView.text.isEmpty {
+            textView.text = "Write a caption..."
+            textView.textColor = UIColor.lightGray
+        }
     }
     
     func postToFirebase(imageURL: String) {
@@ -108,6 +127,17 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         })
         
 
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+        super.touchesBegan(touches, with: event)
     }
 
 }
