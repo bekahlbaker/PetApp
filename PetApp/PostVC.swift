@@ -22,7 +22,9 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     
     @IBAction func imagePickerTapped(_ sender: AnyObject) {
         present(postImagePicker, animated: true, completion: nil)
+        addImageBtn.setTitle("", for: .normal)
     }
+    @IBOutlet weak var addImageBtn: UIButton!
     
     @IBAction func savePost(_ sender: AnyObject) {
         
@@ -76,10 +78,10 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         postImagePicker.delegate = self
         postImagePicker.allowsEditing = true
         
-        captionTextField.text = "Write a caption..."
-        captionTextField.textColor = UIColor.lightGray
+//        captionTextField.text = "Write a caption..."
+//        captionTextField.textColor = UIColor.lightGray
         
-        captionTextField.delegate = self
+//        captionTextField.delegate = self
         
     }
     
@@ -106,7 +108,7 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                     let profileImgUrl = dictionary["profileImgUrl"]
     
                     let post: Dictionary<String, Any> = [
-                    "caption": self.captionTextField.text! as String,
+//                    "caption": self.captionTextField.text! as String,
                     "username": currentUser as String,
                     "imageURL": imageURL as String,
                     "likes": 0 as Int,
@@ -116,9 +118,8 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
         firebasePost.setValue(post)
         
-        self.captionTextField.text = ""
+//        self.captionTextField.text = ""
         self.imageSelected = false
-        self.originalImage.image = UIImage(named: "add-image")
         
         print("POST: \(post)")
                     

@@ -51,8 +51,12 @@ extension PostVC {
             // Assign filtered image to the button
             if itemCount == 0 {
                 filterButton.setBackgroundImage(originalImage.image, for: .normal)
+//                filterButton.setTitle("Original", for: .normal)
+//                filterButton.setTitleColor(UIColor.white, for: .normal)
             } else {
-             filterButton.setBackgroundImage(imageForButton, for: .normal)   
+             filterButton.setBackgroundImage(imageForButton, for: .normal)
+//                filterButton.setTitle("\(CIFilterNames)", for: .normal)
+//                filterButton.setTitleColor(UIColor.white, for: .normal)
             }
             
             // Add Buttons in the Scroll View

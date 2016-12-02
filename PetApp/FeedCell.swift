@@ -20,10 +20,12 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var usernameBtn: UIButton!
     
     @IBAction func usernameTapped(_ sender: AnyObject) {
+        getUsernameToPass()
 
     }
 
     static var usernameToPass: String!
+    
     var post: Post!
     var likesRef: FIRDatabaseReference!
     
@@ -44,10 +46,7 @@ class FeedCell: UITableViewCell {
         likesRef = DataService.ds.REF_CURRENT_USER.child("likes").child(post.postKeys)
         self.caption.text = post.caption
         
-//        var usernameToBePassed = FeedCell.usernameToPass
-//        usernameToBePassed = post.username
         self.usernameBtn.setTitle(post.username, for: .normal)
-        self.getUsernameToPass()
         
         self.likes.text = String(post.likes)
         
@@ -119,6 +118,6 @@ class FeedCell: UITableViewCell {
     
     func getUsernameToPass() {
         FeedCell.usernameToPass = ""
-        FeedCell.usernameToPass = post.username
+        FeedCell.usernameToPass = usernameBtn.titleLabel?.text
     }
 }
