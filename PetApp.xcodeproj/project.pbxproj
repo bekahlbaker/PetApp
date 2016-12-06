@@ -39,6 +39,8 @@
 		2749947E1DD287530015B6F8 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2749947D1DD287530015B6F8 /* ProfileVC.swift */; };
 		2788DE481DEF614500078A41 /* ViewUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2788DE471DEF614500078A41 /* ViewUserVC.swift */; };
 		2788DE4B1DF09F6C00078A41 /* PostVC+CoreImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2788DE4A1DF09F6C00078A41 /* PostVC+CoreImage.swift */; };
+		2788DE4F1DF2070C00078A41 /* PostCaptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2788DE4E1DF2070C00078A41 /* PostCaptionVC.swift */; };
+		2788DE511DF2086D00078A41 /* PostCaptionVC+TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2788DE501DF2086D00078A41 /* PostCaptionVC+TextView.swift */; };
 		27BD7DEC1DDF935300B9DB9A /* TextFieldMaxLengths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BD7DEB1DDF935300B9DB9A /* TextFieldMaxLengths.swift */; };
 		27BD7DF11DE4FBF800B9DB9A /* UsernameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BD7DF01DE4FBF800B9DB9A /* UsernameVC.swift */; };
 		B61761CB0A8D5494AA1962C9 /* Pods_PetApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1B3ADE42D2BA19DA972589 /* Pods_PetApp.framework */; };
@@ -80,6 +82,8 @@
 		2749947D1DD287530015B6F8 /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		2788DE471DEF614500078A41 /* ViewUserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewUserVC.swift; sourceTree = "<group>"; };
 		2788DE4A1DF09F6C00078A41 /* PostVC+CoreImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PostVC+CoreImage.swift"; sourceTree = "<group>"; };
+		2788DE4E1DF2070C00078A41 /* PostCaptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCaptionVC.swift; sourceTree = "<group>"; };
+		2788DE501DF2086D00078A41 /* PostCaptionVC+TextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PostCaptionVC+TextView.swift"; sourceTree = "<group>"; };
 		27BD7DEB1DDF935300B9DB9A /* TextFieldMaxLengths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldMaxLengths.swift; sourceTree = "<group>"; };
 		27BD7DF01DE4FBF800B9DB9A /* UsernameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsernameVC.swift; sourceTree = "<group>"; };
 		6CD65ED0F38C43BADF665691 /* Pods-PetApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetApp/Pods-PetApp.debug.xcconfig"; sourceTree = "<group>"; };
@@ -162,16 +166,17 @@
 		27166B251DCCEE2100A57821 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				274474561DDE209B007EBABF /* PostVC.swift */,
+				27166B301DCD03BD00A57821 /* EntryVC.swift */,
+				2744744E1DDA2BB1007EBABF /* ResetPassVC.swift */,
 				27166B111DCCE63800A57821 /* SignInVC.swift */,
 				27166B2E1DCD03A500A57821 /* SignUpVC.swift */,
-				27166B301DCD03BD00A57821 /* EntryVC.swift */,
+				27BD7DF01DE4FBF800B9DB9A /* UsernameVC.swift */,
 				27166B321DCD03E200A57821 /* FeedVC.swift */,
 				2749947D1DD287530015B6F8 /* ProfileVC.swift */,
 				274474421DD6929B007EBABF /* UserVC.swift */,
-				2744744E1DDA2BB1007EBABF /* ResetPassVC.swift */,
-				27BD7DF01DE4FBF800B9DB9A /* UsernameVC.swift */,
 				2788DE471DEF614500078A41 /* ViewUserVC.swift */,
+				274474561DDE209B007EBABF /* PostVC.swift */,
+				2788DE4E1DF2070C00078A41 /* PostCaptionVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -212,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				2788DE4A1DF09F6C00078A41 /* PostVC+CoreImage.swift */,
+				2788DE501DF2086D00078A41 /* PostCaptionVC+TextView.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -379,6 +385,7 @@
 				27166B2D1DCCF67500A57821 /* RoundedBorderClearBackgroundButton.swift in Sources */,
 				27166B121DCCE63800A57821 /* SignInVC.swift in Sources */,
 				274474431DD6929B007EBABF /* UserVC.swift in Sources */,
+				2788DE511DF2086D00078A41 /* PostCaptionVC+TextView.swift in Sources */,
 				2744744D1DD8EF78007EBABF /* DropShadow.swift in Sources */,
 				274994781DD0EDC50015B6F8 /* CircleImage.swift in Sources */,
 				2788DE4B1DF09F6C00078A41 /* PostVC+CoreImage.swift in Sources */,
@@ -388,6 +395,7 @@
 				27166B101DCCE63800A57821 /* AppDelegate.swift in Sources */,
 				274474531DDE1B5E007EBABF /* NavBarDropShadow.swift in Sources */,
 				2744744B1DD7965C007EBABF /* FeedCell.swift in Sources */,
+				2788DE4F1DF2070C00078A41 /* PostCaptionVC.swift in Sources */,
 				274474511DDA6DA9007EBABF /* User.swift in Sources */,
 				2744744F1DDA2BB1007EBABF /* ResetPassVC.swift in Sources */,
 				27166B3E1DCD0F9500A57821 /* DataService.swift in Sources */,

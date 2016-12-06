@@ -533,7 +533,7 @@
                             </imageView>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rSv-Ar-hi7">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="lbi-2I-ENI"/>
+                                    <constraint firstAttribute="height" constant="55" id="lbi-2I-ENI"/>
                                 </constraints>
                                 <items>
                                     <navigationItem title="Edit Profile" id="3Rc-yB-ex9">
@@ -904,7 +904,7 @@
                             </imageView>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Hj-Tj-bm9">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="e1l-ag-CTa"/>
+                                    <constraint firstAttribute="height" constant="55" id="e1l-ag-CTa"/>
                                 </constraints>
                                 <items>
                                     <navigationItem id="9Qd-xv-SxI">
@@ -976,8 +976,7 @@
                         <subviews>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vkV-Bv-s8y">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="64" id="B82-EX-KaE"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="64" id="lHy-hU-TRO"/>
+                                    <constraint firstAttribute="height" constant="55" id="lHy-hU-TRO"/>
                                 </constraints>
                                 <items>
                                     <navigationItem id="XpG-Th-IkJ">
@@ -1224,11 +1223,11 @@
                                             <frame key="frameInset" width="375" height="539"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jIf-1K-9xZ">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jIf-1K-9xZ">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="36" id="yi9-ar-h5d"/>
                                                     </constraints>
-                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
                                                     <state key="normal" title="username">
                                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
@@ -1252,11 +1251,11 @@
                                                 </imageView>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mjC-5q-P8C">
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                                    <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </string>
+                                                    <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OYw-6X-lWR">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="loxley" translatesAutoresizingMaskIntoConstraints="NO" id="OYw-6X-lWR">
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="OYw-6X-lWR" secondAttribute="height" multiplier="1:1" id="iSn-jI-KZ9"/>
                                                     </constraints>
@@ -1267,7 +1266,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jZ-HB-nLh">
-                                                    <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                                    <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -1275,7 +1274,7 @@
                                             <constraints>
                                                 <constraint firstItem="mjC-5q-P8C" firstAttribute="leading" secondItem="sxM-VQ-Gq8" secondAttribute="leadingMargin" id="0Z3-pY-SIj"/>
                                                 <constraint firstItem="jIf-1K-9xZ" firstAttribute="leading" secondItem="UD5-au-Ivn" secondAttribute="trailing" constant="8" id="4in-Dl-W24"/>
-                                                <constraint firstItem="4jZ-HB-nLh" firstAttribute="leading" secondItem="KnV-Sa-8jI" secondAttribute="trailing" constant="1" id="8Rc-Gm-sgs"/>
+                                                <constraint firstItem="4jZ-HB-nLh" firstAttribute="leading" secondItem="KnV-Sa-8jI" secondAttribute="trailing" constant="4" id="8Rc-Gm-sgs"/>
                                                 <constraint firstItem="ufH-fg-98K" firstAttribute="trailing" secondItem="sxM-VQ-Gq8" secondAttribute="trailingMargin" constant="-10" id="Ddw-3K-DaZ"/>
                                                 <constraint firstItem="OYw-6X-lWR" firstAttribute="leading" secondItem="sxM-VQ-Gq8" secondAttribute="leading" id="EPg-8E-HWv"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="mjC-5q-P8C" secondAttribute="trailing" id="GZg-yQ-If6"/>
@@ -1284,7 +1283,7 @@
                                                 <constraint firstItem="mjC-5q-P8C" firstAttribute="top" secondItem="KnV-Sa-8jI" secondAttribute="bottom" constant="-3.5" id="UTq-yn-sSi"/>
                                                 <constraint firstItem="OYw-6X-lWR" firstAttribute="top" secondItem="UD5-au-Ivn" secondAttribute="bottom" constant="10" id="Yol-0F-80V"/>
                                                 <constraint firstItem="OYw-6X-lWR" firstAttribute="centerX" secondItem="sxM-VQ-Gq8" secondAttribute="centerX" id="d4J-cT-Hpa"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="mjC-5q-P8C" secondAttribute="bottom" constant="8" id="fGX-Hl-ytd"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="mjC-5q-P8C" secondAttribute="bottom" id="fGX-Hl-ytd"/>
                                                 <constraint firstItem="ufH-fg-98K" firstAttribute="centerY" secondItem="jIf-1K-9xZ" secondAttribute="centerY" id="iGP-6z-r9U"/>
                                                 <constraint firstItem="UD5-au-Ivn" firstAttribute="leading" secondItem="sxM-VQ-Gq8" secondAttribute="leadingMargin" constant="10" id="np9-zz-SqC"/>
                                                 <constraint firstItem="UD5-au-Ivn" firstAttribute="top" secondItem="sxM-VQ-Gq8" secondAttribute="topMargin" id="ufS-0h-ygn"/>
@@ -1390,33 +1389,13 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iaT-PM-N7O"/>
                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M8N-Ws-NoO">
                                 <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="25"/>
-                                <state key="normal" title="Add Image">
+                                <state key="normal">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
-                                <state key="focused" title="+"/>
                                 <connections>
                                     <action selector="imagePickerTapped:" destination="iiK-pT-sg2" eventType="touchUpInside" id="1Lg-hK-0km"/>
                                 </connections>
                             </button>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GaB-5t-kea">
-                                <frame key="frameInset" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
-                                <items>
-                                    <barButtonItem image="home-sm" id="jFz-0a-sJB">
-                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="2Wc-1a-CFb"/>
-                                        </connections>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="Eo0-km-A7b"/>
-                                    <barButtonItem image="user-sm" id="lty-jn-zgg">
-                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <segue destination="HIm-Vc-Fus" kind="show" identifier="toUserVC" id="tPG-g3-xlk"/>
-                                        </connections>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="klm-Fe-GaV">
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="9h0-U9-rmS"/>
@@ -1425,20 +1404,21 @@
                                     <navigationItem title="New Post" id="qXY-Wp-FMK">
                                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="1Yn-VS-yKt">
                                             <connections>
+                                                <action selector="cancelBtnTapped:" destination="iiK-pT-sg2" id="F4G-AB-cHD"/>
                                                 <segue destination="FOH-oA-jlS" kind="show" id="bgW-JN-4g7"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" title="Next" id="Mbf-wq-wgD">
                                             <connections>
-                                                <action selector="savePost:" destination="iiK-pT-sg2" id="oYl-qd-WEQ"/>
+                                                <action selector="nextBtnTapped:" destination="iiK-pT-sg2" id="kTT-zc-6vb"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T4z-6s-bC7">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="T4z-6s-bC7">
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="100" id="zvR-8o-DUF"/>
+                                    <constraint firstAttribute="width" secondItem="T4z-6s-bC7" secondAttribute="height" multiplier="3:1" id="Mk1-I7-3D7"/>
                                 </constraints>
                             </scrollView>
                         </subviews>
@@ -1468,17 +1448,17 @@
                         <outlet property="filterScrollView" destination="T4z-6s-bC7" id="FjN-PS-qdF"/>
                         <outlet property="imageToFilter" destination="iaT-PM-N7O" id="ka8-a3-4wF"/>
                         <outlet property="originalImage" destination="zGo-cJ-yz9" id="BLb-wY-dVp"/>
-                        <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="Ooz-fL-gDA"/>
+                        <segue destination="aU1-se-YcD" kind="show" identifier="toPostCaptionVC" id="KuE-5c-cMS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QYj-Ks-BlV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2080.8000000000002" y="-197.45127436281859"/>
         </scene>
-        <!--View Controller-->
+        <!--Post CaptionVC-->
         <scene sceneID="zW6-AN-KpT">
             <objects>
-                <viewController id="aU1-se-YcD" sceneMemberID="viewController">
+                <viewController id="aU1-se-YcD" customClass="PostCaptionVC" customModule="PetApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="qzI-Yj-P3M"/>
                         <viewControllerLayoutGuide type="bottom" id="d1d-nv-E0i"/>
@@ -1494,27 +1474,61 @@
                                 </constraints>
                                 <items>
                                     <navigationItem title="New Post" id="ffZ-FV-S0R">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="0ab-fZ-Fd6"/>
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="0ab-fZ-Fd6">
+                                            <connections>
+                                                <action selector="backBtnTapped:" destination="aU1-se-YcD" id="vaj-Fq-d4t"/>
+                                            </connections>
+                                        </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="phf-rb-Lbb">
                                             <connections>
-                                                <action selector="savePost:" destination="iiK-pT-sg2" id="UnA-xD-Vhj"/>
+                                                <action selector="savePostTapped:" destination="aU1-se-YcD" id="6st-8A-CEN"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PEy-e9-eTZ">
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0DC-7e-MMx">
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="Ty4-eu-r6P"/>
+                                            <constraint firstAttribute="height" constant="100" id="fc1-gf-5Wr"/>
+                                        </constraints>
+                                    </imageView>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="elW-wd-vws">
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="100" id="lEh-gk-vd2"/>
+                                        </constraints>
+                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                        <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="15"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="aEC-c7-180" secondAttribute="trailing" id="2X5-AW-khc"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="PEy-e9-eTZ" secondAttribute="trailing" id="3iL-P9-pT5"/>
+                            <constraint firstItem="PEy-e9-eTZ" firstAttribute="leading" secondItem="aMg-FV-xVT" secondAttribute="leadingMargin" id="9pk-2P-wJV"/>
+                            <constraint firstItem="PEy-e9-eTZ" firstAttribute="top" secondItem="aEC-c7-180" secondAttribute="bottom" constant="16" id="NP9-gy-8Mi"/>
                             <constraint firstItem="aEC-c7-180" firstAttribute="leading" secondItem="aMg-FV-xVT" secondAttribute="leading" id="Qat-yN-S8q"/>
                             <constraint firstItem="aEC-c7-180" firstAttribute="top" secondItem="aMg-FV-xVT" secondAttribute="top" id="cG5-Vv-vU3"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="backBtn" destination="0ab-fZ-Fd6" id="6cc-sn-iLY"/>
+                        <outlet property="captionTextView" destination="elW-wd-vws" id="ja8-Er-uDa"/>
+                        <outlet property="postImage" destination="0DC-7e-MMx" id="7f3-4a-R9e"/>
+                        <outlet property="saveBtn" destination="phf-rb-Lbb" id="Khz-x2-aDg"/>
+                        <segue destination="iiK-pT-sg2" kind="show" identifier="toPostVC" id="TLW-Q5-xSz"/>
+                        <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="dut-yX-PSM"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yWy-cn-mvO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2900" y="-197"/>
+            <point key="canvasLocation" x="2900" y="-197.45127436281859"/>
         </scene>
     </scenes>
     <resources>
@@ -1524,15 +1538,17 @@
         <image name="doginwig" width="1920" height="1275"/>
         <image name="empty-heart" width="70" height="70"/>
         <image name="home-sm" width="35" height="35"/>
+        <image name="loxley" width="640" height="480"/>
         <image name="user-1" width="35" height="35"/>
         <image name="user-sm" width="35" height="35"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Ive-65-i5K"/>
         <segue reference="whq-87-tqY"/>
-        <segue reference="bgW-JN-4g7"/>
+        <segue reference="dut-yX-PSM"/>
+        <segue reference="TLW-Q5-xSz"/>
         <segue reference="lia-Ce-C0t"/>
-        <segue reference="zsD-8J-Lsn"/>
         <segue reference="SDZ-21-9fi"/>
+        <segue reference="zsD-8J-Lsn"/>
     </inferredMetricsTieBreakers>
 </document>

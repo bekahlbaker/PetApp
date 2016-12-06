@@ -14,14 +14,16 @@ extension PostVC {
     func filterButtonTapped(sender: UIButton) {
         let button = sender as UIButton
         
-        imageToFilter.image = button.backgroundImage(for: UIControlState.normal)
+        imageToFilter.image = button.image(for: UIControlState.normal)
+        
+        PostVC.filteredImageCache.setObject(imageToFilter.image!, forKey: "imageToPass")
     }
     
-    func addFiltersToButtons() {
+    func addFiltersToButtons(imageUnfiltered: UIImage) {
         var xCoord: CGFloat = 5
         let yCoord: CGFloat = 5
-        let buttonWidth:CGFloat = 70
-        let buttonHeight: CGFloat = 70
+        let buttonWidth:CGFloat = 80
+        let buttonHeight: CGFloat = 80
         let gapBetweenButtons: CGFloat = 5
         
         var itemCount = 0
@@ -40,7 +42,7 @@ extension PostVC {
             
             // Create filters for each button
             let ciContext = CIContext(options: nil)
-            let coreImage = CIImage(image: originalImage.image!)
+            let coreImage = CIImage(image: imageUnfiltered)
             let filter = CIFilter(name: "\(CIFilterNames[i])" )
             filter!.setDefaults()
             filter!.setValue(coreImage, forKey: kCIInputImageKey)
@@ -50,11 +52,15 @@ extension PostVC {
             
             // Assign filtered image to the button
             if itemCount == 0 {
-                filterButton.setBackgroundImage(originalImage.image, for: .normal)
-//                filterButton.setTitle("Original", for: .normal)
-//                filterButton.setTitleColor(UIColor.white, for: .normal)
+               if let img = PostVC.unFilteredImageCache.object(forKey: "unfilteredImage") {
+                    filterButton.setImage(img, for: .normal)
+                    filterButton.imageView?.contentMode = UIViewContentMode.scaleAspectFill
+                    //                filterButton.setTitle("Original", for: .normal)
+                    //                filterButton.setTitleColor(UIColor.white, for: .normal)
+                }
             } else {
-             filterButton.setBackgroundImage(imageForButton, for: .normal)
+             filterButton.setImage(imageForButton, for: .normal)
+                filterButton.imageView?.contentMode = UIViewContentMode.scaleAspectFill
 //                filterButton.setTitle("\(CIFilterNames)", for: .normal)
 //                filterButton.setTitleColor(UIColor.white, for: .normal)
             }
@@ -73,11 +79,13 @@ extension PostVC {
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
             originalImage.image = image
             imageSelected = true
+            PostVC.unFilteredImageCache.setObject(image, forKey: "unfilteredImage")
         } else {
             print("Valid image not selected.")
         }
         picker.dismiss(animated: true, completion: nil)
-        self.addFiltersToButtons()
+        self.addFiltersToButtons(imageUnfiltered: originalImage.image!)
+        addImageBtn.setTitle("", for: .normal)
     }
     
 }
