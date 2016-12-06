@@ -17,6 +17,8 @@ extension PostVC {
         imageToFilter.image = button.image(for: UIControlState.normal)
         
         PostVC.filteredImageCache.setObject(imageToFilter.image!, forKey: "imageToPass")
+        
+        imageSelected = true
     }
     
     func addFiltersToButtons(imageUnfiltered: UIImage) {

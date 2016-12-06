@@ -66,7 +66,11 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
 //        captionTextView.layer.masksToBounds = true
         captionTextView.delegate = self
 
-        self.postImage.image = PostVC.filteredImageCache.object(forKey: "imageToPass")
+        if let img = PostVC.filteredImageCache.object(forKey: "imageToPass") {
+            self.postImage.image = img
+        } else if let img2 = PostVC.unFilteredImageCache.object(forKey: "unfilteredImage") {
+            self.postImage.image = img2
+        }
 
     }
     
@@ -88,12 +92,6 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
                     
                     let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
                     firebasePost.setValue(post)
-                    
-                    self.captionTextView.text = ""
-//                    self.imageSelected = false
-                    
-                    print("POST: \(post)")
-                    
                 }
             }
         })

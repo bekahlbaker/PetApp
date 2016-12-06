@@ -37,11 +37,7 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         PostVC.filteredImageCache.removeAllObjects()
         sync()
     }
-    
-    @IBAction func savePost(_ sender: AnyObject) {
 
-        }
-    
     var postImagePicker: UIImagePickerController!
     var imageSelected = false
     static var unFilteredImageCache: NSCache<NSString, UIImage> = NSCache()
@@ -67,6 +63,9 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                addFiltersToButtons(imageUnfiltered: unfilteredImg)
             }
             addImageBtn.setTitle("", for: .normal)
+        } else if let img2 = PostVC.unFilteredImageCache.object(forKey: "unfilteredImage"){
+            originalImage.image = img2
+            addFiltersToButtons(imageUnfiltered: img2)
         } else {
             addImageBtn.setTitle("Add Image", for: .normal)
         }

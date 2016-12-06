@@ -73,16 +73,23 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 self.breedLbl.text = dictionary["breed"] as? String
                 self.locationLbl.text = dictionary["location"] as? String
                 self.aboutLbl.text = dictionary["about"] as? String
+                
+                guard let profileUrl = dictionary["profileImgUrl"] as? String else {
+                    print("No profile image to download")
+                    return
+                }
+                
                 //download profile img
-                if let url = dictionary["profileImgUrl"] as? String {
+                if profileUrl == (dictionary["profileImgUrl"] as? String)! {
                     //use Kingfisher
-                    if let imageUrl = URL(string: url) {
+                    if let imageUrl = URL(string: profileUrl) {
+     
                         self.profileImg.kf.indicatorType = .activity
                         self.profileImg.kf.setImage(with: imageUrl)
                         print("Using kingfisher image for profile.")
                     } else {
                         let storage = FIRStorage.storage()
-                        let storageRef = storage.reference(forURL: url)
+                        let storageRef = storage.reference(forURL: profileUrl)
                         storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
                             if error != nil {
                                 print("Unable to download image from firebase")
@@ -95,16 +102,22 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
    
                     }
                 }
+                
+                guard let coverUrl = dictionary["coverImgUrl"] as? String else {
+                    print("No cover image to download")
+                    return
+                }
+                
                 //download cover photo
-                if let url = dictionary["coverImgUrl"] as? String {
+                if coverUrl == (dictionary["coverImgUrl"] as? String)! {
                     //use Kingfisher
-                    if let imageUrl = URL(string: url) {
+                    if let imageUrl = URL(string: coverUrl) {
                         self.profileImg.kf.indicatorType = .activity
                         self.coverPhoto.kf.setImage(with: imageUrl)
                         print("Using kingfisher image for cover.")
                     } else {
                         let storage = FIRStorage.storage()
-                        let storageRef = storage.reference(forURL: url)
+                        let storageRef = storage.reference(forURL: coverUrl)
                         storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
                             if error != nil {
                                 print("Unable to download image from firebase")
@@ -127,14 +140,15 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     
     @IBAction func saveBtnPressed(_ sender: AnyObject) {
         
-        
-        
+        if self.profileImg.image != nil {
+            //save profile image
+            
             let imageName = NSUUID().uuidString
             let metadata = FIRStorageMetadata()
             metadata.contentType = "image/png"
             
             if let uploadData = UIImagePNGRepresentation(self.profileImg.image!) {
-               DataService.ds.REF_USER_PROFILE.child(imageName).put(uploadData, metadata: metadata, completion: { (metadata, error) in
+                DataService.ds.REF_USER_PROFILE.child(imageName).put(uploadData, metadata: metadata, completion: { (metadata, error) in
                     if error != nil {
                         print(error)
                         return
@@ -146,7 +160,12 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                     }
                 })
             }
-            
+        } else {
+            print("No profile image to save")
+        }
+        
+        
+        if self.coverPhoto.image != nil {
             //save cover image
             let coverImageName = NSUUID().uuidString
             let coverMetadata = FIRStorageMetadata()
@@ -165,6 +184,9 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                     }
                 })
             }
+        } else {
+            print("No cover image to save")
+        }
             
             //save profile info
         
