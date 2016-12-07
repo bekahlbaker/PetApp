@@ -12,6 +12,8 @@ import Firebase
 
 class PostCaptionVC: UIViewController, UITextViewDelegate {
     
+    
+    
     @IBOutlet weak var postImage: UIImageView!
     
     @IBOutlet weak var captionTextView: UITextView!
@@ -68,8 +70,10 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
 
         if let img = PostVC.filteredImageCache.object(forKey: "imageToPass") {
             self.postImage.image = img
+            PostVC.imageToPassBackCache.setObject(img, forKey: "imageToPassBack")
         } else if let img2 = PostVC.unFilteredImageCache.object(forKey: "unfilteredImage") {
             self.postImage.image = img2
+            PostVC.imageToPassBackCache.setObject(img2, forKey: "imageToPassBack")
         }
 
     }

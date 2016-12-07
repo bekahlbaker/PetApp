@@ -34,14 +34,14 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     }
     
     @IBAction func cancelBtnTapped(_ sender: AnyObject) {
-        PostVC.filteredImageCache.removeAllObjects()
-        sync()
+        PostVC.imageToPassBackCache.removeAllObjects()
     }
 
     var postImagePicker: UIImagePickerController!
     var imageSelected = false
     static var unFilteredImageCache: NSCache<NSString, UIImage> = NSCache()
     static var filteredImageCache: NSCache<NSString, UIImage> = NSCache()
+    static var imageToPassBackCache: NSCache<NSString, UIImage> = NSCache()
     
     var CIFilterNames = [
         "CIPhotoEffectChrome",
@@ -57,22 +57,38 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let img = PostVC.filteredImageCache.object(forKey: "imageToPass") {
-            originalImage.image = img
-            if let unfilteredImg = PostVC.unFilteredImageCache.object(forKey: "unfilteredImage") {
-               addFiltersToButtons(imageUnfiltered: unfilteredImg)
-            }
-            addImageBtn.setTitle("", for: .normal)
-        } else if let img2 = PostVC.unFilteredImageCache.object(forKey: "unfilteredImage"){
-            originalImage.image = img2
-            addFiltersToButtons(imageUnfiltered: img2)
-        } else {
-            addImageBtn.setTitle("Add Image", for: .normal)
-        }
+        self.loadImage()
+        
+//        if let img = PostVC.filteredImageCache.object(forKey: "imageToPass") {
+//            originalImage.image = img
+//            if let unfilteredImg = PostVC.unFilteredImageCache.object(forKey: "unfilteredImage") {
+//               addFiltersToButtons(imageUnfiltered: unfilteredImg)
+//            }
+//            addImageBtn.setTitle("", for: .normal)
+//        } else if let img2 = PostVC.unFilteredImageCache.object(forKey: "unfilteredImage"){
+//            originalImage.image = img2
+//            addFiltersToButtons(imageUnfiltered: img2)
+//        }
+//        if img = PostVC.imageToPassBackCache.object(forKey: "imageToPassBack") {
+//            originalImage.image = img
+//            addFiltersToButtons(imageUnfiltered: img)
+//        } else {
+//            addImageBtn.setTitle("Add Image", for: .normal)
+//        }
         
         postImagePicker = UIImagePickerController()
         postImagePicker.delegate = self
         postImagePicker.allowsEditing = true
         
+    }
+    
+    func loadImage() {
+        if let img = PostVC.imageToPassBackCache.object(forKey: "imageToPassBack") {
+            originalImage.image = img
+            addFiltersToButtons(imageUnfiltered: img)
+        } else {
+            addImageBtn.setTitle("Add Image", for: .normal)
+        }
+        PostVC.imageToPassBackCache.removeObject(forKey: "imageToPassBack")
     }
 }

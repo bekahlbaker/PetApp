@@ -38,7 +38,7 @@ class Post {
         return _likes
     }
     
-    var postKeys: String {
+    var postKey: String {
         return _postKey
     }
     
