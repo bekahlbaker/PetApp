@@ -83,6 +83,6 @@ class Post {
             _likes = _likes - 1
         }
         
-        _postRef.child("likes").setValue(_likes)
+        _postRef.updateChildValues(["likes": likes])
     }
 }

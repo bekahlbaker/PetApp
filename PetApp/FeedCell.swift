@@ -43,7 +43,9 @@ class FeedCell: UITableViewCell {
     func configureCell(post: Post, img: UIImage? = nil, profileImg: UIImage? = nil) {
         
         self.post = post
-        likesRef = DataService.ds.REF_CURRENT_USER.child("likes").child(post.postKeys)
+        likesRef = DataService.ds.REF_CURRENT_USER.child("likes").child(post.postKey)
+//        print("POST KEY: \(post.postKey)")
+//        FeedCell.postKey = post.postKey
         self.caption.text = post.caption
         
         self.usernameBtn.setTitle(post.username, for: .normal)
