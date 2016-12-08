@@ -25,37 +25,43 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var saveBtn: UIBarButtonItem!
     @IBAction func savePostTapped(_ sender: AnyObject) {
-        self.saveBtn.isEnabled = false
-        self.backBtn.isEnabled = false
-        
-        if let img = PostVC.filteredImageCache.object(forKey: "imageToPass") {
-        
-        if let imgData = UIImagePNGRepresentation(img){
-            
-            let imgUid = NSUUID().uuidString
-            let metadata = FIRStorageMetadata()
-            metadata.contentType = "image/png"
-            
-            DataService.ds.REF_POST_IMGS.child(imgUid).put(imgData, metadata: metadata) { (metadata, error) in
-                if error != nil {
-                    print("Unable to image to Firebase : \(error)")
-                } else {
-                    print("Successfully uploaded image to Firebase")
-                    let downloadUrl = metadata?.downloadURL()?.absoluteString
-                    if let url = downloadUrl {
-                        self.postToFirebase(imageURL: url)
-                        self.performSegue(withIdentifier: "toFeedVC", sender: nil)
-                        }
-                    }
-                
-                }
-            
-            }
+        if self.captionTextView.text == "Write a caption..." {
+            self.captionTextView.text = ""
         } else {
-            print("Couldn't find image")
+            self.saveBtn.isEnabled = false
+            self.backBtn.isEnabled = false
+            
+            if let img = PostVC.filteredImageCache.object(forKey: "imageToPass") {
+                
+                if let imgData = UIImagePNGRepresentation(img){
+                    
+                    let imgUid = NSUUID().uuidString
+                    let metadata = FIRStorageMetadata()
+                    metadata.contentType = "image/png"
+                    
+                    DataService.ds.REF_POST_IMGS.child(imgUid).put(imgData, metadata: metadata) { (metadata, error) in
+                        if error != nil {
+                            print("Unable to image to Firebase : \(error)")
+                        } else {
+                            print("Successfully uploaded image to Firebase")
+                            let downloadUrl = metadata?.downloadURL()?.absoluteString
+                            if let url = downloadUrl {
+                                self.postToFirebase(imageURL: url)
+                                self.performSegue(withIdentifier: "toFeedVC", sender: nil)
+                            }
+                        }
+                        
+                    }
+                    
+                }
+            } else {
+                print("Couldn't find image")
+            }
+            
+            PostVC.filteredImageCache.removeAllObjects()
+            PostVC.unFilteredImageCache.removeAllObjects()
+            PostVC.imageToPassBackCache.removeAllObjects()   
         }
-        
-        PostVC.filteredImageCache.removeAllObjects()
     }
     
     override func viewDidLoad() {
