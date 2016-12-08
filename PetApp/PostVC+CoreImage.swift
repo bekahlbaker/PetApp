@@ -16,8 +16,6 @@ extension PostVC {
         
         imageToFilter.image = button.image(for: UIControlState.normal)
         
-        PostVC.filteredImageCache.setObject(imageToFilter.image!, forKey: "imageToPass")
-        
         imageSelected = true
     }
     
@@ -80,6 +78,7 @@ extension PostVC {
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
             originalImage.image = image
+            imageToFilter.image = image
             imageSelected = true
             PostVC.unFilteredImageCache.setObject(image, forKey: "unfilteredImage")
         } else {
@@ -88,6 +87,17 @@ extension PostVC {
         picker.dismiss(animated: true, completion: nil)
         self.addFiltersToButtons(imageUnfiltered: originalImage.image!)
         addImageBtn.setTitle("", for: .normal)
+    }
+    
+    func alert() {
+        let alertController = UIAlertController(title: "No Image", message: "Please select a valid image to post.", preferredStyle: .alert)
+        
+        let OKAction = UIAlertAction(title: "OK", style: .default) { (action:UIAlertAction!) in
+            print("you have pressed OK button");
+        }
+        alertController.addAction(OKAction)
+        
+        self.present(alertController, animated: true, completion:nil)
     }
     
 }

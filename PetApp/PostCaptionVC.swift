@@ -38,7 +38,7 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
             
             DataService.ds.REF_POST_IMGS.child(imgUid).put(imgData, metadata: metadata) { (metadata, error) in
                 if error != nil {
-                    print("Unable to image to Firebase")
+                    print("Unable to image to Firebase : \(error)")
                 } else {
                     print("Successfully uploaded image to Firebase")
                     let downloadUrl = metadata?.downloadURL()?.absoluteString

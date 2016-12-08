@@ -19,6 +19,21 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     @IBOutlet weak var originalImage: UIImageView!
     @IBOutlet weak var imageToFilter: UIImageView!
     
+    @IBAction func cameraBtnTapped(_ sender: AnyObject) {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+            imagePicker.allowsEditing = true
+            self.present(imagePicker, animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func libraryBtnTapped(_ sender: AnyObject) {
+        present(postImagePicker, animated: true, completion: nil)
+        addImageBtn.setTitle("", for: .normal)
+    }
+    
     @IBAction func imagePickerTapped(_ sender: AnyObject) {
         present(postImagePicker, animated: true, completion: nil)
         addImageBtn.setTitle("", for: .normal)
@@ -27,9 +42,11 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     
     @IBAction func nextBtnTapped(_ sender: AnyObject) {
         if imageSelected == true {
+            PostVC.filteredImageCache.setObject(imageToFilter.image!, forKey: "imageToPass")
             performSegue(withIdentifier: "toPostCaptionVC", sender: nil)
         } else {
             print("Please select an image")
+            self.alert()
         }
     }
     
