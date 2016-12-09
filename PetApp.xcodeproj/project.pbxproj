@@ -37,6 +37,7 @@
 		274994721DCD36AB0015B6F8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 274994711DCD36AB0015B6F8 /* Main.storyboard */; };
 		274994781DD0EDC50015B6F8 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274994771DD0EDC50015B6F8 /* CircleImage.swift */; };
 		2749947E1DD287530015B6F8 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2749947D1DD287530015B6F8 /* ProfileVC.swift */; };
+		2770D1FB1DF9CB61007F904A /* SinglePhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2770D1FA1DF9CB61007F904A /* SinglePhotoVC.swift */; };
 		2788DE481DEF614500078A41 /* ViewUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2788DE471DEF614500078A41 /* ViewUserVC.swift */; };
 		2788DE4B1DF09F6C00078A41 /* PostVC+CoreImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2788DE4A1DF09F6C00078A41 /* PostVC+CoreImage.swift */; };
 		2788DE4F1DF2070C00078A41 /* PostCaptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2788DE4E1DF2070C00078A41 /* PostCaptionVC.swift */; };
@@ -80,6 +81,7 @@
 		274994711DCD36AB0015B6F8 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		274994771DD0EDC50015B6F8 /* CircleImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
 		2749947D1DD287530015B6F8 /* ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
+		2770D1FA1DF9CB61007F904A /* SinglePhotoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePhotoVC.swift; sourceTree = "<group>"; };
 		2788DE471DEF614500078A41 /* ViewUserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewUserVC.swift; sourceTree = "<group>"; };
 		2788DE4A1DF09F6C00078A41 /* PostVC+CoreImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PostVC+CoreImage.swift"; sourceTree = "<group>"; };
 		2788DE4E1DF2070C00078A41 /* PostCaptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCaptionVC.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				2788DE471DEF614500078A41 /* ViewUserVC.swift */,
 				274474561DDE209B007EBABF /* PostVC.swift */,
 				2788DE4E1DF2070C00078A41 /* PostCaptionVC.swift */,
+				2770D1FA1DF9CB61007F904A /* SinglePhotoVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -398,6 +401,7 @@
 				2788DE4F1DF2070C00078A41 /* PostCaptionVC.swift in Sources */,
 				274474511DDA6DA9007EBABF /* User.swift in Sources */,
 				2744744F1DDA2BB1007EBABF /* ResetPassVC.swift in Sources */,
+				2770D1FB1DF9CB61007F904A /* SinglePhotoVC.swift in Sources */,
 				27166B3E1DCD0F9500A57821 /* DataService.swift in Sources */,
 				274474571DDE209B007EBABF /* PostVC.swift in Sources */,
 				27166B401DCD108300A57821 /* Constants.swift in Sources */,
