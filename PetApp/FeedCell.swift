@@ -19,10 +19,10 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var likes: UILabel!
     @IBOutlet weak var usernameBtn: UIButton!
     
-    @IBAction func usernameTapped(_ sender: AnyObject) {
-        getUsernameToPass()
-
-    }
+//    @IBAction func usernameTapped(_ sender: AnyObject) {
+//        getUsernameToPass()
+//
+//    }
 
     static var usernameToPass: String!
     
