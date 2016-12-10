@@ -22,11 +22,7 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     @IBAction func camerBtnTapped(_ sender: AnyObject) {
         postImagePicker.allowsEditing = true
         postImagePicker.sourceType = UIImagePickerControllerSourceType.camera
-//        postImagePicker.cameraCaptureMode = .Photo
-//        postImagePicker.modalPresentationStyle = .FullScreen
-        present(postImagePicker,
-                              animated: true,
-                              completion: nil)
+        present(postImagePicker, animated: true, completion: nil)
     }
     
     @IBAction func libraryBtnTapped(_ sender: AnyObject) {
@@ -41,9 +37,15 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         let alertController = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
         let camera = UIAlertAction(title: "Camera", style: .default, handler: { (action) -> Void in
             print("Camera Button Pressed")
+            self.postImagePicker.allowsEditing = true
+            self.postImagePicker.sourceType = UIImagePickerControllerSourceType.camera
+            self.present(self.postImagePicker, animated: true, completion: nil)
         })
         let photoLibrary = UIAlertAction(title: "Photo Library", style: .default, handler: { (action) -> Void in
             print("Photo Library Button Pressed")
+            self.postImagePicker.allowsEditing = true
+            self.postImagePicker.sourceType = .photoLibrary
+            self.present(self.postImagePicker, animated: true, completion: nil)
         })
         let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
             print("Cancel Button Pressed")

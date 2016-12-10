@@ -23,8 +23,13 @@ class FeedCell: UITableViewCell {
         getUsernameToPass()
 
     }
+    
+    @IBAction func imageTapped(_ sender: AnyObject) {
+        getPostKeyToPass()
+    }
 
     static var usernameToPass: String!
+    static var postKeyToPass: String!
     
     var post: Post!
     var likesRef: FIRDatabaseReference!
@@ -44,8 +49,8 @@ class FeedCell: UITableViewCell {
         
         self.post = post
         likesRef = DataService.ds.REF_CURRENT_USER.child("likes").child(post.postKey)
-//        print("POST KEY: \(post.postKey)")
-//        FeedCell.postKey = post.postKey
+        print("POST KEY: \(post.postKey)")
+//        FeedCell.postKeyToPass = post.postKey
         self.caption.text = post.caption
         
         self.usernameBtn.setTitle(post.username, for: .normal)
@@ -121,5 +126,10 @@ class FeedCell: UITableViewCell {
     func getUsernameToPass() {
         FeedCell.usernameToPass = ""
         FeedCell.usernameToPass = usernameBtn.titleLabel?.text
+    }
+    
+    func getPostKeyToPass() {
+        FeedCell.postKeyToPass = ""
+        FeedCell.postKeyToPass = post.postKey
     }
 }

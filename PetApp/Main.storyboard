@@ -1201,10 +1201,10 @@
             </objects>
             <point key="canvasLocation" x="3169" y="796"/>
         </scene>
-        <!--Single PhotoVC-->
+        <!--SinglePhotoVC-->
         <scene sceneID="2kY-BI-umS">
             <objects>
-                <viewController id="7sI-Ag-4BV" customClass="SinglePhotoVC" customModule="PetApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7sI-Ag-4BV" userLabel="SinglePhotoVC" customClass="SinglePhotoVC" customModule="PetApp" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="8BA-E5-C9K"/>
                         <viewControllerLayoutGuide type="bottom" id="hxl-Le-rdR"/>
@@ -1321,6 +1321,9 @@
                             <constraint firstItem="Gch-v9-kgV" firstAttribute="centerX" secondItem="y97-cq-ecE" secondAttribute="centerX" id="ucu-a2-7g0"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="imageView" destination="kjN-Xz-TlJ" id="tef-KW-ODE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zg7-iG-ygT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -1395,21 +1398,31 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yf8-rA-QC7">
+                                                    <connections>
+                                                        <action selector="imageTapped:" destination="XT7-dt-d1F" eventType="touchUpInside" id="WDJ-uC-6Ut"/>
+                                                        <action selector="imageTapped:" destination="FOH-oA-jlS" eventType="touchUpInside" id="Z4N-oO-WEL"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="mjC-5q-P8C" firstAttribute="leading" secondItem="sxM-VQ-Gq8" secondAttribute="leadingMargin" id="0Z3-pY-SIj"/>
                                                 <constraint firstItem="jIf-1K-9xZ" firstAttribute="leading" secondItem="UD5-au-Ivn" secondAttribute="trailing" constant="8" id="4in-Dl-W24"/>
+                                                <constraint firstItem="yf8-rA-QC7" firstAttribute="centerX" secondItem="OYw-6X-lWR" secondAttribute="centerX" id="7d4-r1-YEW"/>
                                                 <constraint firstItem="4jZ-HB-nLh" firstAttribute="leading" secondItem="KnV-Sa-8jI" secondAttribute="trailing" constant="4" id="8Rc-Gm-sgs"/>
                                                 <constraint firstItem="ufH-fg-98K" firstAttribute="trailing" secondItem="sxM-VQ-Gq8" secondAttribute="trailingMargin" constant="-10" id="Ddw-3K-DaZ"/>
                                                 <constraint firstItem="OYw-6X-lWR" firstAttribute="leading" secondItem="sxM-VQ-Gq8" secondAttribute="leading" id="EPg-8E-HWv"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="mjC-5q-P8C" secondAttribute="trailing" id="GZg-yQ-If6"/>
+                                                <constraint firstItem="yf8-rA-QC7" firstAttribute="width" secondItem="OYw-6X-lWR" secondAttribute="width" id="Gur-k8-SO5"/>
                                                 <constraint firstItem="KnV-Sa-8jI" firstAttribute="top" secondItem="OYw-6X-lWR" secondAttribute="bottom" constant="8" id="PSY-yH-hHd"/>
                                                 <constraint firstAttribute="trailing" secondItem="OYw-6X-lWR" secondAttribute="trailing" id="R1J-SY-RAa"/>
                                                 <constraint firstItem="mjC-5q-P8C" firstAttribute="top" secondItem="KnV-Sa-8jI" secondAttribute="bottom" constant="-3.5" id="UTq-yn-sSi"/>
                                                 <constraint firstItem="OYw-6X-lWR" firstAttribute="top" secondItem="UD5-au-Ivn" secondAttribute="bottom" constant="10" id="Yol-0F-80V"/>
+                                                <constraint firstItem="yf8-rA-QC7" firstAttribute="centerY" secondItem="OYw-6X-lWR" secondAttribute="centerY" id="aEk-hc-Ddy"/>
                                                 <constraint firstItem="OYw-6X-lWR" firstAttribute="centerX" secondItem="sxM-VQ-Gq8" secondAttribute="centerX" id="d4J-cT-Hpa"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="mjC-5q-P8C" secondAttribute="bottom" id="fGX-Hl-ytd"/>
                                                 <constraint firstItem="ufH-fg-98K" firstAttribute="centerY" secondItem="jIf-1K-9xZ" secondAttribute="centerY" id="iGP-6z-r9U"/>
+                                                <constraint firstItem="yf8-rA-QC7" firstAttribute="height" secondItem="OYw-6X-lWR" secondAttribute="height" id="lTg-PA-icE"/>
                                                 <constraint firstItem="UD5-au-Ivn" firstAttribute="leading" secondItem="sxM-VQ-Gq8" secondAttribute="leadingMargin" constant="10" id="np9-zz-SqC"/>
                                                 <constraint firstItem="UD5-au-Ivn" firstAttribute="top" secondItem="sxM-VQ-Gq8" secondAttribute="topMargin" id="ufS-0h-ygn"/>
                                                 <constraint firstItem="4jZ-HB-nLh" firstAttribute="top" secondItem="OYw-6X-lWR" secondAttribute="bottom" constant="8" id="upA-4r-tJi"/>
@@ -1486,6 +1499,7 @@
                     <connections>
                         <outlet property="tableView" destination="mY4-Tr-zgP" id="57u-wd-SEJ"/>
                         <segue destination="ABA-se-GwR" kind="show" identifier="ViewUserVC" id="vcX-KV-BRk"/>
+                        <segue destination="7sI-Ag-4BV" kind="show" identifier="SinglePhotoVC" id="KRW-X9-rzd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OEL-cy-RY3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1693,7 +1707,7 @@
         <image name="user-sm" width="35" height="35"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bgW-JN-4g7"/>
+        <segue reference="nbd-cO-tma"/>
         <segue reference="61E-j1-iUC"/>
         <segue reference="whq-87-tqY"/>
         <segue reference="Ive-65-i5K"/>

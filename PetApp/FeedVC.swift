@@ -19,6 +19,15 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         performSegue(withIdentifier: "ViewUserVC", sender: nil)
     }
     
+    @IBAction func imageTapped(_ sender: AnyObject) {
+        if FeedCell.postKeyToPass != nil {
+            print("FEED VC: \(FeedCell.postKeyToPass)")
+            performSegue(withIdentifier: "SinglePhotoVC", sender: nil)
+        } else {
+            print("NIL")
+        }
+    }
+    
     @IBOutlet weak var tableView: UITableView!
     
     var posts = [Post]()
@@ -88,7 +97,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if segue.identifier == "ViewUserVC" {
             let myVC = segue.destination as! ViewUserVC
             myVC.usernamePassed = FeedCell.usernameToPass
-            print(myVC.usernamePassed)
+        }
+        if segue.identifier == "SinglePhotoVC" {
+            let myVC = segue.destination as! SinglePhotoVC
+            myVC.postKeyPassed = FeedCell.postKeyToPass
         }
     }
     

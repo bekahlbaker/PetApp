@@ -16,7 +16,6 @@ class UserPicCell: UICollectionViewCell {
     var post: Post!
     
     func configureCell(post: Post, img: UIImage? = nil) {
-//        imageView.image = UIImage(named: "loxley-party")
         
         self.post = post
         
