@@ -1348,8 +1348,7 @@
                                             <frame key="frameInset" width="375" height="539"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jIf-1K-9xZ">
-                                                    <frame key="frameInset" width="1000" height="1000"/>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jIf-1K-9xZ">
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="36" id="yi9-ar-h5d"/>
                                                     </constraints>
@@ -1362,42 +1361,36 @@
                                                         <action selector="usernameTapped:" destination="FOH-oA-jlS" eventType="touchUpInside" id="qbS-A5-em9"/>
                                                     </connections>
                                                 </button>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="blank-profile-picture" translatesAutoresizingMaskIntoConstraints="NO" id="UD5-au-Ivn" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
-                                                    <frame key="frameInset" width="1000" height="1000"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank-profile-picture" translatesAutoresizingMaskIntoConstraints="NO" id="UD5-au-Ivn" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
                                                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="UjQ-dp-ANX"/>
                                                         <constraint firstAttribute="width" constant="40" id="ydT-wM-HLO"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="empty-heart" translatesAutoresizingMaskIntoConstraints="NO" id="ufH-fg-98K">
-                                                    <frame key="frameInset" width="1000" height="1000"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty-heart" translatesAutoresizingMaskIntoConstraints="NO" id="ufH-fg-98K">
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="DFA-0S-CXq"/>
                                                         <constraint firstAttribute="height" constant="50" id="yYg-dC-8DB"/>
                                                     </constraints>
                                                 </imageView>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mjC-5q-P8C">
-                                                    <frame key="frameInset" width="1000" height="1000"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mjC-5q-P8C">
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </string>
                                                     <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                 </textView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OYw-6X-lWR">
-                                                    <frame key="frameInset" width="1000" height="1000"/>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OYw-6X-lWR">
                                                     <constraints>
                                                         <constraint firstAttribute="width" secondItem="OYw-6X-lWR" secondAttribute="height" multiplier="1:1" id="iSn-jI-KZ9"/>
                                                     </constraints>
                                                 </imageView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Likes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KnV-Sa-8jI">
-                                                    <frame key="frameInset" width="1000" height="1000"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Likes" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KnV-Sa-8jI">
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jZ-HB-nLh">
-                                                    <frame key="frameInset" width="1000" height="1000"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jZ-HB-nLh">
                                                     <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1553,18 +1546,44 @@
                                     <constraint firstAttribute="width" secondItem="T4z-6s-bC7" secondAttribute="height" multiplier="3:1" id="Mk1-I7-3D7"/>
                                 </constraints>
                             </scrollView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W18-QR-DUS">
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="unV-TS-fuq"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="Camera" id="V8Z-RC-hn2">
+                                        <connections>
+                                            <action selector="camerBtnTapped:" destination="iiK-pT-sg2" id="QgB-CV-yU1"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="llw-W2-zxY"/>
+                                    <barButtonItem style="plain" id="efW-rX-9IZ">
+                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="E1l-Pz-Fv2">
+                                            <rect key="frame" x="267" y="7" width="92" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Photo Library"/>
+                                            <connections>
+                                                <action selector="libraryBtnTapped:" destination="iiK-pT-sg2" eventType="touchUpInside" id="7hs-WF-q1I"/>
+                                            </connections>
+                                        </button>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="T4z-6s-bC7" firstAttribute="top" secondItem="zGo-cJ-yz9" secondAttribute="bottom" constant="16" id="0Up-Zt-xH4"/>
                             <constraint firstItem="iaT-PM-N7O" firstAttribute="centerX" secondItem="zGo-cJ-yz9" secondAttribute="centerX" id="3ep-dC-ZLf"/>
+                            <constraint firstItem="Bz7-tP-ohO" firstAttribute="top" secondItem="W18-QR-DUS" secondAttribute="bottom" id="6eP-xi-zH1"/>
                             <constraint firstItem="T4z-6s-bC7" firstAttribute="leading" secondItem="els-HE-nDL" secondAttribute="leading" id="Fej-GQ-QI2"/>
                             <constraint firstItem="iaT-PM-N7O" firstAttribute="height" secondItem="zGo-cJ-yz9" secondAttribute="height" id="G3S-gZ-oIb"/>
                             <constraint firstItem="M8N-Ws-NoO" firstAttribute="height" secondItem="zGo-cJ-yz9" secondAttribute="height" id="Gsl-5O-WO7"/>
                             <constraint firstAttribute="trailing" secondItem="T4z-6s-bC7" secondAttribute="trailing" id="MPO-5g-Iz5"/>
+                            <constraint firstAttribute="trailing" secondItem="W18-QR-DUS" secondAttribute="trailing" id="Q5x-uI-kAw"/>
                             <constraint firstItem="M8N-Ws-NoO" firstAttribute="centerY" secondItem="zGo-cJ-yz9" secondAttribute="centerY" id="YDx-6y-aND"/>
                             <constraint firstItem="klm-Fe-GaV" firstAttribute="leading" secondItem="els-HE-nDL" secondAttribute="leading" id="bW3-Bl-Jwy"/>
                             <constraint firstItem="iaT-PM-N7O" firstAttribute="centerY" secondItem="zGo-cJ-yz9" secondAttribute="centerY" id="bsa-Au-AAx"/>
+                            <constraint firstItem="W18-QR-DUS" firstAttribute="leading" secondItem="els-HE-nDL" secondAttribute="leading" id="cTA-vz-6Xw"/>
                             <constraint firstAttribute="trailing" secondItem="klm-Fe-GaV" secondAttribute="trailing" id="dA1-pv-bcy"/>
                             <constraint firstItem="M8N-Ws-NoO" firstAttribute="centerX" secondItem="zGo-cJ-yz9" secondAttribute="centerX" id="di8-nZ-Vi7"/>
                             <constraint firstItem="M8N-Ws-NoO" firstAttribute="width" secondItem="zGo-cJ-yz9" secondAttribute="width" id="hkh-wq-HsC"/>
@@ -1674,11 +1693,11 @@
         <image name="user-sm" width="35" height="35"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lia-Ce-C0t"/>
-        <segue reference="whq-87-tqY"/>
-        <segue reference="nbd-cO-tma"/>
+        <segue reference="bgW-JN-4g7"/>
         <segue reference="61E-j1-iUC"/>
+        <segue reference="whq-87-tqY"/>
         <segue reference="Ive-65-i5K"/>
+        <segue reference="lia-Ce-C0t"/>
         <segue reference="zsD-8J-Lsn"/>
         <segue reference="SDZ-21-9fi"/>
     </inferredMetricsTieBreakers>

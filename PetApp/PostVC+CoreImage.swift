@@ -13,12 +13,10 @@ extension PostVC {
     
     func filterButtonTapped(sender: UIButton) {
         let button = sender as UIButton
-        
         imageToFilter.image = button.image(for: UIControlState.normal)
-        
         PostVC.filteredImageCache.setObject(imageToFilter.image!, forKey: "imageToPass")
-        
         imageSelected = true
+        
     }
     
     func addFiltersToButtons(imageUnfiltered: UIImage) {
@@ -79,6 +77,7 @@ extension PostVC {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
+            addImageBtn.setTitle("", for: .normal)
             originalImage.image = image
             imageSelected = true
             PostVC.unFilteredImageCache.setObject(image, forKey: "unfilteredImage")

@@ -19,9 +19,42 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     @IBOutlet weak var originalImage: UIImageView!
     @IBOutlet weak var imageToFilter: UIImageView!
     
-    @IBAction func imagePickerTapped(_ sender: AnyObject) {
+    @IBAction func camerBtnTapped(_ sender: AnyObject) {
+        postImagePicker.allowsEditing = true
+        postImagePicker.sourceType = UIImagePickerControllerSourceType.camera
+//        postImagePicker.cameraCaptureMode = .Photo
+//        postImagePicker.modalPresentationStyle = .FullScreen
+        present(postImagePicker,
+                              animated: true,
+                              completion: nil)
+    }
+    
+    @IBAction func libraryBtnTapped(_ sender: AnyObject) {
+        postImagePicker.allowsEditing = true
+        postImagePicker.sourceType = .photoLibrary
         present(postImagePicker, animated: true, completion: nil)
-        addImageBtn.setTitle("", for: .normal)
+    }
+    
+    
+    
+    @IBAction func imagePickerTapped(_ sender: AnyObject) {
+        let alertController = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
+        let camera = UIAlertAction(title: "Camera", style: .default, handler: { (action) -> Void in
+            print("Camera Button Pressed")
+        })
+        let photoLibrary = UIAlertAction(title: "Photo Library", style: .default, handler: { (action) -> Void in
+            print("Photo Library Button Pressed")
+        })
+        let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+            print("Cancel Button Pressed")
+        }
+        
+        alertController.addAction(camera)
+        alertController.addAction(photoLibrary)
+        alertController.addAction(cancel)
+        
+        present(alertController, animated: true, completion: nil)
+
     }
     @IBOutlet weak var addImageBtn: UIButton!
     
@@ -58,28 +91,9 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         super.viewDidLoad()
         
         self.loadImage()
-        
-//        if let img = PostVC.filteredImageCache.object(forKey: "imageToPass") {
-//            originalImage.image = img
-//            if let unfilteredImg = PostVC.unFilteredImageCache.object(forKey: "unfilteredImage") {
-//               addFiltersToButtons(imageUnfiltered: unfilteredImg)
-//            }
-//            addImageBtn.setTitle("", for: .normal)
-//        } else if let img2 = PostVC.unFilteredImageCache.object(forKey: "unfilteredImage"){
-//            originalImage.image = img2
-//            addFiltersToButtons(imageUnfiltered: img2)
-//        }
-//        if img = PostVC.imageToPassBackCache.object(forKey: "imageToPassBack") {
-//            originalImage.image = img
-//            addFiltersToButtons(imageUnfiltered: img)
-//        } else {
-//            addImageBtn.setTitle("Add Image", for: .normal)
-//        }
-        
+
         postImagePicker = UIImagePickerController()
         postImagePicker.delegate = self
-        postImagePicker.allowsEditing = true
-        
     }
     
     func loadImage() {

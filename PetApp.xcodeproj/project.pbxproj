@@ -136,7 +136,6 @@
 				27166B271DCCEE3100A57821 /* Model */,
 				27166B261DCCEE2500A57821 /* View */,
 				27166B251DCCEE2100A57821 /* Controller */,
-				27166B241DCCEE1A00A57821 /* Utilities */,
 				27166B231DCCEE1000A57821 /* Resources */,
 				27166B0F1DCCE63800A57821 /* AppDelegate.swift */,
 				274994711DCD36AB0015B6F8 /* Main.storyboard */,
@@ -180,6 +179,7 @@
 				274474561DDE209B007EBABF /* PostVC.swift */,
 				2788DE4E1DF2070C00078A41 /* PostCaptionVC.swift */,
 				2770D1FA1DF9CB61007F904A /* SinglePhotoVC.swift */,
+				27166B241DCCEE1A00A57821 /* Utilities */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
