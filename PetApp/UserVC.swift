@@ -32,13 +32,13 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        DataService.ds.REF_CURRENT_USER.observe(.value, with: { (snapshot) in
+        DataService.ds.REF_CURRENT_USER.observeSingleEvent(of: .value, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: Any] {
                 if let currentUser = dictionary["username"] as? String {
                     print("BEKAH: \(currentUser)")
                     
-                    DataService.ds.REF_POSTS.queryOrdered(byChild: "username").queryEqual(toValue: currentUser).observe(.value, with: { (snapshot) in
+                    DataService.ds.REF_POSTS.queryOrdered(byChild: "username").queryEqual(toValue: currentUser).observeSingleEvent(of: .value, with: { (snapshot) in
                         
                         self.posts = []
                         
@@ -73,7 +73,7 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         collectionView!.collectionViewLayout = layout
         
         //download user info & image
-        DataService.ds.REF_CURRENT_USER.observe(.value, with: { (snapshot) in
+        DataService.ds.REF_CURRENT_USER.observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: Any] {
                 
                 if let username = dictionary["username"] as? String {

@@ -15,8 +15,12 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var selectedUsername: String!
 
     @IBAction func usernameTapped(_ sender: AnyObject) {
-        print(FeedCell.usernameToPass)
-        performSegue(withIdentifier: "ViewUserVC", sender: nil)
+        if FeedCell.usernameToPass != nil {
+            print(FeedCell.usernameToPass)
+            performSegue(withIdentifier: "ViewUserVC", sender: nil)
+        } else {
+            print("NIL")
+        }
     }
     
     @IBAction func imageTapped(_ sender: AnyObject) {
@@ -39,7 +43,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
         
-        DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
+        DataService.ds.REF_POSTS.observe( .value, with: { (snapshot) in
 
             self.posts = []
             

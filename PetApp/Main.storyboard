@@ -1265,10 +1265,14 @@
                                 </constraints>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty-heart" translatesAutoresizingMaskIntoConstraints="NO" id="4Po-Ld-InV">
+                                <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="MHb-Zg-cZa"/>
                                     <constraint firstAttribute="height" constant="50" id="Y2S-B2-Wm9"/>
                                 </constraints>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="1D2-cB-jhF" appends="YES" id="iH2-18-PpJ"/>
+                                </connections>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gch-v9-kgV">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1322,10 +1326,20 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="captionTxtView" destination="Gch-v9-kgV" id="bpl-Qx-0gY"/>
                         <outlet property="imageView" destination="kjN-Xz-TlJ" id="tef-KW-ODE"/>
+                        <outlet property="likeBtn" destination="4Po-Ld-InV" id="utS-uT-YZ7"/>
+                        <outlet property="likesLbl" destination="h67-6W-6eF" id="EvX-c0-gwe"/>
+                        <outlet property="profileImg" destination="zVu-Ca-QW3" id="z7F-md-4Bl"/>
+                        <outlet property="usernameLbl" destination="i4x-gt-lTc" id="h6h-SW-0eK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zg7-iG-ygT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="1D2-cB-jhF">
+                    <connections>
+                        <action selector="likeBtnTapped:" destination="7sI-Ag-4BV" id="rGh-Vq-CLb"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1151" y="-963"/>
         </scene>

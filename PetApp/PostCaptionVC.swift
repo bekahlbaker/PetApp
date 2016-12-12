@@ -27,6 +27,7 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
     @IBAction func savePostTapped(_ sender: AnyObject) {
         self.saveBtn.isEnabled = false
         self.backBtn.isEnabled = false
+        self.captionTextView.isEditable = false
         
         if let img = PostVC.filteredImageCache.object(forKey: "imageToPass") {
         
@@ -56,6 +57,7 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
         }
         
         PostVC.filteredImageCache.removeAllObjects()
+        PostVC.imageToPassBackCache.removeAllObjects()
     }
     
     override func viewDidLoad() {

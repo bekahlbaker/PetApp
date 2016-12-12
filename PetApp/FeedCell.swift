@@ -50,7 +50,7 @@ class FeedCell: UITableViewCell {
         self.post = post
         likesRef = DataService.ds.REF_CURRENT_USER.child("likes").child(post.postKey)
         print("POST KEY: \(post.postKey)")
-//        FeedCell.postKeyToPass = post.postKey
+        
         self.caption.text = post.caption
         
         self.usernameBtn.setTitle(post.username, for: .normal)
@@ -84,7 +84,7 @@ class FeedCell: UITableViewCell {
             let ref = FIRStorage.storage().reference(forURL: post.profileImgUrl)
             ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
                 if error != nil {
-                    print("Unable to Download image from Firebase storage.")
+                    print("Unable to Download profile image from Firebase storage.")
                 } else {
                     print("Image downloaded from FB Storage.")
                     if let imgData = data {

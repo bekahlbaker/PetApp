@@ -63,7 +63,7 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         
         //download profile info & image
         
-        DataService.ds.REF_CURRENT_USER.observe(.value, with: { (snapshot) in
+        DataService.ds.REF_CURRENT_USER.observeSingleEvent(of: .value, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: Any] {
                 self.fullNameLbl.text = dictionary["full-name"] as? String

@@ -33,8 +33,8 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        DataService.ds.REF_POSTS.queryOrdered(byChild: "username").queryEqual(toValue: self.usernamePassed).observe(.value, with: { (snapshot) in
+            
+        DataService.ds.REF_POSTS.queryOrdered(byChild: "username").queryEqual(toValue: self.usernamePassed).observeSingleEvent(of: .value, with: { (snapshot) in
             
             self.posts = []
             
@@ -65,7 +65,7 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         collectionView!.collectionViewLayout = layout
         
         //download user info & image
-        DataService.ds.REF_USERS.queryOrdered(byChild: "username").queryEqual(toValue: self.usernamePassed).observe(.value, with: { (snapshot) in
+        DataService.ds.REF_USERS.queryOrdered(byChild: "username").queryEqual(toValue: self.usernamePassed).observeSingleEvent(of: .value, with: { (snapshot) in
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 for snap in snapshot {
                     if let dictionary = snap.value as? [String: Any] {
