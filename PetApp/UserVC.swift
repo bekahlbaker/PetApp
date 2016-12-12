@@ -177,10 +177,21 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
     }
 
     @IBAction func logOutTapped(_ sender: AnyObject) {
-        KeychainWrapper.standard.removeObject(forKey: KEY_UID)
-        print("User removed")
-        try! FIRAuth.auth()?.signOut()
-        performSegue(withIdentifier: "toEntryVC", sender: nil)
+        let alert = UIAlertController(title: "Log Out?", message: "Are you sure you want to log out?", preferredStyle: UIAlertControllerStyle.alert)
+        let logOut = UIAlertAction(title: "Log Out", style: .default, handler: { (action) -> Void in
+            KeychainWrapper.standard.removeObject(forKey: KEY_UID)
+            print("User removed")
+            try! FIRAuth.auth()?.signOut()
+            self.performSegue(withIdentifier: "toEntryVC", sender: nil)
+        })
+        let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+            print("Cancel Button Pressed")
+        }
+        
+        alert.addAction(logOut)
+        alert.addAction(cancel)
+        
+        show(alert, sender: nil)
     }
     
     

@@ -34,7 +34,7 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     
     
     @IBAction func imagePickerTapped(_ sender: AnyObject) {
-        let alertController = UIAlertController(title: "", message: "", preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: "", message: "Select Picture", preferredStyle: .actionSheet)
         let camera = UIAlertAction(title: "Camera", style: .default, handler: { (action) -> Void in
             print("Camera Button Pressed")
             self.postImagePicker.allowsEditing = true
@@ -61,19 +61,38 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     @IBOutlet weak var addImageBtn: UIButton!
     
     @IBAction func nextBtnTapped(_ sender: AnyObject) {
-        if imageSelected == true {
+        if PostVC.imageSelected == true {
             performSegue(withIdentifier: "toPostCaptionVC", sender: nil)
         } else {
-            print("Please select an image")
+            let alert = UIAlertController(title: "Please select a picture", message: "", preferredStyle: UIAlertControllerStyle.alert);
+            let ok = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
+            alert.addAction(ok)
+            show(alert, sender: self);
         }
     }
     
     @IBAction func cancelBtnTapped(_ sender: AnyObject) {
-        PostVC.imageToPassBackCache.removeAllObjects()
+        if PostVC.imageSelected == true {
+            let alert = UIAlertController(title: "", message: "If you cancel now, your image edits will be discarded.", preferredStyle: UIAlertControllerStyle.alert)
+            let discardPost = UIAlertAction(title: "Discard Post", style: .destructive, handler: { (action) -> Void in
+                PostVC.imageToPassBackCache.removeAllObjects()
+                self.performSegue(withIdentifier: "toFeedVC", sender: nil)
+            })
+            let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+                print("Cancel Button Pressed")
+            }
+            
+            alert.addAction(discardPost)
+            alert.addAction(cancel)
+            
+            show(alert, sender: nil)
+        } else {
+            performSegue(withIdentifier: "toFeedVC", sender: nil)
+        }
     }
 
     var postImagePicker: UIImagePickerController!
-    var imageSelected = false
+    static var imageSelected: Bool!
     static var unFilteredImageCache: NSCache<NSString, UIImage> = NSCache()
     static var filteredImageCache: NSCache<NSString, UIImage> = NSCache()
     static var imageToPassBackCache: NSCache<NSString, UIImage> = NSCache()
@@ -92,6 +111,8 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        PostVC.imageSelected = false
+        
         self.loadImage()
 
         postImagePicker = UIImagePickerController()
@@ -101,7 +122,10 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     func loadImage() {
         if let img = PostVC.imageToPassBackCache.object(forKey: "imageToPassBack") {
             originalImage.image = img
-            addFiltersToButtons(imageUnfiltered: img)
+            PostVC.imageSelected = true
+            if let unfilteredImg = PostVC.unFilteredImageCache.object(forKey: "unfilteredImage") {
+               self.addFiltersToButtons(imageUnfiltered: unfilteredImg)
+            }
         } else {
             addImageBtn.setTitle("Add Image", for: .normal)
         }

@@ -21,6 +21,7 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var backBtn: UIBarButtonItem!
     @IBAction func backBtnTapped(_ sender: AnyObject) {
+        PostVC.imageSelected = true
         performSegue(withIdentifier: "toPostVC", sender: nil)
     }
     

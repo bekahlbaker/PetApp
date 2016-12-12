@@ -15,7 +15,7 @@ extension PostVC {
         let button = sender as UIButton
         imageToFilter.image = button.image(for: UIControlState.normal)
         PostVC.filteredImageCache.setObject(imageToFilter.image!, forKey: "imageToPass")
-        imageSelected = true
+        PostVC.imageSelected = true
         
     }
     
@@ -79,7 +79,7 @@ extension PostVC {
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
             addImageBtn.setTitle("", for: .normal)
             originalImage.image = image
-            imageSelected = true
+            PostVC.imageSelected = true
             PostVC.unFilteredImageCache.setObject(image, forKey: "unfilteredImage")
         } else {
             print("Valid image not selected.")
@@ -87,6 +87,11 @@ extension PostVC {
         picker.dismiss(animated: true, completion: nil)
         self.addFiltersToButtons(imageUnfiltered: originalImage.image!)
         addImageBtn.setTitle("", for: .normal)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        PostVC.imageSelected = false
+        dismiss(animated: true, completion: nil)
     }
     
 }
