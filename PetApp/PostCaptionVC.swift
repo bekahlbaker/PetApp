@@ -12,7 +12,8 @@ import Firebase
 
 class PostCaptionVC: UIViewController, UITextViewDelegate {
     
-    
+    var profileImg: String!
+    var currentUsername: String!
     
     @IBOutlet weak var postImage: UIImageView!
     
@@ -39,7 +40,7 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
             
             DataService.ds.REF_POST_IMGS.child(imgUid).put(imgData, metadata: metadata) { (metadata, error) in
                 if error != nil {
-                    print("Unable to image to Firebase")
+                    print("Unable to upload image to Firebase")
                 } else {
                     print("Successfully uploaded image to Firebase")
                     let downloadUrl = metadata?.downloadURL()?.absoluteString
@@ -77,31 +78,33 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
             self.postImage.image = img2
             PostVC.imageToPassBackCache.setObject(img2, forKey: "imageToPassBack")
         }
+        
+        DataService.ds.REF_CURRENT_USER.observe( .value, with:  { (snapshot) in
+            if let dictionary = snapshot.value as? [String: Any] {
+                if let currentUser = dictionary["username"] as? String {
+                    print("BEKAH: \(currentUser)")
+                    self.currentUsername = currentUser as String!
+                }
+                if let profileImgUrl = dictionary["profileImgUrl"] as? String {
+                    self.profileImg = profileImgUrl as String!
+                }
+            }
+        })
 
     }
     
     func postToFirebase(imageURL: String) {
         
-        DataService.ds.REF_CURRENT_USER.observeSingleEvent(of: .value, with:  { (snapshot) in
-            if let dictionary = snapshot.value as? [String: Any] {
-                if let currentUser = dictionary["username"] as? String {
-                    print("BEKAH: \(currentUser)")
-                    let profileImgUrl = dictionary["profileImgUrl"]
-                    
-                    let post: Dictionary<String, Any> = [
-                        "caption": self.captionTextView.text! as String,
-                        "username": currentUser as String,
-                        "imageURL": imageURL as String,
-                        "likes": 0 as Int,
-                        "profileImgUrl": profileImgUrl as! String
-                    ]
-                    
-                    let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
-                    firebasePost.setValue(post)
-                }
-            }
-        })
+        let post: Dictionary<String, Any> = [
+            "caption": self.captionTextView.text! as String,
+            "username": self.currentUsername as String,
+            "imageURL": imageURL as String,
+            "likes": 0 as Int,
+            "profileImgUrl": self.profileImg
+        ]
         
-        
+        let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
+        firebasePost.setValue(post)
+
     }
 }

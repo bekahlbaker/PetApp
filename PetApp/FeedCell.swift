@@ -21,7 +21,6 @@ class FeedCell: UITableViewCell {
     
     @IBAction func usernameTapped(_ sender: AnyObject) {
         getUsernameToPass()
-
     }
     
     @IBAction func imageTapped(_ sender: AnyObject) {
@@ -49,8 +48,9 @@ class FeedCell: UITableViewCell {
         
         self.post = post
         likesRef = DataService.ds.REF_CURRENT_USER.child("likes").child(post.postKey)
-        print("POST KEY: \(post.postKey)")
-        
+//        print("POST KEY: \(post.postKey)")
+        FeedCell.postKeyToPass = post.postKey
+//        print("FEED CELL : \(FeedCell.postKeyToPass)")
         self.caption.text = post.caption
         
         self.usernameBtn.setTitle(post.username, for: .normal)

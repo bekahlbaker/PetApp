@@ -12,6 +12,8 @@ import Firebase
 class SinglePhotoVC: UIViewController {
     
     var postKeyPassed: String!
+    var likesRef: FIRDatabaseReference!
+    var post: Post!
     
     @IBOutlet weak var profileImg: CircleImage!
     @IBOutlet weak var usernameLbl: UIButton!
@@ -25,7 +27,14 @@ class SinglePhotoVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let tap = UITapGestureRecognizer(target: self, action: #selector(likeTapped))
+        tap.numberOfTapsRequired = 1
+        likeBtn.addGestureRecognizer(tap)
+        likeBtn.isUserInteractionEnabled = true
+        
         print("Single Photo VC: \(postKeyPassed)")
+        
+        likesRef = DataService.ds.REF_CURRENT_USER.child("likes").child(postKeyPassed)
         
         if postKeyPassed != "" {
             DataService.ds.REF_POSTS.child(postKeyPassed).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -69,16 +78,22 @@ class SinglePhotoVC: UIViewController {
                     
                     //download profile img
                     if profileImgUrl == (dictionary["profileImgUrl"] as? String)! {
-                        let storage = FIRStorage.storage()
-                        let storageRef = storage.reference(forURL: imgURL)
-                        storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
+                        let ref = FIRStorage.storage().reference(forURL: profileImgUrl)
+                        ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
                             if error != nil {
-                                print("Unable to download profile image from firebase")
+                                print("Unable to Download profile image from Firebase storage.")
                             } else {
-                                let profileImg = UIImage(data: data!)
-                                self.profileImg.image = profileImg
+                                print("Image downloaded from FB Storage.")
+                                if let imgData = data {
+                                    if let profileImg = UIImage(data: imgData) {
+                                        self.profileImg.image = profileImg
+                                        FeedVC.imageCache.setObject(profileImg, forKey: profileImgUrl as NSString)
+                                    }
+                                }
                             }
-                        }
+                            
+                        })
+                        
                     }
                 }
             })
@@ -86,5 +101,28 @@ class SinglePhotoVC: UIViewController {
         } else {
             print("No post key")
         }
+        
+        likesRef.observeSingleEvent(of: .value, with:  { (snapshot) in
+            if let _ = snapshot.value as? NSNull {
+                self.likeBtn.image = UIImage(named: "empty-heart")
+            } else {
+                self.likeBtn.image = UIImage(named: "filled-heart")
+            }
+        })
     }
+    
+    func likeTapped(sender: UITapGestureRecognizer) {
+        likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            if let _ = snapshot.value as? NSNull {
+                self.likeBtn.image = UIImage(named: "empty-heart")
+                self.post.adjustLikes(addLike: true)
+                self.likesRef.setValue(true)
+            } else {
+                self.likeBtn.image = UIImage(named: "filled-heart")
+                self.post.adjustLikes(addLike: false)
+                self.likesRef.removeValue()
+            }
+        })
+    }
+
 }

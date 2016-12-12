@@ -60,6 +60,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         })
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        self.tableView.reloadData()
+    }
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
         
