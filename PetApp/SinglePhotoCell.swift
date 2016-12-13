@@ -44,9 +44,8 @@ class SinglePhotoCell: UITableViewCell {
     func configureCell(post: Post, img: UIImage? = nil, profileImg: UIImage? = nil) {
         
         self.post = post
-        print(post)
+        
         likesRef = DataService.ds.REF_CURRENT_USER.child("likes").child(post.postKey)
-        print(post.caption)
         
         self.caption.text = post.caption
         
@@ -99,6 +98,7 @@ class SinglePhotoCell: UITableViewCell {
         likesRef.observeSingleEvent(of: .value, with:  { (snapshot) in
             if let _ = snapshot.value as? NSNull {
                 self.likesImg.image = UIImage(named: "empty-heart")
+                self.likesImgSm.image = UIImage(named: "empty-heart")
             } else {
                 self.likesImg.image = UIImage(named: "filled-heart")
                 self.likesImgSm.image = UIImage(named: "filled-heart")
@@ -111,10 +111,12 @@ class SinglePhotoCell: UITableViewCell {
         likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if let _ = snapshot.value as? NSNull {
                 self.likesImg.image = UIImage(named: "empty-heart")
+                self.likesImgSm.image = UIImage(named: "empty-heart")
                 self.post.adjustLikes(addLike: true)
                 self.likesRef.setValue(true)
             } else {
                 self.likesImg.image = UIImage(named: "filled-heart")
+                self.likesImgSm.image = UIImage(named: "filled-heart")
                 self.post.adjustLikes(addLike: false)
                 self.likesRef.removeValue()
             }
@@ -127,7 +129,7 @@ class SinglePhotoCell: UITableViewCell {
     }
     
     func getPostKeyToPass() {
-        FeedCell.postKeyToPass = ""
+//        FeedCell.postKeyToPass = ""
         FeedCell.postKeyToPass = post.postKey
     }
 }

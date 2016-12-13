@@ -13,6 +13,7 @@ import SwiftKeychainWrapper
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var selectedUsername: String!
+    var postKeyToPass: String!
 
     @IBAction func usernameTapped(_ sender: AnyObject) {
         if FeedCell.usernameToPass != nil {
@@ -24,12 +25,13 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     @IBAction func imageTapped(_ sender: AnyObject) {
-        if FeedCell.postKeyToPass != nil {
-            print("FEED VC: \(FeedCell.postKeyToPass)")
+        if self.postKeyToPass != nil {
+            print("FEED VC: \(self.postKeyToPass)")
             performSegue(withIdentifier: "SinglePhotoVC", sender: nil)
         } else {
             print("NIL")
         }
+        self.postKeyToPass = nil
     }
     
     @IBAction func commentTapped(_ sender: AnyObject) {
@@ -61,6 +63,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
                         let key = snap.key
                         let post = Post(postKey: key, postData: postDict)
+                        self.postKeyToPass = key
                         self.posts.insert(post, at: 0)
                     }
                 }
@@ -114,7 +117,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
         if segue.identifier == "SinglePhotoVC" {
             let myVC = segue.destination as! SinglePhotoVC
-            myVC.postKeyPassed = FeedCell.postKeyToPass
+            myVC.postKeyPassed = self.postKeyToPass
         }
         if segue.identifier == "CommentsVC" {
             let myVC = segue.destination as! CommentsVC
