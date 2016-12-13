@@ -106,9 +106,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             return FeedCell()
         }
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ViewUserVC" {
