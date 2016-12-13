@@ -16,7 +16,9 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var caption: UITextView!
     @IBOutlet weak var profileImg: CircleImage!
     @IBOutlet weak var likesImg: UIImageView!
+    @IBOutlet weak var likesImgSm: UIImageView!
     @IBOutlet weak var likes: UILabel!
+    @IBOutlet weak var comments: UILabel!
     @IBOutlet weak var usernameBtn: UIButton!
     
     @IBAction func usernameTapped(_ sender: AnyObject) {
@@ -27,6 +29,10 @@ class FeedCell: UITableViewCell {
         getPostKeyToPass()
     }
 
+    @IBAction func commentTapped(_ sender: AnyObject) {
+        getPostKeyToPass()
+    }
+    
     static var usernameToPass: String!
     static var postKeyToPass: String!
     
@@ -49,7 +55,7 @@ class FeedCell: UITableViewCell {
         self.post = post
         likesRef = DataService.ds.REF_CURRENT_USER.child("likes").child(post.postKey)
 //        print("POST KEY: \(post.postKey)")
-        FeedCell.postKeyToPass = post.postKey
+//        FeedCell.postKeyToPass = post.postKey
 //        print("FEED CELL : \(FeedCell.postKeyToPass)")
         self.caption.text = post.caption
         
@@ -104,6 +110,7 @@ class FeedCell: UITableViewCell {
                 self.likesImg.image = UIImage(named: "empty-heart")
             } else {
                 self.likesImg.image = UIImage(named: "filled-heart")
+                self.likesImgSm.image = UIImage(named: "filled-heart")
             }
         })
 

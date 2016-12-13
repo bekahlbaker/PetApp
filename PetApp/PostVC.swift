@@ -67,7 +67,7 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
             let alert = UIAlertController(title: "Please select a picture", message: "", preferredStyle: UIAlertControllerStyle.alert);
             let ok = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
             alert.addAction(ok)
-            show(alert, sender: self);
+            show(alert, sender: self)
         }
     }
     

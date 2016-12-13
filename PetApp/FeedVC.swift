@@ -32,6 +32,15 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    @IBAction func commentTapped(_ sender: AnyObject) {
+        if FeedCell.postKeyToPass != nil {
+            print("FEED VC: \(FeedCell.postKeyToPass)")
+            performSegue(withIdentifier: "CommentsVC", sender: nil)
+        } else {
+            print("NIL")
+        }
+    }
+    
     @IBOutlet weak var tableView: UITableView!
     
     var posts = [Post]()
@@ -108,6 +117,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
         if segue.identifier == "SinglePhotoVC" {
             let myVC = segue.destination as! SinglePhotoVC
+            myVC.postKeyPassed = FeedCell.postKeyToPass
+        }
+        if segue.identifier == "CommentsVC" {
+            let myVC = segue.destination as! CommentsVC
             myVC.postKeyPassed = FeedCell.postKeyToPass
         }
     }

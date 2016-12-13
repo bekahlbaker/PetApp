@@ -18,6 +18,7 @@ class SinglePhotoVC: UIViewController {
     @IBOutlet weak var profileImg: CircleImage!
     @IBOutlet weak var usernameLbl: UIButton!
     @IBOutlet weak var likeBtn: UIImageView!
+    @IBOutlet weak var likesImgSm: UIImageView!
     @IBOutlet weak var captionTxtView: UITextView!
     @IBOutlet weak var likesLbl: UILabel!
     @IBOutlet weak var imageView: UIImageView!
@@ -26,6 +27,8 @@ class SinglePhotoVC: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(likeTapped))
         tap.numberOfTapsRequired = 1
@@ -107,6 +110,7 @@ class SinglePhotoVC: UIViewController {
                 self.likeBtn.image = UIImage(named: "empty-heart")
             } else {
                 self.likeBtn.image = UIImage(named: "filled-heart")
+                self.likesImgSm.image = UIImage(named: "filled-heart")
             }
         })
     }
@@ -115,11 +119,11 @@ class SinglePhotoVC: UIViewController {
         likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if let _ = snapshot.value as? NSNull {
                 self.likeBtn.image = UIImage(named: "empty-heart")
-                self.post.adjustLikes(addLike: true)
+//                self.adjustLikes(addLike: true)
                 self.likesRef.setValue(true)
             } else {
                 self.likeBtn.image = UIImage(named: "filled-heart")
-                self.post.adjustLikes(addLike: false)
+//                self.adjustLikes(addLike: false)
                 self.likesRef.removeValue()
             }
         })

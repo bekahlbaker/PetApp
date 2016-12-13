@@ -101,7 +101,9 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
             "username": self.currentUsername as String,
             "imageURL": imageURL as String,
             "likes": 0 as Int,
-            "profileImgUrl": self.profileImg
+            "profileImgUrl": self.profileImg,
+            "comments": "" as String,
+            "commentCount": 0 as Int
         ]
         
         let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
