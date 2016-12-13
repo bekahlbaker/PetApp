@@ -11,8 +11,6 @@ import Firebase
 import SwiftKeychainWrapper
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    var selectedUsername: String!
 
     @IBAction func usernameTapped(_ sender: AnyObject) {
         if FeedCell.usernameToPass != nil {
@@ -93,9 +91,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             if let img = FeedVC.imageCache.object(forKey: post.imageURL as NSString), let profileImg = FeedVC.imageCache.object(forKey: post.profileImgUrl as NSString) {
                 print("Getting images from cache")
                 cell.configureCell(post: post, img: img, profileImg: profileImg)
-                var cellUsername = cell.textLabel?.text
-                cellUsername = post.username
-                self.selectedUsername = cellUsername
                 return cell
             } else {
                 cell.configureCell(post: post)

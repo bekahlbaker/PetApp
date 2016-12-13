@@ -119,11 +119,11 @@ class SinglePhotoVC: UIViewController {
         likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if let _ = snapshot.value as? NSNull {
                 self.likeBtn.image = UIImage(named: "empty-heart")
-                self.adjustLikes(addLike: true)
+//                self.adjustLikes(addLike: true)
                 self.likesRef.setValue(true)
             } else {
                 self.likeBtn.image = UIImage(named: "filled-heart")
-                self.adjustLikes(addLike: false)
+//                self.adjustLikes(addLike: false)
                 self.likesRef.removeValue()
             }
         })
