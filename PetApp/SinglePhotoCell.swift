@@ -1,17 +1,16 @@
 //
-//  FeedCell.swift
+//  SinglePhotoCell.swift
 //  PetApp
 //
-//  Created by Rebekah Baker on 11/12/16.
+//  Created by Rebekah Baker on 12/13/16.
 //  Copyright © 2016 Rebekah Baker. All rights reserved.
 //
 
 import UIKit
 import Firebase
-import Kingfisher
 
-class FeedCell: UITableViewCell {
-
+class SinglePhotoCell: UITableViewCell {
+    
     @IBOutlet weak var feedImageView: UIImageView!
     @IBOutlet weak var caption: UITextView!
     @IBOutlet weak var profileImg: CircleImage!
@@ -25,41 +24,29 @@ class FeedCell: UITableViewCell {
         getUsernameToPass()
     }
     
-    @IBAction func imageTapped(_ sender: AnyObject) {
+    @IBAction func commentTapped(_ sender: AnyObject) {
         getPostKeyToPass()
     }
-
-    @IBAction func commentTapped(_ sender: AnyObject) {
-        print("FEED CELL: \(FeedCell.postKeyForComments)")
-//        CommentsVC.postKeyPassed = FeedCell.postKeyForComments
-    }
-    
-    static var usernameToPass: String!
-    static var postKeyToPass: String!
-    static var postKeyForComments: String!
-    
+//    
+//    static var usernameToPass: String!
     var post: Post!
     var likesRef: FIRDatabaseReference!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+
         let tap = UITapGestureRecognizer(target: self, action: #selector(likeTapped))
         tap.numberOfTapsRequired = 1
         likesImg.addGestureRecognizer(tap)
         likesImg.isUserInteractionEnabled = true
-        
     }
-    
     
     func configureCell(post: Post, img: UIImage? = nil, profileImg: UIImage? = nil) {
         
         self.post = post
-
+        
         likesRef = DataService.ds.REF_CURRENT_USER.child("likes").child(post.postKey)
         
-        FeedCell.postKeyForComments = post.postKey
-
         self.caption.text = post.caption
         
         self.usernameBtn.setTitle(post.username, for: .normal)
@@ -78,7 +65,7 @@ class FeedCell: UITableViewCell {
                     if let imgData = data {
                         if let img = UIImage(data: imgData) {
                             self.feedImageView.image = img
-                            FeedVC.imageCache.setObject(img, forKey: post.imageURL as NSString)
+//                            FeedVC.imageCache.setObject(img, forKey: post.imageURL as NSString)
                         }
                     }
                 }
@@ -99,7 +86,7 @@ class FeedCell: UITableViewCell {
                     if let imgData = data {
                         if let profileImg = UIImage(data: imgData) {
                             self.profileImg.image = profileImg
-                            FeedVC.imageCache.setObject(profileImg, forKey: post.profileImgUrl as NSString)
+//                            FeedVC.imageCache.setObject(profileImg, forKey: post.profileImgUrl as NSString)
                         }
                     }
                 }
@@ -117,9 +104,9 @@ class FeedCell: UITableViewCell {
                 self.likesImgSm.image = UIImage(named: "filled-heart")
             }
         })
-
-}
-
+        
+    }
+    
     func likeTapped(sender: UITapGestureRecognizer) {
         likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if let _ = snapshot.value as? NSNull {
@@ -145,5 +132,4 @@ class FeedCell: UITableViewCell {
         FeedCell.postKeyToPass = ""
         FeedCell.postKeyToPass = post.postKey
     }
-    
 }

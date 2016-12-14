@@ -14,7 +14,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     @IBAction func usernameTapped(_ sender: AnyObject) {
         if FeedCell.usernameToPass != nil {
-            print(FeedCell.usernameToPass)
             performSegue(withIdentifier: "ViewUserVC", sender: nil)
         } else {
             print("NIL")
@@ -31,12 +30,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     @IBAction func commentTapped(_ sender: AnyObject) {
-        if FeedCell.postKeyToPass != nil {
-            print("FEED VC: \(FeedCell.postKeyToPass)")
-            performSegue(withIdentifier: "CommentsVC", sender: nil)
-        } else {
-            print("NIL")
-        }
+//        let key = DataService.ds.REF_POSTS.queryOrderedByKey()
+//            print("FEED VC: \(key)")
+        performSegue(withIdentifier: "CommentsVC", sender: nil)
     }
     
     @IBOutlet weak var tableView: UITableView!
@@ -50,7 +46,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
         
-        DataService.ds.REF_POSTS.observe( .value, with: { (snapshot) in
+        DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
 
             self.posts = []
             
@@ -101,9 +97,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             return FeedCell()
         }
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ViewUserVC" {
@@ -114,10 +107,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             let myVC = segue.destination as! SinglePhotoVC
             myVC.postKeyPassed = FeedCell.postKeyToPass
         }
-        if segue.identifier == "CommentsVC" {
-            let myVC = segue.destination as! CommentsVC
-            myVC.postKeyPassed = FeedCell.postKeyToPass
-        }
+//        if segue.identifier == "CommentsVC" {
+//            let myVC = segue.destination as! CommentsVC
+//            myVC.postKeyPassed = FeedCell.postKeyToPass
+//        }
     }
     
 }
