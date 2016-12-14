@@ -138,6 +138,7 @@ class FeedCell: UITableViewCell {
     }
     
     func getPostKeyToPass() {
+        FeedCell.postKeyToPass = ""
         FeedCell.postKeyToPass = post.postKey
     }
 }

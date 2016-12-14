@@ -129,7 +129,7 @@ class SinglePhotoCell: UITableViewCell {
     }
     
     func getPostKeyToPass() {
-//        FeedCell.postKeyToPass = ""
+        FeedCell.postKeyToPass = ""
         FeedCell.postKeyToPass = post.postKey
     }
 }

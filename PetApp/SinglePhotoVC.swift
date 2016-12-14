@@ -11,8 +11,6 @@ import Firebase
 
 class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    var selectedUsername: String!
-    
     @IBAction func usernameTapped(_ sender: AnyObject) {
         if FeedCell.usernameToPass != nil {
             print(FeedCell.usernameToPass)
@@ -45,7 +43,7 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         tableView.delegate = self
         tableView.dataSource = self
         
-        DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
+        DataService.ds.REF_POSTS.queryOrderedByKey().queryEqual(toValue: postKeyPassed).observeSingleEvent(of: .value, with: { (snapshot) in
             
             self.posts = []
             
@@ -59,8 +57,6 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             }
             self.tableView.reloadData()
         })
-        
-        self.postKeyPassed = nil
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -73,7 +69,7 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return posts.count
     }
     
     
@@ -87,6 +83,7 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             } else {
             return SinglePhotoCell()
         }
+        
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
