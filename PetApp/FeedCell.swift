@@ -30,11 +30,13 @@ class FeedCell: UITableViewCell {
     }
 
     @IBAction func commentTapped(_ sender: AnyObject) {
-        getPostKeyToPass()
+        print("FEED CELL: \(FeedCell.postKeyForComments)")
+//        CommentsVC.postKeyPassed = FeedCell.postKeyForComments
     }
     
     static var usernameToPass: String!
     static var postKeyToPass: String!
+    static var postKeyForComments: String!
     
     var post: Post!
     var likesRef: FIRDatabaseReference!
@@ -55,6 +57,8 @@ class FeedCell: UITableViewCell {
         self.post = post
 
         likesRef = DataService.ds.REF_CURRENT_USER.child("likes").child(post.postKey)
+        
+        FeedCell.postKeyForComments = post.postKey
 
         self.caption.text = post.caption
         
@@ -141,4 +145,5 @@ class FeedCell: UITableViewCell {
         FeedCell.postKeyToPass = ""
         FeedCell.postKeyToPass = post.postKey
     }
+    
 }

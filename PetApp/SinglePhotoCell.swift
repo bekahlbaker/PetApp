@@ -27,8 +27,8 @@ class SinglePhotoCell: UITableViewCell {
     @IBAction func commentTapped(_ sender: AnyObject) {
         getPostKeyToPass()
     }
-    
-    static var usernameToPass: String!
+//    
+//    static var usernameToPass: String!
     var post: Post!
     var likesRef: FIRDatabaseReference!
 

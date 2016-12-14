@@ -11,13 +11,9 @@ import Firebase
 import SwiftKeychainWrapper
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-//    var selectedUsername: String!
-//    var postKeyToPass: String!
 
     @IBAction func usernameTapped(_ sender: AnyObject) {
         if FeedCell.usernameToPass != nil {
-            print(FeedCell.usernameToPass)
             performSegue(withIdentifier: "ViewUserVC", sender: nil)
         } else {
             print("NIL")
@@ -27,20 +23,16 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBAction func imageTapped(_ sender: AnyObject) {
         if FeedCell.postKeyToPass != nil {
             print("FEED VC: \(FeedCell.postKeyToPass)")
-//            performSegue(withIdentifier: "SinglePhotoVC", sender: nil)
+            performSegue(withIdentifier: "SinglePhotoVC", sender: nil)
         } else {
             print("NIL")
         }
-         performSegue(withIdentifier: "SinglePhotoVC", sender: nil)
     }
     
     @IBAction func commentTapped(_ sender: AnyObject) {
-        if FeedCell.postKeyToPass != nil {
-            print("FEED VC: \(FeedCell.postKeyToPass)")
-            performSegue(withIdentifier: "CommentsVC", sender: nil)
-        } else {
-            print("NIL")
-        }
+//        let key = DataService.ds.REF_POSTS.queryOrderedByKey()
+//            print("FEED VC: \(key)")
+        performSegue(withIdentifier: "CommentsVC", sender: nil)
     }
     
     @IBOutlet weak var tableView: UITableView!
@@ -63,7 +55,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
                         let key = snap.key
                         let post = Post(postKey: key, postData: postDict)
-                        FeedCell.postKeyToPass = key
                         self.posts.insert(post, at: 0)
                     }
                 }
@@ -74,10 +65,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func viewDidAppear(_ animated: Bool) {
         self.tableView.reloadData()
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        FeedCell.postKeyToPass = ""
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -120,10 +107,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             let myVC = segue.destination as! SinglePhotoVC
             myVC.postKeyPassed = FeedCell.postKeyToPass
         }
-        if segue.identifier == "CommentsVC" {
-            let myVC = segue.destination as! CommentsVC
-            myVC.postKeyPassed = FeedCell.postKeyToPass
-        }
+//        if segue.identifier == "CommentsVC" {
+//            let myVC = segue.destination as! CommentsVC
+//            myVC.postKeyPassed = FeedCell.postKeyToPass
+//        }
     }
     
 }

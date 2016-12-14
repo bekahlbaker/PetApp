@@ -13,7 +13,6 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     @IBAction func usernameTapped(_ sender: AnyObject) {
         if FeedCell.usernameToPass != nil {
-            print(FeedCell.usernameToPass)
             performSegue(withIdentifier: "ViewUserVC", sender: nil)
         } else {
             print("NIL")
@@ -21,8 +20,7 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     @IBAction func commentTapped(_ sender: AnyObject) {
-        if FeedCell.postKeyToPass != nil {
-            print("FEED VC: \(FeedCell.postKeyToPass)")
+        if self.postKeyPassed != nil {
             performSegue(withIdentifier: "CommentsVC", sender: nil)
         } else {
             print("NIL")
@@ -43,7 +41,7 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         tableView.delegate = self
         tableView.dataSource = self
         
-        DataService.ds.REF_POSTS.queryOrderedByKey().queryEqual(toValue: postKeyPassed).observeSingleEvent(of: .value, with: { (snapshot) in
+        DataService.ds.REF_POSTS.queryOrderedByKey().queryEqual(toValue: postKeyPassed).observe(.value, with: { (snapshot) in
             
             self.posts = []
             
@@ -57,6 +55,7 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             }
             self.tableView.reloadData()
         })
+        
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -91,10 +90,10 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             let myVC = segue.destination as! ViewUserVC
             myVC.usernamePassed = FeedCell.usernameToPass
         }
-        if segue.identifier == "CommentsVC" {
-            let myVC = segue.destination as! CommentsVC
-            myVC.postKeyPassed = FeedCell.postKeyToPass
-        }
+//        if segue.identifier == "CommentsVC" {
+//            let myVC = segue.destination as! CommentsVC
+//            myVC.postKeyPassed = self.postKeyPassed
+//        }
     }
     
 }
