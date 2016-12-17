@@ -1271,15 +1271,16 @@
                             <constraint firstAttribute="trailingMargin" secondItem="L7a-wv-I5n" secondAttribute="trailing" constant="8" id="8Sl-hG-S6l"/>
                             <constraint firstAttribute="trailing" secondItem="c8B-Dj-dpd" secondAttribute="trailing" id="KfH-T9-Zad"/>
                             <constraint firstItem="c8B-Dj-dpd" firstAttribute="leading" secondItem="6QE-qe-zJy" secondAttribute="leading" id="Rmg-fp-kxn"/>
+                            <constraint firstItem="R5n-vL-Fzd" firstAttribute="top" secondItem="JNJ-Te-h3w" secondAttribute="bottom" id="TAd-a8-DSC"/>
                             <constraint firstItem="7m2-XO-tmb" firstAttribute="top" secondItem="6QE-qe-zJy" secondAttribute="top" id="UwE-rs-60g"/>
                             <constraint firstItem="L7a-wv-I5n" firstAttribute="leading" secondItem="JNJ-Te-h3w" secondAttribute="trailing" constant="8" id="cUe-Vo-2YN"/>
-                            <constraint firstItem="JNJ-Te-h3w" firstAttribute="top" secondItem="c8B-Dj-dpd" secondAttribute="bottom" constant="7" id="qLr-dL-6Rd"/>
                             <constraint firstItem="JNJ-Te-h3w" firstAttribute="leading" secondItem="6QE-qe-zJy" secondAttribute="leadingMargin" id="rdo-3a-Mtl"/>
                             <constraint firstItem="7m2-XO-tmb" firstAttribute="leading" secondItem="6QE-qe-zJy" secondAttribute="leading" id="yqd-2n-GTg"/>
                             <constraint firstItem="L7a-wv-I5n" firstAttribute="centerY" secondItem="JNJ-Te-h3w" secondAttribute="centerY" id="zjh-cf-uzo"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bottomConstraint" destination="TAd-a8-DSC" id="zug-rD-ROR"/>
                         <outlet property="commentTextField" destination="JNJ-Te-h3w" id="Qcr-Ru-AvN"/>
                         <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="SMi-fh-w0v"/>
                     </connections>
@@ -1901,10 +1902,10 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="whq-87-tqY"/>
-        <segue reference="4ew-3Y-8WX"/>
+        <segue reference="SMi-fh-w0v"/>
+        <segue reference="61S-To-qrI"/>
         <segue reference="vcX-KV-BRk"/>
         <segue reference="61E-j1-iUC"/>
-        <segue reference="61S-To-qrI"/>
         <segue reference="Ive-65-i5K"/>
         <segue reference="lia-Ce-C0t"/>
         <segue reference="zsD-8J-Lsn"/>
