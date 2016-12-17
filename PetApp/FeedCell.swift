@@ -10,6 +10,7 @@ import UIKit
 import Firebase
 import Kingfisher
 
+
 class FeedCell: UITableViewCell {
 
     @IBOutlet weak var feedImageView: UIImageView!
@@ -22,22 +23,20 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var usernameBtn: UIButton!
     
     @IBAction func usernameTapped(_ sender: AnyObject) {
-        getUsernameToPass()
+        tapActionUsername?(self)
     }
     
-    @IBAction func imageTapped(_ sender: AnyObject) {
-        getPostKeyToPass()
+    @IBAction func imageTapped(sender: AnyObject) {
+        tapAction?(self)
     }
 
     @IBAction func commentTapped(_ sender: AnyObject) {
-        print("FEED CELL: \(FeedCell.postKeyForComments)")
-//        CommentsVC.postKeyPassed = FeedCell.postKeyForComments
+        tapActionComment?(self)
     }
     
-    static var usernameToPass: String!
-    static var postKeyToPass: String!
-    static var postKeyForComments: String!
-    
+    var tapAction: ((UITableViewCell) -> Void)?
+    var tapActionUsername: ((UITableViewCell) -> Void)?
+    var tapActionComment: ((UITableViewCell) -> Void)?
     var post: Post!
     var likesRef: FIRDatabaseReference!
     
@@ -57,13 +56,11 @@ class FeedCell: UITableViewCell {
         self.post = post
 
         likesRef = DataService.ds.REF_CURRENT_USER.child("likes").child(post.postKey)
-        
-        FeedCell.postKeyForComments = post.postKey
 
         self.caption.text = post.caption
         
         self.usernameBtn.setTitle(post.username, for: .normal)
-        
+
         self.likes.text = String(post.likes)
         
         if img != nil {
@@ -117,7 +114,6 @@ class FeedCell: UITableViewCell {
                 self.likesImgSm.image = UIImage(named: "filled-heart")
             }
         })
-
 }
 
     func likeTapped(sender: UITapGestureRecognizer) {
@@ -135,15 +131,4 @@ class FeedCell: UITableViewCell {
             }
         })
     }
-    
-    func getUsernameToPass() {
-        FeedCell.usernameToPass = ""
-        FeedCell.usernameToPass = usernameBtn.titleLabel?.text
-    }
-    
-    func getPostKeyToPass() {
-        FeedCell.postKeyToPass = ""
-        FeedCell.postKeyToPass = post.postKey
-    }
-    
 }

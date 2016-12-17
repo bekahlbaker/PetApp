@@ -11,7 +11,7 @@ import Firebase
 
 class CommentsVC: UIViewController {
     
-    static var postKeyPassed: String!
+    var postKeyPassed: String!
     var commentCount = 0
     var currentUsername: String!
     
@@ -54,8 +54,9 @@ class CommentsVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        CommentsVC.postKeyPassed = FeedCell.postKeyForComments
-        print("COMMENTS VC: \(CommentsVC.postKeyPassed)")
+
+        self.postKeyPassed = FeedVC.postKeyToPass
+        print("COMMENTS VC: \(self.postKeyPassed)")
         
         DataService.ds.REF_CURRENT_USER.observe( .value, with:  { (snapshot) in
             if let dictionary = snapshot.value as? [String: Any] {
@@ -74,7 +75,7 @@ class CommentsVC: UIViewController {
             "username" : self.currentUsername as String
         ]
         
-        let firebasePost = DataService.ds.REF_POSTS.child(CommentsVC.postKeyPassed)
+        let firebasePost = DataService.ds.REF_POSTS.child(self.postKeyPassed)
         firebasePost.updateChildValues(["commentCount": self.commentCount])
         firebasePost.child("comments").childByAutoId().setValue(comment)
         

@@ -40,6 +40,7 @@
 		2770D1FB1DF9CB61007F904A /* SinglePhotoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2770D1FA1DF9CB61007F904A /* SinglePhotoVC.swift */; };
 		2778F4071DFF6570009BCF65 /* CommentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2778F4061DFF6570009BCF65 /* CommentsVC.swift */; };
 		2778F4091E007955009BCF65 /* SinglePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2778F4081E007955009BCF65 /* SinglePhotoCell.swift */; };
+		2778F40D1E047D72009BCF65 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2778F40C1E047D72009BCF65 /* CoreData.framework */; };
 		2788DE481DEF614500078A41 /* ViewUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2788DE471DEF614500078A41 /* ViewUserVC.swift */; };
 		2788DE4B1DF09F6C00078A41 /* PostVC+CoreImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2788DE4A1DF09F6C00078A41 /* PostVC+CoreImage.swift */; };
 		2788DE4F1DF2070C00078A41 /* PostCaptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2788DE4E1DF2070C00078A41 /* PostCaptionVC.swift */; };
@@ -86,6 +87,7 @@
 		2770D1FA1DF9CB61007F904A /* SinglePhotoVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePhotoVC.swift; sourceTree = "<group>"; };
 		2778F4061DFF6570009BCF65 /* CommentsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsVC.swift; sourceTree = "<group>"; };
 		2778F4081E007955009BCF65 /* SinglePhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePhotoCell.swift; sourceTree = "<group>"; };
+		2778F40C1E047D72009BCF65 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		2788DE471DEF614500078A41 /* ViewUserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewUserVC.swift; sourceTree = "<group>"; };
 		2788DE4A1DF09F6C00078A41 /* PostVC+CoreImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PostVC+CoreImage.swift"; sourceTree = "<group>"; };
 		2788DE4E1DF2070C00078A41 /* PostCaptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCaptionVC.swift; sourceTree = "<group>"; };
@@ -102,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2778F40D1E047D72009BCF65 /* CoreData.framework in Frameworks */,
 				27166B3B1DCD0D4700A57821 /* FBSDKCoreKit.framework in Frameworks */,
 				B61761CB0A8D5494AA1962C9 /* Pods_PetApp.framework in Frameworks */,
 				27166B351DCD0D2800A57821 /* Bolts.framework in Frameworks */,
@@ -234,6 +237,7 @@
 		32AA3AA8459EA9C86F7B8203 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2778F40C1E047D72009BCF65 /* CoreData.framework */,
 				27166B3A1DCD0D4700A57821 /* FBSDKCoreKit.framework */,
 				27166B381DCD0D4000A57821 /* FBSDKLoginKit.framework */,
 				27166B361DCD0D3900A57821 /* FBSDKShareKit.framework */,
@@ -536,7 +540,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = PetApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bekahlynnbaker.PetApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -556,7 +560,7 @@
 					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = PetApp/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bekahlynnbaker.PetApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";

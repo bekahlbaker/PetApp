@@ -10,6 +10,7 @@ import Foundation
 import Firebase
 
 class Post {
+    private var _postKeyForPassing: String!
     private var _username: String!
     private var _profileImgUrl: String!
     private var _caption: String!
@@ -17,6 +18,10 @@ class Post {
     private var _likes: Int!
     private var _postKey: String!
     private var _postRef: FIRDatabaseReference!
+    
+    var postKeyForPassing: String {
+        return _postKey
+    }
     
     var username: String {
         return _username
@@ -42,7 +47,8 @@ class Post {
         return _postKey
     }
     
-    init(username: String, profileImgUrl: String, caption: String, imageURL: String, likes: Int) {
+    init(postKeyForPassing: String, username: String, profileImgUrl: String, caption: String, imageURL: String, likes: Int) {
+        self._postKeyForPassing = postKeyForPassing
         self._username = username
         self._profileImgUrl = profileImgUrl
         self._caption = caption
@@ -52,6 +58,10 @@ class Post {
     
     init(postKey: String, postData: Dictionary<String, AnyObject>) {
         self._postKey = postKey
+        
+        if let postKeyForPassing = postData["postKey"] as? String {
+            self._postKeyForPassing = postKeyForPassing
+        }
         
         if let username = postData["username"] as? String {
             self._username = username

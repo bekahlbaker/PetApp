@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11521.1" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11517.1"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -1234,7 +1235,7 @@
                                     <constraint firstAttribute="height" constant="315" id="Ru9-A9-9rk"/>
                                 </constraints>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="O2q-Tn-uRM">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" id="O2q-Tn-uRM">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O2q-Tn-uRM" id="yRL-2k-Osf">
@@ -1363,7 +1364,6 @@
                                                     <connections>
                                                         <action selector="usernameTapped:" destination="M0X-hF-jYW" eventType="touchUpInside" id="MKS-hh-3sd"/>
                                                         <action selector="usernameTapped:" destination="6d2-yY-NUK" eventType="touchUpInside" id="hLd-Wf-w2h"/>
-                                                        <action selector="usernameTapped:" destination="FOH-oA-jlS" eventType="touchUpInside" id="ueT-k0-7KT"/>
                                                     </connections>
                                                 </button>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank-profile-picture" translatesAutoresizingMaskIntoConstraints="NO" id="BOm-Hc-a5x" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
@@ -1486,6 +1486,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="wTY-RD-waF" id="jqs-0I-g0L"/>
+                        <segue destination="ABA-se-GwR" kind="show" identifier="ViewUserVC" id="lLd-kn-GIM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j23-XF-eg3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1504,7 +1505,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="539" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mY4-Tr-zgP">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="539" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mY4-Tr-zgP">
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedCell" rowHeight="539" id="XT7-dt-d1F" customClass="FeedCell" customModule="PetApp" customModuleProvider="target">
@@ -1514,19 +1515,6 @@
                                             <frame key="frameInset" width="375" height="539"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jIf-1K-9xZ">
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="36" id="yi9-ar-h5d"/>
-                                                    </constraints>
-                                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
-                                                    <state key="normal" title="username">
-                                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                                    </state>
-                                                    <connections>
-                                                        <action selector="usernameTapped:" destination="XT7-dt-d1F" eventType="touchUpInside" id="3z0-KD-bsW"/>
-                                                        <action selector="usernameTapped:" destination="FOH-oA-jlS" eventType="touchUpInside" id="qbS-A5-em9"/>
-                                                    </connections>
-                                                </button>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank-profile-picture" translatesAutoresizingMaskIntoConstraints="NO" id="UD5-au-Ivn" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
                                                     <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
@@ -1558,8 +1546,7 @@
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yf8-rA-QC7">
                                                     <connections>
-                                                        <action selector="imageTapped:" destination="XT7-dt-d1F" eventType="touchUpInside" id="WDJ-uC-6Ut"/>
-                                                        <action selector="imageTapped:" destination="FOH-oA-jlS" eventType="touchUpInside" id="Z4N-oO-WEL"/>
+                                                        <action selector="imageTappedWithSender:" destination="XT7-dt-d1F" eventType="touchUpInside" id="ubI-Jd-58L"/>
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aF3-6e-xIb">
@@ -1582,13 +1569,23 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1S3-sU-mSy">
                                                     <connections>
                                                         <action selector="commentTapped:" destination="XT7-dt-d1F" eventType="touchUpInside" id="RoJ-4g-CE1"/>
-                                                        <action selector="commentTapped:" destination="FOH-oA-jlS" eventType="touchUpInside" id="lJR-Kf-NIe"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ldo-zY-XKn">
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="36" id="k0p-7g-SlE"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
+                                                    <state key="normal" title="username">
+                                                        <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <connections>
+                                                        <action selector="usernameTapped:" destination="XT7-dt-d1F" eventType="touchUpInside" id="HUw-OI-T16"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="mjC-5q-P8C" firstAttribute="leading" secondItem="sxM-VQ-Gq8" secondAttribute="leadingMargin" id="0Z3-pY-SIj"/>
-                                                <constraint firstItem="jIf-1K-9xZ" firstAttribute="leading" secondItem="UD5-au-Ivn" secondAttribute="trailing" constant="8" id="4in-Dl-W24"/>
                                                 <constraint firstItem="yf8-rA-QC7" firstAttribute="centerX" secondItem="OYw-6X-lWR" secondAttribute="centerX" id="7d4-r1-YEW"/>
                                                 <constraint firstItem="1S3-sU-mSy" firstAttribute="height" secondItem="JYe-G5-aHa" secondAttribute="height" id="8Wu-0a-nu4"/>
                                                 <constraint firstItem="1S3-sU-mSy" firstAttribute="centerY" secondItem="JYe-G5-aHa" secondAttribute="centerY" id="9wX-fV-wH6"/>
@@ -1597,17 +1594,20 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="mjC-5q-P8C" secondAttribute="trailing" id="GZg-yQ-If6"/>
                                                 <constraint firstItem="yf8-rA-QC7" firstAttribute="width" secondItem="OYw-6X-lWR" secondAttribute="width" id="Gur-k8-SO5"/>
                                                 <constraint firstItem="qCI-OQ-BVc" firstAttribute="top" secondItem="yf8-rA-QC7" secondAttribute="bottom" constant="8" id="Jnd-8G-0g9"/>
+                                                <constraint firstItem="ufH-fg-98K" firstAttribute="leading" secondItem="Ldo-zY-XKn" secondAttribute="trailing" constant="8" id="Mvd-wa-uRi"/>
                                                 <constraint firstAttribute="trailing" secondItem="OYw-6X-lWR" secondAttribute="trailing" id="R1J-SY-RAa"/>
                                                 <constraint firstItem="1S3-sU-mSy" firstAttribute="centerX" secondItem="JYe-G5-aHa" secondAttribute="centerX" id="RTg-uZ-kTG"/>
                                                 <constraint firstItem="JYe-G5-aHa" firstAttribute="top" secondItem="yf8-rA-QC7" secondAttribute="bottom" constant="8" id="SNc-ed-4Ky"/>
                                                 <constraint firstItem="JYe-G5-aHa" firstAttribute="leading" secondItem="4jZ-HB-nLh" secondAttribute="trailing" constant="24" id="UZ8-a8-99i"/>
+                                                <constraint firstItem="Ldo-zY-XKn" firstAttribute="centerY" secondItem="UD5-au-Ivn" secondAttribute="centerY" id="Vt3-YC-tMH"/>
                                                 <constraint firstItem="aF3-6e-xIb" firstAttribute="leading" secondItem="JYe-G5-aHa" secondAttribute="trailing" constant="8" id="WKI-xM-dZj"/>
                                                 <constraint firstItem="OYw-6X-lWR" firstAttribute="top" secondItem="UD5-au-Ivn" secondAttribute="bottom" constant="10" id="Yol-0F-80V"/>
                                                 <constraint firstItem="4jZ-HB-nLh" firstAttribute="leading" secondItem="qCI-OQ-BVc" secondAttribute="trailing" constant="8" id="ZYf-vf-fQS"/>
                                                 <constraint firstItem="yf8-rA-QC7" firstAttribute="centerY" secondItem="OYw-6X-lWR" secondAttribute="centerY" id="aEk-hc-Ddy"/>
+                                                <constraint firstItem="ufH-fg-98K" firstAttribute="centerY" secondItem="Ldo-zY-XKn" secondAttribute="centerY" id="c55-fP-dXc"/>
                                                 <constraint firstItem="OYw-6X-lWR" firstAttribute="centerX" secondItem="sxM-VQ-Gq8" secondAttribute="centerX" id="d4J-cT-Hpa"/>
+                                                <constraint firstItem="Ldo-zY-XKn" firstAttribute="leading" secondItem="UD5-au-Ivn" secondAttribute="trailing" constant="8" id="djB-Xf-V48"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="mjC-5q-P8C" secondAttribute="bottom" id="fGX-Hl-ytd"/>
-                                                <constraint firstItem="ufH-fg-98K" firstAttribute="centerY" secondItem="jIf-1K-9xZ" secondAttribute="centerY" id="iGP-6z-r9U"/>
                                                 <constraint firstItem="yf8-rA-QC7" firstAttribute="height" secondItem="OYw-6X-lWR" secondAttribute="height" id="lTg-PA-icE"/>
                                                 <constraint firstItem="1S3-sU-mSy" firstAttribute="width" secondItem="JYe-G5-aHa" secondAttribute="width" id="mag-z7-XFj"/>
                                                 <constraint firstItem="aF3-6e-xIb" firstAttribute="centerY" secondItem="JYe-G5-aHa" secondAttribute="centerY" id="mcr-as-Yjq"/>
@@ -1616,8 +1616,6 @@
                                                 <constraint firstItem="qCI-OQ-BVc" firstAttribute="leading" secondItem="sxM-VQ-Gq8" secondAttribute="leading" constant="16" id="uZA-6g-VFO"/>
                                                 <constraint firstItem="UD5-au-Ivn" firstAttribute="top" secondItem="sxM-VQ-Gq8" secondAttribute="topMargin" id="ufS-0h-ygn"/>
                                                 <constraint firstItem="mjC-5q-P8C" firstAttribute="top" secondItem="yf8-rA-QC7" secondAttribute="bottom" constant="25" id="xJY-KP-0Nz"/>
-                                                <constraint firstItem="ufH-fg-98K" firstAttribute="leading" secondItem="jIf-1K-9xZ" secondAttribute="trailing" constant="8" id="xbb-sl-gd2"/>
-                                                <constraint firstItem="jIf-1K-9xZ" firstAttribute="centerY" secondItem="UD5-au-Ivn" secondAttribute="centerY" id="z9N-KX-fRf"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -1628,7 +1626,7 @@
                                             <outlet property="likesImg" destination="ufH-fg-98K" id="ILA-vj-Vv1"/>
                                             <outlet property="likesImgSm" destination="qCI-OQ-BVc" id="IUG-i3-IwP"/>
                                             <outlet property="profileImg" destination="UD5-au-Ivn" id="igu-fj-EDf"/>
-                                            <outlet property="usernameBtn" destination="jIf-1K-9xZ" id="BN2-iO-Kyn"/>
+                                            <outlet property="usernameBtn" destination="Ldo-zY-XKn" id="Pu2-Ge-Miw"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1902,13 +1900,14 @@
         <image name="user-sm" width="35" height="35"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dXV-T8-2Jd"/>
-        <segue reference="lia-Ce-C0t"/>
         <segue reference="whq-87-tqY"/>
-        <segue reference="SDZ-21-9fi"/>
-        <segue reference="VOj-p2-r25"/>
-        <segue reference="zsD-8J-Lsn"/>
+        <segue reference="4ew-3Y-8WX"/>
+        <segue reference="vcX-KV-BRk"/>
         <segue reference="61E-j1-iUC"/>
         <segue reference="61S-To-qrI"/>
+        <segue reference="Ive-65-i5K"/>
+        <segue reference="lia-Ce-C0t"/>
+        <segue reference="zsD-8J-Lsn"/>
+        <segue reference="xu2-ih-vp3"/>
     </inferredMetricsTieBreakers>
 </document>

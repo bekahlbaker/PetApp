@@ -67,9 +67,6 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
         
         captionTextView.text = "Write a caption..."
         captionTextView.textColor = UIColor.lightGray
-//        captionTextView.layer.borderColor = UIColor.lightGray.cgColor
-//        captionTextView.layer.borderWidth = 1.0
-//        captionTextView.layer.masksToBounds = true
         captionTextView.delegate = self
 
         if let img = PostVC.filteredImageCache.object(forKey: "imageToPass") {
@@ -103,11 +100,14 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
             "likes": 0 as Int,
             "profileImgUrl": self.profileImg,
             "comments": "" as String,
-            "commentCount": 0 as Int
+            "commentCount": 0 as Int,
+            "postKey": "" as String
         ]
         
         let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
         firebasePost.setValue(post)
-
+        print("POST KEY: \(firebasePost.key)")
+        let key = firebasePost.key
+        firebasePost.updateChildValues(["postKey": key])
     }
 }

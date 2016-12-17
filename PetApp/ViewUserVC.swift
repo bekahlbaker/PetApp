@@ -34,7 +34,8 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        FeedCell.usernameToPass = ""
+        self.usernamePassed = FeedVC.usernameToPass
+        print("VUVC \(self.usernamePassed)")
         
         DataService.ds.REF_POSTS.queryOrdered(byChild: "username").queryEqual(toValue: self.usernamePassed).observeSingleEvent(of: .value, with: { (snapshot) in
             

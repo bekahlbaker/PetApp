@@ -11,34 +11,14 @@ import Firebase
 import SwiftKeychainWrapper
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
-
-    @IBAction func usernameTapped(_ sender: AnyObject) {
-        if FeedCell.usernameToPass != nil {
-            performSegue(withIdentifier: "ViewUserVC", sender: nil)
-        } else {
-            print("NIL")
-        }
-    }
-    
-    @IBAction func imageTapped(_ sender: AnyObject) {
-        if FeedCell.postKeyToPass != nil {
-            print("FEED VC: \(FeedCell.postKeyToPass)")
-            performSegue(withIdentifier: "SinglePhotoVC", sender: nil)
-        } else {
-            print("NIL")
-        }
-    }
-    
-    @IBAction func commentTapped(_ sender: AnyObject) {
-//        let key = DataService.ds.REF_POSTS.queryOrderedByKey()
-//            print("FEED VC: \(key)")
-        performSegue(withIdentifier: "CommentsVC", sender: nil)
-    }
     
     @IBOutlet weak var tableView: UITableView!
     
     var posts = [Post]()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
+    var indexToPass: Int!
+    static var usernameToPass: String!
+    static var postKeyToPass: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,10 +43,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         })
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        self.tableView.reloadData()
-    }
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
         
@@ -76,17 +52,41 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return posts.count
         
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    
+    }
 
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let post = posts[indexPath.row]
         
+        
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as? FeedCell {
 
             if let img = FeedVC.imageCache.object(forKey: post.imageURL as NSString), let profileImg = FeedVC.imageCache.object(forKey: post.profileImgUrl as NSString) {
                 print("Getting images from cache")
                 cell.configureCell(post: post, img: img, profileImg: profileImg)
+                
+                cell.tapAction = { (cell) in
+                    print(tableView.indexPath(for: cell)!.row)
+                    self.indexToPass = tableView.indexPath(for: cell)!.row
+                    self.performSegue(withIdentifier: "SinglePhotoVC", sender: nil)
+                }
+
+                cell.tapActionUsername = { (cell) in
+                    print("POST \(post.username)")
+                    FeedVC.usernameToPass = post.username
+                    self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
+                }
+                
+                cell.tapActionComment = { (cell) in
+                    print("POST \(post.postKeyForPassing)")
+                    FeedVC.postKeyToPass = post.postKeyForPassing
+                    self.performSegue(withIdentifier: "CommentsVC", sender: nil)
+                }
+                
                 return cell
             } else {
                 cell.configureCell(post: post)
@@ -97,20 +97,25 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             return FeedCell()
         }
     }
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ViewUserVC" {
-            let myVC = segue.destination as! ViewUserVC
-            myVC.usernamePassed = FeedCell.usernameToPass
-        }
         if segue.identifier == "SinglePhotoVC" {
             let myVC = segue.destination as! SinglePhotoVC
-            myVC.postKeyPassed = FeedCell.postKeyToPass
+            myVC.indexPassed = self.indexToPass
         }
+//        if segue.identifier == "ViewUserVC" {
+//            let myVC = segue.destination as! ViewUserVC
+//            myVC.usernamePassed = self.usernameToPass
+//            if self.usernameToPass != nil {
+//              print("PASSING \(self.usernameToPass)")   
+//            }
+//        }
 //        if segue.identifier == "CommentsVC" {
 //            let myVC = segue.destination as! CommentsVC
-//            myVC.postKeyPassed = FeedCell.postKeyToPass
+//            myVC.postKeyPassed = self.postKeyToPass
+//            if self.postKeyToPass != nil {
+//                print("PASSING \(self.postKeyToPass)")
+//            }
 //        }
     }
-    
 }

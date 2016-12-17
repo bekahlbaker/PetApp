@@ -21,14 +21,13 @@ class SinglePhotoCell: UITableViewCell {
     @IBOutlet weak var usernameBtn: UIButton!
     
     @IBAction func usernameTapped(_ sender: AnyObject) {
-        getUsernameToPass()
+
     }
     
     @IBAction func commentTapped(_ sender: AnyObject) {
-        getPostKeyToPass()
+
     }
-//    
-//    static var usernameToPass: String!
+
     var post: Post!
     var likesRef: FIRDatabaseReference!
 
@@ -121,15 +120,5 @@ class SinglePhotoCell: UITableViewCell {
                 self.likesRef.removeValue()
             }
         })
-    }
-    
-    func getUsernameToPass() {
-        FeedCell.usernameToPass = ""
-        FeedCell.usernameToPass = usernameBtn.titleLabel?.text
-    }
-    
-    func getPostKeyToPass() {
-        FeedCell.postKeyToPass = ""
-        FeedCell.postKeyToPass = post.postKey
     }
 }

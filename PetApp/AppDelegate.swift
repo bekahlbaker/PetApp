@@ -56,7 +56,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         return UIInterfaceOrientationMask.portrait
     }
-
-
 }
+
 
