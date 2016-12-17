@@ -62,6 +62,20 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         return 1
     }
     
+
+//    func likeTapped(sender: UITapGestureRecognizer) {
+//        likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
+//            if let _ = snapshot.value as? NSNull {
+//                self.likeBtn.image = UIImage(named: "empty-heart")
+////                self.adjustLikes(addLike: true)
+//                self.likesRef.setValue(true)
+//            } else {
+//                self.likeBtn.image = UIImage(named: "filled-heart")
+////                self.adjustLikes(addLike: false)
+//                self.likesRef.removeValue()
+//            }
+//        })
+//    }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -73,7 +87,6 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             } else {
             return SinglePhotoCell()
         }
-        
     }
     
 }
