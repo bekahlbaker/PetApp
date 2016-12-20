@@ -14,6 +14,7 @@ class Post {
     private var _username: String!
     private var _profileImgUrl: String!
     private var _caption: String!
+     private var _commentCount: Int!
     private var _imageURL: String!
     private var _likes: Int!
     private var _postKey: String!
@@ -35,6 +36,10 @@ class Post {
         return _caption
     }
     
+    var commentCount: Int {
+        return _commentCount
+    }
+    
     var imageURL: String {
         return _imageURL
     }
@@ -47,11 +52,12 @@ class Post {
         return _postKey
     }
     
-    init(postKeyForPassing: String, username: String, profileImgUrl: String, caption: String, imageURL: String, likes: Int) {
+    init(postKeyForPassing: String, username: String, profileImgUrl: String, caption: String, commentCount: Int,  imageURL: String, likes: Int) {
         self._postKeyForPassing = postKeyForPassing
         self._username = username
         self._profileImgUrl = profileImgUrl
         self._caption = caption
+        self._commentCount = commentCount
         self._imageURL = imageURL
         self._likes = likes
     }
@@ -75,6 +81,10 @@ class Post {
             self._caption = caption
         }
         
+        if let commentCount = postData["commentCount"] as? Int {
+            self._commentCount = commentCount
+        }
+        
         if let imageURL = postData["imageURL"] as? String {
             self._imageURL = imageURL
         }
@@ -95,4 +105,15 @@ class Post {
         
         _postRef.updateChildValues(["likes": likes])
     }
+    
+    func adjustCommentCount(addComment: Bool) {
+        if addComment {
+            _commentCount = _commentCount + 1
+        } else {
+            _commentCount = _commentCount - 1
+        }
+        
+        _postRef.updateChildValues(["commentCount": commentCount])
+    }
+
 }

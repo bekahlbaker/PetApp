@@ -9,8 +9,11 @@
 import UIKit
 import Firebase
 
-class CommentsVC: UIViewController {
+class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var tableView: UITableView!
+    
+    var comments = [Post]()
     var postKeyPassed: String!
     var commentCount = 0
     var currentUsername: String!
@@ -54,9 +57,31 @@ class CommentsVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.postKeyPassed = FeedVC.postKeyToPass
         print("COMMENTS VC: \(self.postKeyPassed)")
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        DataService.ds.REF_POSTS.child(self.postKeyPassed).child("comments").observe(.value, with: { (snapshot) in
+        
+            self.comments = []
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                print("SNAPSHOT DOWNLOADED \(snapshot)")
+                for snap in snapshot {
+                    print("SNAP: \(snap)")
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        let key = snap.key
+                        let post = Post(postKey: key, postData: postDict)
+                        self.comments.insert(post, at: 0)
+                    }
+                }
+            }
+            self.tableView.reloadData()
+            
+        })
         
         DataService.ds.REF_CURRENT_USER.observe( .value, with:  { (snapshot) in
             if let dictionary = snapshot.value as? [String: Any] {
@@ -79,24 +104,27 @@ class CommentsVC: UIViewController {
         firebasePost.updateChildValues(["commentCount": self.commentCount])
         firebasePost.child("comments").childByAutoId().setValue(comment)
         
+        
     }
     
     
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
-    func keyboardWasShown(notification: NSNotification) {
-        let info = notification.userInfo!
-        let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
+    func keyboardWillShow(notification: NSNotification) {
         
-        UIView.animate(withDuration: 0.1, animations: { () -> Void in
-            self.bottomConstraint.constant = keyboardFrame.size.height + 20
-        })
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
         
-        commentTextField.resignFirstResponder()
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
-        super.touchesBegan(touches, with: event)
+    func keyboardWillHide(notification: NSNotification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0{
+                self.view.frame.origin.y += keyboardSize.height
+            }
+        }
     }
 }
