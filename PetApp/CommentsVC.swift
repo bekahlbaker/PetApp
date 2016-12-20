@@ -13,7 +13,7 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var comments = [Post]()
+    var comments = [Comment]()
     var postKeyPassed: String!
     var commentCount = 0
     var currentUsername: String!
@@ -38,8 +38,9 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     @IBAction func commentBtnTapped(_ sender: AnyObject) {
+         self.getCommentCount()
+        
         if self.commentTextField.text != "" {
-            self.commentCount += 1
             postToFirebase()
             commentTextField.text = ""
             print("Added comment to Post")
@@ -50,6 +51,8 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             alert.addAction(ok)
             show(alert, sender: self)
         }
+        
+         self.getCommentCount()
     }
     
     @IBOutlet weak var commentTextField: UITextField!
@@ -73,9 +76,12 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 for snap in snapshot {
                     print("SNAP: \(snap)")
                     if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        print("POST DICT \(postDict)")
                         let key = snap.key
-                        let post = Post(postKey: key, postData: postDict)
-                        self.comments.insert(post, at: 0)
+                        print("KEY \(key)")
+                        let comment = Comment(postKey: key, postData: postDict)
+                        self.comments.append(comment)
+                        print("COMMENTS \(self.comments)")
                     }
                 }
             }
@@ -101,10 +107,22 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         ]
         
         let firebasePost = DataService.ds.REF_POSTS.child(self.postKeyPassed)
-        firebasePost.updateChildValues(["commentCount": self.commentCount])
+        firebasePost.updateChildValues(["commentCount": self.commentCount + 1])
         firebasePost.child("comments").childByAutoId().setValue(comment)
         
         
+    }
+    
+
+    func getCommentCount() {
+        DataService.ds.REF_POSTS.child(self.postKeyPassed).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: Any] {
+                if let currentCount = dictionary["commentCount"] as? Int {
+                print("DOWNLOADED COUNT \(currentCount)")
+                self.commentCount = currentCount
+                }
+            }
+        })
     }
     
     

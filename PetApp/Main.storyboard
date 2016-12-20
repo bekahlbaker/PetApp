@@ -1264,8 +1264,8 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="comment" destination="JdB-fk-ys3" id="BxO-BC-iI2"/>
-                                            <outlet property="username" destination="cAI-9S-B3d" id="XBa-BV-SDn"/>
+                                            <outlet property="commentLbl" destination="JdB-fk-ys3" id="OXQ-or-fvj"/>
+                                            <outlet property="usernameLbl" destination="cAI-9S-B3d" id="oRm-xh-79x"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -1301,8 +1301,8 @@
                             <constraint firstAttribute="trailingMargin" secondItem="L7a-wv-I5n" secondAttribute="trailing" constant="8" id="8Sl-hG-S6l"/>
                             <constraint firstAttribute="trailing" secondItem="c8B-Dj-dpd" secondAttribute="trailing" id="KfH-T9-Zad"/>
                             <constraint firstItem="c8B-Dj-dpd" firstAttribute="leading" secondItem="6QE-qe-zJy" secondAttribute="leading" id="Rmg-fp-kxn"/>
-                            <constraint firstItem="R5n-vL-Fzd" firstAttribute="top" secondItem="JNJ-Te-h3w" secondAttribute="bottom" id="TAd-a8-DSC"/>
                             <constraint firstItem="7m2-XO-tmb" firstAttribute="top" secondItem="6QE-qe-zJy" secondAttribute="top" id="UwE-rs-60g"/>
+                            <constraint firstItem="JNJ-Te-h3w" firstAttribute="top" secondItem="c8B-Dj-dpd" secondAttribute="bottom" constant="8" id="WoZ-9q-QqD"/>
                             <constraint firstItem="L7a-wv-I5n" firstAttribute="leading" secondItem="JNJ-Te-h3w" secondAttribute="trailing" constant="8" id="cUe-Vo-2YN"/>
                             <constraint firstItem="JNJ-Te-h3w" firstAttribute="leading" secondItem="6QE-qe-zJy" secondAttribute="leadingMargin" id="rdo-3a-Mtl"/>
                             <constraint firstItem="7m2-XO-tmb" firstAttribute="leading" secondItem="6QE-qe-zJy" secondAttribute="leading" id="yqd-2n-GTg"/>
@@ -1310,7 +1310,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="bottomConstraint" destination="TAd-a8-DSC" id="zug-rD-ROR"/>
                         <outlet property="commentTextField" destination="JNJ-Te-h3w" id="Qcr-Ru-AvN"/>
                         <outlet property="tableView" destination="c8B-Dj-dpd" id="Os4-w6-see"/>
                         <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="SMi-fh-w0v"/>

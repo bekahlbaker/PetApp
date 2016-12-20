@@ -14,7 +14,7 @@ class Post {
     private var _username: String!
     private var _profileImgUrl: String!
     private var _caption: String!
-     private var _commentCount: Int!
+    private var _commentCount: Int!
     private var _imageURL: String!
     private var _likes: Int!
     private var _postKey: String!
@@ -52,7 +52,7 @@ class Post {
         return _postKey
     }
     
-    init(postKeyForPassing: String, username: String, profileImgUrl: String, caption: String, commentCount: Int,  imageURL: String, likes: Int) {
+    init(postKeyForPassing: String, username: String, profileImgUrl: String, caption: String, commentCount: Int, imageURL: String, likes: Int) {
         self._postKeyForPassing = postKeyForPassing
         self._username = username
         self._profileImgUrl = profileImgUrl

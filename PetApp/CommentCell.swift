@@ -7,23 +7,26 @@
 //
 
 import UIKit
+import Firebase
 
 class CommentCell: UITableViewCell {
     
-    @IBOutlet weak var comment: UILabel!
-    @IBOutlet weak var username: UILabel!
-    var post: Post!
+    @IBOutlet weak var commentLbl: UILabel!
+    @IBOutlet weak var usernameLbl: UILabel!
+    var comment: Comment!
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
     }
     
-    func configureCell(post: Post) {
-       self.post = post
+    func configureCell(postKey: String, comment: Comment) {
         
-//        self.comment.text = post.comment
-        self.username.text = post.username
+        self.comment = comment
+        
+        self.commentLbl.text = comment.comment
+        
+        self.usernameLbl.text = comment.username
     }
 
 }
