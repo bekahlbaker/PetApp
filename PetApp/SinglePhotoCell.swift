@@ -52,6 +52,8 @@ class SinglePhotoCell: UITableViewCell {
         
         self.likes.text = String(post.likes)
         
+        self.comments.text = String(post.commentCount)
+        
         if img != nil {
             self.feedImageView.image = img
         } else {

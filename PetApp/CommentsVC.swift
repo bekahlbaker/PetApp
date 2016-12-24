@@ -61,33 +61,37 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.postKeyPassed = FeedVC.postKeyToPass
-        print("COMMENTS VC: \(self.postKeyPassed)")
+        if FeedVC.postKeyToPass != nil {
+            self.postKeyPassed = FeedVC.postKeyToPass
+            print("COMMENTS VC: \(self.postKeyPassed)")
+            
+            DataService.ds.REF_POSTS.child(self.postKeyPassed).child("comments").observe(.value, with: { (snapshot) in
+                
+                self.comments = []
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    print("SNAPSHOT DOWNLOADED \(snapshot)")
+                    for snap in snapshot {
+                        print("SNAP: \(snap)")
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            print("POST DICT \(postDict)")
+                            let key = snap.key
+                            print("KEY \(key)")
+                            let comment = Comment(postKey: key, postData: postDict)
+                            self.comments.append(comment)
+                            print("COMMENTS \(self.comments)")
+                        }
+                    }
+                }
+                self.tableView.reloadData()
+                
+            })
+        } else {
+            print("No post key")
+        }
         
         tableView.delegate = self
         tableView.dataSource = self
-        
-        DataService.ds.REF_POSTS.child(self.postKeyPassed).child("comments").observe(.value, with: { (snapshot) in
-        
-            self.comments = []
-            
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                print("SNAPSHOT DOWNLOADED \(snapshot)")
-                for snap in snapshot {
-                    print("SNAP: \(snap)")
-                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                        print("POST DICT \(postDict)")
-                        let key = snap.key
-                        print("KEY \(key)")
-                        let comment = Comment(postKey: key, postData: postDict)
-                        self.comments.append(comment)
-                        print("COMMENTS \(self.comments)")
-                    }
-                }
-            }
-            self.tableView.reloadData()
-            
-        })
         
         DataService.ds.REF_CURRENT_USER.observe( .value, with:  { (snapshot) in
             if let dictionary = snapshot.value as? [String: Any] {

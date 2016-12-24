@@ -72,19 +72,25 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 cell.tapAction = { (cell) in
                     print(tableView.indexPath(for: cell)!.row)
                     self.indexToPass = tableView.indexPath(for: cell)!.row
-                    self.performSegue(withIdentifier: "SinglePhotoVC", sender: nil)
+                    if self.indexToPass != nil {
+                        self.performSegue(withIdentifier: "SinglePhotoVC", sender: nil)
+                    }
                 }
 
                 cell.tapActionUsername = { (cell) in
                     print("POST \(post.username)")
                     FeedVC.usernameToPass = post.username
-                    self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
+                    if FeedVC.usernameToPass != nil {
+                        self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
+                    }
                 }
                 
                 cell.tapActionComment = { (cell) in
                     print("POST \(post.postKeyForPassing)")
                     FeedVC.postKeyToPass = post.postKeyForPassing
-                    self.performSegue(withIdentifier: "CommentsVC", sender: nil)
+                    if FeedVC.postKeyToPass != nil {
+                        self.performSegue(withIdentifier: "CommentsVC", sender: nil)
+                    }
                 }
                 
                 return cell
