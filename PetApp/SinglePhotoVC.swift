@@ -11,14 +11,6 @@ import Firebase
 
 class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    @IBAction func usernameTapped(_ sender: AnyObject) {
-        performSegue(withIdentifier: "ViewUserVC", sender: nil)
-    }
-    
-    @IBAction func commentTapped(_ sender: AnyObject) {
-        performSegue(withIdentifier: "CommentsVC", sender: nil)
-    }
-    
     @IBOutlet weak var tableView: UITableView!
     
     var posts = [Post]()
@@ -48,10 +40,6 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             self.tableView.reloadData()
         })
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        self.tableView.reloadData()
-    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -62,27 +50,29 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         return 1
     }
     
-
-//    func likeTapped(sender: UITapGestureRecognizer) {
-//        likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
-//            if let _ = snapshot.value as? NSNull {
-//                self.likeBtn.image = UIImage(named: "empty-heart")
-////                self.adjustLikes(addLike: true)
-//                self.likesRef.setValue(true)
-//            } else {
-//                self.likeBtn.image = UIImage(named: "filled-heart")
-////                self.adjustLikes(addLike: false)
-//                self.likesRef.removeValue()
-//            }
-//        })
-//    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let post = posts[indexPassed]
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SinglePhotoCell") as? SinglePhotoCell {
                 cell.configureCell(post: post)
+            
+            cell.tapActionUsername = { (cell) in
+                print("POST \(post.username)")
+                FeedVC.usernameToPass = post.username
+                if FeedVC.usernameToPass != nil {
+                    self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
+                }
+            }
+            
+            cell.tapActionComment = { (cell) in
+                print("POST \(post.postKeyForPassing)")
+                FeedVC.postKeyToPass = post.postKeyForPassing
+                if FeedVC.postKeyToPass != nil {
+                    self.performSegue(withIdentifier: "CommentsVC", sender: nil)
+                }
+            }
+            
                 return cell
             } else {
             return SinglePhotoCell()

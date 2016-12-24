@@ -21,13 +21,15 @@ class SinglePhotoCell: UITableViewCell {
     @IBOutlet weak var usernameBtn: UIButton!
     
     @IBAction func usernameTapped(_ sender: AnyObject) {
-
+        tapActionUsername?(self)
     }
     
     @IBAction func commentTapped(_ sender: AnyObject) {
-
+        tapActionComment?(self)
     }
 
+    var tapActionUsername: ((UITableViewCell) -> Void)?
+    var tapActionComment: ((UITableViewCell) -> Void)?
     var post: Post!
     var likesRef: FIRDatabaseReference!
 

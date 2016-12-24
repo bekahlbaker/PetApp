@@ -109,19 +109,5 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             let myVC = segue.destination as! SinglePhotoVC
             myVC.indexPassed = self.indexToPass
         }
-//        if segue.identifier == "ViewUserVC" {
-//            let myVC = segue.destination as! ViewUserVC
-//            myVC.usernamePassed = self.usernameToPass
-//            if self.usernameToPass != nil {
-//              print("PASSING \(self.usernameToPass)")   
-//            }
-//        }
-//        if segue.identifier == "CommentsVC" {
-//            let myVC = segue.destination as! CommentsVC
-//            myVC.postKeyPassed = self.postKeyToPass
-//            if self.postKeyToPass != nil {
-//                print("PASSING \(self.postKeyToPass)")
-//            }
-//        }
     }
 }
