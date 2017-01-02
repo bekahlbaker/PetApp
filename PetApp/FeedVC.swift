@@ -52,12 +52,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         return posts.count
         
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    
-    }
 
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let post = posts[indexPath.row]
@@ -92,7 +87,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                         self.performSegue(withIdentifier: "CommentsVC", sender: nil)
                     }
                 }
-                
                 return cell
             } else {
                 cell.configureCell(post: post)

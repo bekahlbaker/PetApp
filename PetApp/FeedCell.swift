@@ -12,6 +12,7 @@ import Kingfisher
 
 
 class FeedCell: UITableViewCell {
+    @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
 
     @IBOutlet weak var feedImageView: UIImageView!
     @IBOutlet weak var caption: UITextView!
@@ -52,6 +53,7 @@ class FeedCell: UITableViewCell {
     
     
     func configureCell(post: Post, img: UIImage? = nil, profileImg: UIImage? = nil) {
+        self.activitySpinner.startAnimating()
         
         self.post = post
 
@@ -66,8 +68,10 @@ class FeedCell: UITableViewCell {
         self.comments.text = String(post.commentCount)
         
         if img != nil {
+            self.activitySpinner.stopAnimating()
             self.feedImageView.image = img
         } else {
+            self.feedImageView.image = UIImage(named: "")
             let ref = FIRStorage.storage().reference(forURL: post.imageURL)
             ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
                 if error != nil {
@@ -77,6 +81,7 @@ class FeedCell: UITableViewCell {
                     if let imgData = data {
                         if let img = UIImage(data: imgData) {
                             self.feedImageView.image = img
+                            self.activitySpinner.stopAnimating()
                             FeedVC.imageCache.setObject(img, forKey: post.imageURL as NSString)
                         }
                     }
@@ -133,4 +138,5 @@ class FeedCell: UITableViewCell {
             }
         })
     }
+
 }
