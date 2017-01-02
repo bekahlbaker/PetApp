@@ -73,7 +73,7 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
         collectionView!.collectionViewLayout = layout
         
         //download user info & image
-        DataService.ds.REF_CURRENT_USER.observeSingleEvent(of: .value, with: { (snapshot) in
+        DataService.ds.REF_CURRENT_USER.child("user-info").observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: Any] {
                 
                 if let username = dictionary["username"] as? String {

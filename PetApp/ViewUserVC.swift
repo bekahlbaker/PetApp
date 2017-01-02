@@ -68,7 +68,7 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         collectionView!.collectionViewLayout = layout
         
         //download user info & image
-        DataService.ds.REF_USERS.queryOrdered(byChild: "username").queryEqual(toValue: self.usernamePassed).observeSingleEvent(of: .value, with: { (snapshot) in
+        DataService.ds.REF_USERS.child("user-info").queryOrdered(byChild: "username").queryEqual(toValue: self.usernamePassed).observeSingleEvent(of: .value, with: { (snapshot) in
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 for snap in snapshot {
                     if let dictionary = snap.value as? [String: Any] {

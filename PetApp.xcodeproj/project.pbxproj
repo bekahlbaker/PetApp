@@ -24,6 +24,7 @@
 		27166B3B1DCD0D4700A57821 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27166B3A1DCD0D4700A57821 /* FBSDKCoreKit.framework */; };
 		27166B3E1DCD0F9500A57821 /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27166B3D1DCD0F9500A57821 /* DataService.swift */; };
 		27166B401DCD108300A57821 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27166B3F1DCD108300A57821 /* Constants.swift */; };
+		2719A1471E1AB37B001A901F /* SaveUserInfo+ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2719A1461E1AB37B001A901F /* SaveUserInfo+ProfileVC.swift */; };
 		274474431DD6929B007EBABF /* UserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274474421DD6929B007EBABF /* UserVC.swift */; };
 		274474471DD6A5DA007EBABF /* UserPicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274474461DD6A5DA007EBABF /* UserPicCell.swift */; };
 		2744744B1DD7965C007EBABF /* FeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2744744A1DD7965C007EBABF /* FeedCell.swift */; };
@@ -74,6 +75,7 @@
 		27166B3D1DCD0F9500A57821 /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		27166B3F1DCD108300A57821 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		27166B411DCD10D500A57821 /* PetApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PetApp.entitlements; sourceTree = "<group>"; };
+		2719A1461E1AB37B001A901F /* SaveUserInfo+ProfileVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SaveUserInfo+ProfileVC.swift"; sourceTree = "<group>"; };
 		274474421DD6929B007EBABF /* UserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserVC.swift; sourceTree = "<group>"; };
 		274474461DD6A5DA007EBABF /* UserPicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPicCell.swift; sourceTree = "<group>"; };
 		2744744A1DD7965C007EBABF /* FeedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FeedCell.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				2788DE4A1DF09F6C00078A41 /* PostVC+CoreImage.swift */,
 				2788DE501DF2086D00078A41 /* PostCaptionVC+TextView.swift */,
 				278B91F21E0889BE00918312 /* CommentTableView+CommentsVC.swift */,
+				2719A1461E1AB37B001A901F /* SaveUserInfo+ProfileVC.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -295,7 +298,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0810;
-				LastUpgradeCheck = 0810;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Rebekah Baker";
 				TargetAttributes = {
 					27166B0B1DCCE63800A57821 = {
@@ -401,6 +404,7 @@
 				2749947E1DD287530015B6F8 /* ProfileVC.swift in Sources */,
 				27166B2B1DCCF5F300A57821 /* RoundedCornerButton.swift in Sources */,
 				274474471DD6A5DA007EBABF /* UserPicCell.swift in Sources */,
+				2719A1471E1AB37B001A901F /* SaveUserInfo+ProfileVC.swift in Sources */,
 				27166B331DCD03E200A57821 /* FeedVC.swift in Sources */,
 				278B91F31E0889BE00918312 /* CommentTableView+CommentsVC.swift in Sources */,
 				274994701DCD2E470015B6F8 /* FirebaseAuth.swift in Sources */,
@@ -465,6 +469,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -515,6 +520,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -544,6 +550,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6CD65ED0F38C43BADF665691 /* Pods-PetApp.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = PetApp/PetApp.entitlements;
 				DEVELOPMENT_TEAM = SAWE6E694F;
@@ -564,6 +571,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D33CB02ABE7EC0697EAF044B /* Pods-PetApp.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = PetApp/PetApp.entitlements;
 				DEVELOPMENT_TEAM = SAWE6E694F;

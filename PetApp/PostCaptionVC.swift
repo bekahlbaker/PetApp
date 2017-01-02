@@ -77,7 +77,7 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
             PostVC.imageToPassBackCache.setObject(img2, forKey: "imageToPassBack")
         }
         
-        DataService.ds.REF_CURRENT_USER.observe( .value, with:  { (snapshot) in
+        DataService.ds.REF_CURRENT_USER.child("user-info").observe( .value, with:  { (snapshot) in
             if let dictionary = snapshot.value as? [String: Any] {
                 if let currentUser = dictionary["username"] as? String {
                     print("BEKAH: \(currentUser)")
@@ -92,6 +92,9 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
     }
     
     func postToFirebase(imageURL: String) {
+        if self.captionTextView.text == "Write a caption..." {
+            self.captionTextView.text = ""
+        }
         
         let post: Dictionary<String, Any> = [
             "caption": self.captionTextView.text! as String,

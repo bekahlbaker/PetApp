@@ -93,7 +93,7 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
         
-        DataService.ds.REF_CURRENT_USER.observe( .value, with:  { (snapshot) in
+        DataService.ds.REF_CURRENT_USER.child("user-info").observe( .value, with:  { (snapshot) in
             if let dictionary = snapshot.value as? [String: Any] {
                 if let currentUser = dictionary["username"] as? String {
                     print("BEKAH: \(currentUser)")

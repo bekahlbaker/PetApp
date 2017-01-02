@@ -26,6 +26,7 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     var imagePicker = UIImagePickerController()
     var imagePicked = 0
     
+    
     @IBOutlet weak var coverPhoto: UIImageView!
     @IBAction func editCoverPhotoTapped(_ sender: AnyObject) {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
@@ -34,8 +35,6 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             self.present(imagePicker, animated: true, completion: nil)
         }
     }
-    
-    
     @IBAction func addImageTapped(_ sender: AnyObject) {
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             print("Profile photo chosen")
@@ -63,7 +62,7 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         
         //download profile info & image
         
-        DataService.ds.REF_CURRENT_USER.observeSingleEvent(of: .value, with: { (snapshot) in
+        DataService.ds.REF_CURRENT_USER.child("user-info").observe(.value, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: Any] {
                 self.fullNameLbl.text = dictionary["full-name"] as? String
@@ -135,104 +134,4 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             
         })
     }
-    
-    //SAVE and UPLOAD profile info & image
-    
-    @IBAction func saveBtnPressed(_ sender: AnyObject) {
-        
-        if self.profileImg.image != nil {
-            //save profile image
-            
-            let imageName = NSUUID().uuidString
-            let metadata = FIRStorageMetadata()
-            metadata.contentType = "image/png"
-            
-            if let uploadData = UIImagePNGRepresentation(self.profileImg.image!) {
-                DataService.ds.REF_USER_PROFILE.child(imageName).put(uploadData, metadata: metadata, completion: { (metadata, error) in
-                    if error != nil {
-                        print(error)
-                        return
-                    }
-                    if let profileImageUrl =  metadata?.downloadURL()?.absoluteString {
-                        let values = ["profileImgUrl": profileImageUrl]
-                        self.uploadToFirebase(values: values)
-                        print("Successfuly uploaded image to Firebase")
-                    }
-                })
-            }
-        } else {
-            print("No profile image to save")
-        }
-        
-        
-        if self.coverPhoto.image != nil {
-            //save cover image
-            let coverImageName = NSUUID().uuidString
-            let coverMetadata = FIRStorageMetadata()
-            coverMetadata.contentType = "image/png"
-            
-            if let uploadData = UIImagePNGRepresentation(self.coverPhoto.image!) {
-                DataService.ds.REF_USER_COVER.child(coverImageName).put(uploadData, metadata: coverMetadata, completion: { (metadata, error) in
-                    if error != nil {
-                        print(error)
-                        return
-                    }
-                    if let coverImageUrl =  metadata?.downloadURL()?.absoluteString {
-                        let values = ["coverImgUrl": coverImageUrl]
-                        self.uploadToFirebase(values: values)
-                        print("Successfuly uploaded cover image to Firebase")
-                    }
-                })
-            }
-        } else {
-            print("No cover image to save")
-        }
-            
-            //save profile info
-        
-                let userInfo: Dictionary<String, Any> = [
-                    "full-name": fullNameLbl.text! as String,
-                    "parents-name": parentsNameLbl.text! as String,
-                    "age": ageLbl.text! as String,
-                    "species": speciesLbl.text! as String,
-                    "breed": breedLbl.text! as String,
-                    "location": locationLbl.text! as String,
-                    "about": aboutLbl.text! as String
-                ]
-                
-                let firebasePost = DataService.ds.REF_CURRENT_USER
-                firebasePost.updateChildValues(userInfo)
-                performSegue(withIdentifier: "toUserVC", sender: nil)
-    }
-    
-    func textFieldChanged(textField: UITextField) {
-        let ageEntered = ageLbl.text
-        if textField.text != "" {
-            textField.text = "\(ageEntered!) yo"
-        }
-    }
-
-    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
-        let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage
-        
-        if imagePicked == 1 {
-            coverPhoto.image = pickedImage
-        } else if imagePicked == 2 {
-            profileImg.image = pickedImage
-        }
-        
-        dismiss(animated: true, completion: nil)
-    }
-    
-    func uploadToFirebase(values: [String: Any]) {
-        let firebasePost = DataService.ds.REF_CURRENT_USER
-        firebasePost.updateChildValues(values)
-    }
-
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
-        super.touchesBegan(touches, with: event)
-    }
-
 }

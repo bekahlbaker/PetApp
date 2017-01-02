@@ -24,8 +24,11 @@ class UsernameVC: UIViewController, UITextFieldDelegate {
             
             DataService.ds.REF_ACTIVE_USERS.updateChildValues(["\(self.usernameTextField.text!)": true])
             
-            DataService.ds.REF_CURRENT_USER
+            DataService.ds.REF_CURRENT_USER.child("user-personal")
             .updateChildValues(userInfo)
+            
+            DataService.ds.REF_CURRENT_USER.child("user-info")
+                .updateChildValues(userInfo)
 
             performSegue(withIdentifier: "toProfileVC", sender: nil)
         }
