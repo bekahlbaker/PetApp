@@ -987,7 +987,11 @@
                                                 <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="c4z-D9-GQg"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" title="Follow" id="ACD-9V-Ex9"/>
+                                        <barButtonItem key="rightBarButtonItem" title="Follow" id="ACD-9V-Ex9">
+                                            <connections>
+                                                <action selector="followBtnTapped:" destination="ABA-se-GwR" id="Xdv-Q5-UdK"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -1188,6 +1192,7 @@
                         <outlet property="bioLbl" destination="01i-MM-O3M" id="UVU-ay-ErD"/>
                         <outlet property="collectionView" destination="oXf-0A-NUb" id="JdO-Up-WkF"/>
                         <outlet property="coverImg" destination="sBB-td-5gh" id="EBM-DL-qYj"/>
+                        <outlet property="followBtn" destination="ACD-9V-Ex9" id="Xeq-SL-m8h"/>
                         <outlet property="followersLbl" destination="G81-ho-30E" id="okH-wE-4nN"/>
                         <outlet property="followingLbl" destination="ZPw-af-da2" id="4WD-Eq-ePP"/>
                         <outlet property="fullNameLbl" destination="4P5-dl-9XN" id="5UQ-nz-hoY"/>
@@ -1236,10 +1241,10 @@
                                 </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="CommentCell" rowHeight="45" id="O2q-Tn-uRM" customClass="CommentCell" customModule="PetApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="45"/>
+                                        <rect key="frame" x="0.0" y="28" width="1000" height="45"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="O2q-Tn-uRM" id="yRL-2k-Osf">
-                                            <frame key="frameInset" width="375" height="44"/>
+                                            <frame key="frameInset" width="1000" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Comment comment comment" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JdB-fk-ys3">
@@ -1538,10 +1543,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FeedCell" rowHeight="539" id="XT7-dt-d1F" customClass="FeedCell" customModule="PetApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="1000" height="539"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="539"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XT7-dt-d1F" id="sxM-VQ-Gq8">
-                                            <frame key="frameInset" width="1000" height="539"/>
+                                            <frame key="frameInset" width="375" height="539"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank-profile-picture" translatesAutoresizingMaskIntoConstraints="NO" id="UD5-au-Ivn" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
@@ -1929,14 +1934,14 @@
         <image name="user-sm" width="35" height="35"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="61E-j1-iUC"/>
-        <segue reference="4ew-3Y-8WX"/>
-        <segue reference="vcX-KV-BRk"/>
         <segue reference="61S-To-qrI"/>
-        <segue reference="whq-87-tqY"/>
+        <segue reference="tFc-uz-NRS"/>
+        <segue reference="vcX-KV-BRk"/>
+        <segue reference="Rbt-f7-1FK"/>
         <segue reference="Ive-65-i5K"/>
         <segue reference="lia-Ce-C0t"/>
         <segue reference="zsD-8J-Lsn"/>
         <segue reference="xu2-ih-vp3"/>
+        <segue reference="61E-j1-iUC"/>
     </inferredMetricsTieBreakers>
 </document>

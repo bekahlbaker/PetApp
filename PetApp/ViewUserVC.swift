@@ -172,6 +172,10 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
                 }
             }
         })
+        
+//        let followBtn = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(ViewUserVC.followBtnMethod))
+//        navigationItem.rightBarButtonItem = followBtn
+//        title = "Follow"
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -204,5 +208,16 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
     
     }
+    
+    @IBOutlet weak var followBtn: UIBarButtonItem!
+    
+    @IBAction func followBtnTapped(_ sender: AnyObject) {
+       let followingBtn = UIBarButtonItem(title: "Following", style: .plain, target: self, action: nil)
+        self.navigationItem.rightBarButtonItem = followingBtn
+    }
+    
+//    func followBtnMethod() {
+//        title = "Following"
+//    }
 
 }
