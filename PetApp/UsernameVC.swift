@@ -22,8 +22,7 @@ class UsernameVC: UIViewController, UITextFieldDelegate {
             let userInfo: Dictionary<String, Any> = [
                 "username": usernameTextField.text! as String]
             
-            DataService.ds.REF_ACTIVE_USERS
-            .childByAutoId().setValue(userInfo)
+            DataService.ds.REF_ACTIVE_USERS.updateChildValues(["\(self.usernameTextField.text!)": true])
             
             DataService.ds.REF_CURRENT_USER
             .updateChildValues(userInfo)
@@ -43,19 +42,17 @@ class UsernameVC: UIViewController, UITextFieldDelegate {
     
     func usernameValidation(username: String) {
         
-        DataService.ds.REF_ACTIVE_USERS.queryOrdered(byChild: "username").queryEqual(toValue: username).observeSingleEvent(of: .value, with: { snapshot in
-                if !snapshot.exists(){
-                    print("USER: username is available")
-                    self.usernameTaken = false
-                    self.errorLbl.text = ""
-                } else {
-                    print("USER: username is taken")
-                    self.usernameTaken = true
-                    self.errorLbl.text = "That username is taken. Please try again."
-                }
-            }) { error in
-                print(error.localizedDescription)
-        }
+        DataService.ds.REF_ACTIVE_USERS.child("\(self.usernameTextField.text!)").observeSingleEvent(of: .value, with:  { (snapshot) in
+            if let _ = snapshot.value as? NSNull {
+                print("USER: username is available")
+                self.usernameTaken = false
+                self.errorLbl.text = ""
+            } else {
+                print("USER: username is taken")
+                self.usernameTaken = true
+                self.errorLbl.text = "That username is taken. Please try again."
+            }
+        })
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
