@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import SwiftKeychainWrapper
+import Kingfisher
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -57,12 +58,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         let post = posts[indexPath.row]
         
-        
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as? FeedCell {
-
-            if let img = FeedVC.imageCache.object(forKey: post.imageURL as NSString), let profileImg = FeedVC.imageCache.object(forKey: post.profileImgUrl as NSString) {
-                print("Getting images from cache")
-                cell.configureCell(post: post, img: img, profileImg: profileImg)
+                cell.configureCell(post: post)
                 
                 cell.tapAction = { (cell) in
                     print(tableView.indexPath(for: cell)!.row)
@@ -89,11 +86,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 }
                 return cell
             } else {
-                cell.configureCell(post: post)
-                return cell
-            }
-        
-        } else {
             return FeedCell()
         }
     }

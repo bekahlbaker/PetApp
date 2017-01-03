@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Kingfisher
 
 class UserPicCell: UICollectionViewCell {
     
@@ -18,13 +19,12 @@ class UserPicCell: UICollectionViewCell {
     var post: Post!
     
     func configureCell(post: Post, img: UIImage? = nil) {
-//        activitySpinner.startAnimating()
         
         self.post = post
         
-        if img != nil {
-//            self.activitySpinner.stopAnimating()
-            self.imageView.image = img
+        if let imgURL = URL(string: post.imageURL) {
+            self.imageView.kf.setImage(with: imgURL)
+            print("using kingfisher for feed image")
         } else {
             self.imageView.image = UIImage(named: "")
             let ref = FIRStorage.storage().reference(forURL: post.imageURL)
@@ -36,7 +36,6 @@ class UserPicCell: UICollectionViewCell {
                     if let imgData = data {
                         if let img = UIImage(data: imgData) {
                             self.imageView.image = img
-//                            self.activitySpinner.stopAnimating()
                             UserVC.userImageCache.setObject(img, forKey: post.imageURL as NSString)
                         }
                     }

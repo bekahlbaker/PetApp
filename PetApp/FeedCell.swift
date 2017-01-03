@@ -54,7 +54,7 @@ class FeedCell: UITableViewCell {
     }
     
     
-    func configureCell(post: Post, img: UIImage? = nil, profileImg: UIImage? = nil) {
+    func configureCell(post: Post) {
         self.activitySpinner.startAnimating()
         self.profileActivitySpinner.startAnimating()
         
@@ -70,18 +70,17 @@ class FeedCell: UITableViewCell {
         
         self.comments.text = String(post.commentCount)
         
-        if img != nil {
-            self.activitySpinner.stopAnimating()
-            self.feedImageView.image = img
+        if let imgURL = URL(string: post.imageURL) {
+            self.feedImageView.kf.setImage(with: imgURL)
+            print("using kingfisher for feed image")
         } else {
-            self.feedImageView.image = UIImage(named: "")
             let ref = FIRStorage.storage().reference(forURL: post.imageURL)
             ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
                 if error != nil {
                     self.feedImageView.image = UIImage(named: "")
                     print("Unable to Download image from Firebase storage.")
                 } else {
-                    print("Image downloaded from FB Storage.")
+                    print("Feed image downloaded from FB Storage.")
                     if let imgData = data {
                         if let img = UIImage(data: imgData) {
                             self.feedImageView.image = img
@@ -95,9 +94,9 @@ class FeedCell: UITableViewCell {
             
         }
         
-        if profileImg != nil {
-            self.profileActivitySpinner.stopAnimating()
-            self.profileImg.image = profileImg
+        if let profileImgURL = URL(string: post.profileImgUrl) {
+            self.profileImg.kf.setImage(with: profileImgURL)
+            print("using kingfisher for profile image")
         } else {
             self.profileImg.image = UIImage(named: "")
             let ref = FIRStorage.storage().reference(forURL: post.profileImgUrl)
@@ -106,7 +105,7 @@ class FeedCell: UITableViewCell {
                     self.profileImg.image = UIImage(named: "")
                     print("Unable to Download profile image from Firebase storage.")
                 } else {
-                    print("Image downloaded from FB Storage.")
+                    print("Profile image downloaded from FB Storage.")
                     if let imgData = data {
                         if let profileImg = UIImage(data: imgData) {
                             self.profileImg.image = profileImg

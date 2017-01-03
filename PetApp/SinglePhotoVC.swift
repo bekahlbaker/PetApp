@@ -55,11 +55,11 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         let post = posts[indexPassed]
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SinglePhotoCell") as? SinglePhotoCell {
-                cell.configureCell(post: post)
+            cell.configureCell(post: post)
             
             cell.tapActionUsername = { (cell) in
-                print("POST \(post.username)")
-                FeedVC.usernameToPass = post.username
+                print("POST \(post.userKey)")
+                FeedVC.usernameToPass = post.userKey
                 if FeedVC.usernameToPass != nil {
                     self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
                 }

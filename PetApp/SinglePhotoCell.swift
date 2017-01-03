@@ -42,7 +42,7 @@ class SinglePhotoCell: UITableViewCell {
         likesImg.isUserInteractionEnabled = true
     }
     
-    func configureCell(post: Post, img: UIImage? = nil, profileImg: UIImage? = nil) {
+    func configureCell(post: Post) {
         
         self.post = post
         
@@ -56,8 +56,9 @@ class SinglePhotoCell: UITableViewCell {
         
         self.comments.text = String(post.commentCount)
         
-        if img != nil {
-            self.feedImageView.image = img
+        if let imgURL = URL(string: post.imageURL) {
+            self.feedImageView.kf.setImage(with: imgURL)
+            print("using kingfisher for feed image")
         } else {
             let ref = FIRStorage.storage().reference(forURL: post.imageURL)
             ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
@@ -68,7 +69,6 @@ class SinglePhotoCell: UITableViewCell {
                     if let imgData = data {
                         if let img = UIImage(data: imgData) {
                             self.feedImageView.image = img
-//                            FeedVC.imageCache.setObject(img, forKey: post.imageURL as NSString)
                         }
                     }
                 }
@@ -77,8 +77,9 @@ class SinglePhotoCell: UITableViewCell {
             
         }
         
-        if profileImg != nil {
-            self.profileImg.image = profileImg
+        if let profileImgURL = URL(string: post.profileImgUrl) {
+            self.profileImg.kf.setImage(with: profileImgURL)
+            print("using kingfisher for feed image")
         } else {
             let ref = FIRStorage.storage().reference(forURL: post.profileImgUrl)
             ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
@@ -89,7 +90,6 @@ class SinglePhotoCell: UITableViewCell {
                     if let imgData = data {
                         if let profileImg = UIImage(data: imgData) {
                             self.profileImg.image = profileImg
-//                            FeedVC.imageCache.setObject(profileImg, forKey: post.profileImgUrl as NSString)
                         }
                     }
                 }
