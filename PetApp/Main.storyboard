@@ -64,7 +64,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetPic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cjr-4F-ec4">
-                                <rect key="frame" x="115.5" y="28" width="145" height="75"/>
+                                <rect key="frame" x="115" y="28" width="145" height="75"/>
                                 <fontDescription key="fontDescription" name="Lobster1.4" family="Lobster 1.4" pointSize="60"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -938,6 +938,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="RUT-dI-FxR">
+                                                    <rect key="frame" x="52" y="52" width="20" height="20"/>
+                                                </activityIndicatorView>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2nL-2n-HQV">
                                                     <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
                                                 </imageView>
@@ -947,10 +950,13 @@
                                             <constraint firstAttribute="bottom" secondItem="2nL-2n-HQV" secondAttribute="bottom" id="3lV-Xx-u1D"/>
                                             <constraint firstItem="2nL-2n-HQV" firstAttribute="top" secondItem="yNV-cR-Ofu" secondAttribute="top" id="GGg-BH-5lx"/>
                                             <constraint firstAttribute="trailing" secondItem="2nL-2n-HQV" secondAttribute="trailing" id="XsZ-4R-rJs"/>
+                                            <constraint firstItem="RUT-dI-FxR" firstAttribute="centerX" secondItem="2nL-2n-HQV" secondAttribute="centerX" id="dep-z9-VxW"/>
                                             <constraint firstItem="2nL-2n-HQV" firstAttribute="leading" secondItem="yNV-cR-Ofu" secondAttribute="leading" id="loI-8N-wm2"/>
+                                            <constraint firstItem="RUT-dI-FxR" firstAttribute="centerY" secondItem="2nL-2n-HQV" secondAttribute="centerY" id="o8N-AA-q9g"/>
                                         </constraints>
                                         <size key="customSize" width="125" height="125"/>
                                         <connections>
+                                            <outlet property="activitySpinner" destination="RUT-dI-FxR" id="yEv-YC-mIQ"/>
                                             <outlet property="imageView" destination="2nL-2n-HQV" id="Ffd-NU-Kc3"/>
                                         </connections>
                                     </collectionViewCell>
@@ -1676,9 +1682,11 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="539"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank-profile-picture" translatesAutoresizingMaskIntoConstraints="NO" id="UD5-au-Ivn" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="EBM-Vr-cT3">
+                                                    <rect key="frame" x="28" y="18" width="20" height="20"/>
+                                                </activityIndicatorView>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UD5-au-Ivn" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
                                                     <rect key="frame" x="18" y="8" width="40" height="40"/>
-                                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="40" id="UjQ-dp-ANX"/>
                                                         <constraint firstAttribute="width" constant="40" id="ydT-wM-HLO"/>
@@ -1768,7 +1776,9 @@
                                                 <constraint firstItem="OYw-6X-lWR" firstAttribute="leading" secondItem="sxM-VQ-Gq8" secondAttribute="leading" id="EPg-8E-HWv"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="mjC-5q-P8C" secondAttribute="trailing" id="GZg-yQ-If6"/>
                                                 <constraint firstItem="yf8-rA-QC7" firstAttribute="width" secondItem="OYw-6X-lWR" secondAttribute="width" id="Gur-k8-SO5"/>
+                                                <constraint firstItem="EBM-Vr-cT3" firstAttribute="centerX" secondItem="UD5-au-Ivn" secondAttribute="centerX" id="Ig8-QR-2Yi"/>
                                                 <constraint firstItem="qCI-OQ-BVc" firstAttribute="top" secondItem="yf8-rA-QC7" secondAttribute="bottom" constant="8" id="Jnd-8G-0g9"/>
+                                                <constraint firstItem="EBM-Vr-cT3" firstAttribute="centerY" secondItem="UD5-au-Ivn" secondAttribute="centerY" id="KNM-ab-GKn"/>
                                                 <constraint firstItem="HaX-S9-Msr" firstAttribute="centerY" secondItem="OYw-6X-lWR" secondAttribute="centerY" id="LUl-It-WTD"/>
                                                 <constraint firstItem="ufH-fg-98K" firstAttribute="leading" secondItem="Ldo-zY-XKn" secondAttribute="trailing" constant="8" id="Mvd-wa-uRi"/>
                                                 <constraint firstAttribute="trailing" secondItem="OYw-6X-lWR" secondAttribute="trailing" id="R1J-SY-RAa"/>
@@ -1803,6 +1813,7 @@
                                             <outlet property="likes" destination="4jZ-HB-nLh" id="SVv-yG-N2I"/>
                                             <outlet property="likesImg" destination="ufH-fg-98K" id="ILA-vj-Vv1"/>
                                             <outlet property="likesImgSm" destination="qCI-OQ-BVc" id="IUG-i3-IwP"/>
+                                            <outlet property="profileActivitySpinner" destination="EBM-Vr-cT3" id="h0L-e3-bLg"/>
                                             <outlet property="profileImg" destination="UD5-au-Ivn" id="igu-fj-EDf"/>
                                             <outlet property="usernameBtn" destination="Ldo-zY-XKn" id="Pu2-Ge-Miw"/>
                                         </connections>
@@ -1819,7 +1830,7 @@
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetPic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvl-VZ-xfI">
-                                <rect key="frame" x="151" y="17" width="73" height="38"/>
+                                <rect key="frame" x="151.5" y="17.5" width="72.5" height="37.5"/>
                                 <fontDescription key="fontDescription" name="Lobster1.4" family="Lobster 1.4" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2092,14 +2103,14 @@
         <image name="user-sm" width="35" height="35"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="dXV-T8-2Jd"/>
         <segue reference="lia-Ce-C0t"/>
-        <segue reference="whq-87-tqY"/>
-        <segue reference="VOj-p2-r25"/>
-        <segue reference="zsD-8J-Lsn"/>
-        <segue reference="SDZ-21-9fi"/>
+        <segue reference="Rbt-f7-1FK"/>
         <segue reference="vcX-KV-BRk"/>
+        <segue reference="Mkn-yb-Fhf"/>
         <segue reference="61S-To-qrI"/>
         <segue reference="61E-j1-iUC"/>
+        <segue reference="Ive-65-i5K"/>
+        <segue reference="SDZ-21-9fi"/>
+        <segue reference="zsD-8J-Lsn"/>
     </inferredMetricsTieBreakers>
 </document>

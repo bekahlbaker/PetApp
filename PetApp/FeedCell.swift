@@ -14,6 +14,8 @@ import Kingfisher
 class FeedCell: UITableViewCell {
     @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
 
+    @IBOutlet weak var profileActivitySpinner: UIActivityIndicatorView!
+    
     @IBOutlet weak var feedImageView: UIImageView!
     @IBOutlet weak var caption: UITextView!
     @IBOutlet weak var profileImg: CircleImage!
@@ -54,6 +56,7 @@ class FeedCell: UITableViewCell {
     
     func configureCell(post: Post, img: UIImage? = nil, profileImg: UIImage? = nil) {
         self.activitySpinner.startAnimating()
+        self.profileActivitySpinner.startAnimating()
         
         self.post = post
 
@@ -75,6 +78,7 @@ class FeedCell: UITableViewCell {
             let ref = FIRStorage.storage().reference(forURL: post.imageURL)
             ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
                 if error != nil {
+                    self.feedImageView.image = UIImage(named: "")
                     print("Unable to Download image from Firebase storage.")
                 } else {
                     print("Image downloaded from FB Storage.")
@@ -92,17 +96,21 @@ class FeedCell: UITableViewCell {
         }
         
         if profileImg != nil {
+            self.profileActivitySpinner.stopAnimating()
             self.profileImg.image = profileImg
         } else {
+            self.profileImg.image = UIImage(named: "")
             let ref = FIRStorage.storage().reference(forURL: post.profileImgUrl)
             ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
                 if error != nil {
+                    self.profileImg.image = UIImage(named: "")
                     print("Unable to Download profile image from Firebase storage.")
                 } else {
                     print("Image downloaded from FB Storage.")
                     if let imgData = data {
                         if let profileImg = UIImage(data: imgData) {
                             self.profileImg.image = profileImg
+                            self.profileActivitySpinner.stopAnimating()
                             FeedVC.imageCache.setObject(profileImg, forKey: post.profileImgUrl as NSString)
                         }
                     }

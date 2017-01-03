@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SwiftKeychainWrapper
 
 
 class PostCaptionVC: UIViewController, UITextViewDelegate {
@@ -76,6 +77,7 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
             self.postImage.image = img2
             PostVC.imageToPassBackCache.setObject(img2, forKey: "imageToPassBack")
         }
+    
         
         DataService.ds.REF_CURRENT_USER.child("user-info").observe( .value, with:  { (snapshot) in
             if let dictionary = snapshot.value as? [String: Any] {
@@ -104,7 +106,8 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
             "profileImgUrl": self.profileImg,
             "comments": "" as String,
             "commentCount": 0 as Int,
-            "postKey": "" as String
+            "postKey": "" as String,
+            "userKey": KeychainWrapper.standard.string(forKey: KEY_UID)! as String
         ]
         
         let firebasePost = DataService.ds.REF_POSTS.childByAutoId()

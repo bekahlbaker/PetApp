@@ -73,16 +73,16 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 }
 
                 cell.tapActionUsername = { (cell) in
-                    print("POST \(post.username)")
-                    FeedVC.usernameToPass = post.username
+                    print("POST \(post.userKey)")
+                    FeedVC.usernameToPass = post.userKey
                     if FeedVC.usernameToPass != nil {
                         self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
                     }
                 }
                 
                 cell.tapActionComment = { (cell) in
-                    print("POST \(post.postKeyForPassing)")
-                    FeedVC.postKeyToPass = post.postKeyForPassing
+                    print("POST \(post.postKey)")
+                    FeedVC.postKeyToPass = post.postKey
                     if FeedVC.postKeyToPass != nil {
                         self.performSegue(withIdentifier: "CommentsVC", sender: nil)
                     }

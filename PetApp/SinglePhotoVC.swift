@@ -66,8 +66,8 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             }
             
             cell.tapActionComment = { (cell) in
-                print("POST \(post.postKeyForPassing)")
-                FeedVC.postKeyToPass = post.postKeyForPassing
+                print("POST \(post.postKey)")
+                FeedVC.postKeyToPass = post.postKey
                 if FeedVC.postKeyToPass != nil {
                     self.performSegue(withIdentifier: "CommentsVC", sender: nil)
                 }

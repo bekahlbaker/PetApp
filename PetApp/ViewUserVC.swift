@@ -35,9 +35,9 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         super.viewDidLoad()
         
         self.usernamePassed = FeedVC.usernameToPass
-        print("VUVC \(self.usernamePassed)")
+        print("VUVC \(self.usernamePassed!)")
         
-        DataService.ds.REF_POSTS.queryOrdered(byChild: "username").queryEqual(toValue: self.usernamePassed).observeSingleEvent(of: .value, with: { (snapshot) in
+        DataService.ds.REF_POSTS.queryOrdered(byChild: "userKey").queryEqual(toValue: self.usernamePassed!).observeSingleEvent(of: .value, with: { (snapshot) in
             
             self.posts = []
             
@@ -68,10 +68,8 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         collectionView!.collectionViewLayout = layout
         
         //download user info & image
-        DataService.ds.REF_USERS.child("user-info").queryOrdered(byChild: "username").queryEqual(toValue: self.usernamePassed).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                for snap in snapshot {
-                    if let dictionary = snap.value as? [String: Any] {
+        DataService.ds.REF_USERS.child("\(self.usernamePassed!)").child("user-info").observeSingleEvent(of: .value, with: { (snapshot) in
+                    if let dictionary = snapshot.value as? [String: Any] {
                         
                         if let username = dictionary["username"] as? String {
                             self.username.title = username
@@ -168,9 +166,6 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
                             }
                         }
                     }
-                    
-                }
-            }
         })
         
 //        let followBtn = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(ViewUserVC.followBtnMethod))
