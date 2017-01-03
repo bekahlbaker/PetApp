@@ -1900,9 +1900,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="wGD-Lg-mcX">
-                                <rect key="frame" x="169" y="315" width="37" height="37"/>
-                            </activityIndicatorView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zGo-cJ-yz9">
                                 <rect key="frame" x="0.0" y="55" width="375" height="375"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -1944,10 +1941,25 @@
                                     </navigationItem>
                                 </items>
                             </navigationBar>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="T4z-6s-bC7">
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="T4z-6s-bC7">
                                 <rect key="frame" x="0.0" y="446" width="375" height="125"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="BqQ-2k-fU2">
+                                        <rect key="frame" x="177" y="52" width="20" height="20"/>
+                                    </activityIndicatorView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading Filters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gbX-Bl-Dzp">
+                                        <rect key="frame" x="138" y="72" width="99" height="21"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
+                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" secondItem="T4z-6s-bC7" secondAttribute="height" multiplier="3:1" id="Mk1-I7-3D7"/>
+                                    <constraint firstAttribute="width" secondItem="T4z-6s-bC7" secondAttribute="height" multiplier="3:1" id="44b-8z-FKa"/>
+                                    <constraint firstItem="BqQ-2k-fU2" firstAttribute="centerX" secondItem="T4z-6s-bC7" secondAttribute="centerX" id="VVP-jY-eUs"/>
+                                    <constraint firstItem="BqQ-2k-fU2" firstAttribute="centerY" secondItem="T4z-6s-bC7" secondAttribute="centerY" id="bgQ-K3-6x0"/>
+                                    <constraint firstItem="gbX-Bl-Dzp" firstAttribute="top" secondItem="BqQ-2k-fU2" secondAttribute="top" constant="20" id="waD-9U-QqM"/>
+                                    <constraint firstItem="gbX-Bl-Dzp" firstAttribute="centerX" secondItem="T4z-6s-bC7" secondAttribute="centerX" id="yB6-zX-Fs4"/>
                                 </constraints>
                             </scrollView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W18-QR-DUS">
@@ -1988,13 +2000,11 @@
                             <constraint firstItem="M8N-Ws-NoO" firstAttribute="centerY" secondItem="zGo-cJ-yz9" secondAttribute="centerY" id="YDx-6y-aND"/>
                             <constraint firstItem="klm-Fe-GaV" firstAttribute="leading" secondItem="els-HE-nDL" secondAttribute="leading" id="bW3-Bl-Jwy"/>
                             <constraint firstItem="iaT-PM-N7O" firstAttribute="centerY" secondItem="zGo-cJ-yz9" secondAttribute="centerY" id="bsa-Au-AAx"/>
-                            <constraint firstItem="wGD-Lg-mcX" firstAttribute="centerY" secondItem="els-HE-nDL" secondAttribute="centerY" id="cR9-6X-os8"/>
                             <constraint firstItem="W18-QR-DUS" firstAttribute="leading" secondItem="els-HE-nDL" secondAttribute="leading" id="cTA-vz-6Xw"/>
                             <constraint firstAttribute="trailing" secondItem="klm-Fe-GaV" secondAttribute="trailing" id="dA1-pv-bcy"/>
                             <constraint firstItem="M8N-Ws-NoO" firstAttribute="centerX" secondItem="zGo-cJ-yz9" secondAttribute="centerX" id="di8-nZ-Vi7"/>
                             <constraint firstItem="M8N-Ws-NoO" firstAttribute="width" secondItem="zGo-cJ-yz9" secondAttribute="width" id="hkh-wq-HsC"/>
                             <constraint firstAttribute="trailing" secondItem="zGo-cJ-yz9" secondAttribute="trailing" id="i5K-Kc-9NP"/>
-                            <constraint firstItem="wGD-Lg-mcX" firstAttribute="centerX" secondItem="els-HE-nDL" secondAttribute="centerX" id="jDi-9L-1k5"/>
                             <constraint firstItem="zGo-cJ-yz9" firstAttribute="top" secondItem="klm-Fe-GaV" secondAttribute="bottom" id="lcP-5b-hT7"/>
                             <constraint firstItem="klm-Fe-GaV" firstAttribute="top" secondItem="els-HE-nDL" secondAttribute="top" id="odi-HG-lZg"/>
                             <constraint firstItem="iaT-PM-N7O" firstAttribute="width" secondItem="zGo-cJ-yz9" secondAttribute="width" id="sjY-9d-JWn"/>
@@ -2002,10 +2012,12 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="activitySpinner" destination="wGD-Lg-mcX" id="Od6-E3-kj3"/>
+                        <outlet property="activitySpinner" destination="BqQ-2k-fU2" id="u6Y-Jl-rZS"/>
                         <outlet property="addImageBtn" destination="M8N-Ws-NoO" id="9i3-2B-u9T"/>
                         <outlet property="filterScrollView" destination="T4z-6s-bC7" id="FjN-PS-qdF"/>
+                        <outlet property="imagePicker" destination="M8N-Ws-NoO" id="ts1-Lz-wlf"/>
                         <outlet property="imageToFilter" destination="iaT-PM-N7O" id="ka8-a3-4wF"/>
+                        <outlet property="loadingLbl" destination="gbX-Bl-Dzp" id="BfS-R7-ovf"/>
                         <outlet property="originalImage" destination="zGo-cJ-yz9" id="BLb-wY-dVp"/>
                         <segue destination="aU1-se-YcD" kind="show" identifier="toPostCaptionVC" id="KuE-5c-cMS"/>
                         <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="Z0q-gj-kUt"/>

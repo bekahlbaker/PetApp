@@ -11,9 +11,10 @@ import Firebase
 import CoreImage
 
 class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
-    
-    @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
 
+    @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
+    @IBOutlet weak var loadingLbl: UILabel!
+    
     @IBOutlet weak var filterScrollView: UIScrollView!
     
     @IBOutlet weak var originalImage: UIImageView!
@@ -32,7 +33,7 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     }
     
     
-    
+    @IBOutlet weak var imagePicker: UIButton!
     @IBAction func imagePickerTapped(_ sender: AnyObject) {
         let alertController = UIAlertController(title: "", message: "Select Picture", preferredStyle: .actionSheet)
         let camera = UIAlertAction(title: "Camera", style: .default, handler: { (action) -> Void in
@@ -61,6 +62,11 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     @IBOutlet weak var addImageBtn: UIButton!
     
     @IBAction func nextBtnTapped(_ sender: AnyObject) {
+        if filterChosen == true {
+            PostVC.filteredImageCache.setObject(imageToFilter.image!, forKey: "imageToPass")
+        } else {
+            PostVC.filteredImageCache.setObject(originalImage.image!, forKey: "imageToPass")
+        }
         if PostVC.imageSelected == true {
             performSegue(withIdentifier: "toPostCaptionVC", sender: nil)
         } else {
@@ -96,6 +102,7 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     static var unFilteredImageCache: NSCache<NSString, UIImage> = NSCache()
     static var filteredImageCache: NSCache<NSString, UIImage> = NSCache()
     static var imageToPassBackCache: NSCache<NSString, UIImage> = NSCache()
+    var filterChosen = false
     
     var CIFilterNames = [
         "CIPhotoEffectChrome",
@@ -112,6 +119,9 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.loadingLbl.isHidden = true
+        self.activitySpinner.stopAnimating()
         
         PostVC.imageSelected = false
         

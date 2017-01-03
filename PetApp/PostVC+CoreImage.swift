@@ -14,9 +14,8 @@ extension PostVC {
     func filterButtonTapped(sender: UIButton) {
         let button = sender as UIButton
         imageToFilter.image = button.image(for: UIControlState.normal)
-        PostVC.filteredImageCache.setObject(imageToFilter.image!, forKey: "imageToPass")
         PostVC.imageSelected = true
-        
+        filterChosen = true
     }
     
     func addFiltersToButtons(imageUnfiltered: UIImage) {
@@ -35,7 +34,6 @@ extension PostVC {
             filterButton.frame = CGRect(x: xCoord, y: yCoord, width: buttonWidth, height: buttonHeight)
             filterButton.tag = itemCount
             filterButton.addTarget(self, action: #selector(PostVC.filterButtonTapped(sender:)), for: .touchUpInside)
-//            filterButton.layer.cornerRadius = 6
             filterButton.clipsToBounds = true
             
             // CODE FOR FILTERS WILL BE ADDED HERE...
@@ -55,14 +53,10 @@ extension PostVC {
                if let img = PostVC.unFilteredImageCache.object(forKey: "unfilteredImage") {
                     filterButton.setImage(img, for: .normal)
                     filterButton.imageView?.contentMode = UIViewContentMode.scaleAspectFill
-                    //                filterButton.setTitle("Original", for: .normal)
-                    //                filterButton.setTitleColor(UIColor.white, for: .normal)
                 }
             } else {
              filterButton.setImage(imageForButton, for: .normal)
                 filterButton.imageView?.contentMode = UIViewContentMode.scaleAspectFill
-//                filterButton.setTitle("\(CIFilterNames)", for: .normal)
-//                filterButton.setTitleColor(UIColor.white, for: .normal)
             }
             
             // Add Buttons in the Scroll View
@@ -85,9 +79,21 @@ extension PostVC {
         } else {
             print("Valid image not selected.")
         }
-        picker.dismiss(animated: true, completion: nil)
-        self.addFiltersToButtons(imageUnfiltered: originalImage.image!)
-        addImageBtn.setTitle("", for: .normal)
+        DispatchQueue.global().async {
+            self.addFiltersToButtons(imageUnfiltered: self.originalImage.image!)
+            self.filterScrollView.isScrollEnabled = true
+            self.filterScrollView.isUserInteractionEnabled = true
+            self.loadingLbl.isHidden = true
+        }
+        DispatchQueue.main.async {
+            picker.dismiss(animated: true, completion: nil)
+            self.addImageBtn.setTitle("", for: .normal)
+            self.filterScrollView.isScrollEnabled = false
+            self.filterScrollView.isUserInteractionEnabled = false
+            self.imagePicker.isEnabled = false
+            self.loadingLbl.isHidden = false
+            self.activitySpinner.startAnimating()
+        }
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {

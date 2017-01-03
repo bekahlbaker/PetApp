@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import Kingfisher
 
 extension ProfileVC {
     //SAVE and UPLOAD profile info & image
