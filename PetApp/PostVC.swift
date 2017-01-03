@@ -12,7 +12,7 @@ import CoreImage
 
 class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
     
-    @IBOutlet weak var captionTextField: UITextView!
+    @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
 
     @IBOutlet weak var filterScrollView: UIScrollView!
     
@@ -107,11 +107,17 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         "CIPhotoEffectTransfer",
         "CISepiaTone"
     ]
+    
+    var myActivityIndicator: UIActivityIndicatorView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         PostVC.imageSelected = false
+        
+        myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+        myActivityIndicator.center = view.center
+        view.addSubview(myActivityIndicator)
         
         self.loadImage()
 

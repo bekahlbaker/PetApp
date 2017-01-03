@@ -75,6 +75,7 @@ extension PostVC {
     }
     
     
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
             addImageBtn.setTitle("", for: .normal)

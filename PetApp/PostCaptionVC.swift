@@ -22,49 +22,63 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
     
     @IBOutlet weak var backBtn: UIBarButtonItem!
     @IBAction func backBtnTapped(_ sender: AnyObject) {
-        PostVC.imageSelected = true
-        performSegue(withIdentifier: "toPostVC", sender: nil)
+        self.myActivityIndicator.startAnimating()
+        DispatchQueue.global().async {
+            PostVC.imageSelected = true
+        }
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "toPostVC", sender: nil)
+        }
     }
     
     @IBOutlet weak var saveBtn: UIBarButtonItem!
     @IBAction func savePostTapped(_ sender: AnyObject) {
+        self.myActivityIndicator.startAnimating()
         self.saveBtn.isEnabled = false
         self.backBtn.isEnabled = false
         self.captionTextView.isEditable = false
         
-        if let img = PostVC.filteredImageCache.object(forKey: "imageToPass") {
-        
-        if let imgData = UIImagePNGRepresentation(img){
-            
-            let imgUid = NSUUID().uuidString
-            let metadata = FIRStorageMetadata()
-            metadata.contentType = "image/png"
-            
-            DataService.ds.REF_POST_IMGS.child(imgUid).put(imgData, metadata: metadata) { (metadata, error) in
-                if error != nil {
-                    print("Unable to upload image to Firebase")
-                } else {
-                    print("Successfully uploaded image to Firebase")
-                    let downloadUrl = metadata?.downloadURL()?.absoluteString
-                    if let url = downloadUrl {
-                        self.postToFirebase(imageURL: url)
-                        self.performSegue(withIdentifier: "toFeedVC", sender: nil)
-                        }
-                    }
+        DispatchQueue.global().async {
+            if let img = PostVC.filteredImageCache.object(forKey: "imageToPass") {
                 
+                if let imgData = UIImagePNGRepresentation(img){
+                    
+                    let imgUid = NSUUID().uuidString
+                    let metadata = FIRStorageMetadata()
+                    metadata.contentType = "image/png"
+                    
+                    DataService.ds.REF_POST_IMGS.child(imgUid).put(imgData, metadata: metadata) { (metadata, error) in
+                        if error != nil {
+                            print("Unable to upload image to Firebase")
+                        } else {
+                            print("Successfully uploaded image to Firebase")
+                            let downloadUrl = metadata?.downloadURL()?.absoluteString
+                            if let url = downloadUrl {
+                                self.postToFirebase(imageURL: url)
+                                self.performSegue(withIdentifier: "toFeedVC", sender: nil)
+                            }
+                        }
+                        
+                    }
+                    
                 }
-            
+            } else {
+                print("Couldn't find image")
             }
-        } else {
-            print("Couldn't find image")
+            PostVC.filteredImageCache.removeAllObjects()
+            PostVC.imageToPassBackCache.removeAllObjects()
         }
-        
-        PostVC.filteredImageCache.removeAllObjects()
-        PostVC.imageToPassBackCache.removeAllObjects()
-    }
+}
+    
+    var myActivityIndicator: UIActivityIndicatorView!
+    var isAnimating = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
+        myActivityIndicator.center = view.center
+        view.addSubview(myActivityIndicator)
         
         captionTextView.text = "Write a caption..."
         captionTextView.textColor = UIColor.lightGray
