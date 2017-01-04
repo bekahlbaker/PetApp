@@ -30,6 +30,7 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     
     @IBOutlet weak var coverPhoto: UIImageView!
     @IBAction func editCoverPhotoTapped(_ sender: AnyObject) {
+        ProfileVC.coverCache.removeAllObjects()
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             print("Cover photo chosen")
             imagePicked = 1
@@ -37,6 +38,8 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         }
     }
     @IBAction func addImageTapped(_ sender: AnyObject) {
+        ProfileVC.profileCache.removeAllObjects()
+        FeedVC.imageCache.removeAllObjects()
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             print("Profile photo chosen")
             imagePicked = 2
@@ -44,6 +47,8 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         }
     }
     @IBAction func tapGestureTapped(_ sender: AnyObject) {
+        ProfileVC.profileCache.removeAllObjects()
+        FeedVC.imageCache.removeAllObjects()
         if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
             print("Profile photo chosen")
             imagePicked = 2
@@ -94,7 +99,7 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                                 let profileImg = UIImage(data: data!)
                                 self.profileImg.image = profileImg
                                 print("Using firebase image for profile")
-                                ProfileVC.profileCache.setObject(profileImg!, forKey: "profileImg")
+//                                ProfileVC.profileCache.setObject(profileImg!, forKey: "profileImg")
                             }
                         }
                     } 
@@ -120,7 +125,7 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                                 let coverImg = UIImage(data: data!)
                                 self.coverPhoto.image = coverImg
                                 print("Using firebase image for cover")
-                                ProfileVC.coverCache.setObject(coverImg!, forKey: "coverImg")
+//                                ProfileVC.coverCache.setObject(coverImg!, forKey: "coverImg")
                             }
                     }
                 }

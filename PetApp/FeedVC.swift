@@ -84,10 +84,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as? FeedCell {
             cell.configureCell(post: post)
-//            cell.profileImg.image = UIImage(named: "blank-profile-picture")
-            
-            if FeedVC.imageCache.object(forKey: post.profileImgUrl as NSString) != nil {
-                cell.profileImg.image = FeedVC.imageCache.object(forKey: post.profileImgUrl as NSString)
+            cell.profileImg.image = UIImage(named: "blank-profile-picture")
+            let userKey = post.userKey
+            if FeedVC.imageCache.object(forKey: userKey as NSString) != nil {
+                cell.profileImg.image = FeedVC.imageCache.object(forKey: userKey as NSString)
                 print("using cached profile image")
                 
                 cell.tapAction = { (cell) in
@@ -116,20 +116,27 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 
                 return cell
             } else {
-                    let ref = FIRStorage.storage().reference(forURL: post.profileImgUrl)
-                    ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
-                        if error != nil {
-                            print("Unable to Download profile image from Firebase storage.")
-                        } else {
-                            print("Profile image downloaded from FB Storage.")
-                            if let imgData = data {
-                                if let profileImg = UIImage(data: imgData) {
-                                    FeedVC.imageCache.setObject(profileImg, forKey: post.profileImgUrl as NSString)
+                let userKey = post.userKey
+                DataService.ds.REF_USERS.child(userKey).child("user-info").observeSingleEvent(of: .value, with:  { (snapshot) in
+                    if let dictionary = snapshot.value as? [String: Any] {
+                        if let profileURL = dictionary["profileImgUrl"] as? String {
+                            let ref = FIRStorage.storage().reference(forURL: profileURL)
+                            ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+                                if error != nil {
+                                    print("Unable to Download profile image from Firebase storage.")
+                                } else {
+                                    print("Profile image downloaded from FB Storage.")
+                                    if let imgData = data {
+                                        if let profileImg = UIImage(data: imgData) {
+                                            FeedVC.imageCache.setObject(profileImg, forKey: userKey as NSString)
+                                        }
+                                    }
                                 }
-                            }
+                                
+                            })
                         }
-                        
-                    })
+                    }
+                })
                 return cell
                 }
             } else {

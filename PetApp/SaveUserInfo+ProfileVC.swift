@@ -13,12 +13,9 @@ import Kingfisher
 extension ProfileVC {
     //SAVE and UPLOAD profile info & image
     
-    @IBAction func saveBtnPressed(_ sender: AnyObject) {
-        ProfileVC.profileCache.removeAllObjects()
-        ProfileVC.coverCache.removeAllObjects()
-        FeedVC.imageCache.removeAllObjects()
-        
+    @IBAction func saveBtnPressed(_ sender: AnyObject) {        
         if self.profileImg.image != nil {
+            ProfileVC.profileCache.setObject(self.profileImg.image!, forKey: "profileImg")
             //save profile image
             let imageName = NSUUID().uuidString
             let metadata = FIRStorageMetadata()
@@ -42,6 +39,7 @@ extension ProfileVC {
         
         
         if self.coverPhoto.image != nil {
+            ProfileVC.coverCache.setObject(self.coverPhoto.image!, forKey: "coverImg")
             //save cover image
             let coverImageName = NSUUID().uuidString
             let coverMetadata = FIRStorageMetadata()
