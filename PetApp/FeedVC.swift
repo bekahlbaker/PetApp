@@ -15,13 +15,13 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
-    var refreshCtrl: UIRefreshControl!
-    
     var posts = [Post]()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     var indexToPass: Int!
     static var usernameToPass: String!
     static var postKeyToPass: String!
+    
+    var refreshControl: UIRefreshControl!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,29 +29,16 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
         
-        self.refreshCtrl = UIRefreshControl()
-        self.refreshCtrl.addTarget(self, action: #selector(FeedVC.refreshTableView), for: .valueChanged)
-//        self.refreshControl = self.refreshCtrl
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(FeedVC.refresh(sender:)), for: UIControlEvents.valueChanged)
+        tableView.addSubview(refreshControl) // not required when using UITableViewController
         
-        DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
+        refresh(sender: self)
+    }
 
-            self.posts = []
-            
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                for snap in snapshot {
-                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                        let key = snap.key
-                        let post = Post(postKey: key, postData: postDict)
-                        self.posts.insert(post, at: 0)
-                    }
-                }
-            }
-            self.tableView.reloadData()
-        })
-    }
-    
-    func refreshTableView(){
-        DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
+    func refresh(sender:AnyObject) {
+        // Code to refresh table view
+        DataService.ds.REF_POSTS.observeSingleEvent(of: .value, with: { (snapshot) in
             
             self.posts = []
             
@@ -66,7 +53,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
             self.tableView.reloadData()
         })
+        refreshControl.endRefreshing()
     }
+
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1

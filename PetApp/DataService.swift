@@ -88,14 +88,6 @@ class DataService {
         KeychainWrapper.standard.set(id, forKey: KEY_UID)
     }
     
-    func downloadUserProfile() {
-        
-
-    }
-    
-    func authenticateWithFacebook() {
-        
-    }
     
 }
 

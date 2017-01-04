@@ -1671,7 +1671,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="539" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mY4-Tr-zgP">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="539" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mY4-Tr-zgP">
                                 <rect key="frame" x="0.0" y="55" width="375" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1819,6 +1819,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="FOH-oA-jlS" id="cip-6Y-h4c"/>
+                                    <outlet property="delegate" destination="FOH-oA-jlS" id="85e-1g-rze"/>
+                                </connections>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7A6-yj-kNB">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
@@ -2121,14 +2125,14 @@
         <image name="user-sm" width="35" height="35"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="zsD-8J-Lsn"/>
         <segue reference="lia-Ce-C0t"/>
-        <segue reference="Rbt-f7-1FK"/>
-        <segue reference="vcX-KV-BRk"/>
+        <segue reference="whq-87-tqY"/>
         <segue reference="Z0q-gj-kUt"/>
         <segue reference="61E-j1-iUC"/>
+        <segue reference="vcX-KV-BRk"/>
         <segue reference="61S-To-qrI"/>
         <segue reference="Ive-65-i5K"/>
         <segue reference="SDZ-21-9fi"/>
-        <segue reference="zsD-8J-Lsn"/>
     </inferredMetricsTieBreakers>
 </document>
