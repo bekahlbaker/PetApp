@@ -77,7 +77,6 @@ class FeedCell: UITableViewCell {
             let ref = FIRStorage.storage().reference(forURL: post.imageURL)
             ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
                 if error != nil {
-                    self.feedImageView.image = UIImage(named: "")
                     print("Unable to Download image from Firebase storage.")
                 } else {
                     print("Feed image downloaded from FB Storage.")
@@ -85,7 +84,6 @@ class FeedCell: UITableViewCell {
                         if let img = UIImage(data: imgData) {
                             self.feedImageView.image = img
                             self.activitySpinner.stopAnimating()
-                            FeedVC.imageCache.setObject(img, forKey: post.imageURL as NSString)
                         }
                     }
                 }
@@ -94,30 +92,30 @@ class FeedCell: UITableViewCell {
             
         }
         
-        if let profileImgURL = URL(string: post.profileImgUrl) {
-            self.profileImg.kf.setImage(with: profileImgURL)
-            print("using kingfisher for profile image")
-        } else {
-            self.profileImg.image = UIImage(named: "")
-            let ref = FIRStorage.storage().reference(forURL: post.profileImgUrl)
-            ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
-                if error != nil {
-                    self.profileImg.image = UIImage(named: "")
-                    print("Unable to Download profile image from Firebase storage.")
-                } else {
-                    print("Profile image downloaded from FB Storage.")
-                    if let imgData = data {
-                        if let profileImg = UIImage(data: imgData) {
-                            self.profileImg.image = profileImg
-                            self.profileActivitySpinner.stopAnimating()
-                            FeedVC.imageCache.setObject(profileImg, forKey: post.profileImgUrl as NSString)
-                        }
-                    }
-                }
-                
-            })
-            
-        }
+//        if profileImg != nil {
+//            self.profileActivitySpinner.stopAnimating()
+//                self.profileImg.image = profileImg
+//        } else {
+//            DispatchQueue.global().async {
+//                let ref = FIRStorage.storage().reference(forURL: post.profileImgUrl)
+//                ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+//                    if error != nil {
+//                        self.profileImg.image = UIImage(named: "")
+//                        print("Unable to Download profile image from Firebase storage.")
+//                    } else {
+//                        print("Profile image downloaded from FB Storage.")
+//                        if let imgData = data {
+//                            if let profileImg = UIImage(data: imgData) {
+//                                self.profileImg.image = profileImg
+//                                self.profileActivitySpinner.stopAnimating()
+//                                FeedVC.imageCache.setObject(profileImg, forKey: post.profileImgUrl as NSString)
+//                            }
+//                        }
+//                    }
+//                    
+//                })
+//            }
+//    }
         
         likesRef.observeSingleEvent(of: .value, with:  { (snapshot) in
             if let _ = snapshot.value as? NSNull {

@@ -15,6 +15,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
     
+    var refreshCtrl: UIRefreshControl!
+    
     var posts = [Post]()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     var indexToPass: Int!
@@ -27,8 +29,30 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.delegate = self
         tableView.dataSource = self
         
+        self.refreshCtrl = UIRefreshControl()
+        self.refreshCtrl.addTarget(self, action: #selector(FeedVC.refreshTableView), for: .valueChanged)
+//        self.refreshControl = self.refreshCtrl
+        
         DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
 
+            self.posts = []
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                for snap in snapshot {
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        let key = snap.key
+                        let post = Post(postKey: key, postData: postDict)
+                        self.posts.insert(post, at: 0)
+                    }
+                }
+            }
+            self.tableView.reloadData()
+        })
+    }
+    
+    func refreshTableView(){
+        DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
+            
             self.posts = []
             
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
@@ -59,6 +83,12 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let post = posts[indexPath.row]
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as? FeedCell {
+            
+            cell.profileImg.image = UIImage(named: "blank-profile-picture")
+            
+            if FeedVC.imageCache.object(forKey: post.profileImgUrl as NSString) != nil {
+                cell.profileImg.image = FeedVC.imageCache.object(forKey: post.profileImgUrl as NSString)
+                print("using cached profile image")
                 cell.configureCell(post: post)
                 
                 cell.tapAction = { (cell) in
@@ -68,7 +98,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                         self.performSegue(withIdentifier: "SinglePhotoVC", sender: nil)
                     }
                 }
-
+                
                 cell.tapActionUsername = { (cell) in
                     print("POST \(post.userKey)")
                     FeedVC.usernameToPass = post.userKey
@@ -84,7 +114,31 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                         self.performSegue(withIdentifier: "CommentsVC", sender: nil)
                     }
                 }
+                
+                DispatchQueue.main.async {
+                    
+                }
+                
                 return cell
+            } else {
+                DispatchQueue.global().async {
+                    let ref = FIRStorage.storage().reference(forURL: post.profileImgUrl)
+                    ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+                        if error != nil {
+                            print("Unable to Download profile image from Firebase storage.")
+                        } else {
+                            print("Profile image downloaded from FB Storage.")
+                            if let imgData = data {
+                                if let profileImg = UIImage(data: imgData) {
+                                    FeedVC.imageCache.setObject(profileImg, forKey: post.profileImgUrl as NSString)
+                                }
+                            }
+                        }
+                        
+                    })
+                }
+                return cell
+                }
             } else {
             return FeedCell()
         }

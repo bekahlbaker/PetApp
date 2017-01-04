@@ -80,13 +80,13 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 
                 //download profile img
                 if profileUrl == (dictionary["profileImgUrl"] as? String)! {
-                    //use Kingfisher
-                    if let imageUrl = URL(string: profileUrl) {
-     
-                        self.profileImg.kf.indicatorType = .activity
-                        self.profileImg.kf.setImage(with: imageUrl)
-                        print("Using kingfisher image for profile.")
-                    } else {
+//                    //use Kingfisher
+//                    if let imageUrl = URL(string: profileUrl) {
+//     
+//                        self.profileImg.kf.indicatorType = .activity
+//                        self.profileImg.kf.setImage(with: imageUrl)
+//                        print("Using kingfisher image for profile.")
+//                    } else {
                         let storage = FIRStorage.storage()
                         let storageRef = storage.reference(forURL: profileUrl)
                         storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
@@ -99,9 +99,9 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                             }
                         }
    
-                    }
+//                    }
                 }
-                
+            
                 guard let coverUrl = dictionary["coverImgUrl"] as? String else {
                     print("No cover image to download")
                     return
@@ -110,11 +110,11 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 //download cover photo
                 if coverUrl == (dictionary["coverImgUrl"] as? String)! {
                     //use Kingfisher
-                    if let imageUrl = URL(string: coverUrl) {
-                        self.profileImg.kf.indicatorType = .activity
-                        self.coverPhoto.kf.setImage(with: imageUrl)
-                        print("Using kingfisher image for cover.")
-                    } else {
+//                    if let imageUrl = URL(string: coverUrl) {
+//                        self.profileImg.kf.indicatorType = .activity
+//                        self.coverPhoto.kf.setImage(with: imageUrl)
+//                        print("Using kingfisher image for cover.")
+//                    } else {
                         let storage = FIRStorage.storage()
                         let storageRef = storage.reference(forURL: coverUrl)
                         storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
@@ -127,7 +127,7 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                             }
                         }
                         
-                    }
+//                    }
                 }
             }
             
