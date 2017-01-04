@@ -14,10 +14,12 @@ extension ProfileVC {
     //SAVE and UPLOAD profile info & image
     
     @IBAction func saveBtnPressed(_ sender: AnyObject) {
+        ProfileVC.profileCache.removeAllObjects()
+        ProfileVC.coverCache.removeAllObjects()
+        FeedVC.imageCache.removeAllObjects()
         
         if self.profileImg.image != nil {
             //save profile image
-            
             let imageName = NSUUID().uuidString
             let metadata = FIRStorageMetadata()
             metadata.contentType = "image/png"
@@ -30,8 +32,6 @@ extension ProfileVC {
                     }
                     if let profileImageUrl =  metadata?.downloadURL()?.absoluteString {
                         self.createUserInfo(key: "profileImgUrl", value: profileImageUrl)
-                        //                        let values = ["profileImgUrl": profileImageUrl]
-                        //                        self.uploadToFirebase(values: values)
                         print("Successfuly uploaded image to Firebase")
                     }
                 })

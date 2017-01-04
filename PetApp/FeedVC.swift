@@ -83,13 +83,12 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let post = posts[indexPath.row]
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as? FeedCell {
-            
-            cell.profileImg.image = UIImage(named: "blank-profile-picture")
+            cell.configureCell(post: post)
+//            cell.profileImg.image = UIImage(named: "blank-profile-picture")
             
             if FeedVC.imageCache.object(forKey: post.profileImgUrl as NSString) != nil {
                 cell.profileImg.image = FeedVC.imageCache.object(forKey: post.profileImgUrl as NSString)
                 print("using cached profile image")
-                cell.configureCell(post: post)
                 
                 cell.tapAction = { (cell) in
                     print(tableView.indexPath(for: cell)!.row)
@@ -115,13 +114,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     }
                 }
                 
-                DispatchQueue.main.async {
-                    
-                }
-                
                 return cell
             } else {
-                DispatchQueue.global().async {
                     let ref = FIRStorage.storage().reference(forURL: post.profileImgUrl)
                     ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
                         if error != nil {
@@ -136,7 +130,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                         }
                         
                     })
-                }
                 return cell
                 }
             } else {

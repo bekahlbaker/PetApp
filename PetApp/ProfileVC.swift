@@ -25,7 +25,8 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     
     var imagePicker = UIImagePickerController()
     var imagePicked = 0
-    
+    static var profileCache: NSCache<NSString, UIImage> = NSCache()
+    static var coverCache: NSCache<NSString, UIImage> = NSCache()
     
     @IBOutlet weak var coverPhoto: UIImageView!
     @IBAction func editCoverPhotoTapped(_ sender: AnyObject) {
@@ -73,20 +74,17 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 self.locationLbl.text = dictionary["location"] as? String
                 self.aboutLbl.text = dictionary["about"] as? String
                 
-                guard let profileUrl = dictionary["profileImgUrl"] as? String else {
-                    print("No profile image to download")
-                    return
-                }
-                
-                //download profile img
-                if profileUrl == (dictionary["profileImgUrl"] as? String)! {
-//                    //use Kingfisher
-//                    if let imageUrl = URL(string: profileUrl) {
-//     
-//                        self.profileImg.kf.indicatorType = .activity
-//                        self.profileImg.kf.setImage(with: imageUrl)
-//                        print("Using kingfisher image for profile.")
-//                    } else {
+                if ProfileVC.profileCache.object(forKey: "profileImg") != nil {
+                    self.profileImg.image = ProfileVC.profileCache.object(forKey: "profileImg")
+                    print("using cached profile img")
+                } else {
+                    guard let profileUrl = dictionary["profileImgUrl"] as? String else {
+                        print("No profile image to download")
+                        return
+                    }
+                    
+                    //download profile img
+                    if profileUrl == (dictionary["profileImgUrl"] as? String)! {
                         let storage = FIRStorage.storage()
                         let storageRef = storage.reference(forURL: profileUrl)
                         storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
@@ -96,12 +94,16 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                                 let profileImg = UIImage(data: data!)
                                 self.profileImg.image = profileImg
                                 print("Using firebase image for profile")
+                                ProfileVC.profileCache.setObject(profileImg!, forKey: "profileImg")
                             }
                         }
-   
-//                    }
+                    } 
                 }
             
+                if ProfileVC.coverCache.object(forKey: "coverImg") != nil {
+                    self.coverPhoto.image = ProfileVC.coverCache.object(forKey: "coverImg")
+                    print("using cached cover img")
+                } else {
                 guard let coverUrl = dictionary["coverImgUrl"] as? String else {
                     print("No cover image to download")
                     return
@@ -109,12 +111,6 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 
                 //download cover photo
                 if coverUrl == (dictionary["coverImgUrl"] as? String)! {
-                    //use Kingfisher
-//                    if let imageUrl = URL(string: coverUrl) {
-//                        self.profileImg.kf.indicatorType = .activity
-//                        self.coverPhoto.kf.setImage(with: imageUrl)
-//                        print("Using kingfisher image for cover.")
-//                    } else {
                         let storage = FIRStorage.storage()
                         let storageRef = storage.reference(forURL: coverUrl)
                         storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
@@ -124,13 +120,12 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                                 let coverImg = UIImage(data: data!)
                                 self.coverPhoto.image = coverImg
                                 print("Using firebase image for cover")
+                                ProfileVC.coverCache.setObject(coverImg!, forKey: "coverImg")
                             }
-                        }
-                        
-//                    }
+                    }
                 }
             }
-            
+        }
             
         })
     }

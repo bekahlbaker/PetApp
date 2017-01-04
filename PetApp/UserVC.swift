@@ -126,14 +126,12 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
                     self.aboutLbl.text = about
                 }
                 
-                //download profile img
-                if let url = dictionary["profileImgUrl"] as? String {
-                    //use Kingfisher
-//                    if let imageUrl = URL(string: url) {
-//                        self.profileImg.kf.indicatorType = .activity
-//                        self.profileImg.kf.setImage(with: imageUrl)
-//                        print("Using kingfisher image for profile.")
-//                    } else {
+                if ProfileVC.profileCache.object(forKey: "profileImg") != nil {
+                    self.profileImg.image = ProfileVC.profileCache.object(forKey: "profileImg")
+                    print("using cached profile img")
+                }else {
+                    //download profile img
+                    if let url = dictionary["profileImgUrl"] as? String {
                         let storage = FIRStorage.storage()
                         let storageRef = storage.reference(forURL: url)
                         storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
@@ -145,17 +143,15 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
                                 print("Using firebase image for profile")
                             }
                         }
-                        
-//                    }
+                    }
+
                 }
-                //download cover photo
-                if let url = dictionary["coverImgUrl"] as? String {
-                    //use Kingfisher
-//                    if let imageUrl = URL(string: url) {
-//                        self.profileImg.kf.indicatorType = .activity
-//                        self.coverImg.kf.setImage(with: imageUrl)
-//                        print("Using kingfisher image for cover.")
-//                    } else {
+                if ProfileVC.coverCache.object(forKey: "coverImg") != nil {
+                    self.coverImg.image = ProfileVC.coverCache.object(forKey: "coverImg")
+                    print("using cached cover img")
+                }else{
+                    //download cover photo
+                    if let url = dictionary["coverImgUrl"] as? String {
                         let storage = FIRStorage.storage()
                         let storageRef = storage.reference(forURL: url)
                         storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
@@ -167,8 +163,7 @@ class UserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSo
                                 print("Using firebase image for cover")
                             }
                         }
-//                        
-//                    }
+                    }
                 }
             }
             
