@@ -98,7 +98,7 @@ extension ProfileVC {
         } else {
             self.removeUserInfo(key: "about")
         }
-        performSegue(withIdentifier: "toUserVC", sender: nil)
+        performSegue(withIdentifier: "ViewUserVC", sender: nil)
     }
     
     func createUserInfo(key: String, value: String) {

@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SwiftKeychainWrapper
 
 class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
@@ -28,6 +29,16 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    
+    @IBOutlet weak var navBtn: UIButton!
+    @IBAction func navBtnTapped(_ sender: Any) {
+        DispatchQueue.main.async {
+            let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
+            if self.usernamePassed! == userKey {
+                self.performSegue(withIdentifier: "ProfileVC", sender: nil)
+            }
+        }
+    }
     var usernamePassed: String!
     var posts = [Post]()
 
@@ -36,6 +47,24 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         
         self.usernamePassed = FeedVC.usernameToPass
         print("VUVC \(self.usernamePassed!)")
+
+        DispatchQueue.main.async {
+        let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
+        if self.usernamePassed! == userKey {
+            self.navBtn.setTitle("Edit", for: .normal)
+            print("This is the current user")
+                if ProfileVC.profileCache.object(forKey: "profileImg") != nil {
+                    self.profileImg.image = ProfileVC.profileCache.object(forKey: "profileImg")
+                    print("using cached profile img on ViewUser")
+                }
+                if ProfileVC.coverCache.object(forKey: "coverImg") != nil {
+                    self.coverImg.image = ProfileVC.coverCache.object(forKey: "coverImg")
+                    print("using cached cover img")
+                }
+        } else {
+            self.navBtn.setTitle("Follow", for: .normal)
+            }
+        }
         
         DataService.ds.REF_POSTS.queryOrdered(byChild: "userKey").queryEqual(toValue: self.usernamePassed!).observeSingleEvent(of: .value, with: { (snapshot) in
             
@@ -151,10 +180,6 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
                         }
                     }
         })
-        
-//        let followBtn = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.add, target: self, action: #selector(ViewUserVC.followBtnMethod))
-//        navigationItem.rightBarButtonItem = followBtn
-//        title = "Follow"
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -162,18 +187,11 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         let post = posts[indexPath.row]
     
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UserPicCell", for: indexPath) as? UserPicCell {
-            if let img = UserVC.userImageCache.object(forKey: post.imageURL as NSString) {
-                cell.configureCell(post: post, img: img)
-                return cell
+            cell.configureCell(post: post)
+            return cell
             } else {
-                cell.configureCell(post: post)
-                return cell
-            }
-    
-        } else {
             return UserPicCell()
         }
-    
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {

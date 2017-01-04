@@ -18,7 +18,7 @@ class UserPicCell: UICollectionViewCell {
     
     var post: Post!
     
-    func configureCell(post: Post, img: UIImage? = nil) {
+    func configureCell(post: Post) {
         
         self.post = post
         
@@ -36,7 +36,6 @@ class UserPicCell: UICollectionViewCell {
                     if let imgData = data {
                         if let img = UIImage(data: imgData) {
                             self.imageView.image = img
-                            UserVC.userImageCache.setObject(img, forKey: post.imageURL as NSString)
                         }
                     }
                 }

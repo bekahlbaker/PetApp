@@ -43,6 +43,8 @@ class FeedCell: UITableViewCell {
     var post: Post!
     var likesRef: FIRDatabaseReference!
     
+    static var isConfigured: Bool!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -55,52 +57,58 @@ class FeedCell: UITableViewCell {
     
     
     func configureCell(post: Post) {
-        self.activitySpinner.startAnimating()
-        self.profileActivitySpinner.startAnimating()
-        
-        self.post = post
-
-        likesRef = DataService.ds.REF_CURRENT_USER.child("likes").child(post.postKey)
-
-        self.caption.text = post.caption
-        
-        self.usernameBtn.setTitle(post.username, for: .normal)
-
-        self.likes.text = String(post.likes)
-        
-        self.comments.text = String(post.commentCount)
-        
-        if let imgURL = URL(string: post.imageURL) {
-            self.feedImageView.kf.setImage(with: imgURL)
-            print("using kingfisher for feed image")
-        } else {
-            let ref = FIRStorage.storage().reference(forURL: post.imageURL)
-            ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
-                if error != nil {
-                    print("Unable to Download image from Firebase storage.")
-                } else {
-                    print("Feed image downloaded from FB Storage.")
-                    if let imgData = data {
-                        if let img = UIImage(data: imgData) {
-                            self.feedImageView.image = img
-                            self.activitySpinner.stopAnimating()
+        DispatchQueue.global().async {
+            FeedCell.isConfigured = true
+        }
+        DispatchQueue.main.async {
+            self.activitySpinner.startAnimating()
+            self.profileActivitySpinner.startAnimating()
+            
+            self.post = post
+            
+            self.likesRef = DataService.ds.REF_CURRENT_USER.child("likes").child(post.postKey)
+            
+            self.caption.text = post.caption
+            
+            self.usernameBtn.setTitle(post.username, for: .normal)
+            
+            self.likes.text = String(post.likes)
+            
+            self.comments.text = String(post.commentCount)
+            
+            if let imgURL = URL(string: post.imageURL) {
+                self.feedImageView.kf.setImage(with: imgURL)
+                print("using kingfisher for feed image")
+            } else {
+                let ref = FIRStorage.storage().reference(forURL: post.imageURL)
+                ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+                    if error != nil {
+                        print("Unable to Download image from Firebase storage.")
+                    } else {
+                        print("Feed image downloaded from FB Storage.")
+                        if let imgData = data {
+                            if let img = UIImage(data: imgData) {
+                                self.feedImageView.image = img
+                                self.activitySpinner.stopAnimating()
+                            }
                         }
                     }
-                }
+                    
+                })
                 
-            })
-            
-        }
-        
-        likesRef.observeSingleEvent(of: .value, with:  { (snapshot) in
-            if let _ = snapshot.value as? NSNull {
-                self.likesImg.image = UIImage(named: "empty-heart")
-                self.likesImgSm.image = UIImage(named: "empty-heart")
-            } else {
-                self.likesImg.image = UIImage(named: "filled-heart")
-                self.likesImgSm.image = UIImage(named: "filled-heart")
             }
-        })
+            
+            self.likesRef.observeSingleEvent(of: .value, with:  { (snapshot) in
+                if let _ = snapshot.value as? NSNull {
+                    self.likesImg.image = UIImage(named: "empty-heart")
+                    self.likesImgSm.image = UIImage(named: "empty-heart")
+                } else {
+                    self.likesImg.image = UIImage(named: "filled-heart")
+                    self.likesImgSm.image = UIImage(named: "filled-heart")
+                }
+            })
+
+        }
 }
 
     func likeTapped(sender: UITapGestureRecognizer) {

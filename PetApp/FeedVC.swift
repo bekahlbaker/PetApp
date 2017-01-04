@@ -97,28 +97,30 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 cell.profileImg.image = FeedVC.imageCache.object(forKey: userKey as NSString)
                 print("using cached profile image")
                 
-                cell.tapAction = { (cell) in
-                    print(tableView.indexPath(for: cell)!.row)
-                    self.indexToPass = tableView.indexPath(for: cell)!.row
-                    if self.indexToPass != nil {
-                        self.performSegue(withIdentifier: "SinglePhotoVC", sender: nil)
+                if FeedCell.isConfigured == true {
+                    cell.tapAction = { (cell) in
+                        print(tableView.indexPath(for: cell)!.row)
+                        self.indexToPass = tableView.indexPath(for: cell)!.row
+                        if self.indexToPass != nil {
+                            self.performSegue(withIdentifier: "SinglePhotoVC", sender: nil)
+                        }
                     }
-                }
-                
-                cell.tapActionUsername = { (cell) in
-                    print("POST \(post.userKey)")
-                    FeedVC.usernameToPass = post.userKey
-                    if FeedVC.usernameToPass != nil {
-                        self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
+                    
+                    cell.tapActionUsername = { (cell) in
+                        print("POST \(post.userKey)")
+                        FeedVC.usernameToPass = post.userKey
+                        if FeedVC.usernameToPass != nil {
+                            self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
+                        }
                     }
-                }
-                
-                cell.tapActionComment = { (cell) in
-                    print("POST \(post.postKey)")
-                    FeedVC.postKeyToPass = post.postKey
-                    if FeedVC.postKeyToPass != nil {
-                        self.performSegue(withIdentifier: "CommentsVC", sender: nil)
-                    }
+                    
+                    cell.tapActionComment = { (cell) in
+                        print("POST \(post.postKey)")
+                        FeedVC.postKeyToPass = post.postKey
+                        if FeedVC.postKeyToPass != nil {
+                            self.performSegue(withIdentifier: "CommentsVC", sender: nil)
+                        }
+                    }   
                 }
                 
                 return cell
@@ -157,4 +159,14 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             myVC.indexPassed = self.indexToPass
         }
     }
+    
+    @IBAction func viewUserTapped(_ sender: Any) {
+        let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
+        print("USER KEY \(userKey)")
+        FeedVC.usernameToPass = userKey
+        if FeedVC.usernameToPass != nil {
+            self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
+        }
+    }
+    
 }
