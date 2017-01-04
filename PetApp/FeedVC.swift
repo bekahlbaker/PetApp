@@ -16,6 +16,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     
     var posts = [Post]()
+    var postsObserved = [Post]()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     var indexToPass: Int!
     static var usernameToPass: String!
@@ -32,6 +33,21 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(FeedVC.refresh(sender:)), for: UIControlEvents.valueChanged)
         tableView.addSubview(refreshControl) // not required when using UITableViewController
+        
+        DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
+            
+            self.postsObserved = []
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                for snap in snapshot {
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        let key = snap.key
+                        let post = Post(postKey: key, postData: postDict)
+                        self.postsObserved.insert(post, at: 0)
+                    }
+                }
+            }
+        })
         
         refresh(sender: self)
     }
@@ -70,11 +86,13 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let post = posts[indexPath.row]
+        let postsObserved = self.postsObserved[indexPath.row]
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as? FeedCell {
-            cell.configureCell(post: post)
+            cell.configureCell(post: postsObserved)
             cell.profileImg.image = UIImage(named: "blank-profile-picture")
-            let userKey = post.userKey
+            
+            let userKey = postsObserved.userKey
             if FeedVC.imageCache.object(forKey: userKey as NSString) != nil {
                 cell.profileImg.image = FeedVC.imageCache.object(forKey: userKey as NSString)
                 print("using cached profile image")
