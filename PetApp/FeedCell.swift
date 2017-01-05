@@ -31,6 +31,11 @@ class FeedCell: UITableViewCell {
         tapActionMore?(self)
     }
     
+    @IBOutlet weak var saveBtn: UIButton!
+    @IBAction func saveBtnTapped(_ sender: Any) {
+        tapActionSave?(self)
+    }
+    
     @IBAction func usernameTapped(_ sender: AnyObject) {
         tapActionUsername?(self)
     }
@@ -47,6 +52,7 @@ class FeedCell: UITableViewCell {
     var tapActionUsername: ((UITableViewCell) -> Void)?
     var tapActionComment: ((UITableViewCell) -> Void)?
     var tapActionMore: ((UITableViewCell) -> Void)?
+    var tapActionSave: ((UITableViewCell) -> Void)?
     var post: Post!
     var likesRef: FIRDatabaseReference!
     
@@ -55,6 +61,7 @@ class FeedCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.saveBtn.isHidden = true
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(likeTapped))
         tap.numberOfTapsRequired = 1
@@ -149,5 +156,8 @@ class FeedCell: UITableViewCell {
         })
     }
 
-    
+    func showEdit() {
+        self.caption.isEditable = true
+        self.saveBtn.isHidden = false
+    }
 }

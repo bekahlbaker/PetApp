@@ -1041,7 +1041,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J14-8c-mV2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2338" y="796"/>
+            <point key="canvasLocation" x="1106" y="1731"/>
         </scene>
         <!--ViewUserVC-->
         <scene sceneID="Hb0-BN-HMg">
@@ -1272,9 +1272,6 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="PWB-3c-GsW"/>
                                     <barButtonItem image="user-1" id="crG-I8-sPm">
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <segue destination="HIm-Vc-Fus" kind="show" id="Rbt-f7-1FK"/>
-                                        </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
@@ -1315,7 +1312,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ns8-AI-LM0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3169" y="796"/>
+            <point key="canvasLocation" x="2620" y="796"/>
         </scene>
         <!--CommentsVC-->
         <scene sceneID="K10-Zo-qeV">
@@ -1491,9 +1488,6 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="S8g-jU-aCI"/>
                                     <barButtonItem image="user-sm" id="d3A-Py-vtj">
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                        <connections>
-                                            <segue destination="HIm-Vc-Fus" kind="show" id="mYI-5u-ruE"/>
-                                        </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
@@ -1789,6 +1783,13 @@
                                                         <action selector="moreBtnTapped:" destination="XT7-dt-d1F" eventType="touchUpInside" id="smd-3n-IsD"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C0Y-iz-UGD">
+                                                    <rect key="frame" x="333" y="501" width="34" height="30"/>
+                                                    <state key="normal" title="Save"/>
+                                                    <connections>
+                                                        <action selector="saveBtnTapped:" destination="XT7-dt-d1F" eventType="touchUpInside" id="Qbb-tm-RBr"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="mjC-5q-P8C" firstAttribute="leading" secondItem="sxM-VQ-Gq8" secondAttribute="leadingMargin" id="0Z3-pY-SIj"/>
@@ -1813,6 +1814,7 @@
                                                 <constraint firstItem="aF3-6e-xIb" firstAttribute="leading" secondItem="JYe-G5-aHa" secondAttribute="trailing" constant="8" id="WKI-xM-dZj"/>
                                                 <constraint firstItem="OYw-6X-lWR" firstAttribute="top" secondItem="UD5-au-Ivn" secondAttribute="bottom" constant="10" id="Yol-0F-80V"/>
                                                 <constraint firstItem="4jZ-HB-nLh" firstAttribute="leading" secondItem="qCI-OQ-BVc" secondAttribute="trailing" constant="8" id="ZYf-vf-fQS"/>
+                                                <constraint firstItem="C0Y-iz-UGD" firstAttribute="trailing" secondItem="mjC-5q-P8C" secondAttribute="trailing" id="ZZw-L4-qqs"/>
                                                 <constraint firstItem="yf8-rA-QC7" firstAttribute="centerY" secondItem="OYw-6X-lWR" secondAttribute="centerY" id="aEk-hc-Ddy"/>
                                                 <constraint firstItem="ufH-fg-98K" firstAttribute="centerY" secondItem="Ldo-zY-XKn" secondAttribute="centerY" id="c55-fP-dXc"/>
                                                 <constraint firstItem="OYw-6X-lWR" firstAttribute="centerX" secondItem="sxM-VQ-Gq8" secondAttribute="centerX" id="d4J-cT-Hpa"/>
@@ -1825,6 +1827,7 @@
                                                 <constraint firstItem="UD5-au-Ivn" firstAttribute="leading" secondItem="sxM-VQ-Gq8" secondAttribute="leadingMargin" constant="10" id="np9-zz-SqC"/>
                                                 <constraint firstItem="4jZ-HB-nLh" firstAttribute="centerY" secondItem="qCI-OQ-BVc" secondAttribute="centerY" id="pvI-sI-NS8"/>
                                                 <constraint firstItem="1lD-bD-Xb6" firstAttribute="top" secondItem="yf8-rA-QC7" secondAttribute="bottom" id="rDc-qX-58Y"/>
+                                                <constraint firstItem="C0Y-iz-UGD" firstAttribute="bottom" secondItem="mjC-5q-P8C" secondAttribute="bottom" id="u2c-Cd-kyk"/>
                                                 <constraint firstItem="qCI-OQ-BVc" firstAttribute="leading" secondItem="sxM-VQ-Gq8" secondAttribute="leading" constant="16" id="uZA-6g-VFO"/>
                                                 <constraint firstItem="UD5-au-Ivn" firstAttribute="top" secondItem="sxM-VQ-Gq8" secondAttribute="topMargin" id="ufS-0h-ygn"/>
                                                 <constraint firstItem="mjC-5q-P8C" firstAttribute="top" secondItem="yf8-rA-QC7" secondAttribute="bottom" constant="25" id="xJY-KP-0Nz"/>
@@ -1841,6 +1844,7 @@
                                             <outlet property="moreBtn" destination="1lD-bD-Xb6" id="vPS-n5-rNm"/>
                                             <outlet property="profileActivitySpinner" destination="EBM-Vr-cT3" id="h0L-e3-bLg"/>
                                             <outlet property="profileImg" destination="UD5-au-Ivn" id="igu-fj-EDf"/>
+                                            <outlet property="saveBtn" destination="C0Y-iz-UGD" id="vU5-gG-aK0"/>
                                             <outlet property="usernameBtn" destination="Ldo-zY-XKn" id="Pu2-Ge-Miw"/>
                                         </connections>
                                     </tableViewCell>
@@ -2152,12 +2156,11 @@
         <image name="user-sm" width="35" height="35"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xxD-Un-TMy"/>
-        <segue reference="IhM-3o-Tc4"/>
-        <segue reference="mYI-5u-ruE"/>
-        <segue reference="grZ-l0-u7U"/>
-        <segue reference="lLd-kn-GIM"/>
+        <segue reference="61E-j1-iUC"/>
+        <segue reference="c4z-D9-GQg"/>
+        <segue reference="vcX-KV-BRk"/>
         <segue reference="Lqk-g8-n0s"/>
+        <segue reference="61S-To-qrI"/>
         <segue reference="SDZ-21-9fi"/>
         <segue reference="zsD-8J-Lsn"/>
     </inferredMetricsTieBreakers>
