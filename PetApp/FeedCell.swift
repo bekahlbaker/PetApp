@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import Kingfisher
+import SwiftKeychainWrapper
 
 
 class FeedCell: UITableViewCell {
@@ -25,6 +26,11 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var comments: UILabel!
     @IBOutlet weak var usernameBtn: UIButton!
     
+    @IBOutlet weak var moreBtn: UIButton!
+    @IBAction func moreBtnTapped(_ sender: Any) {
+        tapActionMore?(self)
+    }
+    
     @IBAction func usernameTapped(_ sender: AnyObject) {
         tapActionUsername?(self)
     }
@@ -40,10 +46,12 @@ class FeedCell: UITableViewCell {
     var tapAction: ((UITableViewCell) -> Void)?
     var tapActionUsername: ((UITableViewCell) -> Void)?
     var tapActionComment: ((UITableViewCell) -> Void)?
+    var tapActionMore: ((UITableViewCell) -> Void)?
     var post: Post!
     var likesRef: FIRDatabaseReference!
     
     static var isConfigured: Bool!
+    var isCurrentUser: Bool!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -52,17 +60,24 @@ class FeedCell: UITableViewCell {
         tap.numberOfTapsRequired = 1
         likesImg.addGestureRecognizer(tap)
         likesImg.isUserInteractionEnabled = true
-        
     }
     
     
     func configureCell(post: Post) {
+        self.post = post
+        
+        DispatchQueue.global().async {
+            let currentUser = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
+            if currentUser == self.post.userKey {
+                self.isCurrentUser = true
+            } else {
+                self.isCurrentUser = false
+            }
+        }
 
         DispatchQueue.main.async {
             self.activitySpinner.startAnimating()
             self.profileActivitySpinner.startAnimating()
-            
-            self.post = post
             
             self.likesRef = DataService.ds.REF_CURRENT_USER.child("likes").child(post.postKey)
             
@@ -73,6 +88,12 @@ class FeedCell: UITableViewCell {
             self.likes.text = String(post.likes)
             
             self.comments.text = String(post.commentCount)
+            
+            if self.isCurrentUser == false {
+                self.moreBtn.isHidden = true
+            } else if self.isCurrentUser == true {
+                self.moreBtn.isHidden = false
+            }
             
             if let imgURL = URL(string: post.imageURL) {
                 self.feedImageView.kf.setImage(with: imgURL)
@@ -126,4 +147,5 @@ class FeedCell: UITableViewCell {
         })
     }
 
+    
 }

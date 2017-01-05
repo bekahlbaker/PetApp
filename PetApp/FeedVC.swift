@@ -93,6 +93,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             cell.profileImg.image = UIImage(named: "blank-profile-picture")
             
             let userKey = postsObserved.userKey
+            
             if FeedVC.imageCache.object(forKey: userKey as NSString) != nil {
                 cell.profileImg.image = FeedVC.imageCache.object(forKey: userKey as NSString)
                 print("using cached profile image")
@@ -120,7 +121,44 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                         if FeedVC.postKeyToPass != nil {
                             self.performSegue(withIdentifier: "CommentsVC", sender: nil)
                         }
-                    }   
+                    }
+                    
+                    cell.tapActionMore = { (cell) in
+                        print("POST \(post.postKey)")
+                        FeedVC.postKeyToPass = post.postKey
+                        if FeedVC.postKeyToPass != nil{
+                            self.moreTapped(postKey: FeedVC.postKeyToPass)
+                        }
+//                        let alertController = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
+////                        let edit = UIAlertAction(title: "Edit", style: .default, handler: { (action) -> Void in
+////                            print("Edit btn tapped")
+////                        })
+//                        let delete = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) -> Void in
+//                            print("Delete btn tapped")
+//                            let alert = UIAlertController(title: "Are you sure you want to delete this post?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+//                            let deletePost = UIAlertAction(title: "Delete Post", style: .destructive, handler: { (action) -> Void in
+//                                print("Delete presssed")
+//                            })
+//                            let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+//                                print("Cancel Button Pressed")
+//                            }
+//                            
+//                            alert.addAction(deletePost)
+//                            alert.addAction(cancel)
+//                            
+//                            self.show(alert, sender: nil)
+//
+//                        })
+//                        let cancel = UIAlertAction(title: "Cancel", style: .cancel
+//, handler: { (action) -> Void in
+//                            print("Cancel btn tapped")
+//                        })
+////                        alertController.addAction(edit)
+//                        alertController.addAction(delete)
+//                        alertController.addAction(cancel)
+//                        
+//                        self.present(alertController, animated: true, completion: nil)
+                    }
                 }
                 
                 return cell
@@ -169,4 +207,38 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    func moreTapped(postKey: String) {
+        let alertController = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
+        //                        let edit = UIAlertAction(title: "Edit", style: .default, handler: { (action) -> Void in
+        //                            print("Edit btn tapped")
+        //                        })
+        let delete = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) -> Void in
+            print("Delete btn tapped")
+            let alert = UIAlertController(title: "Are you sure you want to delete this post?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+            let deletePost = UIAlertAction(title: "Delete Post", style: .destructive, handler: { (action) -> Void in
+                print("Delete presssed")
+                DataService.ds.REF_POSTS.child(postKey).removeValue()
+                print("Post removed")
+                self.refresh(sender: self.tableView)
+            })
+            let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+                print("Cancel Button Pressed")
+            }
+            
+            alert.addAction(deletePost)
+            alert.addAction(cancel)
+            
+            self.show(alert, sender: nil)
+            
+        })
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel
+            , handler: { (action) -> Void in
+                print("Cancel btn tapped")
+        })
+        //                        alertController.addAction(edit)
+        alertController.addAction(delete)
+        alertController.addAction(cancel)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
 }

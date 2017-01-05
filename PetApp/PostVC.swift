@@ -35,7 +35,7 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     
     @IBOutlet weak var imagePicker: UIButton!
     @IBAction func imagePickerTapped(_ sender: AnyObject) {
-        let alertController = UIAlertController(title: "", message: "Select Picture", preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: "Select Picture", message: nil, preferredStyle: .actionSheet)
         let camera = UIAlertAction(title: "Camera", style: .default, handler: { (action) -> Void in
             print("Camera Button Pressed")
             self.postImagePicker.allowsEditing = true
@@ -79,7 +79,7 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     
     @IBAction func cancelBtnTapped(_ sender: AnyObject) {
         if PostVC.imageSelected == true {
-            let alert = UIAlertController(title: "", message: "If you cancel now, your image edits will be discarded.", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: nil, message: "If you cancel now, your image edits will be discarded.", preferredStyle: UIAlertControllerStyle.alert)
             let discardPost = UIAlertAction(title: "Discard Post", style: .destructive, handler: { (action) -> Void in
                 PostVC.imageToPassBackCache.removeAllObjects()
                 self.performSegue(withIdentifier: "toFeedVC", sender: nil)

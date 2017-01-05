@@ -64,7 +64,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetPic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cjr-4F-ec4">
-                                <rect key="frame" x="115.5" y="28" width="145" height="75"/>
+                                <rect key="frame" x="115" y="28" width="145" height="75"/>
                                 <fontDescription key="fontDescription" name="Lobster1.4" family="Lobster 1.4" pointSize="60"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -1763,6 +1763,17 @@
                                                         <action selector="usernameTapped:" destination="XT7-dt-d1F" eventType="touchUpInside" id="HUw-OI-T16"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1lD-bD-Xb6">
+                                                    <rect key="frame" x="324" y="433" width="35" height="35"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="35" id="QEc-2w-Zxb"/>
+                                                        <constraint firstAttribute="width" constant="35" id="vtJ-yd-wUX"/>
+                                                    </constraints>
+                                                    <state key="normal" image="more-sm"/>
+                                                    <connections>
+                                                        <action selector="moreBtnTapped:" destination="XT7-dt-d1F" eventType="touchUpInside" id="smd-3n-IsD"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="mjC-5q-P8C" firstAttribute="leading" secondItem="sxM-VQ-Gq8" secondAttribute="leadingMargin" id="0Z3-pY-SIj"/>
@@ -1792,11 +1803,13 @@
                                                 <constraint firstItem="OYw-6X-lWR" firstAttribute="centerX" secondItem="sxM-VQ-Gq8" secondAttribute="centerX" id="d4J-cT-Hpa"/>
                                                 <constraint firstItem="Ldo-zY-XKn" firstAttribute="leading" secondItem="UD5-au-Ivn" secondAttribute="trailing" constant="8" id="djB-Xf-V48"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="mjC-5q-P8C" secondAttribute="bottom" id="fGX-Hl-ytd"/>
+                                                <constraint firstAttribute="trailing" secondItem="1lD-bD-Xb6" secondAttribute="trailing" constant="16" id="lEw-in-2BH"/>
                                                 <constraint firstItem="yf8-rA-QC7" firstAttribute="height" secondItem="OYw-6X-lWR" secondAttribute="height" id="lTg-PA-icE"/>
                                                 <constraint firstItem="1S3-sU-mSy" firstAttribute="width" secondItem="JYe-G5-aHa" secondAttribute="width" id="mag-z7-XFj"/>
                                                 <constraint firstItem="aF3-6e-xIb" firstAttribute="centerY" secondItem="JYe-G5-aHa" secondAttribute="centerY" id="mcr-as-Yjq"/>
                                                 <constraint firstItem="UD5-au-Ivn" firstAttribute="leading" secondItem="sxM-VQ-Gq8" secondAttribute="leadingMargin" constant="10" id="np9-zz-SqC"/>
                                                 <constraint firstItem="4jZ-HB-nLh" firstAttribute="centerY" secondItem="qCI-OQ-BVc" secondAttribute="centerY" id="pvI-sI-NS8"/>
+                                                <constraint firstItem="1lD-bD-Xb6" firstAttribute="top" secondItem="yf8-rA-QC7" secondAttribute="bottom" id="rDc-qX-58Y"/>
                                                 <constraint firstItem="qCI-OQ-BVc" firstAttribute="leading" secondItem="sxM-VQ-Gq8" secondAttribute="leading" constant="16" id="uZA-6g-VFO"/>
                                                 <constraint firstItem="UD5-au-Ivn" firstAttribute="top" secondItem="sxM-VQ-Gq8" secondAttribute="topMargin" id="ufS-0h-ygn"/>
                                                 <constraint firstItem="mjC-5q-P8C" firstAttribute="top" secondItem="yf8-rA-QC7" secondAttribute="bottom" constant="25" id="xJY-KP-0Nz"/>
@@ -1810,6 +1823,7 @@
                                             <outlet property="likes" destination="4jZ-HB-nLh" id="SVv-yG-N2I"/>
                                             <outlet property="likesImg" destination="ufH-fg-98K" id="ILA-vj-Vv1"/>
                                             <outlet property="likesImgSm" destination="qCI-OQ-BVc" id="IUG-i3-IwP"/>
+                                            <outlet property="moreBtn" destination="1lD-bD-Xb6" id="vPS-n5-rNm"/>
                                             <outlet property="profileActivitySpinner" destination="EBM-Vr-cT3" id="h0L-e3-bLg"/>
                                             <outlet property="profileImg" destination="UD5-au-Ivn" id="igu-fj-EDf"/>
                                             <outlet property="usernameBtn" destination="Ldo-zY-XKn" id="Pu2-Ge-Miw"/>
@@ -1831,7 +1845,7 @@
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetPic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvl-VZ-xfI">
-                                <rect key="frame" x="151" y="17" width="73" height="38"/>
+                                <rect key="frame" x="151.5" y="17.5" width="72.5" height="37.5"/>
                                 <fontDescription key="fontDescription" name="Lobster1.4" family="Lobster 1.4" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2117,6 +2131,7 @@
         <image name="heart-sm" width="35" height="35"/>
         <image name="home-sm" width="35" height="35"/>
         <image name="locate-sm" width="35" height="35"/>
+        <image name="more-sm" width="35" height="35"/>
         <image name="speech-bubble-sm" width="35" height="35"/>
         <image name="user-1" width="35" height="35"/>
         <image name="user-sm" width="35" height="35"/>
@@ -2124,11 +2139,11 @@
     <inferredMetricsTieBreakers>
         <segue reference="61E-j1-iUC"/>
         <segue reference="tFc-uz-NRS"/>
-        <segue reference="YlQ-Or-eMF"/>
+        <segue reference="vcX-KV-BRk"/>
         <segue reference="Lqk-g8-n0s"/>
         <segue reference="Rbt-f7-1FK"/>
         <segue reference="61S-To-qrI"/>
-        <segue reference="zsD-8J-Lsn"/>
         <segue reference="SDZ-21-9fi"/>
+        <segue reference="zsD-8J-Lsn"/>
     </inferredMetricsTieBreakers>
 </document>
