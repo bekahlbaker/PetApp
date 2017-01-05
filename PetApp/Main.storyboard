@@ -1586,6 +1586,17 @@
                                                         <segue destination="gIc-dY-15p" kind="show" identifier="CommentsVC" id="grZ-l0-u7U"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iZe-4F-MI2">
+                                                    <rect key="frame" x="324" y="431" width="35" height="35"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="35" id="8NB-N7-QFw"/>
+                                                        <constraint firstAttribute="height" constant="35" id="Vhs-Ib-rk1"/>
+                                                    </constraints>
+                                                    <state key="normal" image="more-sm"/>
+                                                    <connections>
+                                                        <action selector="moreBtnTapped:" destination="6d2-yY-NUK" eventType="touchUpInside" id="3HC-fU-FBo"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="lXS-gE-8ls" firstAttribute="top" secondItem="BOm-Hc-a5x" secondAttribute="bottom" constant="10" id="2th-Sh-w2Q"/>
@@ -1604,6 +1615,7 @@
                                                 <constraint firstItem="QA1-kh-jZL" firstAttribute="trailing" secondItem="ASZ-PO-UHI" secondAttribute="trailingMargin" id="VD1-PH-mIA"/>
                                                 <constraint firstItem="Vpe-2u-kKp" firstAttribute="centerY" secondItem="BOm-Hc-a5x" secondAttribute="centerY" id="XS7-fx-WmI"/>
                                                 <constraint firstItem="acm-V6-CVK" firstAttribute="width" secondItem="81V-sa-u9x" secondAttribute="width" id="YdJ-k5-y0K"/>
+                                                <constraint firstItem="iZe-4F-MI2" firstAttribute="top" secondItem="lXS-gE-8ls" secondAttribute="bottom" id="cRD-Dg-3tJ"/>
                                                 <constraint firstItem="QA1-kh-jZL" firstAttribute="centerX" secondItem="lXS-gE-8ls" secondAttribute="centerX" id="gBt-I3-qcq"/>
                                                 <constraint firstItem="7bf-Zz-thA" firstAttribute="top" secondItem="lXS-gE-8ls" secondAttribute="bottom" constant="8" id="hQ7-RL-Bq4"/>
                                                 <constraint firstItem="EAw-95-n7w" firstAttribute="leading" secondItem="Vpe-2u-kKp" secondAttribute="trailing" constant="8" id="isk-bY-0nw"/>
@@ -1616,6 +1628,7 @@
                                                 <constraint firstItem="lXS-gE-8ls" firstAttribute="width" secondItem="lXS-gE-8ls" secondAttribute="height" multiplier="1:1" id="uh9-a2-jy0"/>
                                                 <constraint firstItem="7bf-Zz-thA" firstAttribute="centerY" secondItem="Qdd-qz-CdX" secondAttribute="centerY" id="vgJ-R2-vdj"/>
                                                 <constraint firstAttribute="trailingMargin" secondItem="EAw-95-n7w" secondAttribute="trailing" constant="10" id="vpn-tY-nPQ"/>
+                                                <constraint firstAttribute="trailing" secondItem="iZe-4F-MI2" secondAttribute="trailing" constant="16" id="xdv-B8-PUw"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -1625,6 +1638,7 @@
                                             <outlet property="likes" destination="7bf-Zz-thA" id="L0I-af-8D2"/>
                                             <outlet property="likesImg" destination="EAw-95-n7w" id="Nws-d0-5uA"/>
                                             <outlet property="likesImgSm" destination="Qdd-qz-CdX" id="eKq-sj-Vop"/>
+                                            <outlet property="moreBtn" destination="iZe-4F-MI2" id="Zuv-FB-Szk"/>
                                             <outlet property="profileImg" destination="BOm-Hc-a5x" id="c2d-W7-DZj"/>
                                             <outlet property="usernameBtn" destination="Vpe-2u-kKp" id="E37-5Z-xWA"/>
                                         </connections>
@@ -1650,6 +1664,7 @@
                     <connections>
                         <outlet property="tableView" destination="wTY-RD-waF" id="jqs-0I-g0L"/>
                         <segue destination="ABA-se-GwR" kind="show" identifier="ViewUserVC" id="lLd-kn-GIM"/>
+                        <segue destination="FOH-oA-jlS" kind="show" identifier="FeedVC" id="IhM-3o-Tc4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j23-XF-eg3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2137,12 +2152,12 @@
         <image name="user-sm" width="35" height="35"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="61E-j1-iUC"/>
-        <segue reference="tFc-uz-NRS"/>
-        <segue reference="vcX-KV-BRk"/>
+        <segue reference="xxD-Un-TMy"/>
+        <segue reference="IhM-3o-Tc4"/>
+        <segue reference="mYI-5u-ruE"/>
+        <segue reference="grZ-l0-u7U"/>
+        <segue reference="lLd-kn-GIM"/>
         <segue reference="Lqk-g8-n0s"/>
-        <segue reference="Rbt-f7-1FK"/>
-        <segue reference="61S-To-qrI"/>
         <segue reference="SDZ-21-9fi"/>
         <segue reference="zsD-8J-Lsn"/>
     </inferredMetricsTieBreakers>

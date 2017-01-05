@@ -72,6 +72,13 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                     self.performSegue(withIdentifier: "CommentsVC", sender: nil)
                 }
             }
+            cell.tapActionMore = { (cell) in
+                print("POST \(post.postKey)")
+                FeedVC.postKeyToPass = post.postKey
+                if FeedVC.postKeyToPass != nil{
+                    self.moreTapped(postKey: FeedVC.postKeyToPass)
+                }
+            }
             
                 return cell
             } else {
@@ -79,4 +86,39 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         }
     }
     
+    func moreTapped(postKey: String) {
+        let alertController = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
+        //                        let edit = UIAlertAction(title: "Edit", style: .default, handler: { (action) -> Void in
+        //                            print("Edit btn tapped")
+        //                        })
+        let delete = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) -> Void in
+            print("Delete btn tapped")
+            let alert = UIAlertController(title: "Are you sure you want to delete this post?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+            let deletePost = UIAlertAction(title: "Delete Post", style: .destructive, handler: { (action) -> Void in
+                print("Delete presssed")
+                DataService.ds.REF_POSTS.child(postKey).removeValue()
+                print("Post removed")
+                self.performSegue(withIdentifier: "FeedVC", sender: nil)
+            })
+            let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+                print("Cancel Button Pressed")
+            }
+            
+            alert.addAction(deletePost)
+            alert.addAction(cancel)
+            
+            self.show(alert, sender: nil)
+            
+        })
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel
+            , handler: { (action) -> Void in
+                print("Cancel btn tapped")
+        })
+        //                        alertController.addAction(edit)
+        alertController.addAction(delete)
+        alertController.addAction(cancel)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+
 }
