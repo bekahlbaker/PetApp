@@ -57,9 +57,7 @@ class FeedCell: UITableViewCell {
     
     
     func configureCell(post: Post) {
-        DispatchQueue.global().async {
-            FeedCell.isConfigured = true
-        }
+
         DispatchQueue.main.async {
             self.activitySpinner.startAnimating()
             self.profileActivitySpinner.startAnimating()
@@ -109,6 +107,7 @@ class FeedCell: UITableViewCell {
             })
 
         }
+    FeedCell.isConfigured = true
 }
 
     func likeTapped(sender: UITapGestureRecognizer) {
