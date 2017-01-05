@@ -1068,14 +1068,10 @@
                                                 <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="c4z-D9-GQg"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" style="done" id="3fp-eO-hLq">
-                                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" hasAttributedTitle="YES" id="X5g-xS-DLE">
-                                                <rect key="frame" x="276" y="18" width="83" height="30"/>
-                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                <connections>
-                                                    <action selector="navBtnTapped:" destination="ABA-se-GwR" eventType="touchUpInside" id="NYi-Rl-Fnd"/>
-                                                </connections>
-                                            </button>
+                                        <barButtonItem key="rightBarButtonItem" image="more-sm" id="A2i-cY-fNS">
+                                            <connections>
+                                                <action selector="moreBtn:" destination="ABA-se-GwR" id="MtX-ln-b3z"/>
+                                            </connections>
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
@@ -1302,12 +1298,12 @@
                         <outlet property="followingLbl" destination="ZPw-af-da2" id="4WD-Eq-ePP"/>
                         <outlet property="fullNameLbl" destination="4P5-dl-9XN" id="5UQ-nz-hoY"/>
                         <outlet property="locationLbl" destination="VG8-ER-lku" id="O0f-mP-6rk"/>
-                        <outlet property="navBtn" destination="X5g-xS-DLE" id="Qt2-Gr-DL2"/>
                         <outlet property="parentsNameLbl" destination="RhO-C9-TOg" id="KJH-rW-o38"/>
                         <outlet property="postsLbl" destination="dWA-PC-G0K" id="1fT-nN-Af2"/>
                         <outlet property="profileImg" destination="zAO-Ga-K6Z" id="iP4-7N-r1m"/>
                         <outlet property="username" destination="XpG-Th-IkJ" id="JCN-so-f7x"/>
                         <segue destination="8e3-ft-Uph" kind="show" identifier="ProfileVC" id="Lqk-g8-n0s"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="EntryVC" id="NaD-hV-ZAh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ns8-AI-LM0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2165,11 +2161,12 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="xxD-Un-TMy"/>
-        <segue reference="IhM-3o-Tc4"/>
-        <segue reference="grZ-l0-u7U"/>
+        <segue reference="tFc-uz-NRS"/>
         <segue reference="lLd-kn-GIM"/>
+        <segue reference="NaD-hV-ZAh"/>
         <segue reference="Lqk-g8-n0s"/>
         <segue reference="SDZ-21-9fi"/>
         <segue reference="zsD-8J-Lsn"/>
+        <segue reference="grZ-l0-u7U"/>
     </inferredMetricsTieBreakers>
 </document>

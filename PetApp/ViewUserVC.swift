@@ -30,15 +30,18 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     @IBOutlet weak var collectionView: UICollectionView!
     
     
-    @IBOutlet weak var navBtn: UIButton!
-    @IBAction func navBtnTapped(_ sender: Any) {
-        DispatchQueue.main.async {
+    @IBAction func moreBtn(_ sender: Any) {
+        DispatchQueue.global().async {
             let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
             if self.usernamePassed! == userKey {
-                self.performSegue(withIdentifier: "ProfileVC", sender: nil)
+                print("This is the current user")
+                self.moreTapped()
+            } else {
+                self.followTapped()
             }
         }
     }
+
     var usernamePassed: String!
     var posts = [Post]()
 
@@ -48,11 +51,11 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         self.usernamePassed = FeedVC.usernameToPass
         print("VUVC \(self.usernamePassed!)")
 
-        DispatchQueue.main.async {
+        DispatchQueue.global().async {
         let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
         if self.usernamePassed! == userKey {
-            self.navBtn.setTitle("Edit", for: .normal)
             print("This is the current user")
+            DispatchQueue.main.async {
                 if ProfileVC.profileCache.object(forKey: "profileImg") != nil {
                     self.profileImg.image = ProfileVC.profileCache.object(forKey: "profileImg")
                     print("using cached profile img on ViewUser")
@@ -61,8 +64,8 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
                     self.coverImg.image = ProfileVC.coverCache.object(forKey: "coverImg")
                     print("using cached cover img")
                 }
-        } else {
-            self.navBtn.setTitle("Follow", for: .normal)
+
+            }
             }
         }
         
@@ -206,15 +209,62 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     
     }
     
-    @IBOutlet weak var followBtn: UIBarButtonItem!
     
-    @IBAction func followBtnTapped(_ sender: AnyObject) {
-       let followingBtn = UIBarButtonItem(title: "Following", style: .plain, target: self, action: nil)
-        self.navigationItem.rightBarButtonItem = followingBtn
+    func followTapped() {
+        let alert = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
+        let follow = UIAlertAction(title: "Follow", style: .default, handler: { (action) -> Void in
+            print("Follow btn tapped")
+        })
+        let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+            print("Cancel Button Pressed")
+        }
+        
+        alert.addAction(follow)
+        alert.addAction(cancel)
+        
+        self.present(alert, animated: true, completion: nil)
     }
     
-//    func followBtnMethod() {
-//        title = "Following"
-//    }
+    func moreTapped() {
+        let alertController = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
+        let edit = UIAlertAction(title: "Edit", style: .default, handler: { (action) -> Void in
+            print("Edit btn tapped")
+            DispatchQueue.main.async {
+                let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
+                if self.usernamePassed! == userKey {
+                    self.performSegue(withIdentifier: "ProfileVC", sender: nil)
+                }
+            }
 
+        })
+        let delete = UIAlertAction(title: "Log Out", style: .destructive, handler: { (action) -> Void in
+            print("Log Out btn tapped")
+            let alert = UIAlertController(title: "Are you sure you want to log out?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+            let deletePost = UIAlertAction(title: "Log Out", style: .destructive, handler: { (action) -> Void in
+                print("Log Out presssed")
+                KeychainWrapper.standard.removeObject(forKey: KEY_UID)
+                print("User removed")
+                try! FIRAuth.auth()?.signOut()
+                self.performSegue(withIdentifier: "EntryVC", sender: nil)
+            })
+            let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+                print("Cancel Button Pressed")
+            }
+            
+            alert.addAction(deletePost)
+            alert.addAction(cancel)
+            
+            self.show(alert, sender: nil)
+            
+        })
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel
+            , handler: { (action) -> Void in
+                print("Cancel btn tapped")
+        })
+        alertController.addAction(edit)
+        alertController.addAction(delete)
+        alertController.addAction(cancel)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
 }
