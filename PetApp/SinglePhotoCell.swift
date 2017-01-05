@@ -21,6 +21,11 @@ class SinglePhotoCell: UITableViewCell {
     @IBOutlet weak var comments: UILabel!
     @IBOutlet weak var usernameBtn: UIButton!
     
+    @IBOutlet weak var saveBtn: UIButton!
+    @IBAction func saveBtnTapped(_ sender: Any) {
+        tapActionSave?(self)
+    }
+    
     @IBOutlet weak var moreBtn: UIButton!
     @IBAction func moreBtnTapped(_ sender: Any) {
         tapActionMore?(self)
@@ -36,13 +41,15 @@ class SinglePhotoCell: UITableViewCell {
 
     var tapActionUsername: ((UITableViewCell) -> Void)?
     var tapActionComment: ((UITableViewCell) -> Void)?
-        var tapActionMore: ((UITableViewCell) -> Void)?
+    var tapActionMore: ((UITableViewCell) -> Void)?
+    var tapActionSave: ((UITableViewCell) -> Void)?
     var post: Post!
     var likesRef: FIRDatabaseReference!
     var isCurrentUser: Bool!
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.saveBtn.isHidden = true
 
         let tap = UITapGestureRecognizer(target: self, action: #selector(likeTapped))
         tap.numberOfTapsRequired = 1

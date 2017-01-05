@@ -90,8 +90,6 @@ class FeedCell: UITableViewCell {
             
             self.caption.text = post.caption
             
-//            self.caption.isEditable = true
-            
             self.usernameBtn.setTitle(post.username, for: .normal)
             
             self.likes.text = String(post.likes)
@@ -154,10 +152,5 @@ class FeedCell: UITableViewCell {
                 self.likesRef.removeValue()
             }
         })
-    }
-
-    func showEdit() {
-        self.caption.isEditable = true
-        self.saveBtn.isHidden = false
     }
 }

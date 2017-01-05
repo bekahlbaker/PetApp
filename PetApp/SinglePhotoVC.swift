@@ -57,6 +57,9 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SinglePhotoCell") as? SinglePhotoCell {
             cell.configureCell(post: post)
             
+            let captionView = cell.caption
+            let save = cell.saveBtn
+            
             cell.tapActionUsername = { (cell) in
                 print("POST \(post.userKey)")
                 FeedVC.usernameToPass = post.userKey
@@ -76,8 +79,15 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                 print("POST \(post.postKey)")
                 FeedVC.postKeyToPass = post.postKey
                 if FeedVC.postKeyToPass != nil{
-                    self.moreTapped(postKey: FeedVC.postKeyToPass)
+                    self.moreTapped(postKey: FeedVC.postKeyToPass, caption: captionView!, saveBtn: save!)
                 }
+            }
+            
+            cell.tapActionSave = { (cell) in
+                print("Save btn tapped")
+                self.saveEditedCaption(postKey: post.postKey, caption: captionView!)
+                captionView?.isEditable = false
+                save?.isHidden = true
             }
             
                 return cell
@@ -86,11 +96,15 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         }
     }
     
-    func moreTapped(postKey: String) {
+    func moreTapped(postKey: String, caption: UITextView, saveBtn: UIButton) {
         let alertController = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
-        //                        let edit = UIAlertAction(title: "Edit", style: .default, handler: { (action) -> Void in
-        //                            print("Edit btn tapped")
-        //                        })
+        let edit = UIAlertAction(title: "Edit", style: .default, handler: { (action) -> Void in
+            print("Edit btn tapped")
+            caption.isEditable = true
+            saveBtn.isHidden = false
+            caption.becomeFirstResponder()
+
+        })
         let delete = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) -> Void in
             print("Delete btn tapped")
             let alert = UIAlertController(title: "Are you sure you want to delete this post?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
@@ -114,11 +128,14 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             , handler: { (action) -> Void in
                 print("Cancel btn tapped")
         })
-        //                        alertController.addAction(edit)
+        alertController.addAction(edit)
         alertController.addAction(delete)
         alertController.addAction(cancel)
         
         self.present(alertController, animated: true, completion: nil)
     }
 
+    func saveEditedCaption(postKey: String, caption: UITextView) {
+        DataService.ds.REF_POSTS.child(postKey).updateChildValues(["caption": "\(caption.text!)"])
+    }
 }
