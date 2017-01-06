@@ -9,9 +9,14 @@
 import UIKit
 import Firebase
 import Kingfisher
+import SwiftKeychainWrapper
 
 extension ProfileVC {
     //SAVE and UPLOAD profile info & image
+    
+    @IBAction func cancelBtnPresser(_sender: AnyObject) {
+        performSegue(withIdentifier: "ViewUserVC", sender: nil)
+    }
     
     @IBAction func saveBtnPressed(_ sender: AnyObject) {        
         if self.profileImg.image != nil {
@@ -99,6 +104,16 @@ extension ProfileVC {
             self.removeUserInfo("about")
         }
         performSegue(withIdentifier: "ViewUserVC", sender: nil)
+    }
+    
+    
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ViewUserVC" {
+            let myVC = segue.destination as! ViewUserVC
+            let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
+            myVC.usernamePassed = userKey
+        }
     }
     
     func createUserInfo(_ key: String, value: String) {

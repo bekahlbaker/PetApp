@@ -58,6 +58,9 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ProfileVC.profileCache.removeAllObjects()
+        FeedVC.imageCache.removeAllObjects()
+        ProfileVC.coverCache.removeAllObjects()
         
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary

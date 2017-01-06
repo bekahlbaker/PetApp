@@ -64,7 +64,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetPic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cjr-4F-ec4">
-                                <rect key="frame" x="115.5" y="28" width="145" height="75"/>
+                                <rect key="frame" x="115" y="28" width="145" height="75"/>
                                 <fontDescription key="fontDescription" name="Lobster1.4" family="Lobster 1.4" pointSize="60"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -585,7 +585,7 @@
                                     <navigationItem title="Edit Profile" id="3Rc-yB-ex9">
                                         <barButtonItem key="leftBarButtonItem" style="done" systemItem="cancel" id="5bC-ew-sgv">
                                             <connections>
-                                                <segue destination="ABA-se-GwR" kind="show" id="vqW-fz-uaU"/>
+                                                <action selector="cancelBtnPresserWith_sender:" destination="8e3-ft-Uph" id="hz6-LJ-nrm"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="save" id="0xo-Dd-zBw">
@@ -2159,14 +2159,14 @@
         <image name="user-sm" width="35" height="35"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="SDZ-21-9fi"/>
-        <segue reference="NaD-hV-ZAh"/>
-        <segue reference="vcX-KV-BRk"/>
-        <segue reference="IhM-3o-Tc4"/>
-        <segue reference="nrV-ns-tsz"/>
-        <segue reference="61E-j1-iUC"/>
-        <segue reference="61S-To-qrI"/>
+        <segue reference="YlQ-Or-eMF"/>
         <segue reference="Lqk-g8-n0s"/>
+        <segue reference="NaD-hV-ZAh"/>
         <segue reference="zsD-8J-Lsn"/>
+        <segue reference="SDZ-21-9fi"/>
+        <segue reference="nrV-ns-tsz"/>
+        <segue reference="IhM-3o-Tc4"/>
+        <segue reference="61S-To-qrI"/>
+        <segue reference="61E-j1-iUC"/>
     </inferredMetricsTieBreakers>
 </document>

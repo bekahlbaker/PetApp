@@ -30,12 +30,11 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     @IBOutlet weak var collectionView: UICollectionView!
     
     var indexToPass: Int!
-    
+    let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
     
     @IBAction func moreBtn(_ sender: Any) {
         DispatchQueue.global().async {
-            let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
-            if self.usernamePassed! == userKey {
+            if self.usernamePassed! == self.userKey {
                 print("This is the current user")
                 self.moreTapped()
             } else {
@@ -237,6 +236,9 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         let alert = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
         let follow = UIAlertAction(title: "Follow", style: .default, handler: { (action) -> Void in
             print("Follow btn tapped")
+            DataService.ds.REF_CURRENT_USER.child("following").childByAutoId().updateChildValues(["user": "\(self.usernamePassed!)"])
+            DataService.ds.REF_USERS.child("\(self.usernamePassed!)").child("followers").childByAutoId().updateChildValues(["user": "\(self.userKey)"])
+
         })
         let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
             print("Cancel Button Pressed")

@@ -129,5 +129,20 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
         print("POST KEY: \(firebasePost.key)")
         let key = firebasePost.key
         firebasePost.updateChildValues(["postKey": key])
+        self.postToFollowersWall(key: key)
     }
+    
+        func postToFollowersWall(key: String) {
+            DataService.ds.REF_CURRENT_USER.child("followers").observeSingleEvent(of: .value, with: { (snapshot) in
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    for snap in snapshot {
+                        if let dictionary = snap.value as? [String: Any] {
+                            let followers = dictionary["user"] as! String
+                            print("FOLLOWERS \(followers)")
+                            DataService.ds.REF_USERS.child(followers).child("wall").childByAutoId().updateChildValues(["post" : key])
+                        }
+                    }
+                }
+            })
+        }
 }
