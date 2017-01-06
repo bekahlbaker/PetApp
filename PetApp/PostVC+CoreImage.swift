@@ -11,14 +11,14 @@ import UIKit
 
 extension PostVC {
     
-    func filterButtonTapped(sender: UIButton) {
+    func filterButtonTapped(_ sender: UIButton) {
         let button = sender as UIButton
         imageToFilter.image = button.image(for: UIControlState.normal)
         PostVC.imageSelected = true
         filterChosen = true
     }
     
-    func addFiltersToButtons(imageUnfiltered: UIImage) {
+    func addFiltersToButtons(_ imageUnfiltered: UIImage) {
         var xCoord: CGFloat = 5
         let yCoord: CGFloat = 5
         let buttonWidth:CGFloat = 80
@@ -33,7 +33,7 @@ extension PostVC {
             let filterButton = UIButton(type: .custom)
             filterButton.frame = CGRect(x: xCoord, y: yCoord, width: buttonWidth, height: buttonHeight)
             filterButton.tag = itemCount
-            filterButton.addTarget(self, action: #selector(PostVC.filterButtonTapped(sender:)), for: .touchUpInside)
+            filterButton.addTarget(self, action: #selector(filterButtonTapped(_:)), for: .touchUpInside)
             filterButton.clipsToBounds = true
             
             // CODE FOR FILTERS WILL BE ADDED HERE...
@@ -80,7 +80,7 @@ extension PostVC {
             print("Valid image not selected.")
         }
         DispatchQueue.global().async {
-            self.addFiltersToButtons(imageUnfiltered: self.originalImage.image!)
+            self.addFiltersToButtons(self.originalImage.image!)
             self.filterScrollView.isScrollEnabled = true
             self.filterScrollView.isUserInteractionEnabled = true
             self.loadingLbl.isHidden = true

@@ -134,7 +134,7 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
-    func keyboardWillShow(notification: NSNotification) {
+    func keyboardWillShow(_ notification: Notification) {
         
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y == 0{
@@ -144,7 +144,7 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
     }
     
-    func keyboardWillHide(notification: NSNotification) {
+    func keyboardWillHide(_ notification: Notification) {
         if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
             if self.view.frame.origin.y != 0{
                 self.view.frame.origin.y += keyboardSize.height

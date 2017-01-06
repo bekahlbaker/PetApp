@@ -30,7 +30,7 @@ extension CommentsVC {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell") as? CommentCell {
             
-            cell.configureCell(postKey: self.postKeyPassed, comment: comment)
+            cell.configureCell(self.postKeyPassed, comment: comment)
             return cell
             
         } else {

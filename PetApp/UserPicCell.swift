@@ -19,7 +19,7 @@ class UserPicCell: UICollectionViewCell {
     var post: Post!
     static var isConfigured: Bool!
     
-    func configureCell(post: Post) {
+    func configureCell(_ post: Post) {
         
         self.post = post
         

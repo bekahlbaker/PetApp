@@ -63,7 +63,7 @@ class SignInVC: UIViewController, UITextFieldDelegate {
                     self.performSegue(withIdentifier: "toFeedVC", sender: nil)
                     if let user = user {
                         let userData = ["provider": user.providerID]
-                        DataService.ds.completeSignIn(id: user.uid, userData: userData)
+                        DataService.ds.completeSignIn(user.uid, userData: userData)
                     }
   
                 }

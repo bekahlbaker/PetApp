@@ -54,7 +54,7 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
                             print("Successfully uploaded image to Firebase")
                             let downloadUrl = metadata?.downloadURL()?.absoluteString
                             if let url = downloadUrl {
-                                self.postToFirebase(imageURL: url)
+                                self.postToFirebase(url)
                                 self.performSegue(withIdentifier: "toFeedVC", sender: nil)
                             }
                         }
@@ -107,7 +107,7 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
 
     }
     
-    func postToFirebase(imageURL: String) {
+    func postToFirebase(_ imageURL: String) {
         if self.captionTextView.text == "Write a caption..." {
             self.captionTextView.text = ""
         }

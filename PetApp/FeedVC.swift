@@ -31,7 +31,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.dataSource = self
         
         refreshControl = UIRefreshControl()
-        refreshControl.addTarget(self, action: #selector(FeedVC.refresh(sender:)), for: UIControlEvents.valueChanged)
+        refreshControl.addTarget(self, action: #selector(refresh(_:)), for: UIControlEvents.valueChanged)
         tableView.addSubview(refreshControl) // not required when using UITableViewController
         
         DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
@@ -48,10 +48,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 }
             }
         })
-        refresh(sender: self)
+        refresh(self)
     }
 
-    func refresh(sender:AnyObject) {
+    func refresh(_ sender:AnyObject) {
         // Code to refresh table view
         DataService.ds.REF_POSTS.observeSingleEvent(of: .value, with: { (snapshot) in
             
@@ -90,7 +90,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         let postsObserved = self.postsObserved[indexPath.row]
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as? FeedCell {
-            cell.configureCell(post: postsObserved)
+            cell.configureCell(postsObserved)
 //            cell.profileImg.image = UIImage(named: "blank-profile-picture")
             
             let userKey = postsObserved.userKey
@@ -130,13 +130,13 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                         print("POST \(post.postKey)")
                         FeedVC.postKeyToPass = post.postKey
                         if FeedVC.postKeyToPass != nil{
-                            self.moreTapped(postKey: FeedVC.postKeyToPass, caption: captionView!, saveBtn: save!)
+                            self.moreTapped(FeedVC.postKeyToPass, caption: captionView!, saveBtn: save!)
                         }
                     }
                     
                     cell.tapActionSave = { (cell) in
                         print("Save btn tapped")
-                        self.saveEditedCaption(postKey: post.postKey, caption: captionView!)
+                        self.saveEditedCaption(post.postKey, caption: captionView!)
                         captionView?.isEditable = false
                         save?.isHidden = true
                     }
@@ -193,7 +193,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
     }
     
-    func moreTapped(postKey: String, caption: UITextView, saveBtn: UIButton) {
+    func moreTapped(_ postKey: String, caption: UITextView, saveBtn: UIButton) {
         let alertController = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
         let edit = UIAlertAction(title: "Edit", style: .default, handler: { (action) -> Void in
             print("Edit btn tapped")
@@ -208,7 +208,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 print("Delete presssed")
                 DataService.ds.REF_POSTS.child(postKey).removeValue()
                 print("Post removed")
-                self.refresh(sender: self.tableView)
+                self.refresh(self.tableView)
             })
             let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
                 print("Cancel Button Pressed")
@@ -231,8 +231,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.present(alertController, animated: true, completion: nil)
     }
     
-    func saveEditedCaption(postKey: String, caption: UITextView) {
+    func saveEditedCaption(_ postKey: String, caption: UITextView) {
         DataService.ds.REF_POSTS.child(postKey).updateChildValues(["caption": "\(caption.text!)"])
-        self.refresh(sender: self.tableView)
+        self.refresh(self.tableView)
     }
 }

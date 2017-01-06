@@ -43,7 +43,7 @@ class UsernameVC: UIViewController, UITextFieldDelegate {
         usernameTextField.addTarget(self, action: #selector(UsernameVC.textFieldDidEndEditing(_:)), for: UIControlEvents.editingChanged)
     }
     
-    func usernameValidation(username: String) {
+    func usernameValidation(_ username: String) {
         
         DataService.ds.REF_ACTIVE_USERS.child("\(self.usernameTextField.text!)").observeSingleEvent(of: .value, with:  { (snapshot) in
             if let _ = snapshot.value as? NSNull {
@@ -60,7 +60,7 @@ class UsernameVC: UIViewController, UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         let username = self.usernameTextField.text
-        usernameValidation(username: username!)
+        usernameValidation(username!)
     }
 
 }

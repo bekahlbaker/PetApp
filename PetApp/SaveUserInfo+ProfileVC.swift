@@ -17,7 +17,7 @@ extension ProfileVC {
         if self.profileImg.image != nil {
             ProfileVC.profileCache.setObject(self.profileImg.image!, forKey: "profileImg")
             //save profile image
-            let imageName = NSUUID().uuidString
+            let imageName = UUID().uuidString
             let metadata = FIRStorageMetadata()
             metadata.contentType = "image/png"
             
@@ -28,7 +28,7 @@ extension ProfileVC {
                         return
                     }
                     if let profileImageUrl =  metadata?.downloadURL()?.absoluteString {
-                        self.createUserInfo(key: "profileImgUrl", value: profileImageUrl)
+                        self.createUserInfo("profileImgUrl", value: profileImageUrl)
                         print("Successfuly uploaded image to Firebase")
                     }
                 })
@@ -41,7 +41,7 @@ extension ProfileVC {
         if self.coverPhoto.image != nil {
             ProfileVC.coverCache.setObject(self.coverPhoto.image!, forKey: "coverImg")
             //save cover image
-            let coverImageName = NSUUID().uuidString
+            let coverImageName = UUID().uuidString
             let coverMetadata = FIRStorageMetadata()
             coverMetadata.contentType = "image/png"
             
@@ -52,7 +52,7 @@ extension ProfileVC {
                         return
                     }
                     if let coverImageUrl =  metadata?.downloadURL()?.absoluteString {
-                        self.createUserInfo(key: "coverImgUrl", value: coverImageUrl)
+                        self.createUserInfo("coverImgUrl", value: coverImageUrl)
                         print("Successfuly uploaded cover image to Firebase")
                     }
                 })
@@ -64,44 +64,44 @@ extension ProfileVC {
         //save profile info
         
         if self.fullNameLbl.text != "" {
-            self.createUserInfo(key: "full-name", value: self.fullNameLbl.text! as String)
+            self.createUserInfo("full-name", value: self.fullNameLbl.text! as String)
         } else {
-            self.removeUserInfo(key: "full-name")
+            self.removeUserInfo("full-name")
         }
         if self.parentsNameLbl.text != "" {
-            self.createUserInfo(key: "parents-name", value: parentsNameLbl.text! as String)
+            self.createUserInfo("parents-name", value: parentsNameLbl.text! as String)
         } else {
-            self.removeUserInfo(key: "parents-name")
+            self.removeUserInfo("parents-name")
         }
         if ageLbl.text != "" {
-            self.createUserInfo(key: "age", value: ageLbl.text! as String)
+            self.createUserInfo("age", value: ageLbl.text! as String)
         } else {
-            self.removeUserInfo(key: "age")
+            self.removeUserInfo("age")
         }
         if speciesLbl.text != "" {
-            self.createUserInfo(key: "species", value: speciesLbl.text! as String)
+            self.createUserInfo("species", value: speciesLbl.text! as String)
         } else {
-            self.removeUserInfo(key: "species")
+            self.removeUserInfo("species")
         }
         if breedLbl.text != "" {
-            self.createUserInfo(key: "breed", value: breedLbl.text! as String)
+            self.createUserInfo("breed", value: breedLbl.text! as String)
         } else {
-            self.removeUserInfo(key: "breed")
+            self.removeUserInfo("breed")
         }
         if locationLbl.text != "" {
-            self.createUserInfo(key: "location", value: locationLbl.text! as String)
+            self.createUserInfo("location", value: locationLbl.text! as String)
         } else {
-            self.removeUserInfo(key: "location")
+            self.removeUserInfo("location")
         }
         if aboutLbl.text != "" {
-            self.createUserInfo(key: "about", value: aboutLbl.text! as String)
+            self.createUserInfo("about", value: aboutLbl.text! as String)
         } else {
-            self.removeUserInfo(key: "about")
+            self.removeUserInfo("about")
         }
         performSegue(withIdentifier: "ViewUserVC", sender: nil)
     }
     
-    func createUserInfo(key: String, value: String) {
+    func createUserInfo(_ key: String, value: String) {
         let userInfo: Dictionary<String, Any> = [
             key: value
         ]
@@ -109,12 +109,12 @@ extension ProfileVC {
         firebasePost.updateChildValues(userInfo)
     }
     
-    func removeUserInfo(key: String) {
+    func removeUserInfo(_ key: String) {
         let userInfoRef = DataService.ds.REF_CURRENT_USER.child("user-info")
         userInfoRef.child(key).removeValue()
     }
     
-    func textFieldChanged(textField: UITextField) {
+    func textFieldChanged(_ textField: UITextField) {
         let ageEntered = ageLbl.text
         if textField.text != "" {
             textField.text = "\(ageEntered!) yo"

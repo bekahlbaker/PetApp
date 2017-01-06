@@ -21,15 +21,15 @@ class DataService {
     static let ds = DataService()
     
     //DB References
-    private var _REF_BASE = DB_BASE
-    private var _REF_POSTS = DB_BASE.child("posts")
-    private var _REF_USERS = DB_BASE.child("users")
-    private var _REF_ACTIVE_USERS = DB_BASE.child("active-users")
+    fileprivate var _REF_BASE = DB_BASE
+    fileprivate var _REF_POSTS = DB_BASE.child("posts")
+    fileprivate var _REF_USERS = DB_BASE.child("users")
+    fileprivate var _REF_ACTIVE_USERS = DB_BASE.child("active-users")
     
     //Storage References
-    private var _REF_POST_IMGS = STORAGE_BASE.child("post-imgs")
-    private var _REF_USER_PROFILE = STORAGE_BASE.child("profile_pics")
-    private var _REF_USER_COVER = STORAGE_BASE.child("cover_pics")
+    fileprivate var _REF_POST_IMGS = STORAGE_BASE.child("post-imgs")
+    fileprivate var _REF_USER_PROFILE = STORAGE_BASE.child("profile_pics")
+    fileprivate var _REF_USER_COVER = STORAGE_BASE.child("cover_pics")
     
     var REF_BASE: FIRDatabaseReference {
         return _REF_BASE
@@ -65,7 +65,7 @@ class DataService {
         return user
     }
     
-    func createFirebaseDBUser(uid: String, userData: Dictionary<String, String>) {
+    func createFirebaseDBUser(_ uid: String, userData: Dictionary<String, String>) {
         REF_USERS.child(uid).child("user-personal").updateChildValues(userData)
     }
     
@@ -77,14 +77,14 @@ class DataService {
                 print("Successfully autheticated with FIrebase")
                 if let user = user {
                     let userData = ["provider": credential.provider]
-                    self.completeSignIn(id: user.uid, userData: userData)
+                    self.completeSignIn(user.uid, userData: userData)
                 }
             }
         })
     }
     
-    func completeSignIn(id: String, userData: Dictionary<String, String>) {
-        DataService.ds.createFirebaseDBUser(uid: id, userData: userData)
+    func completeSignIn(_ id: String, userData: Dictionary<String, String>) {
+        DataService.ds.createFirebaseDBUser(id, userData: userData)
         KeychainWrapper.standard.set(id, forKey: KEY_UID)
     }
     

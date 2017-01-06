@@ -64,7 +64,7 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         imagePicker.allowsEditing = true
         
         ageLbl.delegate = self
-        ageLbl.addTarget(self, action: #selector(ProfileVC.textFieldChanged(textField:)) , for: UIControlEvents.editingChanged)
+        ageLbl.addTarget(self, action: #selector(textFieldChanged(_:)) , for: UIControlEvents.editingChanged)
         
         //download profile info & image
         

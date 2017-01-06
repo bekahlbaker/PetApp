@@ -89,7 +89,7 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         let post = posts[indexPassed]
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SinglePhotoCell") as? SinglePhotoCell {
-                cell.configureCell(post: post)
+                cell.configureCell(post)
                 
                 let captionView = cell.caption
                 let save = cell.saveBtn
@@ -114,13 +114,13 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                         print("POST \(post.postKey)")
                         FeedVC.postKeyToPass = post.postKey
                         if FeedVC.postKeyToPass != nil{
-                            self.moreTapped(postKey: FeedVC.postKeyToPass, caption: captionView!, saveBtn: save!)
+                            self.moreTapped(FeedVC.postKeyToPass, caption: captionView!, saveBtn: save!)
                         }
                     }
                     
                     cell.tapActionSave = { (cell) in
                         print("Save btn tapped")
-                        self.saveEditedCaption(postKey: post.postKey, caption: captionView!)
+                        self.saveEditedCaption(post.postKey, caption: captionView!)
                         captionView?.isEditable = false
                         save?.isHidden = true
                     }
@@ -138,7 +138,7 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         }
     }
     
-    func moreTapped(postKey: String, caption: UITextView, saveBtn: UIButton) {
+    func moreTapped(_ postKey: String, caption: UITextView, saveBtn: UIButton) {
         let alertController = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
         let edit = UIAlertAction(title: "Edit", style: .default, handler: { (action) -> Void in
             print("Edit btn tapped")
@@ -177,7 +177,7 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         self.present(alertController, animated: true, completion: nil)
     }
 
-    func saveEditedCaption(postKey: String, caption: UITextView) {
+    func saveEditedCaption(_ postKey: String, caption: UITextView) {
         DataService.ds.REF_POSTS.child(postKey).updateChildValues(["caption": "\(caption.text!)"])
     }
 }

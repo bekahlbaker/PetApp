@@ -20,7 +20,7 @@ class CommentCell: UITableViewCell {
 
     }
     
-    func configureCell(postKey: String, comment: Comment) {
+    func configureCell(_ postKey: String, comment: Comment) {
         
         self.comment = comment
         

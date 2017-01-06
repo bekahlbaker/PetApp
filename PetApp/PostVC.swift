@@ -140,7 +140,7 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
             originalImage.image = img
             PostVC.imageSelected = true
             if let unfilteredImg = PostVC.unFilteredImageCache.object(forKey: "unfilteredImage") {
-               self.addFiltersToButtons(imageUnfiltered: unfilteredImg)
+               self.addFiltersToButtons(unfilteredImg)
             }
         } else {
             addImageBtn.setTitle("Add Image", for: .normal)

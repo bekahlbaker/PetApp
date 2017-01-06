@@ -11,9 +11,9 @@ import Firebase
 
 class Comment {
     
-    private var _comment: String!
-    private var _username: String!
-    private var _postKey: String!
+    fileprivate var _comment: String!
+    fileprivate var _username: String!
+    fileprivate var _postKey: String!
     
     var comment: String {
         return _comment

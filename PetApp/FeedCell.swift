@@ -40,7 +40,7 @@ class FeedCell: UITableViewCell {
         tapActionUsername?(self)
     }
     
-    @IBAction func imageTapped(sender: AnyObject) {
+    @IBAction func imageTapped(_ sender: AnyObject) {
         tapAction?(self)
     }
 
@@ -70,7 +70,7 @@ class FeedCell: UITableViewCell {
     }
     
     
-    func configureCell(post: Post) {
+    func configureCell(_ post: Post) {
         self.post = post
         
         DispatchQueue.global().async {
@@ -136,17 +136,17 @@ class FeedCell: UITableViewCell {
         }
 }
 
-    func likeTapped(sender: UITapGestureRecognizer) {
+    func likeTapped(_ sender: UITapGestureRecognizer) {
         likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if let _ = snapshot.value as? NSNull {
                 self.likesImg.image = UIImage(named: "empty-heart")
                 self.likesImgSm.image = UIImage(named: "empty-heart")
-                self.post.adjustLikes(addLike: true)
+                self.post.adjustLikes(true)
                 self.likesRef.setValue(true)
             } else {
                 self.likesImg.image = UIImage(named: "filled-heart")
                 self.likesImgSm.image = UIImage(named: "filled-heart")
-                self.post.adjustLikes(addLike: false)
+                self.post.adjustLikes(false)
                 self.likesRef.removeValue()
             }
         })

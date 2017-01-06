@@ -197,7 +197,7 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         let post = posts[indexPath.row]
     
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "UserPicCell", for: indexPath) as? UserPicCell {
-            cell.configureCell(post: post)
+            cell.configureCell(post)
             return cell
             } else {
             return UserPicCell()

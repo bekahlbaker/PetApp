@@ -11,15 +11,15 @@ import Firebase
 
 class Post {
 
-    private var _username: String!
-    private var _profileImgUrl: String!
-    private var _caption: String!
-    private var _commentCount: Int!
-    private var _imageURL: String!
-    private var _likes: Int!
-    private var _postKey: String!
-    private var _userKey: String!
-    private var _postRef: FIRDatabaseReference!
+    fileprivate var _username: String!
+    fileprivate var _profileImgUrl: String!
+    fileprivate var _caption: String!
+    fileprivate var _commentCount: Int!
+    fileprivate var _imageURL: String!
+    fileprivate var _likes: Int!
+    fileprivate var _postKey: String!
+    fileprivate var _userKey: String!
+    fileprivate var _postRef: FIRDatabaseReference!
     
     var username: String {
         return _username
@@ -98,7 +98,7 @@ class Post {
         _postRef = DataService.ds.REF_POSTS.child(_postKey)
     }
     
-    func adjustLikes(addLike: Bool) {
+    func adjustLikes(_ addLike: Bool) {
         if addLike {
             _likes = _likes + 1
         } else {
@@ -108,7 +108,7 @@ class Post {
         _postRef.updateChildValues(["likes": likes])
     }
     
-    func adjustCommentCount(addComment: Bool) {
+    func adjustCommentCount(_ addComment: Bool) {
         if addComment {
             _commentCount = _commentCount + 1
         } else {

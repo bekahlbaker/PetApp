@@ -10,9 +10,10 @@ pod 'Firebase/Core'
 pod 'Firebase/Auth'
 pod 'Firebase/Database'
 pod 'Firebase/Storage'
-pod 'SwiftKeychainWrapper'
 pod 'FirebaseUI/Storage'
+pod 'SwiftKeychainWrapper'
 pod 'Kingfisher', '~> 3.0'
+
 
 
 end
