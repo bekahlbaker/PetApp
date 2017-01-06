@@ -48,7 +48,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 }
             }
         })
-        
         refresh(sender: self)
     }
 
@@ -67,7 +66,9 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                     }
                 }
             }
-            self.tableView.reloadData()
+            if self.posts.count > 0 {
+             self.tableView.reloadData()
+            }
         })
         refreshControl.endRefreshing()
     }
@@ -90,7 +91,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as? FeedCell {
             cell.configureCell(post: postsObserved)
-            cell.profileImg.image = UIImage(named: "blank-profile-picture")
+//            cell.profileImg.image = UIImage(named: "blank-profile-picture")
             
             let userKey = postsObserved.userKey
             let captionView = cell.caption
@@ -175,6 +176,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         if segue.identifier == "SinglePhotoVC" {
             let myVC = segue.destination as! SinglePhotoVC
             myVC.indexPassed = self.indexToPass
+            myVC.isFromFeedVC = true
+        }
+        if segue.identifier == "ViewUserVC" {
+            let myVC = segue.destination as! ViewUserVC
+            myVC.usernamePassed = FeedVC.usernameToPass
         }
     }
     

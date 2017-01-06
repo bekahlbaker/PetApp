@@ -15,7 +15,17 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     var posts = [Post]()
     var indexPassed: Int!
+    var usernamePassed: String!
+    var isFromFeedVC: Bool!
 
+    @IBAction func backBtnTapped(_ sender: Any) {
+        if isFromFeedVC == true {
+            self.dismiss(animated: true, completion: nil)
+        } else if isFromFeedVC == false {
+           performSegue(withIdentifier: "ViewUserVC", sender: nil) 
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,21 +34,45 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         tableView.delegate = self
         tableView.dataSource = self
         
-        DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
-            
-            self.posts = []
-            
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                for snap in snapshot {
-                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                        let key = snap.key
-                        let post = Post(postKey: key, postData: postDict)
-                        self.posts.insert(post, at: 0)
+        if isFromFeedVC == true {
+            //from FeedVC
+            DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
+                
+                self.posts = []
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    for snap in snapshot {
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            self.posts.insert(post, at: 0)
+                        }
                     }
                 }
-            }
-            self.tableView.reloadData()
-        })
+                if self.posts.count > 0 {
+                  self.tableView.reloadData()
+                }
+            })
+        } else if isFromFeedVC == false {
+            //from ViewUserVC
+            DataService.ds.REF_POSTS.queryOrdered(byChild: "userKey").queryEqual(toValue: self.usernamePassed!).observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                self.posts = []
+                
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    for snap in snapshot {
+                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            self.posts.insert(post, at: 0)
+                        }
+                    }
+                }
+                if self.posts.count > 0 {
+                  self.tableView.reloadData()
+                }
+            })
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -55,44 +89,52 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         let post = posts[indexPassed]
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SinglePhotoCell") as? SinglePhotoCell {
-            cell.configureCell(post: post)
-            
-            let captionView = cell.caption
-            let save = cell.saveBtn
-            
-            cell.tapActionUsername = { (cell) in
-                print("POST \(post.userKey)")
-                FeedVC.usernameToPass = post.userKey
-                if FeedVC.usernameToPass != nil {
-                    self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
+                cell.configureCell(post: post)
+                
+                let captionView = cell.caption
+                let save = cell.saveBtn
+                
+                if SinglePhotoCell.isConfigured == true {
+                    cell.tapActionUsername = { (cell) in
+                        print("POST \(post.userKey)")
+                        self.usernamePassed = post.userKey
+                        if self.usernamePassed != nil {
+                            self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
+                        }
+                    }
+                    
+                    cell.tapActionComment = { (cell) in
+                        print("POST \(post.postKey)")
+                        FeedVC.postKeyToPass = post.postKey
+                        if FeedVC.postKeyToPass != nil {
+                            self.performSegue(withIdentifier: "CommentsVC", sender: nil)
+                        }
+                    }
+                    cell.tapActionMore = { (cell) in
+                        print("POST \(post.postKey)")
+                        FeedVC.postKeyToPass = post.postKey
+                        if FeedVC.postKeyToPass != nil{
+                            self.moreTapped(postKey: FeedVC.postKeyToPass, caption: captionView!, saveBtn: save!)
+                        }
+                    }
+                    
+                    cell.tapActionSave = { (cell) in
+                        print("Save btn tapped")
+                        self.saveEditedCaption(postKey: post.postKey, caption: captionView!)
+                        captionView?.isEditable = false
+                        save?.isHidden = true
+                    }
                 }
-            }
-            
-            cell.tapActionComment = { (cell) in
-                print("POST \(post.postKey)")
-                FeedVC.postKeyToPass = post.postKey
-                if FeedVC.postKeyToPass != nil {
-                    self.performSegue(withIdentifier: "CommentsVC", sender: nil)
-                }
-            }
-            cell.tapActionMore = { (cell) in
-                print("POST \(post.postKey)")
-                FeedVC.postKeyToPass = post.postKey
-                if FeedVC.postKeyToPass != nil{
-                    self.moreTapped(postKey: FeedVC.postKeyToPass, caption: captionView!, saveBtn: save!)
-                }
-            }
-            
-            cell.tapActionSave = { (cell) in
-                print("Save btn tapped")
-                self.saveEditedCaption(postKey: post.postKey, caption: captionView!)
-                captionView?.isEditable = false
-                save?.isHidden = true
-            }
-            
-                return cell
+            return cell
             } else {
             return SinglePhotoCell()
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ViewUserVC" {
+            let myVC = segue.destination as! ViewUserVC
+            myVC.usernamePassed = self.usernamePassed
         }
     }
     

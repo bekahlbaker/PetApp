@@ -46,6 +46,7 @@ class SinglePhotoCell: UITableViewCell {
     var post: Post!
     var likesRef: FIRDatabaseReference!
     var isCurrentUser: Bool!
+    static var isConfigured: Bool!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -140,6 +141,7 @@ class SinglePhotoCell: UITableViewCell {
             })
 
         }
+        SinglePhotoCell.isConfigured = true
     }
     
     func likeTapped(sender: UITapGestureRecognizer) {

@@ -17,6 +17,7 @@ class UserPicCell: UICollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     
     var post: Post!
+    static var isConfigured: Bool!
     
     func configureCell(post: Post) {
         
@@ -42,6 +43,7 @@ class UserPicCell: UICollectionViewCell {
             })
         }
     
+        UserPicCell.isConfigured = true
     }
     
     

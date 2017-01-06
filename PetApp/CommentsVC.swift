@@ -83,7 +83,9 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                         }
                     }
                 }
-                self.tableView.reloadData()
+                if self.comments.count > 0 {
+                 self.tableView.reloadData()   
+                }
                 
             })
         } else {

@@ -64,7 +64,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetPic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cjr-4F-ec4">
-                                <rect key="frame" x="115" y="28" width="145" height="75"/>
+                                <rect key="frame" x="115.5" y="28" width="145" height="75"/>
                                 <fontDescription key="fontDescription" name="Lobster1.4" family="Lobster 1.4" pointSize="60"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -1064,8 +1064,7 @@
                                     <navigationItem id="XpG-Th-IkJ">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="mCu-l0-6Rw">
                                             <connections>
-                                                <action selector="logOutTapped:" destination="HIm-Vc-Fus" id="dOo-Wr-wsB"/>
-                                                <segue destination="FOH-oA-jlS" kind="show" identifier="toFeedVC" id="c4z-D9-GQg"/>
+                                                <segue destination="FOH-oA-jlS" kind="show" id="GDQ-9V-ZE4"/>
                                             </connections>
                                         </barButtonItem>
                                         <barButtonItem key="rightBarButtonItem" image="more-sm" id="A2i-cY-fNS">
@@ -1304,6 +1303,7 @@
                         <outlet property="username" destination="XpG-Th-IkJ" id="JCN-so-f7x"/>
                         <segue destination="8e3-ft-Uph" kind="show" identifier="ProfileVC" id="Lqk-g8-n0s"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="EntryVC" id="NaD-hV-ZAh"/>
+                        <segue destination="M0X-hF-jYW" kind="show" identifier="SinglePhotoVC" id="Ioz-ly-Xrt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ns8-AI-LM0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1455,7 +1455,7 @@
                                     <navigationItem id="CVA-cP-FXa">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="cYe-eI-M37">
                                             <connections>
-                                                <segue destination="FOH-oA-jlS" kind="show" id="3H4-2b-xN6"/>
+                                                <action selector="backBtnTapped:" destination="M0X-hF-jYW" id="sde-3g-tRZ"/>
                                             </connections>
                                         </barButtonItem>
                                     </navigationItem>
@@ -1561,7 +1561,7 @@
                                                         <constraint firstAttribute="height" constant="25" id="uH6-iM-h98"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart-sm" translatesAutoresizingMaskIntoConstraints="NO" id="Qdd-qz-CdX">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Qdd-qz-CdX">
                                                     <rect key="frame" x="16" y="439" width="25" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="25" id="Uzs-y2-Pog"/>
@@ -1682,7 +1682,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="539" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mY4-Tr-zgP">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="539" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="mY4-Tr-zgP">
                                 <rect key="frame" x="0.0" y="55" width="375" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
@@ -1743,7 +1743,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="heart-sm" translatesAutoresizingMaskIntoConstraints="NO" id="qCI-OQ-BVc">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qCI-OQ-BVc">
                                                     <rect key="frame" x="16" y="441" width="25" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="25" id="H15-wQ-DXv"/>
@@ -1868,7 +1868,7 @@
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetPic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvl-VZ-xfI">
-                                <rect key="frame" x="151.5" y="17.5" width="72.5" height="37.5"/>
+                                <rect key="frame" x="151" y="17" width="73" height="38"/>
                                 <fontDescription key="fontDescription" name="Lobster1.4" family="Lobster 1.4" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -2151,7 +2151,6 @@
         <image name="camera-sm" width="35" height="35"/>
         <image name="doginwig" width="1920" height="1275"/>
         <image name="empty-heart" width="70" height="70"/>
-        <image name="heart-sm" width="35" height="35"/>
         <image name="home-sm" width="35" height="35"/>
         <image name="locate-sm" width="35" height="35"/>
         <image name="more-sm" width="35" height="35"/>
@@ -2160,13 +2159,14 @@
         <image name="user-sm" width="35" height="35"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="xxD-Un-TMy"/>
-        <segue reference="tFc-uz-NRS"/>
-        <segue reference="lLd-kn-GIM"/>
-        <segue reference="NaD-hV-ZAh"/>
-        <segue reference="Lqk-g8-n0s"/>
         <segue reference="SDZ-21-9fi"/>
+        <segue reference="NaD-hV-ZAh"/>
+        <segue reference="vcX-KV-BRk"/>
+        <segue reference="IhM-3o-Tc4"/>
+        <segue reference="nrV-ns-tsz"/>
+        <segue reference="61E-j1-iUC"/>
+        <segue reference="61S-To-qrI"/>
+        <segue reference="Lqk-g8-n0s"/>
         <segue reference="zsD-8J-Lsn"/>
-        <segue reference="grZ-l0-u7U"/>
     </inferredMetricsTieBreakers>
 </document>

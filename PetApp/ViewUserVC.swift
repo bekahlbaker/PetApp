@@ -29,6 +29,8 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var indexToPass: Int!
+    
     
     @IBAction func moreBtn(_ sender: Any) {
         DispatchQueue.global().async {
@@ -48,7 +50,7 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.usernamePassed = FeedVC.usernameToPass
+//        self.usernamePassed = FeedVC.usernameToPass
         print("VUVC \(self.usernamePassed!)")
 
         DispatchQueue.global().async {
@@ -82,8 +84,10 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
                     }
                 }
             }
-            self.collectionView.reloadData()
-            self.postsLbl.text = String(self.posts.count)
+            if self.posts.count > 0 {
+                self.collectionView.reloadData()
+                self.postsLbl.text = String(self.posts.count)
+            }
         })
         
         collectionView.dataSource = self
@@ -99,90 +103,93 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         layout.minimumLineSpacing = 0
         collectionView!.collectionViewLayout = layout
         
-        //download user info & image
-        DataService.ds.REF_USERS.child("\(self.usernamePassed!)").child("user-info").observeSingleEvent(of: .value, with: { (snapshot) in
-                    if let dictionary = snapshot.value as? [String: Any] {
-                        
-                        if let username = dictionary["username"] as? String {
-                            self.username.title = username
-                        }
-                        
-                        if let name = dictionary["full-name"] as? String {
-                            self.fullNameLbl.text = name
-                        }
-                        
-                        if let breed = dictionary["breed"] as? String {
-                            if let age = dictionary["age"] as? String {
-                                if age != "" {
-                                    self.ageAndBreedLbl.text = "\(age)"
-                                    if breed != "" {
-                                        self.ageAndBreedLbl.text = "\(age) \(breed)"
-                                    } else {
-                                        if let species = dictionary["species"] as? String {
-                                            if species != "" {
-                                                self.ageAndBreedLbl.text = "\(age) \(species)"
-                                            }
-                                        }
-                                    }
+        DispatchQueue.main.async {
+            //download user info & image
+            DataService.ds.REF_USERS.child("\(self.usernamePassed!)").child("user-info").observeSingleEvent(of: .value, with: { (snapshot) in
+                if let dictionary = snapshot.value as? [String: Any] {
+                    
+                    if let username = dictionary["username"] as? String {
+                        self.username.title = username
+                    }
+                    
+                    if let name = dictionary["full-name"] as? String {
+                        self.fullNameLbl.text = name
+                    }
+                    
+                    if let breed = dictionary["breed"] as? String {
+                        if let age = dictionary["age"] as? String {
+                            if age != "" {
+                                self.ageAndBreedLbl.text = "\(age)"
+                                if breed != "" {
+                                    self.ageAndBreedLbl.text = "\(age) \(breed)"
                                 } else {
-                                    if breed != "" {
-                                        self.ageAndBreedLbl.text = "\(breed)"
-                                    } else {
-                                        if let species = dictionary["species"] as? String {
-                                            if species != "" {
-                                                self.ageAndBreedLbl.text = "\(species)"
-                                            }
+                                    if let species = dictionary["species"] as? String {
+                                        if species != "" {
+                                            self.ageAndBreedLbl.text = "\(age) \(species)"
                                         }
                                     }
-                                    
                                 }
-                            }
-                        }
-                        
-                        if let parent = dictionary["parents-name"] as? String {
-                            if parent != "" {
-                                self.parentsNameLbl.text = "Parent: \(parent)"
-                            }
-                        }
-                        
-                        if let location = dictionary["location"] as? String {
-                            self.locationLbl.text = location
-                        }
-                        
-                        if let about = dictionary["about"] as? String {
-                            self.bioLbl.text = about
-                        }
-                        
-                        //download profile img
-                        if let url = dictionary["profileImgUrl"] as? String {
-                                let storage = FIRStorage.storage()
-                                let storageRef = storage.reference(forURL: url)
-                                storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
-                                    if error != nil {
-                                        print("Unable to download image from firebase")
-                                    } else {
-                                        let profileImg = UIImage(data: data!)
-                                        self.profileImg.image = profileImg
-                                        print("Using firebase image for profile")
+                            } else {
+                                if breed != "" {
+                                    self.ageAndBreedLbl.text = "\(breed)"
+                                } else {
+                                    if let species = dictionary["species"] as? String {
+                                        if species != "" {
+                                            self.ageAndBreedLbl.text = "\(species)"
+                                        }
                                     }
                                 }
-                        }
-                        //download cover photo
-                        if let url = dictionary["coverImgUrl"] as? String {
-                                let storage = FIRStorage.storage()
-                                let storageRef = storage.reference(forURL: url)
-                                storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
-                                    if error != nil {
-                                        print("Unable to download image from firebase")
-                                    } else {
-                                        let coverImg = UIImage(data: data!)
-                                        self.coverImg.image = coverImg
-                                        print("Using firebase image for cover")
-                                    }
-                                }
+                                
+                            }
                         }
                     }
-        })
+                    
+                    if let parent = dictionary["parents-name"] as? String {
+                        if parent != "" {
+                            self.parentsNameLbl.text = "Parent: \(parent)"
+                        }
+                    }
+                    
+                    if let location = dictionary["location"] as? String {
+                        self.locationLbl.text = location
+                    }
+                    
+                    if let about = dictionary["about"] as? String {
+                        self.bioLbl.text = about
+                    }
+                    
+                    //download profile img
+                    if let url = dictionary["profileImgUrl"] as? String {
+                        let storage = FIRStorage.storage()
+                        let storageRef = storage.reference(forURL: url)
+                        storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
+                            if error != nil {
+                                print("Unable to download image from firebase")
+                            } else {
+                                let profileImg = UIImage(data: data!)
+                                self.profileImg.image = profileImg
+                                print("Using firebase image for profile")
+                            }
+                        }
+                    }
+                    //download cover photo
+                    if let url = dictionary["coverImgUrl"] as? String {
+                        let storage = FIRStorage.storage()
+                        let storageRef = storage.reference(forURL: url)
+                        storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
+                            if error != nil {
+                                print("Unable to download image from firebase")
+                            } else {
+                                let coverImg = UIImage(data: data!)
+                                self.coverImg.image = coverImg
+                                print("Using firebase image for cover")
+                            }
+                        }
+                    }
+                }
+            })
+
+        }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -206,10 +213,26 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    
+        if let cell = collectionView.cellForItem(at: indexPath) {
+            if UserPicCell.isConfigured == true {
+                self.indexToPass = collectionView.indexPath(for: cell)!.item
+                print(self.indexToPass)
+                if self.indexToPass != nil {
+                    self.performSegue(withIdentifier: "SinglePhotoVC", sender: nil)
+                }
+            }
+        }
     }
     
-    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "SinglePhotoVC" {
+            let myVC = segue.destination as! SinglePhotoVC
+            myVC.indexPassed = self.indexToPass
+            myVC.usernamePassed = self.usernamePassed
+            myVC.isFromFeedVC = false
+        }
+    }
+
     func followTapped() {
         let alert = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
         let follow = UIAlertAction(title: "Follow", style: .default, handler: { (action) -> Void in

@@ -123,7 +123,6 @@ class FeedCell: UITableViewCell {
                 })
                 
             }
-            
             self.likesRef.observeSingleEvent(of: .value, with:  { (snapshot) in
                 if let _ = snapshot.value as? NSNull {
                     self.likesImg.image = UIImage(named: "empty-heart")
@@ -133,9 +132,8 @@ class FeedCell: UITableViewCell {
                     self.likesImgSm.image = UIImage(named: "filled-heart")
                 }
             })
-
+            FeedCell.isConfigured = true
         }
-    FeedCell.isConfigured = true
 }
 
     func likeTapped(sender: UITapGestureRecognizer) {
