@@ -59,11 +59,11 @@ class SignInVC: UIViewController, UITextFieldDelegate {
                         
                     }
                 } else {
-                    print("Email user authenticated with Firebase")
-                    self.performSegue(withIdentifier: "toFeedVC", sender: nil)
                     if let user = user {
                         let userData = ["provider": user.providerID]
                         DataService.ds.completeSignIn(user.uid, userData: userData)
+                        print("Email user authenticated with Firebase")
+                        self.performSegue(withIdentifier: "toFeedVC", sender: nil)
                     }
   
                 }
