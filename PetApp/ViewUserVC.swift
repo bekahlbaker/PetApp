@@ -157,6 +157,11 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
                         self.bioLbl.text = about
                     }
                     
+                    if let following = dictionary["followingCt"] as? Int {
+                        self.followingLbl.text = "\(following)"
+                    }
+
+                    
                     //download profile img
                     if let url = dictionary["profileImgUrl"] as? String {
                         let storage = FIRStorage.storage()
@@ -237,7 +242,9 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         let follow = UIAlertAction(title: "Follow", style: .default, handler: { (action) -> Void in
             print("Follow btn tapped")
             DataService.ds.REF_CURRENT_USER.child("following").childByAutoId().updateChildValues(["user": "\(self.usernamePassed!)"])
+            self.adjustFollowing(true)
             DataService.ds.REF_USERS.child("\(self.usernamePassed!)").child("followers").childByAutoId().updateChildValues(["user": "\(self.userKey)"])
+//            self.adjustFollowers(true)
 
         })
         let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
@@ -248,6 +255,20 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         alert.addAction(cancel)
         
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func adjustFollowing(_ addFollowing: Bool) {
+        DataService.ds.REF_CURRENT_USER.observe(.value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: Any] {
+                var following = dictionary["followingCt"] as? Int
+                if addFollowing {
+                    following = following! + 1
+                } else {
+                    following = following! - 1
+                }
+                DataService.ds.REF_CURRENT_USER.updateChildValues(["followingCt": following as Any])
+            }
+        })
     }
     
     func moreTapped() {

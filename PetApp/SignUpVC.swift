@@ -55,6 +55,8 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                             if let user = user {
                                 let userData = ["provider": user.providerID, "email": email]
                                 DataService.ds.completeSignIn(user.uid, userData: userData)
+                                DataService.ds.REF_CURRENT_USER.child("following").childByAutoId().updateChildValues(["user": user.uid])
+                                DataService.ds.REF_CURRENT_USER.child("followers").childByAutoId().updateChildValues(["user": user.uid])
                             }
                             self.performSegue(withIdentifier: "toUsernameVC", sender: nil)
                         }

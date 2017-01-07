@@ -1734,6 +1734,7 @@
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yf8-rA-QC7">
                                                     <rect key="frame" x="0.0" y="58" width="375" height="375"/>
                                                     <connections>
+                                                        <action selector="imageTapped:" destination="XT7-dt-d1F" eventType="touchUpInside" id="Dkd-mC-td3"/>
                                                         <action selector="imageTappedWithSender:" destination="XT7-dt-d1F" eventType="touchUpInside" id="ubI-Jd-58L"/>
                                                     </connections>
                                                 </button>
