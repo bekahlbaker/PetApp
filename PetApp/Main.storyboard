@@ -794,22 +794,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PD1-yE-WIi">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="9mJ-2q-fKQ"/>
-                                </constraints>
-                                <items>
-                                    <barButtonItem image="home-sm" id="Wii-JP-hMk">
-                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                    </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="1ER-sV-dw3"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="4Vw-7t-u6J"/>
-                                    <barButtonItem image="user-1" id="tMd-1k-kSz">
-                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                    </barButtonItem>
-                                </items>
-                            </toolbar>
                             <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Hj-Tj-bm9">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
                                 <constraints>
@@ -817,20 +801,19 @@
                                 </constraints>
                                 <items>
                                     <navigationItem id="9Qd-xv-SxI">
-                                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="3jN-Ku-c2J">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="3jN-Ku-c2J">
                                             <connections>
-                                                <action selector="logOutTapped:" destination="HIm-Vc-Fus" id="plt-8K-3g1"/>
+                                                <segue destination="FOH-oA-jlS" kind="show" id="aN9-mf-HXp"/>
                                             </connections>
                                         </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="xEm-hu-FYJ"/>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XhN-yu-hM6">
-                                <rect key="frame" x="0.0" y="55" width="375" height="568"/>
+                                <rect key="frame" x="0.0" y="55" width="375" height="612"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fJw-EY-Syb" customClass="UserCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" id="fJw-EY-Syb" customClass="UserCell">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fJw-EY-Syb" id="w0n-Ga-acx">
@@ -844,20 +827,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="1Hj-Tj-bm9" firstAttribute="leading" secondItem="90l-9E-mdI" secondAttribute="leading" id="86C-Kk-2Uv"/>
-                            <constraint firstAttribute="trailing" secondItem="PD1-yE-WIi" secondAttribute="trailing" id="EXa-h6-kXr"/>
-                            <constraint firstItem="PD1-yE-WIi" firstAttribute="top" secondItem="XhN-yu-hM6" secondAttribute="bottom" id="GzV-yH-XDk"/>
                             <constraint firstItem="1Hj-Tj-bm9" firstAttribute="top" secondItem="90l-9E-mdI" secondAttribute="top" id="Sbk-Fj-JN0"/>
-                            <constraint firstItem="2Y3-hy-U40" firstAttribute="top" secondItem="PD1-yE-WIi" secondAttribute="bottom" id="XDN-1y-ITa"/>
                             <constraint firstAttribute="trailing" secondItem="XhN-yu-hM6" secondAttribute="trailing" id="ZNh-3h-jX5"/>
                             <constraint firstItem="XhN-yu-hM6" firstAttribute="top" secondItem="1Hj-Tj-bm9" secondAttribute="bottom" id="hVD-QD-zGr"/>
                             <constraint firstItem="XhN-yu-hM6" firstAttribute="leading" secondItem="90l-9E-mdI" secondAttribute="leading" id="jJZ-sG-7Uw"/>
-                            <constraint firstItem="PD1-yE-WIi" firstAttribute="leading" secondItem="90l-9E-mdI" secondAttribute="leading" id="kUa-bl-c0Z"/>
+                            <constraint firstItem="2Y3-hy-U40" firstAttribute="top" secondItem="XhN-yu-hM6" secondAttribute="bottom" id="oDm-2p-fjR"/>
                             <constraint firstAttribute="trailing" secondItem="1Hj-Tj-bm9" secondAttribute="trailing" id="zDh-Gf-r7i"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="XhN-yu-hM6" id="YZt-6c-qtL"/>
-                        <outlet property="username" destination="9Qd-xv-SxI" id="9J1-Fu-yoI"/>
+                        <outlet property="tableView" destination="XhN-yu-hM6" id="1oA-sT-saN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J14-8c-mV2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1713,6 +1692,9 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="DfV-vW-tMs"/>
                                     <barButtonItem image="users-sm" id="hfO-2k-sQY">
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <segue destination="HIm-Vc-Fus" kind="show" id="CsX-Ko-TEU"/>
+                                        </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="WcU-6n-o12"/>
                                     <barButtonItem image="user-sm" id="mgv-PS-KDV">
@@ -1987,12 +1969,12 @@
     <inferredMetricsTieBreakers>
         <segue reference="NaD-hV-ZAh"/>
         <segue reference="vcX-KV-BRk"/>
-        <segue reference="IhM-3o-Tc4"/>
-        <segue reference="nrV-ns-tsz"/>
+        <segue reference="aN9-mf-HXp"/>
         <segue reference="61E-j1-iUC"/>
         <segue reference="61S-To-qrI"/>
+        <segue reference="Lqk-g8-n0s"/>
+        <segue reference="Ioz-ly-Xrt"/>
         <segue reference="SDZ-21-9fi"/>
         <segue reference="zsD-8J-Lsn"/>
-        <segue reference="VOj-p2-r25"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -49,9 +49,6 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        self.usernamePassed = FeedVC.usernameToPass
-        print("VUVC \(self.usernamePassed!)")
 
         DispatchQueue.global().async {
         let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String

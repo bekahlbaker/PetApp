@@ -25,6 +25,7 @@ class DataService {
     fileprivate var _REF_POSTS = DB_BASE.child("posts")
     fileprivate var _REF_USERS = DB_BASE.child("users")
     fileprivate var _REF_ACTIVE_USERS = DB_BASE.child("active-users")
+    fileprivate var _REF_USER_LIST = DB_BASE.child("user-list")
     
     //Storage References
     fileprivate var _REF_POST_IMGS = STORAGE_BASE.child("post-imgs")
@@ -45,6 +46,10 @@ class DataService {
     
     var REF_ACTIVE_USERS: FIRDatabaseReference {
         return _REF_ACTIVE_USERS
+    }
+    
+    var REF_USER_LIST: FIRDatabaseReference {
+        return _REF_USER_LIST
     }
     
     var REF_POST_IMGS: FIRStorageReference {
