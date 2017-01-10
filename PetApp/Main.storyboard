@@ -813,7 +813,7 @@
                                 <rect key="frame" x="0.0" y="55" width="375" height="612"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" id="fJw-EY-Syb" customClass="UserCell">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" id="fJw-EY-Syb">
                                         <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fJw-EY-Syb" id="w0n-Ga-acx">
@@ -829,7 +829,7 @@
                             <constraint firstItem="1Hj-Tj-bm9" firstAttribute="leading" secondItem="90l-9E-mdI" secondAttribute="leading" id="86C-Kk-2Uv"/>
                             <constraint firstItem="1Hj-Tj-bm9" firstAttribute="top" secondItem="90l-9E-mdI" secondAttribute="top" id="Sbk-Fj-JN0"/>
                             <constraint firstAttribute="trailing" secondItem="XhN-yu-hM6" secondAttribute="trailing" id="ZNh-3h-jX5"/>
-                            <constraint firstItem="XhN-yu-hM6" firstAttribute="top" secondItem="1Hj-Tj-bm9" secondAttribute="bottom" id="hVD-QD-zGr"/>
+                            <constraint firstItem="XhN-yu-hM6" firstAttribute="top" secondItem="1Hj-Tj-bm9" secondAttribute="bottom" id="f4i-qN-ClT"/>
                             <constraint firstItem="XhN-yu-hM6" firstAttribute="leading" secondItem="90l-9E-mdI" secondAttribute="leading" id="jJZ-sG-7Uw"/>
                             <constraint firstItem="2Y3-hy-U40" firstAttribute="top" secondItem="XhN-yu-hM6" secondAttribute="bottom" id="oDm-2p-fjR"/>
                             <constraint firstAttribute="trailing" secondItem="1Hj-Tj-bm9" secondAttribute="trailing" id="zDh-Gf-r7i"/>
