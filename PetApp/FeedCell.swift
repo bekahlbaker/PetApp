@@ -26,6 +26,10 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var comments: UILabel!
     @IBOutlet weak var usernameBtn: UIButton!
     
+    @IBAction func imageTapped(_ sender: AnyObject) {
+        tapAction?(self)
+    }
+    
     @IBOutlet weak var moreBtn: UIButton!
     @IBAction func moreBtnTapped(_ sender: Any) {
         tapActionMore?(self)
@@ -38,10 +42,6 @@ class FeedCell: UITableViewCell {
     
     @IBAction func usernameTapped(_ sender: AnyObject) {
         tapActionUsername?(self)
-    }
-    
-    @IBAction func imageTapped(_ sender: AnyObject) {
-        tapAction?(self)
     }
 
     @IBAction func commentTapped(_ sender: AnyObject) {

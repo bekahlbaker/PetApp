@@ -17,87 +17,112 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var posts = [Post]()
     var postsObserved = [Post]()
+    var postKeys = [String]()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
     var indexToPass: Int!
     static var usernameToPass: String!
     static var postKeyToPass: String!
     
     var refreshControl: UIRefreshControl!
-
+    var indexPassed = 0
+    var isFromSP = false
+    var oldIndexPath: Int!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.delegate = self
         tableView.dataSource = self
-
-            DataService.ds.REF_CURRENT_USER.child("wall").observe(.value, with: { (snapshot) in
-                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                    for snap in snapshot {
-                        if let dictionary = snap.value as? [String: Any] {
-                            let post = dictionary["post"] as! String
-                                print("FOLLOWING \(post)")
-                            DataService.ds.REF_POSTS.queryOrderedByKey().queryEqual(toValue: post).observe(.value, with: { (snapshot) in
-
-                                self.postsObserved = []
-                                
-                                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                                    for snap in snapshot {
-                                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                                            let post = Post(postKey: post, postData: postDict)
-                                            self.postsObserved.insert(post, at: 0)
-                                        }
-                                    }
-                                }
-                            })
-
-                            } else {
-                                print("Not following any users")
-                            }
-                        }
-                    }
-                })
         
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh(_:)), for: UIControlEvents.valueChanged)
         tableView.addSubview(refreshControl) // not required when using UITableViewController
         
-        refresh(self)
     }
-
-    func refresh(_ sender:AnyObject) {
+    
+    func loadData(_ sender:AnyObject) {
+        
         DataService.ds.REF_CURRENT_USER.child("wall").observe(.value, with: { (snapshot) in
+            
+            self.postKeys = []
+            
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 for snap in snapshot {
                     if let dictionary = snap.value as? [String: Any] {
                         let post = dictionary["post"] as! String
                         print("FOLLOWING \(post)")
-                        DataService.ds.REF_POSTS.queryOrderedByKey().queryEqual(toValue: post).observe(.value, with: { (snapshot) in 
-                                self.posts = []
-                                
-                                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                                    for snap in snapshot {
-                                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                                            let key = snap.key
-                                            let post = Post(postKey: key, postData: postDict)
-                                            self.posts.insert(post, at: 0)
-                                        }
-                                    }
-                                }
-                                if self.posts.count > 0 {
-                                    self.tableView.reloadData()
-                                }
-                            })
-
-                        } else {
+                        self.postKeys.append(post)
+                        print(self.postKeys)
+                    } else {
                         print("Not following any users")
                     }
                 }
             }
+            for i in 0..<self.postKeys.count {
+                DataService.ds.REF_POSTS.queryOrderedByKey().queryEqual(toValue: self.postKeys[i]).observe(.value, with: { (snapshot) in
+                    
+                    //                    self.postsObserved = []
+                    
+                    if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                        for snap in snapshot {
+                            if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                                let post = Post(postKey: self.postKeys[i], postData: postDict)
+                                self.postsObserved.insert(post, at: 0)
+                            }
+                        }
+                    }
+                })
+            }
+            
         })
+        self.refresh(self)
+    }
+
+    func refresh(_ sender:AnyObject) {
+        DataService.ds.REF_CURRENT_USER.child("wall").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            self.postKeys = []
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                for snap in snapshot {
+                    if let dictionary = snap.value as? [String: Any] {
+                        let post = dictionary["post"] as! String
+                        print("FOLLOWING \(post)")
+                        self.postKeys.append(post)
+                        print(self.postKeys)
+                    } else {
+                        print("Not following any users")
+                    }
+                }
+            }
+            for i in 0..<self.postKeys.count {
+                DataService.ds.REF_POSTS.queryOrderedByKey().queryEqual(toValue: self.postKeys[i]).observeSingleEvent(of: .value, with: { (snapshot) in
+                    
+                    //                    self.postsObserved = []
+                    
+                    if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                        for snap in snapshot {
+                            if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                                let post = Post(postKey: self.postKeys[i], postData: postDict)
+                                self.posts.insert(post, at: 0)
+                            }
+                        }
+                    }
+                    if self.posts.count > 0 {
+                        self.tableView.reloadData()
+                    }
+                })
+            }
+            
+        })
+
 
         refreshControl.endRefreshing()
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.loadData(self)
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -105,7 +130,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count
+        return postsObserved.count
         
     }
 
@@ -128,6 +153,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 
                 if FeedCell.isConfigured == true {
                     cell.tapAction = { (cell) in
+                        print("POST \(post.postKey)")
+                        FeedVC.postKeyToPass = post.postKey
                         print(tableView.indexPath(for: cell)!.row)
                         self.indexToPass = tableView.indexPath(for: cell)!.row
                         if self.indexToPass != nil {
@@ -181,6 +208,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                                     print("Profile image downloaded from FB Storage.")
                                     if let imgData = data {
                                         if let profileImg = UIImage(data: imgData) {
+                                            cell.profileImg.image = profileImg
                                             FeedVC.imageCache.setObject(profileImg, forKey: userKey as NSString)
                                         }
                                     }
@@ -202,6 +230,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             let myVC = segue.destination as! SinglePhotoVC
             myVC.indexPassed = self.indexToPass
             myVC.isFromFeedVC = true
+            myVC.post = FeedVC.postKeyToPass
         }
         if segue.identifier == "ViewUserVC" {
             let myVC = segue.destination as! ViewUserVC

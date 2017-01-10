@@ -29,6 +29,7 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    static var postKeyToPass: String!
     var indexToPass: Int!
     let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
     
@@ -217,8 +218,10 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let post = posts[indexPath.row]
         if let cell = collectionView.cellForItem(at: indexPath) {
             if UserPicCell.isConfigured == true {
+                ViewUserVC.postKeyToPass = post.postKey
                 self.indexToPass = collectionView.indexPath(for: cell)!.item
                 print(self.indexToPass)
                 if self.indexToPass != nil {
@@ -234,6 +237,7 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
             myVC.indexPassed = self.indexToPass
             myVC.usernamePassed = self.usernamePassed
             myVC.isFromFeedVC = false
+            myVC.post = ViewUserVC.postKeyToPass
         }
     }
 

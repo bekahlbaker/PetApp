@@ -17,15 +17,15 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     var indexPassed: Int!
     var usernamePassed: String!
     var isFromFeedVC: Bool!
-
-    @IBAction func backBtnTapped(_ sender: Any) {
+    var post: String!
+    
+    @IBAction func backBtn(_ sender: Any) {
         if isFromFeedVC == true {
-            self.dismiss(animated: true, completion: nil)
+            performSegue(withIdentifier: "FeedVC", sender: nil)
         } else if isFromFeedVC == false {
-           performSegue(withIdentifier: "ViewUserVC", sender: nil) 
+            performSegue(withIdentifier: "ViewUserVC", sender: nil)
         }
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -34,9 +34,10 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         tableView.delegate = self
         tableView.dataSource = self
         
-        if isFromFeedVC == true {
-            //from FeedVC
-            DataService.ds.REF_POSTS.observe(.value, with: { (snapshot) in
+//            if self.isFromFeedVC == true {
+//                print("Is from Feed")
+                //from FeedVC
+                DataService.ds.REF_POSTS.queryOrderedByKey().queryEqual(toValue: self.post).observe(.value, with: { (snapshot) in
                 
                 self.posts = []
                 
@@ -50,29 +51,32 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                     }
                 }
                 if self.posts.count > 0 {
-                  self.tableView.reloadData()
+                    self.tableView.reloadData()
                 }
             })
-        } else if isFromFeedVC == false {
-            //from ViewUserVC
-            DataService.ds.REF_POSTS.queryOrdered(byChild: "userKey").queryEqual(toValue: self.usernamePassed!).observeSingleEvent(of: .value, with: { (snapshot) in
-                
-                self.posts = []
-                
-                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                    for snap in snapshot {
-                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                            let key = snap.key
-                            let post = Post(postKey: key, postData: postDict)
-                            self.posts.insert(post, at: 0)
-                        }
-                    }
-                }
-                if self.posts.count > 0 {
-                  self.tableView.reloadData()
-                }
-            })
-        }
+//            } else if self.isFromFeedVC == false {
+//                //from ViewUserVC
+//                print("Not from Feed")
+//                print(self.usernamePassed)
+//                
+//                DataService.ds.REF_POSTS.queryOrderedByKey().queryEqual(toValue: self.post).observe(.value, with: { (snapshot) in
+//                    
+//                self.posts = []
+//                
+//                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+//                    for snap in snapshot {
+//                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+//                            let key = snap.key
+//                            let post = Post(postKey: key, postData: postDict)
+//                            self.posts.insert(post, at: 0)
+//                        }
+//                    }
+//                }
+//                if self.posts.count > 0 {
+//                    self.tableView.reloadData()
+//                }
+//            })
+//            }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -86,7 +90,7 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let post = posts[indexPassed]
+        let post = posts[indexPath.row]
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SinglePhotoCell") as? SinglePhotoCell {
                 cell.configureCell(post)
@@ -135,6 +139,11 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         if segue.identifier == "ViewUserVC" {
             let myVC = segue.destination as! ViewUserVC
             myVC.usernamePassed = self.usernamePassed
+        }
+        if segue.identifier == "FeedVC" {
+            let myVC = segue.destination as! FeedVC
+            myVC.indexPassed = self.indexPassed
+            myVC.isFromSP = true
         }
     }
     
