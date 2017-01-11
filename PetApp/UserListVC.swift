@@ -19,6 +19,7 @@ class UserListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     var userList = [String]()
     var filteredUserList = [String]()
     var inSearchMode = false
+    var usernameToPass: String!
 
 override func viewDidLoad() {
     super.viewDidLoad()
@@ -27,6 +28,10 @@ override func viewDidLoad() {
     tableView.dataSource = self
     
     configureSearchController()
+    
+    self.automaticallyAdjustsScrollViewInsets = false
+    
+    navigationItem.title = "Users"
     
 }
     
@@ -55,6 +60,26 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
     }
     return cell
 }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let currentCell = tableView.cellForRow(at: tableView.indexPathForSelectedRow!)! as UITableViewCell
+        let username = (currentCell.textLabel?.text)!
+        self.getUserKey(username: username)
+    }
+    
+    func getUserKey(username: String) {
+        DataService.ds.REF_USERS.queryOrdered(byChild: "user-info/username").queryEqual(toValue: username).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                for snap in snapshot {
+                    print("USER KEY \(snap.key)")
+                    ViewUserVC.usernamePassed = snap.key
+                    print(ViewUserVC.usernamePassed)
+                    print("Happens after user key")
+                    self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
+                }
+            }
+        })
+    }
     
     func getUserList() {
         DataService.ds.REF_USER_LIST.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -93,6 +118,8 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
         searchController.searchBar.placeholder = "Search here..."
         searchController.searchBar.delegate = self
         searchController.searchBar.sizeToFit()
+        searchController.hidesNavigationBarDuringPresentation = false
+        self.definesPresentationContext = true
 
         tableView.tableHeaderView = searchController.searchBar
     }
@@ -119,4 +146,10 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
         inSearchMode = false
         tableView.reloadData()
     }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "ViewUserVC" {
+//            ViewUserVC.usernamePassed = self.usernameToPass
+//        }
+//    }
 }

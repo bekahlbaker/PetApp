@@ -64,7 +64,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetPic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cjr-4F-ec4">
-                                <rect key="frame" x="115" y="28" width="145" height="75"/>
+                                <rect key="frame" x="115.5" y="28" width="145" height="75"/>
                                 <fontDescription key="fontDescription" name="Lobster1.4" family="Lobster 1.4" pointSize="60"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -794,23 +794,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Hj-Tj-bm9">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="e1l-ag-CTa"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem id="9Qd-xv-SxI">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="3jN-Ku-c2J">
-                                            <connections>
-                                                <segue destination="FOH-oA-jlS" kind="show" id="aN9-mf-HXp"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XhN-yu-hM6">
-                                <rect key="frame" x="0.0" y="55" width="375" height="612"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" id="fJw-EY-Syb">
@@ -823,25 +808,38 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sxF-cC-RLO">
+                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <items>
+                                    <barButtonItem image="home-sm" id="8Rr-rM-GhE">
+                                        <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <segue destination="FOH-oA-jlS" kind="show" id="yC4-Hw-2d8"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="1Hj-Tj-bm9" firstAttribute="leading" secondItem="90l-9E-mdI" secondAttribute="leading" id="86C-Kk-2Uv"/>
-                            <constraint firstItem="1Hj-Tj-bm9" firstAttribute="top" secondItem="90l-9E-mdI" secondAttribute="top" id="Sbk-Fj-JN0"/>
+                            <constraint firstItem="XhN-yu-hM6" firstAttribute="top" secondItem="VAi-r0-nHT" secondAttribute="bottom" id="58P-9X-8ud"/>
+                            <constraint firstItem="sxF-cC-RLO" firstAttribute="leading" secondItem="90l-9E-mdI" secondAttribute="leading" id="Ap7-2u-Ddf"/>
+                            <constraint firstItem="2Y3-hy-U40" firstAttribute="top" secondItem="sxF-cC-RLO" secondAttribute="bottom" id="XHL-6C-OHE"/>
                             <constraint firstAttribute="trailing" secondItem="XhN-yu-hM6" secondAttribute="trailing" id="ZNh-3h-jX5"/>
-                            <constraint firstItem="XhN-yu-hM6" firstAttribute="top" secondItem="1Hj-Tj-bm9" secondAttribute="bottom" id="f4i-qN-ClT"/>
                             <constraint firstItem="XhN-yu-hM6" firstAttribute="leading" secondItem="90l-9E-mdI" secondAttribute="leading" id="jJZ-sG-7Uw"/>
                             <constraint firstItem="2Y3-hy-U40" firstAttribute="top" secondItem="XhN-yu-hM6" secondAttribute="bottom" id="oDm-2p-fjR"/>
-                            <constraint firstAttribute="trailing" secondItem="1Hj-Tj-bm9" secondAttribute="trailing" id="zDh-Gf-r7i"/>
+                            <constraint firstAttribute="trailing" secondItem="sxF-cC-RLO" secondAttribute="trailing" id="u85-WZ-0GF"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="s3H-eg-LJV"/>
                     <connections>
                         <outlet property="tableView" destination="XhN-yu-hM6" id="1oA-sT-saN"/>
+                        <segue destination="ABA-se-GwR" kind="show" identifier="ViewUserVC" id="r5d-b3-Erj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J14-8c-mV2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1149.5999999999999" y="1750.9745127436283"/>
+            <point key="canvasLocation" x="2088.8000000000002" y="1750.9745127436283"/>
         </scene>
         <!--ViewUserVC-->
         <scene sceneID="Hb0-BN-HMg">
@@ -855,28 +853,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vkV-Bv-s8y">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="55"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="lHy-hU-TRO"/>
-                                </constraints>
-                                <items>
-                                    <navigationItem id="XpG-Th-IkJ">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" id="mCu-l0-6Rw">
-                                            <connections>
-                                                <segue destination="FOH-oA-jlS" kind="show" id="GDQ-9V-ZE4"/>
-                                            </connections>
-                                        </barButtonItem>
-                                        <barButtonItem key="rightBarButtonItem" image="more-sm" id="A2i-cY-fNS">
-                                            <connections>
-                                                <action selector="moreBtn:" destination="ABA-se-GwR" id="MtX-ln-b3z"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3r8-CU-z1x">
-                                <rect key="frame" x="0.0" y="55" width="375" height="320"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="320"/>
                                 <subviews>
                                     <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sBB-td-5gh">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="320"/>
@@ -1016,7 +994,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="oXf-0A-NUb">
-                                <rect key="frame" x="0.0" y="375" width="375" height="292"/>
+                                <rect key="frame" x="0.0" y="384" width="375" height="239"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="1ci-ex-6qq">
                                     <size key="itemSize" width="120" height="120"/>
@@ -1050,23 +1028,22 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z3J-iU-soB">
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AST-jS-0JG">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="l5c-Kd-ayL"/>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="m00-uF-ULo"/>
-                                </constraints>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
-                                    <barButtonItem image="home-sm" id="2V4-r4-aAd">
+                                    <barButtonItem image="home-sm" id="TZW-52-p5I">
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <segue destination="FOH-oA-jlS" kind="show" id="tFc-uz-NRS"/>
+                                            <action selector="homeBtnTapped:" destination="ABA-se-GwR" id="TPo-x4-mQG"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="4Oh-Nt-mdR"/>
-                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="PWB-3c-GsW"/>
-                                    <barButtonItem image="user-1" id="crG-I8-sPm">
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="xgi-NF-e9N"/>
+                                    <barButtonItem image="more-sm" id="dcL-Xv-02p">
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <action selector="moreBtnTapped:" destination="ABA-se-GwR" id="KvX-ou-I0R"/>
+                                        </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
@@ -1075,19 +1052,15 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="3r8-CU-z1x" secondAttribute="trailing" id="0uo-rF-bN3"/>
                             <constraint firstItem="oXf-0A-NUb" firstAttribute="top" secondItem="3r8-CU-z1x" secondAttribute="bottom" id="55Y-1d-zUI"/>
-                            <constraint firstItem="3r8-CU-z1x" firstAttribute="top" secondItem="vkV-Bv-s8y" secondAttribute="bottom" id="9Fc-Q3-f6S"/>
-                            <constraint firstItem="vkV-Bv-s8y" firstAttribute="leading" secondItem="ZLW-Np-koL" secondAttribute="leading" id="9Ma-c1-Jko"/>
                             <constraint firstItem="oXf-0A-NUb" firstAttribute="leading" secondItem="ZLW-Np-koL" secondAttribute="leading" id="COk-Yt-K3R"/>
                             <constraint firstItem="3r8-CU-z1x" firstAttribute="leading" secondItem="ZLW-Np-koL" secondAttribute="leading" id="HaX-fI-4QV"/>
-                            <constraint firstAttribute="trailing" secondItem="Z3J-iU-soB" secondAttribute="trailing" id="Ky4-ZN-ECp"/>
                             <constraint firstItem="Jd9-3E-s8h" firstAttribute="top" secondItem="oXf-0A-NUb" secondAttribute="bottom" id="MHd-rd-Urq"/>
-                            <constraint firstItem="Z3J-iU-soB" firstAttribute="leading" secondItem="ZLW-Np-koL" secondAttribute="leading" id="UfG-u9-b1o"/>
-                            <constraint firstItem="Jd9-3E-s8h" firstAttribute="top" secondItem="Z3J-iU-soB" secondAttribute="bottom" id="Uqs-dE-vwO"/>
                             <constraint firstAttribute="trailing" secondItem="oXf-0A-NUb" secondAttribute="trailing" id="f2o-DS-aOm"/>
-                            <constraint firstAttribute="trailing" secondItem="vkV-Bv-s8y" secondAttribute="trailing" id="mwB-xc-bin"/>
-                            <constraint firstItem="vkV-Bv-s8y" firstAttribute="top" secondItem="ZLW-Np-koL" secondAttribute="top" id="vvg-VE-stv"/>
+                            <constraint firstItem="3r8-CU-z1x" firstAttribute="top" secondItem="u1j-vs-RdX" secondAttribute="bottom" id="ypa-Z8-g8g"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="ageAndBreedLbl" destination="v2L-Iz-1xI" id="jGt-HB-S1h"/>
                         <outlet property="bioLbl" destination="01i-MM-O3M" id="UVU-ay-ErD"/>
@@ -1100,7 +1073,6 @@
                         <outlet property="parentsNameLbl" destination="RhO-C9-TOg" id="KJH-rW-o38"/>
                         <outlet property="postsLbl" destination="dWA-PC-G0K" id="1fT-nN-Af2"/>
                         <outlet property="profileImg" destination="zAO-Ga-K6Z" id="iP4-7N-r1m"/>
-                        <outlet property="username" destination="XpG-Th-IkJ" id="JCN-so-f7x"/>
                         <segue destination="8e3-ft-Uph" kind="show" identifier="ProfileVC" id="Lqk-g8-n0s"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="EntryVC" id="NaD-hV-ZAh"/>
                         <segue destination="M0X-hF-jYW" kind="show" identifier="SinglePhotoVC" id="Ioz-ly-Xrt"/>
@@ -1108,7 +1080,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ns8-AI-LM0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2620" y="796"/>
+            <point key="canvasLocation" x="2620" y="795.6521739130435"/>
         </scene>
         <!--CommentsVC-->
         <scene sceneID="K10-Zo-qeV">
@@ -1262,7 +1234,7 @@
                                 </items>
                             </navigationBar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bMR-SN-Wep">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="579" width="375" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="RwC-ve-DHr"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="xsA-Fa-DUJ"/>
@@ -1288,7 +1260,7 @@
                                 </items>
                             </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="542" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wTY-RD-waF">
-                                <rect key="frame" x="0.0" y="55" width="375" height="568"/>
+                                <rect key="frame" x="0.0" y="55" width="375" height="524"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SinglePhotoCell" rowHeight="542" id="6d2-yY-NUK" customClass="SinglePhotoCell" customModule="PetApp" customModuleProvider="target">
@@ -1668,7 +1640,7 @@
                                 </items>
                             </navigationBar>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetPic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mvl-VZ-xfI">
-                                <rect key="frame" x="151.5" y="17.5" width="72.5" height="37.5"/>
+                                <rect key="frame" x="151" y="17" width="73" height="38"/>
                                 <fontDescription key="fontDescription" name="Lobster1.4" family="Lobster 1.4" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -1693,7 +1665,7 @@
                                     <barButtonItem image="users-sm" id="hfO-2k-sQY">
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <segue destination="HIm-Vc-Fus" kind="show" id="CsX-Ko-TEU"/>
+                                            <segue destination="CcZ-BS-spZ" kind="show" id="CsX-Ko-TEU"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="WcU-6n-o12"/>
@@ -1951,6 +1923,24 @@
             </objects>
             <point key="canvasLocation" x="2900" y="-197.45127436281859"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="ahS-EZ-o6H">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CcZ-BS-spZ" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="LrV-G2-l5Z">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="HIm-Vc-Fus" kind="relationship" relationship="rootViewController" id="Nut-WL-ETT"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hd6-HI-53R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1149.5999999999999" y="1750.9745127436283"/>
+        </scene>
     </scenes>
     <resources>
         <image name="blank-profile-picture" width="640" height="640"/>
@@ -1962,19 +1952,18 @@
         <image name="locate-sm" width="35" height="35"/>
         <image name="more-sm" width="35" height="35"/>
         <image name="speech-bubble-sm" width="35" height="35"/>
-        <image name="user-1" width="35" height="35"/>
         <image name="user-sm" width="35" height="35"/>
         <image name="users-sm" width="35" height="35"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NaD-hV-ZAh"/>
-        <segue reference="vcX-KV-BRk"/>
-        <segue reference="aN9-mf-HXp"/>
         <segue reference="61E-j1-iUC"/>
-        <segue reference="61S-To-qrI"/>
-        <segue reference="Lqk-g8-n0s"/>
+        <segue reference="yC4-Hw-2d8"/>
+        <segue reference="r5d-b3-Erj"/>
+        <segue reference="NaD-hV-ZAh"/>
         <segue reference="Ioz-ly-Xrt"/>
+        <segue reference="Lqk-g8-n0s"/>
         <segue reference="SDZ-21-9fi"/>
         <segue reference="zsD-8J-Lsn"/>
+        <segue reference="61S-To-qrI"/>
     </inferredMetricsTieBreakers>
 </document>

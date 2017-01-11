@@ -234,7 +234,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         }
         if segue.identifier == "ViewUserVC" {
             let myVC = segue.destination as! ViewUserVC
-            myVC.usernamePassed = FeedVC.usernameToPass
+            ViewUserVC.usernamePassed = FeedVC.usernameToPass
         }
     }
     

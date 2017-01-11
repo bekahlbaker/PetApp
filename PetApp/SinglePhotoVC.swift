@@ -137,8 +137,7 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ViewUserVC" {
-            let myVC = segue.destination as! ViewUserVC
-            myVC.usernamePassed = self.usernamePassed
+            ViewUserVC.usernamePassed = self.usernamePassed
         }
         if segue.identifier == "FeedVC" {
             let myVC = segue.destination as! FeedVC

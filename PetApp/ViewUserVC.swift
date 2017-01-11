@@ -33,27 +33,41 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     var indexToPass: Int!
     let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
     
-    @IBAction func moreBtn(_ sender: Any) {
+   
+    @IBAction func homeBtnTapped(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func moreBtnTapped(_ sender: UIBarButtonItem) {
         DispatchQueue.global().async {
-            if self.usernamePassed! == self.userKey {
+            if ViewUserVC.usernamePassed == self.userKey {
                 print("This is the current user")
                 self.moreTapped()
             } else {
                 self.followTapped()
             }
         }
+
     }
 
-    var usernamePassed: String!
+    static var usernamePassed: String!
     var posts = [Post]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        print(ViewUserVC.usernamePassed)
+        
+        checkIfFollowing()
+        
+        self.automaticallyAdjustsScrollViewInsets = false
 
         DispatchQueue.global().async {
         let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
-        if self.usernamePassed! == userKey {
+        if ViewUserVC.usernamePassed == userKey {
             print("This is the current user")
+            self.navigationController?.isNavigationBarHidden = true
+//            self.navigationController?.setToolbarHidden(false, animated: false)
             DispatchQueue.main.async {
                 if ProfileVC.profileCache.object(forKey: "profileImg") != nil {
                     self.profileImg.image = ProfileVC.profileCache.object(forKey: "profileImg")
@@ -68,7 +82,7 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
             }
         }
         
-        DataService.ds.REF_POSTS.queryOrdered(byChild: "userKey").queryEqual(toValue: self.usernamePassed!).observeSingleEvent(of: .value, with: { (snapshot) in
+        DataService.ds.REF_POSTS.queryOrdered(byChild: "userKey").queryEqual(toValue: ViewUserVC.usernamePassed).observeSingleEvent(of: .value, with: { (snapshot) in
             
             self.posts = []
             
@@ -101,12 +115,14 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         collectionView!.collectionViewLayout = layout
         
         DispatchQueue.main.async {
+            let userKey = ViewUserVC.usernamePassed
             //download user info & image
-            DataService.ds.REF_USERS.child("\(self.usernamePassed!)").child("user-info").observeSingleEvent(of: .value, with: { (snapshot) in
+            DataService.ds.REF_USERS.child(userKey!).child("user-info").observe(.value, with: { (snapshot) in
+                print(ViewUserVC.usernamePassed)
                 if let dictionary = snapshot.value as? [String: Any] {
                     
                     if let username = dictionary["username"] as? String {
-                        self.username.title = username
+                        self.navigationItem.title = username
                     }
                     
                     if let name = dictionary["full-name"] as? String {
@@ -232,19 +248,30 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         if segue.identifier == "SinglePhotoVC" {
             let myVC = segue.destination as! SinglePhotoVC
             myVC.indexPassed = self.indexToPass
-            myVC.usernamePassed = self.usernamePassed
+            myVC.usernamePassed = ViewUserVC.usernamePassed
             myVC.isFromFeedVC = false
             myVC.post = ViewUserVC.postKeyToPass
         }
+    }
+    
+    func checkIfFollowing() {
+        DataService.ds.REF_CURRENT_USER.child("following").child(ViewUserVC.usernamePassed).observeSingleEvent(of: .value, with: { (snapshot) in
+            if let _ = snapshot.value as? NSNull {
+                print("Not following")
+            } else {
+                print("Following")
+                print("USER KEYS \(snapshot.key)")
+            }
+        })
     }
 
     func followTapped() {
         let alert = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
         let follow = UIAlertAction(title: "Follow", style: .default, handler: { (action) -> Void in
             print("Follow btn tapped")
-            DataService.ds.REF_CURRENT_USER.child("following").childByAutoId().updateChildValues(["user": "\(self.usernamePassed!)"])
+            DataService.ds.REF_CURRENT_USER.child("following").updateChildValues(["\(ViewUserVC.usernamePassed!)": true])
             self.adjustFollowing(true)
-            DataService.ds.REF_USERS.child("\(self.usernamePassed!)").child("followers").childByAutoId().updateChildValues(["user": "\(self.userKey)"])
+            DataService.ds.REF_USERS.child("\(ViewUserVC.usernamePassed!)").child("followers").childByAutoId().updateChildValues(["user": "\(self.userKey)"])
 //            self.adjustFollowers(true)
 
         })
@@ -259,9 +286,10 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     }
     
     func adjustFollowing(_ addFollowing: Bool) {
-        DataService.ds.REF_CURRENT_USER.observe(.value, with: { (snapshot) in
+        DataService.ds.REF_CURRENT_USER.observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: Any] {
                 var following = dictionary["followingCt"] as? Int
+                print(following!)
                 if addFollowing {
                     following = following! + 1
                 } else {
@@ -278,7 +306,7 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
             print("Edit btn tapped")
             DispatchQueue.main.async {
                 let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
-                if self.usernamePassed! == userKey {
+                if ViewUserVC.usernamePassed == userKey {
                     self.performSegue(withIdentifier: "ProfileVC", sender: nil)
                 }
             }

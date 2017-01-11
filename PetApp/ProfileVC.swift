@@ -58,6 +58,9 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.navigationController?.isNavigationBarHidden = true
+        
         ProfileVC.profileCache.removeAllObjects()
         FeedVC.imageCache.removeAllObjects()
         ProfileVC.coverCache.removeAllObjects()

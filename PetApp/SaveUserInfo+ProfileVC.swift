@@ -110,9 +110,8 @@ extension ProfileVC {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ViewUserVC" {
-            let myVC = segue.destination as! ViewUserVC
             let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
-            myVC.usernamePassed = userKey
+            ViewUserVC.usernamePassed = userKey
         }
     }
     
