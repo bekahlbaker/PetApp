@@ -9,9 +9,11 @@
 import UIKit
 import Firebase
 
-class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class CommentsVC: ResponsiveTextFieldViewController, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var tableView: UITableView!
+    
+    
     
     var comments = [Comment]()
     var postKeyPassed: String!
@@ -63,7 +65,9 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         tableView.delegate = self
         tableView.dataSource = self
-        
+  
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 100.0
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -128,26 +132,5 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 }
             }
         })
-    }
-    
-    
-    @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
-    
-    func keyboardWillShow(_ notification: Notification) {
-        
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= keyboardSize.height
-            }
-        }
-        
-    }
-    
-    func keyboardWillHide(_ notification: Notification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0{
-                self.view.frame.origin.y += keyboardSize.height
-            }
-        }
     }
 }
