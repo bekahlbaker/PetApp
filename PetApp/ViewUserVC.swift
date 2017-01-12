@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 import SwiftKeychainWrapper
 
-class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UINavigationBarDelegate {
     
     
     @IBOutlet weak var username: UINavigationItem!
@@ -29,13 +29,15 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var isFollowing: Bool!
     static var postKeyToPass: String!
     var indexToPass: Int!
     let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
     
+    @IBOutlet weak var homeBtn: UIBarButtonItem!
    
     @IBAction func homeBtnTapped(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
+        self.performSegue(withIdentifier: "FeedVC", sender: nil)
     }
     
     @IBAction func moreBtnTapped(_ sender: UIBarButtonItem) {
@@ -61,13 +63,29 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         checkIfFollowing()
         
         self.automaticallyAdjustsScrollViewInsets = false
+        
+        // Create the navigation bar
+        let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 64)) // Offset by 20 pixels vertically to take the status bar into account
+        
+        navigationBar.backgroundColor = UIColor.white
+        navigationBar.delegate = self;
+        
+        // Create a navigation item with a title
+        let navigationItem = UINavigationItem()
+        navigationItem.title = "Title"
+        
+        // Assign the navigation item to the navigation bar
+        navigationBar.items = [navigationItem]
+        
+        // Make the navigation bar a subview of the current view controller
+        self.view.addSubview(navigationBar)
+    
+        edgesForExtendedLayout = []
 
         DispatchQueue.global().async {
         let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
         if ViewUserVC.usernamePassed == userKey {
             print("This is the current user")
-            self.navigationController?.isNavigationBarHidden = true
-//            self.navigationController?.setToolbarHidden(false, animated: false)
             DispatchQueue.main.async {
                 if ProfileVC.profileCache.object(forKey: "profileImg") != nil {
                     self.profileImg.image = ProfileVC.profileCache.object(forKey: "profileImg")
@@ -79,6 +97,9 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
                 }
 
             }
+        } else {
+            self.homeBtn.isEnabled = false
+            self.homeBtn.tintColor = UIColor.clear
             }
         }
         
@@ -114,11 +135,11 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         layout.minimumLineSpacing = 0
         collectionView!.collectionViewLayout = layout
         
-        DispatchQueue.main.async {
             let userKey = ViewUserVC.usernamePassed
             //download user info & image
             DataService.ds.REF_USERS.child(userKey!).child("user-info").observe(.value, with: { (snapshot) in
-                print(ViewUserVC.usernamePassed)
+                print("snapshot")
+                print(snapshot)
                 if let dictionary = snapshot.value as? [String: Any] {
                     
                     if let username = dictionary["username"] as? String {
@@ -172,6 +193,7 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
                     }
                     
                     if let following = dictionary["followingCt"] as? Int {
+                        print("following \(following)")
                         self.followingLbl.text = "\(following)"
                     }
 
@@ -206,8 +228,6 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
                     }
                 }
             })
-
-        }
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -257,8 +277,10 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     func checkIfFollowing() {
         DataService.ds.REF_CURRENT_USER.child("following").child(ViewUserVC.usernamePassed).observeSingleEvent(of: .value, with: { (snapshot) in
             if let _ = snapshot.value as? NSNull {
+                self.isFollowing = false
                 print("Not following")
             } else {
+                self.isFollowing = true
                 print("Following")
                 print("USER KEYS \(snapshot.key)")
             }
@@ -267,19 +289,32 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
 
     func followTapped() {
         let alert = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
-        let follow = UIAlertAction(title: "Follow", style: .default, handler: { (action) -> Void in
-            print("Follow btn tapped")
-            DataService.ds.REF_CURRENT_USER.child("following").updateChildValues(["\(ViewUserVC.usernamePassed!)": true])
-            self.adjustFollowing(true)
-            DataService.ds.REF_USERS.child("\(ViewUserVC.usernamePassed!)").child("followers").childByAutoId().updateChildValues(["user": "\(self.userKey)"])
-//            self.adjustFollowers(true)
-
-        })
+        if isFollowing == false {
+            let follow = UIAlertAction(title: "Follow", style: .default, handler: { (action) -> Void in
+                print("Follow btn tapped")
+                DataService.ds.REF_CURRENT_USER.child("following").updateChildValues(["\(ViewUserVC.usernamePassed!)": true])
+                self.adjustFollowing(true)
+                self.checkIfFollowing()
+                DataService.ds.REF_USERS.child("\(ViewUserVC.usernamePassed!)").child("followers").childByAutoId().updateChildValues(["user": "\(self.userKey)"])
+                //            self.adjustFollowers(true)
+                
+            })
+            alert.addAction(follow)
+        } else if isFollowing == true {
+            let follow = UIAlertAction(title: "Unfollow", style: .destructive, handler: { (action) -> Void in
+                print("Unfollow btn tapped")
+                DataService.ds.REF_CURRENT_USER.child("following").removeValue()
+                self.adjustFollowing(false)
+                self.checkIfFollowing()
+                DataService.ds.REF_USERS.child("\(ViewUserVC.usernamePassed!)").child("followers").removeValue()
+                //            self.adjustFollowers(true)
+                
+            })
+            alert.addAction(follow)
+        }
         let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
             print("Cancel Button Pressed")
         }
-        
-        alert.addAction(follow)
         alert.addAction(cancel)
         
         self.present(alert, animated: true, completion: nil)

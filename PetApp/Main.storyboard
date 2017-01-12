@@ -814,7 +814,7 @@
                                     <barButtonItem image="home-sm" id="8Rr-rM-GhE">
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <segue destination="FOH-oA-jlS" kind="show" id="yC4-Hw-2d8"/>
+                                            <action selector="homeBtnTapped:" destination="HIm-Vc-Fus" id="RE3-ma-XgA"/>
                                         </connections>
                                     </barButtonItem>
                                 </items>
@@ -901,7 +901,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="DSP-2d-s9R">
                                                 <rect key="frame" x="0.0" y="0.0" width="37.5" height="38.5"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dWA-PC-G0K">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dWA-PC-G0K">
                                                         <rect key="frame" x="0.0" y="0.0" width="37.5" height="18"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
                                                         <nil key="textColor"/>
@@ -918,7 +918,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="QCH-nX-Ujs">
                                                 <rect key="frame" x="137.5" y="0.0" width="69" height="38.5"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="4" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZPw-af-da2">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZPw-af-da2">
                                                         <rect key="frame" x="0.0" y="0.0" width="69" height="18"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
                                                         <nil key="textColor"/>
@@ -935,7 +935,7 @@
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="EFi-nN-0zW">
                                                 <rect key="frame" x="291" y="0.0" width="68" height="38.5"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="7" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G81-ho-30E">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G81-ho-30E">
                                                         <rect key="frame" x="0.0" y="0.0" width="68" height="18"/>
                                                         <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="13"/>
                                                         <nil key="textColor"/>
@@ -1055,8 +1055,8 @@
                             <constraint firstItem="oXf-0A-NUb" firstAttribute="leading" secondItem="ZLW-Np-koL" secondAttribute="leading" id="COk-Yt-K3R"/>
                             <constraint firstItem="3r8-CU-z1x" firstAttribute="leading" secondItem="ZLW-Np-koL" secondAttribute="leading" id="HaX-fI-4QV"/>
                             <constraint firstItem="Jd9-3E-s8h" firstAttribute="top" secondItem="oXf-0A-NUb" secondAttribute="bottom" id="MHd-rd-Urq"/>
+                            <constraint firstItem="3r8-CU-z1x" firstAttribute="top" secondItem="u1j-vs-RdX" secondAttribute="bottom" id="eg6-Zr-DMf"/>
                             <constraint firstAttribute="trailing" secondItem="oXf-0A-NUb" secondAttribute="trailing" id="f2o-DS-aOm"/>
-                            <constraint firstItem="3r8-CU-z1x" firstAttribute="top" secondItem="u1j-vs-RdX" secondAttribute="bottom" id="ypa-Z8-g8g"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
@@ -1069,6 +1069,7 @@
                         <outlet property="followersLbl" destination="G81-ho-30E" id="okH-wE-4nN"/>
                         <outlet property="followingLbl" destination="ZPw-af-da2" id="4WD-Eq-ePP"/>
                         <outlet property="fullNameLbl" destination="4P5-dl-9XN" id="5UQ-nz-hoY"/>
+                        <outlet property="homeBtn" destination="TZW-52-p5I" id="Cnd-aw-utP"/>
                         <outlet property="locationLbl" destination="VG8-ER-lku" id="O0f-mP-6rk"/>
                         <outlet property="parentsNameLbl" destination="RhO-C9-TOg" id="KJH-rW-o38"/>
                         <outlet property="postsLbl" destination="dWA-PC-G0K" id="1fT-nN-Af2"/>
@@ -1076,6 +1077,7 @@
                         <segue destination="8e3-ft-Uph" kind="show" identifier="ProfileVC" id="Lqk-g8-n0s"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="EntryVC" id="NaD-hV-ZAh"/>
                         <segue destination="M0X-hF-jYW" kind="show" identifier="SinglePhotoVC" id="Ioz-ly-Xrt"/>
+                        <segue destination="FOH-oA-jlS" kind="show" identifier="FeedVC" id="it2-Ym-WR9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ns8-AI-LM0" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1957,11 +1959,11 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="61E-j1-iUC"/>
-        <segue reference="yC4-Hw-2d8"/>
-        <segue reference="r5d-b3-Erj"/>
+        <segue reference="it2-Ym-WR9"/>
+        <segue reference="vcX-KV-BRk"/>
+        <segue reference="Lqk-g8-n0s"/>
         <segue reference="NaD-hV-ZAh"/>
         <segue reference="Ioz-ly-Xrt"/>
-        <segue reference="Lqk-g8-n0s"/>
         <segue reference="SDZ-21-9fi"/>
         <segue reference="zsD-8J-Lsn"/>
         <segue reference="61S-To-qrI"/>

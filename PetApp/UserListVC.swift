@@ -14,6 +14,10 @@ import Firebase
 class UserListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
     
     var searchController: UISearchController!
+    
+    @IBAction func homeBtnTapped(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
     @IBOutlet weak var tableView: UITableView!
     
     var userList = [String]()
