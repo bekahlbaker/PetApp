@@ -24,9 +24,12 @@ class UserListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     var filteredUserList = [String]()
     var inSearchMode = false
     var usernameToPass: String!
+    var currentUsername: String!
 
 override func viewDidLoad() {
     super.viewDidLoad()
+    
+    self.getCurrentUsername()
     
     tableView.delegate = self
     tableView.dataSource = self
@@ -95,7 +98,9 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
                     if let dictionary = snap.value as? [String: Any] {
                         let user = dictionary["username"] as! String
                         self.userList.append(user)
-                    } else {
+                        self.filterOutCurrentUser(user: self.currentUsername)
+                        print(self.userList)
+                        } else {
                         print("No users")
                     }
                 }
@@ -104,6 +109,26 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
                 self.tableView.reloadData()
             }
         })
+    }
+    
+    func getCurrentUsername() {
+        DataService.ds.REF_CURRENT_USER.child("user-info").observe( .value, with:  { (snapshot) in
+            if let dictionary = snapshot.value as? [String: Any] {
+                if let currentUser = dictionary["username"] as? String {
+                    print("BEKAH: \(currentUser)")
+                    self.currentUsername = currentUser as String!
+                }
+            }
+        })
+    }
+    
+    func filterOutCurrentUser(user: String) {
+        let userToRemove = user
+        while self.userList.contains(user) {
+            if let itemToRemoveIndex = self.userList.index(of: userToRemove) {
+                self.userList.remove(at: itemToRemoveIndex)
+            }
+        }
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {

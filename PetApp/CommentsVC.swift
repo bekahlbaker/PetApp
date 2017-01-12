@@ -61,6 +61,12 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         if FeedVC.postKeyToPass != nil {
             self.postKeyPassed = FeedVC.postKeyToPass
             print("COMMENTS VC: \(self.postKeyPassed)")
@@ -70,21 +76,16 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 self.comments = []
                 
                 if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                    print("SNAPSHOT DOWNLOADED \(snapshot)")
                     for snap in snapshot {
-                        print("SNAP: \(snap)")
                         if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                            print("POST DICT \(postDict)")
                             let key = snap.key
-                            print("KEY \(key)")
                             let comment = Comment(postKey: key, postData: postDict)
                             self.comments.append(comment)
-                            print("COMMENTS \(self.comments)")
                         }
                     }
                 }
                 if self.comments.count > 0 {
-                 self.tableView.reloadData()   
+                    self.tableView.reloadData()
                 }
                 
             })
@@ -92,10 +93,7 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             print("No post key")
         }
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        
-        DataService.ds.REF_CURRENT_USER.child("user-info").observe( .value, with:  { (snapshot) in
+        DataService.ds.REF_CURRENT_USER.child("user-info").observe(.value, with:  { (snapshot) in
             if let dictionary = snapshot.value as? [String: Any] {
                 if let currentUser = dictionary["username"] as? String {
                     print("BEKAH: \(currentUser)")
@@ -103,6 +101,7 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 }
             }
         })
+
     }
     
     func postToFirebase() {

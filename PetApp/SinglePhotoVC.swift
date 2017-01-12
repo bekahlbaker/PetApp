@@ -101,7 +101,6 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                 let captionView = cell.caption
                 let save = cell.saveBtn
                 
-                if SinglePhotoCell.isConfigured == true {
                     cell.tapActionUsername = { (cell) in
                         print("POST \(post.userKey)")
                         self.usernamePassed = post.userKey
@@ -110,13 +109,13 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                         }
                     }
                     
-                    cell.tapActionComment = { (cell) in
-                        print("POST \(post.postKey)")
+//                    cell.tapActionComment = { (cell) in
+//                        print("POST \(post.postKey)")
                         FeedVC.postKeyToPass = post.postKey
-                        if FeedVC.postKeyToPass != nil {
-                            self.performSegue(withIdentifier: "CommentsVC", sender: nil)
-                        }
-                    }
+//                        if FeedVC.postKeyToPass != nil {
+//                            self.performSegue(withIdentifier: "CommentsVC", sender: nil)
+//                        }
+//                    }
                     cell.tapActionMore = { (cell) in
                         print("POST \(post.postKey)")
                         FeedVC.postKeyToPass = post.postKey
@@ -131,7 +130,7 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                         captionView?.isEditable = false
                         save?.isHidden = true
                     }
-                }
+                
             return cell
             } else {
             return SinglePhotoCell()

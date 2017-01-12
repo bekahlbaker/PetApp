@@ -35,10 +35,6 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
     
     @IBOutlet weak var homeBtn: UIBarButtonItem!
-   
-    @IBAction func homeBtnTapped(_ sender: Any) {
-        self.performSegue(withIdentifier: "FeedVC", sender: nil)
-    }
     
     @IBAction func moreBtnTapped(_ sender: UIBarButtonItem) {
         DispatchQueue.global().async {
@@ -122,8 +118,6 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
             let userKey = ViewUserVC.usernamePassed
             //download user info & image
             DataService.ds.REF_USERS.child(userKey!).child("user-info").observe(.value, with: { (snapshot) in
-                print("snapshot")
-                print(snapshot)
                 if let dictionary = snapshot.value as? [String: Any] {
                     
                     if let username = dictionary["username"] as? String {
@@ -134,32 +128,21 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
                         self.fullNameLbl.text = name
                     }
                     
-                    if let breed = dictionary["breed"] as? String {
-                        if let age = dictionary["age"] as? String {
-                            if age != "" {
-                                self.ageAndBreedLbl.text = "\(age)"
-                                if breed != "" {
-                                    self.ageAndBreedLbl.text = "\(age) \(breed)"
-                                } else {
-                                    if let species = dictionary["species"] as? String {
-                                        if species != "" {
-                                            self.ageAndBreedLbl.text = "\(age) \(species)"
-                                        }
-                                    }
-                                }
-                            } else {
-                                if breed != "" {
-                                    self.ageAndBreedLbl.text = "\(breed)"
-                                } else {
-                                    if let species = dictionary["species"] as? String {
-                                        if species != "" {
-                                            self.ageAndBreedLbl.text = "\(species)"
-                                        }
-                                    }
-                                }
-                                
-                            }
+                    if let age = dictionary["age"] as? String {
+                        self.ageAndBreedLbl.text = "\(age)"
+                        
+                        if let breed = dictionary["breed"] as? String {
+                            self.ageAndBreedLbl.text = "\(age) \(breed)"
+                            
+                        } else if let species = dictionary["species"] as? String {
+                            self.ageAndBreedLbl.text = "\(age) \(species)"
+                            
                         }
+                    } else if let breed = dictionary["breed"] as? String {
+                        self.ageAndBreedLbl.text = "\(breed)"
+                        
+                    } else if let species = dictionary["species"] as? String {
+                        self.ageAndBreedLbl.text = "\(species)"
                     }
                     
                     if let parent = dictionary["parents-name"] as? String {
