@@ -58,34 +58,17 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print(ViewUserVC.usernamePassed)
+        print("USERNAME \(ViewUserVC.usernamePassed)")
         
         checkIfFollowing()
         
         self.automaticallyAdjustsScrollViewInsets = false
-        
-        // Create the navigation bar
-        let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 64)) // Offset by 20 pixels vertically to take the status bar into account
-        
-        navigationBar.backgroundColor = UIColor.white
-        navigationBar.delegate = self;
-        
-        // Create a navigation item with a title
-        let navigationItem = UINavigationItem()
-        navigationItem.title = "Title"
-        
-        // Assign the navigation item to the navigation bar
-        navigationBar.items = [navigationItem]
-        
-        // Make the navigation bar a subview of the current view controller
-        self.view.addSubview(navigationBar)
-    
-        edgesForExtendedLayout = []
 
         DispatchQueue.global().async {
         let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
         if ViewUserVC.usernamePassed == userKey {
             print("This is the current user")
+            self.navigationController?.isNavigationBarHidden = true
             DispatchQueue.main.async {
                 if ProfileVC.profileCache.object(forKey: "profileImg") != nil {
                     self.profileImg.image = ProfileVC.profileCache.object(forKey: "profileImg")
@@ -97,10 +80,11 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
                 }
 
             }
-        } else {
-            self.homeBtn.isEnabled = false
-            self.homeBtn.tintColor = UIColor.clear
-            }
+        }
+//        else {
+//            self.homeBtn.isEnabled = false
+//            self.homeBtn.tintColor = UIColor.clear
+//            }
         }
         
         DataService.ds.REF_POSTS.queryOrdered(byChild: "userKey").queryEqual(toValue: ViewUserVC.usernamePassed).observeSingleEvent(of: .value, with: { (snapshot) in
@@ -255,8 +239,11 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         if let cell = collectionView.cellForItem(at: indexPath) {
             if UserPicCell.isConfigured == true {
                 ViewUserVC.postKeyToPass = post.postKey
+                SinglePhotoVC.post = post.postKey
                 self.indexToPass = collectionView.indexPath(for: cell)!.item
                 print(self.indexToPass)
+                SinglePhotoVC.indexPassed = self.indexToPass
+                print("Happens after index to pass and post key to pass")
                 if self.indexToPass != nil {
                     self.performSegue(withIdentifier: "SinglePhotoVC", sender: nil)
                 }
@@ -267,10 +254,8 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SinglePhotoVC" {
             let myVC = segue.destination as! SinglePhotoVC
-            myVC.indexPassed = self.indexToPass
             myVC.usernamePassed = ViewUserVC.usernamePassed
             myVC.isFromFeedVC = false
-            myVC.post = ViewUserVC.postKeyToPass
         }
     }
     
@@ -376,5 +361,18 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         alertController.addAction(cancel)
         
         self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func configureNavBar() {
+        let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 64))
+        navigationBar.backgroundColor = UIColor.white
+        navigationBar.isTranslucent = false
+        navigationBar.delegate = self;
+        let navigationItem = UINavigationItem()
+        navigationItem.title = "Title"
+        navigationBar.items = [navigationItem]
+        self.view.addSubview(navigationBar)
+        
+        edgesForExtendedLayout = []
     }
 }

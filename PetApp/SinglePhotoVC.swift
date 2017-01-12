@@ -14,10 +14,10 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     @IBOutlet weak var tableView: UITableView!
     
     var posts = [Post]()
-    var indexPassed: Int!
+    static var indexPassed: Int!
     var usernamePassed: String!
     var isFromFeedVC: Bool!
-    var post: String!
+    static var post: String!
     
     @IBAction func backBtn(_ sender: Any) {
         if isFromFeedVC == true {
@@ -26,10 +26,12 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             performSegue(withIdentifier: "ViewUserVC", sender: nil)
         }
     }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("SPVC: \(indexPassed)")
+        print("SPVC: \(SinglePhotoVC.indexPassed)")
+        print(SinglePhotoVC.post)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -37,7 +39,7 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
 //            if self.isFromFeedVC == true {
 //                print("Is from Feed")
                 //from FeedVC
-                DataService.ds.REF_POSTS.queryOrderedByKey().queryEqual(toValue: self.post).observe(.value, with: { (snapshot) in
+                DataService.ds.REF_POSTS.queryOrderedByKey().queryEqual(toValue: SinglePhotoVC.post).observe(.value, with: { (snapshot) in
                 
                 self.posts = []
                 
@@ -79,18 +81,19 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
 //            }
     }
     
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
         
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return posts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let post = posts[indexPath.row]
+
+        let post = posts[SinglePhotoVC.indexPassed!]
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SinglePhotoCell") as? SinglePhotoCell {
                 cell.configureCell(post)
@@ -141,7 +144,7 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         }
         if segue.identifier == "FeedVC" {
             let myVC = segue.destination as! FeedVC
-            myVC.indexPassed = self.indexPassed
+            myVC.indexPassed = SinglePhotoVC.indexPassed
             myVC.isFromSP = true
         }
     }

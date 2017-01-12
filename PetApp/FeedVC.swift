@@ -228,9 +228,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SinglePhotoVC" {
             let myVC = segue.destination as! SinglePhotoVC
-            myVC.indexPassed = self.indexToPass
             myVC.isFromFeedVC = true
-            myVC.post = FeedVC.postKeyToPass
         }
         if segue.identifier == "ViewUserVC" {
             let myVC = segue.destination as! ViewUserVC
