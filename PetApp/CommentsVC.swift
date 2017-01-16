@@ -17,25 +17,6 @@ class CommentsVC: ResponsiveTextFieldViewController, UITableViewDelegate, UITabl
     var postKeyPassed: String!
     var commentCount = 0
     var currentUsername: String!
-
-    func alert(sender: UIBarButtonItem) {
-            if self.commentTextField.text != "" {
-                let alert = UIAlertController(title: "", message: "If you cancel now, your comment will be discarded.", preferredStyle: UIAlertControllerStyle.alert)
-                let discard = UIAlertAction(title: "Discard", style: .destructive, handler: { (action) -> Void in
-                    _ = self.navigationController?.popViewController(animated: true)
-                })
-                let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-                    print("Cancel Button Pressed")
-                }
-                
-                alert.addAction(discard)
-                alert.addAction(cancel)
-                
-                self.navigationController?.present(alert, animated: true, completion: nil)
-            } else {
-                 _ = self.navigationController?.popViewController(animated: true)
-        }
-    }
     
     @IBAction func commentBtnTapped(_ sender: AnyObject) {
         if self.commentTextField.text != "" {
@@ -45,7 +26,7 @@ class CommentsVC: ResponsiveTextFieldViewController, UITableViewDelegate, UITabl
             commentTextField.resignFirstResponder()
             self.getCommentCount()
         } else {
-            let alert = UIAlertController(title: "Please enter a comment", message: "", preferredStyle: UIAlertControllerStyle.alert);
+            let alert = UIAlertController(title: "Please enter a comment", message: nil, preferredStyle: UIAlertControllerStyle.alert);
             let ok = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
             alert.addAction(ok)
             self.navigationController?.present(alert, animated: true, completion: nil)
@@ -58,8 +39,13 @@ class CommentsVC: ResponsiveTextFieldViewController, UITableViewDelegate, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         
+         self.automaticallyAdjustsScrollViewInsets = false
+        
         tableView.delegate = self
         tableView.dataSource = self
+        
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 70
         
         self.navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(alert(sender:)))
@@ -73,7 +59,6 @@ class CommentsVC: ResponsiveTextFieldViewController, UITableViewDelegate, UITabl
             print("COMMENTS VC: \(self.postKeyPassed)")
             
             self.getCommentCount()
-            
             DataService.ds.REF_POSTS.child(self.postKeyPassed).child("comments").observe(.value, with: { (snapshot) in
                 
                 self.comments = []
@@ -94,6 +79,7 @@ class CommentsVC: ResponsiveTextFieldViewController, UITableViewDelegate, UITabl
             })
         } else {
             print("No post key")
+             _ = self.navigationController?.popViewController(animated: true)
         }
         
         DataService.ds.REF_CURRENT_USER.child("user-info").observe(.value, with:  { (snapshot) in
@@ -132,6 +118,25 @@ class CommentsVC: ResponsiveTextFieldViewController, UITableViewDelegate, UITabl
                 }
             }
         })
+    }
+    
+    func alert(sender: UIBarButtonItem) {
+        if self.commentTextField.text != "" {
+            let alert = UIAlertController(title: "", message: "If you cancel now, your comment will be discarded.", preferredStyle: UIAlertControllerStyle.alert)
+            let discard = UIAlertAction(title: "Discard", style: .destructive, handler: { (action) -> Void in
+                _ = self.navigationController?.popViewController(animated: true)
+            })
+            let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+                print("Cancel Button Pressed")
+            }
+            
+            alert.addAction(discard)
+            alert.addAction(cancel)
+            
+            self.navigationController?.present(alert, animated: true, completion: nil)
+        } else {
+            _ = self.navigationController?.popViewController(animated: true)
+        }
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

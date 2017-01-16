@@ -25,6 +25,7 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var likes: UILabel!
     @IBOutlet weak var comments: UILabel!
     @IBOutlet weak var usernameBtn: UIButton!
+    @IBOutlet weak var viewCommentsBtn: UIButton!
     
     @IBAction func imageTapped(_ sender: AnyObject) {
         tapAction?(self)
@@ -95,6 +96,12 @@ class FeedCell: UITableViewCell {
             self.likes.text = String(post.likes)
             
             self.comments.text = String(post.commentCount)
+            
+            if post.commentCount > 0 {
+                self.viewCommentsBtn.setTitle("View all \(post.commentCount) comments", for: .normal)
+            } else {
+                self.viewCommentsBtn.setTitle("Leave a comment", for: .normal)
+            }
             
             if self.isCurrentUser == false {
                 self.moreBtn.isHidden = true

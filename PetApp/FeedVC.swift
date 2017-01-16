@@ -31,7 +31,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        self.navigationController?.isNavigationBarHidden = true
+         self.automaticallyAdjustsScrollViewInsets = false
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -98,7 +98,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 }
             }
             for i in 0..<self.postKeys.count {
-                DataService.ds.REF_POSTS.queryOrderedByKey().queryEqual(toValue: self.postKeys[i]).observeSingleEvent(of: .value, with: { (snapshot) in
+                DataService.ds.REF_POSTS.queryOrderedByKey().queryEqual(toValue: self.postKeys[i]).observe(.value, with: { (snapshot) in
                     
                     //                    self.postsObserved = []
                     
@@ -143,6 +143,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as? FeedCell {
             cell.configureCell(postsObserved)
+             FeedVC.postKeyToPass = post.postKey
 //            cell.profileImg.image = UIImage(named: "blank-profile-picture")
             
             let userKey = postsObserved.userKey
@@ -171,14 +172,14 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                             self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
                         }
                     }
-                    
-                    cell.tapActionComment = { (cell) in
-                        print("POST \(post.postKey)")
-                        FeedVC.postKeyToPass = post.postKey
-                        if FeedVC.postKeyToPass != nil {
-                            self.performSegue(withIdentifier: "CommentsVC", sender: nil)
-                        }
-                    }
+//                    
+//                    cell.tapActionComment = { (cell) in
+//                        print("POST \(post.postKey)")
+//                        FeedVC.postKeyToPass = post.postKey
+//                        if FeedVC.postKeyToPass != nil {
+//                            self.performSegue(withIdentifier: "CommentsVC", sender: nil)
+//                        }
+//                    }
                     
                     cell.tapActionMore = { (cell) in
                         print("POST \(post.postKey)")
