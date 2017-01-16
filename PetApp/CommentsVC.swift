@@ -17,14 +17,7 @@ class CommentsVC: ResponsiveTextFieldViewController, UITableViewDelegate, UITabl
     var postKeyPassed: String!
     var commentCount = 0
     var currentUsername: String!
-    
-    var button = UIBarButtonItem(
-        title: "Back",
-        style: .plain,
-        target: self,
-        action: #selector(alert(sender:))
-    )
-    
+
     func alert(sender: UIBarButtonItem) {
             if self.commentTextField.text != "" {
                 let alert = UIAlertController(title: "", message: "If you cancel now, your comment will be discarded.", preferredStyle: UIAlertControllerStyle.alert)

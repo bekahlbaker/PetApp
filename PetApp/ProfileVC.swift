@@ -56,10 +56,32 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         }
     }
     
+    func alert(sender: UIBarButtonItem) {
+            let alert = UIAlertController(title: "", message: "If you cancel now, your profile changes will not be saved.", preferredStyle: UIAlertControllerStyle.alert)
+            let discard = UIAlertAction(title: "Discard", style: .destructive, handler: { (action) -> Void in
+                _ = self.navigationController?.popViewController(animated: true)
+            })
+            let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+                print("Cancel Button Pressed")
+            }
+            
+            alert.addAction(discard)
+            alert.addAction(cancel)
+            
+            self.navigationController?.present(alert, animated: true, completion: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationController?.isNavigationBarHidden = true
+//        self.navigationController?.isNavigationBarHidden = true
+        
+        self.navigationItem.hidesBackButton = true
+        let cancelBtn = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(alert(sender:)))
+        self.navigationItem.leftBarButtonItem = cancelBtn
+
+        let saveBtn = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.done, target: self, action: #selector(save(sender:)))
+        self.navigationItem.rightBarButtonItem = saveBtn
         
         ProfileVC.profileCache.removeAllObjects()
         FeedVC.imageCache.removeAllObjects()
@@ -72,6 +94,76 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         ageLbl.delegate = self
         ageLbl.addTarget(self, action: #selector(textFieldChanged(_:)) , for: UIControlEvents.editingChanged)
         
+//        //download profile info & image
+//        
+//        DataService.ds.REF_CURRENT_USER.child("user-info").observe(.value, with: { (snapshot) in
+//            
+//            if let dictionary = snapshot.value as? [String: Any] {
+//                self.fullNameLbl.text = dictionary["full-name"] as? String
+//                self.parentsNameLbl.text = dictionary["parents-name"] as? String
+//                self.ageLbl.text = dictionary["age"] as? String
+//                self.speciesLbl.text = dictionary["species"] as? String
+//                self.breedLbl.text = dictionary["breed"] as? String
+//                self.locationLbl.text = dictionary["location"] as? String
+//                self.aboutLbl.text = dictionary["about"] as? String
+//                
+//                if ProfileVC.profileCache.object(forKey: "profileImg") != nil {
+//                    self.profileImg.image = ProfileVC.profileCache.object(forKey: "profileImg")
+//                    print("using cached profile img")
+//                } else {
+//                    guard let profileUrl = dictionary["profileImgUrl"] as? String else {
+//                        print("No profile image to download")
+//                        return
+//                    }
+//                    
+//                    //download profile img
+//                    if profileUrl == (dictionary["profileImgUrl"] as? String)! {
+//                        let storage = FIRStorage.storage()
+//                        let storageRef = storage.reference(forURL: profileUrl)
+//                        storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
+//                            if error != nil {
+//                                print("Unable to download image from firebase")
+//                            } else {
+//                                let profileImg = UIImage(data: data!)
+//                                self.profileImg.image = profileImg
+//                                print("Using firebase image for profile")
+////                                ProfileVC.profileCache.setObject(profileImg!, forKey: "profileImg")
+//                            }
+//                        }
+//                    } 
+//                }
+//            
+//                if ProfileVC.coverCache.object(forKey: "coverImg") != nil {
+//                    self.coverPhoto.image = ProfileVC.coverCache.object(forKey: "coverImg")
+//                    print("using cached cover img")
+//                } else {
+//                guard let coverUrl = dictionary["coverImgUrl"] as? String else {
+//                    print("No cover image to download")
+//                    return
+//                }
+//                
+//                //download cover photo
+//                if coverUrl == (dictionary["coverImgUrl"] as? String)! {
+//                        let storage = FIRStorage.storage()
+//                        let storageRef = storage.reference(forURL: coverUrl)
+//                        storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
+//                            if error != nil {
+//                                print("Unable to download image from firebase")
+//                            } else {
+//                                let coverImg = UIImage(data: data!)
+//                                self.coverPhoto.image = coverImg
+//                                print("Using firebase image for cover")
+////                                ProfileVC.coverCache.setObject(coverImg!, forKey: "coverImg")
+//                            }
+//                    }
+//                }
+//            }
+//        }
+//            
+//        })
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         //download profile info & image
         
         DataService.ds.REF_CURRENT_USER.child("user-info").observe(.value, with: { (snapshot) in
@@ -105,23 +197,23 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                                 let profileImg = UIImage(data: data!)
                                 self.profileImg.image = profileImg
                                 print("Using firebase image for profile")
-//                                ProfileVC.profileCache.setObject(profileImg!, forKey: "profileImg")
+                                //                                ProfileVC.profileCache.setObject(profileImg!, forKey: "profileImg")
                             }
                         }
-                    } 
+                    }
                 }
-            
+                
                 if ProfileVC.coverCache.object(forKey: "coverImg") != nil {
                     self.coverPhoto.image = ProfileVC.coverCache.object(forKey: "coverImg")
                     print("using cached cover img")
                 } else {
-                guard let coverUrl = dictionary["coverImgUrl"] as? String else {
-                    print("No cover image to download")
-                    return
-                }
-                
-                //download cover photo
-                if coverUrl == (dictionary["coverImgUrl"] as? String)! {
+                    guard let coverUrl = dictionary["coverImgUrl"] as? String else {
+                        print("No cover image to download")
+                        return
+                    }
+                    
+                    //download cover photo
+                    if coverUrl == (dictionary["coverImgUrl"] as? String)! {
                         let storage = FIRStorage.storage()
                         let storageRef = storage.reference(forURL: coverUrl)
                         storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
@@ -131,12 +223,12 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                                 let coverImg = UIImage(data: data!)
                                 self.coverPhoto.image = coverImg
                                 print("Using firebase image for cover")
-//                                ProfileVC.coverCache.setObject(coverImg!, forKey: "coverImg")
+                                //                                ProfileVC.coverCache.setObject(coverImg!, forKey: "coverImg")
                             }
+                        }
                     }
                 }
             }
-        }
             
         })
     }

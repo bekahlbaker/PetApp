@@ -31,6 +31,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+//        self.navigationController?.isNavigationBarHidden = true
+        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -61,7 +63,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             for i in 0..<self.postKeys.count {
                 DataService.ds.REF_POSTS.queryOrderedByKey().queryEqual(toValue: self.postKeys[i]).observe(.value, with: { (snapshot) in
                     
-                    //                    self.postsObserved = []
+                self.postsObserved = []
                     
                     if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                         for snap in snapshot {
@@ -152,15 +154,15 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 print("using cached profile image")
                 
                 if FeedCell.isConfigured == true {
-                    cell.tapAction = { (cell) in
-                        print("POST \(post.postKey)")
-                        FeedVC.postKeyToPass = post.postKey
-                        print(tableView.indexPath(for: cell)!.row)
-                        self.indexToPass = tableView.indexPath(for: cell)!.row
-                        if self.indexToPass != nil {
-                            self.performSegue(withIdentifier: "SinglePhotoVC", sender: nil)
-                        }
-                    }
+//                    cell.tapAction = { (cell) in
+//                        print("POST \(post.postKey)")
+//                        FeedVC.postKeyToPass = post.postKey
+//                        print(tableView.indexPath(for: cell)!.row)
+//                        self.indexToPass = tableView.indexPath(for: cell)!.row
+//                        if self.indexToPass != nil {
+//                            self.performSegue(withIdentifier: "SinglePhotoVC", sender: nil)
+//                        }
+//                    }
                     
                     cell.tapActionUsername = { (cell) in
                         print("POST \(post.userKey)")
@@ -227,11 +229,12 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "SinglePhotoVC" {
-            let myVC = segue.destination as! SinglePhotoVC
+            SinglePhotoVC.indexPassed = self.indexToPass
+            SinglePhotoVC.post = FeedVC.postKeyToPass
+           let myVC = segue.destination as! SinglePhotoVC
             myVC.isFromFeedVC = true
         }
         if segue.identifier == "ViewUserVC" {
-            let myVC = segue.destination as! ViewUserVC
             ViewUserVC.usernamePassed = FeedVC.usernameToPass
         }
     }

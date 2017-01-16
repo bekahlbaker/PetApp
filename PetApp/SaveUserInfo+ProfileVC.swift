@@ -15,10 +15,15 @@ extension ProfileVC {
     //SAVE and UPLOAD profile info & image
     
     @IBAction func cancelBtnPresser(_sender: AnyObject) {
-        performSegue(withIdentifier: "ViewUserVC", sender: nil)
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
-    @IBAction func saveBtnPressed(_ sender: AnyObject) {        
+    @IBAction func saveBtnPressed(_ sender: AnyObject) {
+        
+    }
+    
+    
+    func save(sender: UIBarButtonItem) {
         if self.profileImg.image != nil {
             ProfileVC.profileCache.setObject(self.profileImg.image!, forKey: "profileImg")
             //save profile image
@@ -103,7 +108,7 @@ extension ProfileVC {
         } else {
             self.removeUserInfo("about")
         }
-        performSegue(withIdentifier: "ViewUserVC", sender: nil)
+        _ = self.navigationController?.popViewController(animated: true)
     }
     
     

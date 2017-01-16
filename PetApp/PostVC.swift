@@ -62,13 +62,14 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     @IBOutlet weak var addImageBtn: UIButton!
     
     @IBAction func nextBtnTapped(_ sender: AnyObject) {
-        if filterChosen == true {
-            PostVC.filteredImageCache.setObject(imageToFilter.image!, forKey: "imageToPass")
-        } else {
-            PostVC.filteredImageCache.setObject(originalImage.image!, forKey: "imageToPass")
-        }
         if PostVC.imageSelected == true {
-            performSegue(withIdentifier: "toPostCaptionVC", sender: nil)
+            if filterChosen == true {
+                PostVC.filteredImageCache.setObject(imageToFilter.image!, forKey: "imageToPass")
+                 performSegue(withIdentifier: "toPostCaptionVC", sender: nil)
+            } else {
+                PostVC.filteredImageCache.setObject(originalImage.image!, forKey: "imageToPass")
+                 performSegue(withIdentifier: "toPostCaptionVC", sender: nil)
+            }
         } else {
             let alert = UIAlertController(title: "Please select a picture", message: "", preferredStyle: UIAlertControllerStyle.alert);
             let ok = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
