@@ -27,10 +27,6 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var viewCommentsBtn: UIButton!
     @IBOutlet weak var captionEditTextView: UITextView!
     
-    @IBAction func imageTapped(_ sender: AnyObject) {
-        tapAction?(self)
-    }
-    
     var delegate: UIViewController?
     
     @IBOutlet weak var moreBtn: UIButton!
@@ -89,15 +85,7 @@ class FeedCell: UITableViewCell {
         tapActionUsername?(self)
     }
 
-    @IBAction func commentTapped(_ sender: AnyObject) {
-        tapActionComment?(self)
-    }
-    
-    var tapAction: ((UITableViewCell) -> Void)?
     var tapActionUsername: ((UITableViewCell) -> Void)?
-    var tapActionComment: ((UITableViewCell) -> Void)?
-    var tapActionMore: ((UITableViewCell) -> Void)?
-    var tapActionSave: ((UITableViewCell) -> Void)?
     var post: Post!
     var likesRef: FIRDatabaseReference!
     
