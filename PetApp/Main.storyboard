@@ -1727,7 +1727,7 @@
                                                         <constraint firstAttribute="width" constant="40" id="ydT-wM-HLO"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empty-heart" translatesAutoresizingMaskIntoConstraints="NO" id="ufH-fg-98K">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ufH-fg-98K">
                                                     <rect key="frame" x="307" y="11" width="50" height="50"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="50" id="DFA-0S-CXq"/>
@@ -1785,7 +1785,7 @@
                                                         <constraint firstAttribute="height" constant="36" id="k0p-7g-SlE"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" name="Avenir-Heavy" family="Avenir" pointSize="16"/>
-                                                    <state key="normal" title="username">
+                                                    <state key="normal" title="  ">
                                                         <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -1817,9 +1817,9 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JFx-Pn-gq0">
-                                                    <rect key="frame" x="8" y="520" width="117" height="32"/>
+                                                    <rect key="frame" x="8" y="520" width="30" height="32"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
-                                                    <state key="normal" title="View all comments">
+                                                    <state key="normal" title="  ">
                                                         <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     </state>
                                                     <connections>
@@ -2198,11 +2198,11 @@
     <inferredMetricsTieBreakers>
         <segue reference="SDZ-21-9fi"/>
         <segue reference="ehH-0Z-UaT"/>
-        <segue reference="Jbd-bA-ItX"/>
-        <segue reference="nrV-ns-tsz"/>
-        <segue reference="X8D-bH-TVD"/>
-        <segue reference="lLd-kn-GIM"/>
+        <segue reference="Z0q-gj-kUt"/>
         <segue reference="61E-j1-iUC"/>
+        <segue reference="vcX-KV-BRk"/>
+        <segue reference="nrV-ns-tsz"/>
+        <segue reference="grG-OY-n7E"/>
         <segue reference="zsD-8J-Lsn"/>
         <segue reference="VOj-p2-r25"/>
     </inferredMetricsTieBreakers>

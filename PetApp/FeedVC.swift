@@ -48,57 +48,53 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     func loadData(_ sender:AnyObject) {
         
-        DispatchQueue.main.async {
-            DataService.ds.REF_CURRENT_USER.child("wall").observeSingleEvent(of: .value, with: { (snapshot) in
-                self.posts = []
-                self.postKeys = []
-                
-                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                    for snap in snapshot {
-                        if let dictionary = snap.value as? [String: Any] {
-                            let post = dictionary["post"] as! String
-                            print("FOLLOWING \(post)")
-                            self.postKeys.append(post)
-                            print(self.postKeys)
-                        } else {
-                            print("Not following any users")
-                        }
+        DataService.ds.REF_CURRENT_USER.child("wall").observeSingleEvent(of: .value, with: { (snapshot) in
+            self.posts = []
+            self.postKeys = []
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                for snap in snapshot {
+                    if let dictionary = snap.value as? [String: Any] {
+                        let post = dictionary["post"] as! String
+                        print("FOLLOWING \(post)")
+                        self.postKeys.append(post)
+                        print(self.postKeys)
+                    } else {
+                        print("Not following any users")
                     }
                 }
-                for i in 0..<self.postKeys.count {
-                    DataService.ds.REF_POSTS.queryOrderedByKey().queryEqual(toValue: self.postKeys[i]).observeSingleEvent(of: .value, with: { (snapshot) in
-                        
-                        if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                            for snap in snapshot {
-                                if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                                    let post = Post(postKey: self.postKeys[i], postData: postDict)
-                                    self.posts.insert(post, at: 0)
-                                }
+            }
+            for i in 0..<self.postKeys.count {
+                DataService.ds.REF_POSTS.queryOrderedByKey().queryEqual(toValue: self.postKeys[i]).observeSingleEvent(of: .value, with: { (snapshot) in
+                    
+                    if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                        for snap in snapshot {
+                            if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                                let post = Post(postKey: self.postKeys[i], postData: postDict)
+                                self.posts.insert(post, at: 0)
                             }
                         }
-                        if self.posts.count > 0 {
-                            self.tableView.reloadData()
-                        }
-                    })
-                }
-                
-            })gt
+                    }
+                })
+            }
+        })
+        if self.posts.count > 0 {
+            self.tableView.reloadData()
         }
     }
 
     func refresh(_ sender:AnyObject) {
-        self.loadData(tableView)
-        refreshControl.endRefreshing()
+        self.perform(#selector(loadData(_:)), with: nil, afterDelay: 0.5)
+        self.refreshControl.endRefreshing()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+         self.loadData(tableView)
     }
     
     override func viewWillAppear(_ animated: Bool) {
         self.loadData(tableView)
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-
-    }
-    
     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
