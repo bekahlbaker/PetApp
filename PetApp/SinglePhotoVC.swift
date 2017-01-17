@@ -35,50 +35,26 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         
         tableView.delegate = self
         tableView.dataSource = self
-        
-//            if self.isFromFeedVC == true {
-//                print("Is from Feed")
-                //from FeedVC
-                DataService.ds.REF_POSTS.queryOrderedByKey().queryEqual(toValue: SinglePhotoVC.post).observe(.value, with: { (snapshot) in
-                
-                self.posts = []
-                
-                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                    for snap in snapshot {
-                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                            let key = snap.key
-                            let post = Post(postKey: key, postData: postDict)
-                            self.posts.insert(post, at: 0)
-                        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        DataService.ds.REF_POSTS.queryOrderedByKey().queryEqual(toValue: SinglePhotoVC.post).observe(.value, with: { (snapshot) in
+            
+            self.posts = []
+            
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                for snap in snapshot {
+                    if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        let key = snap.key
+                        let post = Post(postKey: key, postData: postDict)
+                        self.posts.insert(post, at: 0)
                     }
                 }
-                if self.posts.count > 0 {
-                    self.tableView.reloadData()
-                }
-            })
-//            } else if self.isFromFeedVC == false {
-//                //from ViewUserVC
-//                print("Not from Feed")
-//                print(self.usernamePassed)
-//                
-//                DataService.ds.REF_POSTS.queryOrderedByKey().queryEqual(toValue: self.post).observe(.value, with: { (snapshot) in
-//                    
-//                self.posts = []
-//                
-//                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-//                    for snap in snapshot {
-//                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
-//                            let key = snap.key
-//                            let post = Post(postKey: key, postData: postDict)
-//                            self.posts.insert(post, at: 0)
-//                        }
-//                    }
-//                }
-//                if self.posts.count > 0 {
-//                    self.tableView.reloadData()
-//                }
-//            })
-//            }
+            }
+            if self.posts.count > 0 {
+                self.tableView.reloadData()
+            }
+        })
     }
     
     

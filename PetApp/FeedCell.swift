@@ -13,12 +13,11 @@ import SwiftKeychainWrapper
 
 
 class FeedCell: UITableViewCell {
-    @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
-
-    @IBOutlet weak var profileActivitySpinner: UIActivityIndicatorView!
     
+    @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
+    @IBOutlet weak var profileActivitySpinner: UIActivityIndicatorView!
     @IBOutlet weak var feedImageView: UIImageView!
-    @IBOutlet weak var caption: UITextView!
+    @IBOutlet weak var caption: UILabel!
     @IBOutlet weak var profileImg: CircleImage!
     @IBOutlet weak var likesImg: UIImageView!
     @IBOutlet weak var likesImgSm: UIImageView!
@@ -26,19 +25,64 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var comments: UILabel!
     @IBOutlet weak var usernameBtn: UIButton!
     @IBOutlet weak var viewCommentsBtn: UIButton!
+    @IBOutlet weak var captionEditTextView: UITextView!
     
     @IBAction func imageTapped(_ sender: AnyObject) {
         tapAction?(self)
     }
     
+    var delegate: UIViewController?
+    
     @IBOutlet weak var moreBtn: UIButton!
     @IBAction func moreBtnTapped(_ sender: Any) {
-        tapActionMore?(self)
+        let alertController = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
+        let edit = UIAlertAction(title: "Edit", style: .default, handler: { (action) -> Void in
+            print("Edit btn tapped")
+            self.moreBtn.isEnabled = false
+            self.caption.isHidden = true
+            self.captionEditTextView.isHidden = false
+            self.saveBtn.isHidden = false
+            self.captionEditTextView.text = self.caption.text
+            self.captionEditTextView.becomeFirstResponder()
+        })
+        let delete = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) -> Void in
+            print("Delete btn tapped")
+            let alert = UIAlertController(title: "Are you sure you want to delete this post?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+            let deletePost = UIAlertAction(title: "Delete Post", style: .destructive, handler: { (action) -> Void in
+                print("Delete presssed")
+                DataService.ds.REF_POSTS.child(self.post.postKey).removeValue()
+                print("Post removed")
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshMyTableView"), object: nil)
+            })
+            let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+                print("Cancel Button Pressed")
+            }
+            
+            alert.addAction(deletePost)
+            alert.addAction(cancel)
+            
+            self.delegate?.present(alert, animated: true, completion: nil)
+            
+        })
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel
+            , handler: { (action) -> Void in
+                print("Cancel btn tapped")
+        })
+        alertController.addAction(edit)
+        alertController.addAction(delete)
+        alertController.addAction(cancel)
+        
+        delegate?.present(alertController, animated: true, completion: nil)
     }
     
     @IBOutlet weak var saveBtn: UIButton!
     @IBAction func saveBtnTapped(_ sender: Any) {
-        tapActionSave?(self)
+        self.moreBtn.isEnabled = true
+        self.caption.isHidden = false
+        self.captionEditTextView.isHidden = true
+        self.saveBtn.isHidden = true
+        self.caption.text = self.captionEditTextView.text
+        DataService.ds.REF_POSTS.child(self.post.postKey).updateChildValues(["caption": "\(caption.text!)"])
     }
     
     @IBAction func usernameTapped(_ sender: AnyObject) {
@@ -68,6 +112,7 @@ class FeedCell: UITableViewCell {
         tap.numberOfTapsRequired = 1
         likesImg.addGestureRecognizer(tap)
         likesImg.isUserInteractionEnabled = true
+        
     }
     
     
@@ -150,11 +195,13 @@ class FeedCell: UITableViewCell {
                 self.likesImgSm.image = UIImage(named: "empty-heart")
                 self.post.adjustLikes(true)
                 self.likesRef.setValue(true)
+                self.configureCell(self.post)
             } else {
                 self.likesImg.image = UIImage(named: "filled-heart")
                 self.likesImgSm.image = UIImage(named: "filled-heart")
                 self.post.adjustLikes(false)
                 self.likesRef.removeValue()
+                self.configureCell(self.post)
             }
         })
     }
