@@ -39,12 +39,15 @@ class CurrentUserVC: UIViewController, UICollectionViewDelegate, UICollectionVie
         super.viewDidLoad()
         
         self.automaticallyAdjustsScrollViewInsets = false
+        self.navigationController!.view.backgroundColor = Color.white
         
         DataService.ds.REF_CURRENT_USER.child("user-info").observeSingleEvent(of: .value, with: { (snapshot) in
             
             if let dictionary = snapshot.value as? [String: Any] {
                 if let currentUser = dictionary["username"] as? String {
                     print("BEKAH: \(currentUser)")
+                    
+                    self.username.title = currentUser
                     
                     DataService.ds.REF_POSTS.queryOrdered(byChild: "username").queryEqual(toValue: currentUser).observeSingleEvent(of: .value, with: { (snapshot) in
                         
@@ -85,7 +88,7 @@ class CurrentUserVC: UIViewController, UICollectionViewDelegate, UICollectionVie
             if let dictionary = snapshot.value as? [String: Any] {
                 
                 if let username = dictionary["username"] as? String {
-                    self.navigationItem.title = username
+                    self.title = username
                 }
                 
                 if let name = dictionary["full-name"] as? String {

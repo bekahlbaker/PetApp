@@ -36,6 +36,8 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         tableView.delegate = self
         tableView.dataSource = self
         
+        self.title = "Photo"
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {

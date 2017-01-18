@@ -25,48 +25,47 @@ class UserListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     var inSearchMode = false
     var usernameToPass: String!
     var currentUsername: String!
-
-override func viewDidLoad() {
-    super.viewDidLoad()
     
-    self.getCurrentUsername()
-    
-    tableView.delegate = self
-    tableView.dataSource = self
-    
-    configureSearchController()
-    
-    self.automaticallyAdjustsScrollViewInsets = false
-    
-    navigationItem.title = "Users"
-    
-}
-    
-override func viewDidAppear(_ animated: Bool) {
-    getUserList()
-}
-
-func numberOfSections(in tableView: UITableView) -> Int {
-    return 1
-    
-}
-
-func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if inSearchMode {
-        return filteredUserList.count
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.getCurrentUsername()
+        
+        tableView.delegate = self
+        tableView.dataSource = self
+        
+        configureSearchController()
+        
+        self.automaticallyAdjustsScrollViewInsets = false
+        
+        self.title = "Users"
     }
-    return self.userList.count
-}
-
-func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell")!
-    if inSearchMode {
-        cell.textLabel?.text = filteredUserList[indexPath.row]
-    } else {
-     cell.textLabel?.text = userList[indexPath.row]
+    
+    override func viewDidAppear(_ animated: Bool) {
+        getUserList()
     }
-    return cell
-}
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+        
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if inSearchMode {
+            return filteredUserList.count
+        }
+        return self.userList.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell")!
+        if inSearchMode {
+            cell.textLabel?.text = filteredUserList[indexPath.row]
+        } else {
+            cell.textLabel?.text = userList[indexPath.row]
+        }
+        return cell
+    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentCell = tableView.cellForRow(at: tableView.indexPathForSelectedRow!)! as UITableViewCell
@@ -90,9 +89,7 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
     
     func getUserList() {
         DataService.ds.REF_USER_LIST.observeSingleEvent(of: .value, with: { (snapshot) in
-            
             self.userList = []
-            
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 for snap in snapshot {
                     if let dictionary = snap.value as? [String: Any] {
@@ -100,7 +97,7 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
                         self.userList.append(user)
                         self.filterOutCurrentUser(user: self.currentUsername)
                         print(self.userList)
-                        } else {
+                    } else {
                         print("No users")
                     }
                 }
@@ -149,16 +146,14 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
         searchController.searchBar.sizeToFit()
         searchController.hidesNavigationBarDuringPresentation = false
         self.definesPresentationContext = true
-
+        
         tableView.tableHeaderView = searchController.searchBar
     }
-
+    
     func updateSearchResults(for searchController: UISearchController) {
         let searchString = searchController.searchBar.text
-        
         filteredUserList = userList.filter({ (user) -> Bool in
             let userText: NSString = user as NSString
-            
             return (userText.range(of: searchString!, options: NSString.CompareOptions.caseInsensitive).location) != NSNotFound
         })
         
@@ -175,10 +170,4 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
         inSearchMode = false
         tableView.reloadData()
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "ViewUserVC" {
-//            ViewUserVC.usernamePassed = self.usernameToPass
-//        }
-//    }
 }

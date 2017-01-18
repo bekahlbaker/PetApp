@@ -50,6 +50,8 @@ class CommentsVC: ResponsiveTextFieldViewController, UITableViewDelegate, UITabl
         self.navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(alert(sender:)))
         self.navigationItem.leftBarButtonItem = newBackButton
+        
+        self.title = "Comments"
 
     }
     
@@ -94,17 +96,13 @@ class CommentsVC: ResponsiveTextFieldViewController, UITableViewDelegate, UITabl
     }
     
     func postToFirebase() {
-        
         let comment: Dictionary<String, Any> = [
             "comment": self.commentTextField.text! as String,
             "username" : self.currentUsername as String
         ]
-        
         let firebasePost = DataService.ds.REF_POSTS.child(self.postKeyPassed)
         firebasePost.updateChildValues(["commentCount": self.commentCount])
         firebasePost.child("comments").childByAutoId().setValue(comment)
-        
-        
     }
     
 
@@ -129,10 +127,8 @@ class CommentsVC: ResponsiveTextFieldViewController, UITableViewDelegate, UITabl
             let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
                 print("Cancel Button Pressed")
             }
-            
             alert.addAction(discard)
             alert.addAction(cancel)
-            
             self.navigationController?.present(alert, animated: true, completion: nil)
         } else {
             _ = self.navigationController?.popViewController(animated: true)

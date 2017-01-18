@@ -1053,6 +1053,7 @@
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" title="Username" id="jX7-kl-IWV"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="ageAndBreedLbl" destination="v2L-Iz-1xI" id="jGt-HB-S1h"/>
@@ -1067,6 +1068,7 @@
                         <outlet property="parentsNameLbl" destination="RhO-C9-TOg" id="KJH-rW-o38"/>
                         <outlet property="postsLbl" destination="dWA-PC-G0K" id="1fT-nN-Af2"/>
                         <outlet property="profileImg" destination="zAO-Ga-K6Z" id="iP4-7N-r1m"/>
+                        <outlet property="username" destination="jX7-kl-IWV" id="tus-V6-cfr"/>
                         <segue destination="8e3-ft-Uph" kind="show" identifier="ProfileVC" id="Lqk-g8-n0s"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="EntryVC" id="NaD-hV-ZAh"/>
                         <segue destination="M0X-hF-jYW" kind="show" identifier="SinglePhotoVC" id="Ioz-ly-Xrt"/>
@@ -1301,7 +1303,7 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" id="2wq-Bl-3xq"/>
+                    <navigationItem key="navigationItem" title="Username" id="2wq-Bl-3xq"/>
                     <connections>
                         <outlet property="aboutLbl" destination="J7I-U6-xRu" id="mGI-kg-Uy2"/>
                         <outlet property="ageAndBreedLbl" destination="qty-Ja-oLP" id="0YV-dS-KPo"/>
@@ -1314,6 +1316,7 @@
                         <outlet property="parentsNameLbl" destination="ebJ-Hq-Pkh" id="uiL-OP-ZF4"/>
                         <outlet property="postsLbl" destination="gHZ-As-rjO" id="gex-CS-k0p"/>
                         <outlet property="profileImg" destination="sTj-To-vrs" id="DRv-ch-Khv"/>
+                        <outlet property="username" destination="2wq-Bl-3xq" id="sgb-Vy-t5I"/>
                         <segue destination="M0X-hF-jYW" kind="show" identifier="SinglePhotoVC" id="rOw-5I-WqA"/>
                         <segue destination="8e3-ft-Uph" kind="show" identifier="ProfileVC" id="BYW-TV-Qct"/>
                         <segue destination="BYZ-38-t0r" kind="presentation" identifier="EntryVC" modalPresentationStyle="overCurrentContext" id="ehH-0Z-UaT"/>
@@ -2197,13 +2200,13 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="SDZ-21-9fi"/>
-        <segue reference="ehH-0Z-UaT"/>
-        <segue reference="Z0q-gj-kUt"/>
-        <segue reference="61E-j1-iUC"/>
+        <segue reference="NaD-hV-ZAh"/>
         <segue reference="vcX-KV-BRk"/>
-        <segue reference="nrV-ns-tsz"/>
+        <segue reference="it2-Ym-WR9"/>
         <segue reference="grG-OY-n7E"/>
+        <segue reference="61E-j1-iUC"/>
+        <segue reference="Lqk-g8-n0s"/>
+        <segue reference="Ioz-ly-Xrt"/>
         <segue reference="zsD-8J-Lsn"/>
-        <segue reference="VOj-p2-r25"/>
     </inferredMetricsTieBreakers>
 </document>

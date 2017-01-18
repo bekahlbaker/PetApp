@@ -59,14 +59,14 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         checkIfFollowing()
         
         self.automaticallyAdjustsScrollViewInsets = false
-
-        DispatchQueue.global().async {
-        let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
-        if ViewUserVC.usernamePassed == userKey {
-            print("This is the current user")
+//
+//        DispatchQueue.global().async {
+//        let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
+//        if ViewUserVC.usernamePassed == userKey {
+//            print("This is the current user")
 
 //            self.navigationController?.isNavigationBarHidden = true
-            DispatchQueue.main.async {
+//            DispatchQueue.main.async {
                 if ProfileVC.profileCache.object(forKey: "profileImg") != nil {
                     self.profileImg.image = ProfileVC.profileCache.object(forKey: "profileImg")
                     print("using cached profile img on ViewUser")
@@ -75,10 +75,10 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
                     self.coverImg.image = ProfileVC.coverCache.object(forKey: "coverImg")
                     print("using cached cover img")
                 }
-
-            }
-        }
-        }
+//
+//            }
+//        }
+//        }
         
         DataService.ds.REF_POSTS.queryOrdered(byChild: "userKey").queryEqual(toValue: ViewUserVC.usernamePassed).observeSingleEvent(of: .value, with: { (snapshot) in
             
@@ -118,7 +118,7 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
                 if let dictionary = snapshot.value as? [String: Any] {
                     
                     if let username = dictionary["username"] as? String {
-                        self.navigationItem.title = username
+                        self.username.title = username
                     }
                     
                     if let name = dictionary["full-name"] as? String {
