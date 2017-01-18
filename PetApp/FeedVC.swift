@@ -40,6 +40,16 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.addSubview(refreshControl)
         
         NotificationCenter.default.addObserver(self, selector: #selector(refreshList(notification:)), name:NSNotification.Name(rawValue: "refreshMyTableView"), object: nil)
+//        
+//        loadData(tableView)
+    }
+    
+    func loadTableData(_ sender:AnyObject) {
+        print("4. LOAD \(self.posts.count)")
+        if self.posts.count > 0 {
+            print("5. TRUE")
+            self.tableView.reloadData()
+        }
     }
     
     func refreshList(notification: NSNotification){
@@ -47,7 +57,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     }
     
     func loadData(_ sender:AnyObject) {
-        
         DataService.ds.REF_CURRENT_USER.child("wall").observeSingleEvent(of: .value, with: { (snapshot) in
             self.posts = []
             self.postKeys = []
@@ -56,15 +65,15 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 for snap in snapshot {
                     if let dictionary = snap.value as? [String: Any] {
                         let post = dictionary["post"] as! String
-                        print("FOLLOWING \(post)")
                         self.postKeys.append(post)
-                        print(self.postKeys)
+                        print("1. POST KEYS \(self.postKeys)")
                     } else {
                         print("Not following any users")
                     }
                 }
             }
             for i in 0..<self.postKeys.count {
+                print("2. ARRAY \(i)")
                 DataService.ds.REF_POSTS.queryOrderedByKey().queryEqual(toValue: self.postKeys[i]).observeSingleEvent(of: .value, with: { (snapshot) in
                     
                     if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
@@ -72,15 +81,16 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                             if let postDict = snap.value as? Dictionary<String, AnyObject> {
                                 let post = Post(postKey: self.postKeys[i], postData: postDict)
                                 self.posts.insert(post, at: 0)
+                                print("3. POSTS \(self.posts.count)")
+                                if self.posts.count > 0 {
+                                  self.perform(#selector(self.loadTableData(_:)), with: nil, afterDelay: 0.5)
+                                }
                             }
                         }
                     }
                 })
             }
         })
-        if self.posts.count > 0 {
-            self.tableView.reloadData()
-        }
     }
 
     func refresh(_ sender:AnyObject) {
@@ -88,12 +98,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         self.refreshControl.endRefreshing()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-         self.loadData(tableView)
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
-        self.loadData(tableView)
+       loadData(tableView)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -109,10 +115,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let post = self.posts[indexPath.row]
-
+        print(post)
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as? FeedCell {
             cell.delegate = self
             cell.configureCell(post)
+            print("Configuring cell")
              FeedVC.postKeyToPass = post.postKey
             
             let userKey = post.userKey
