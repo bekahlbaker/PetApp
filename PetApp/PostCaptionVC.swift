@@ -139,7 +139,7 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
                         if let dictionary = snap.value as? [String: Any] {
                             let followers = dictionary["user"] as! String
                             print("FOLLOWERS \(followers)")
-                            DataService.ds.REF_USERS.child(followers).child("wall").childByAutoId().updateChildValues(["post" : key])
+                            DataService.ds.REF_USERS.child(followers).child("wall").updateChildValues([key: true])
                         }
                     }
                 }

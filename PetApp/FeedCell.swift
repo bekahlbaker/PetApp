@@ -47,6 +47,7 @@ class FeedCell: UITableViewCell {
             let deletePost = UIAlertAction(title: "Delete Post", style: .destructive, handler: { (action) -> Void in
                 print("Delete presssed")
                 DataService.ds.REF_POSTS.child(self.post.postKey).removeValue()
+                self.removeFromFollowersWall(key: self.post.postKey)
                 print("Post removed")
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshMyTableView"), object: nil)
             })
@@ -70,7 +71,7 @@ class FeedCell: UITableViewCell {
         
         delegate?.present(alertController, animated: true, completion: nil)
     }
-    
+
     @IBOutlet weak var saveBtn: UIButton!
     @IBAction func saveBtnTapped(_ sender: Any) {
         self.moreBtn.isEnabled = true
@@ -190,6 +191,33 @@ class FeedCell: UITableViewCell {
                 self.post.adjustLikes(false)
                 self.likesRef.removeValue()
                 self.configureCell(self.post)
+            }
+        })
+    }
+    
+    func removeFromFollowersWall(key: String) {
+        DataService.ds.REF_CURRENT_USER.child("followers").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                for snap in snapshot {
+                    if let dictionary = snap.value as? [String: Any] {
+                        let followers = dictionary["user"] as! String
+                        print("FOLLOWERS \(followers)")
+                        DataService.ds.REF_USERS.child(followers).child("wall").queryOrderedByKey().queryEqual(toValue: key).observeSingleEvent(of: .value, with: { (snapshot) in
+                            if let _ = snapshot.value as? NSNull {
+                                print("Is not on followers wall")
+                            } else {
+                                print("Is on followers wall")
+                                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                                    for snap in snapshot {
+                                        print(snap.key)
+                                DataService.ds.REF_USERS.child(followers).child("wall").child(snap.key).removeValue()
+
+                                    }
+                                }
+                            }
+                        })
+                    }
+                }
             }
         })
     }

@@ -260,7 +260,7 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
                 DataService.ds.REF_CURRENT_USER.child("following").updateChildValues(["\(ViewUserVC.usernamePassed!)": true])
                 self.adjustFollowing(true)
                 self.checkIfFollowing()
-                DataService.ds.REF_USERS.child("\(ViewUserVC.usernamePassed!)").child("followers").childByAutoId().updateChildValues(["user": "\(self.userKey)"])
+                DataService.ds.REF_USERS.child("\(ViewUserVC.usernamePassed!)").child("followers").updateChildValues(["\(self.userKey)": true])
                 //            self.adjustFollowers(true)
                 
             })

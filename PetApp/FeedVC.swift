@@ -51,14 +51,14 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             self.posts = []
             self.postKeys = []
             
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                for snap in snapshot {
-                    if let dictionary = snap.value as? [String: Any] {
-                        let post = dictionary["post"] as! String
-                        self.postKeys.append(post)
+            if let _ = snapshot.value as? NSNull {
+                print("Is not following anyone")
+            } else {
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    for snap in snapshot {
+                        print(snap.key)
+                        self.postKeys.append(snap.key)
                         print("1. POST KEYS \(self.postKeys)")
-                    } else {
-                        print("Not following any users")
                     }
                 }
             }
@@ -73,7 +73,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                                 self.posts.insert(post, at: 0)
                                 print("3. POSTS \(self.posts.count)")
                                 if self.posts.count > 0 {
-                                  self.perform(#selector(self.loadTableData(_:)), with: nil, afterDelay: 0.5)
+                                    self.perform(#selector(self.loadTableData(_:)), with: nil, afterDelay: 0.5)
                                 }
                             }
                         }
