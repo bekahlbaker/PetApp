@@ -14,23 +14,23 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     @IBOutlet weak var tableView: UITableView!
     
     var posts = [Post]()
-    static var indexPassed: Int!
+//    static var indexPassed: Int!
     var usernamePassed: String!
     var isFromFeedVC: Bool!
     static var post: String!
     
-    @IBAction func backBtn(_ sender: Any) {
-        if isFromFeedVC == true {
-            performSegue(withIdentifier: "FeedVC", sender: nil)
-        } else if isFromFeedVC == false {
-            performSegue(withIdentifier: "ViewUserVC", sender: nil)
-        }
-    }
+//    @IBAction func backBtn(_ sender: Any) {
+//        if isFromFeedVC == true {
+//            performSegue(withIdentifier: "FeedVC", sender: nil)
+//        } else if isFromFeedVC == false {
+//            performSegue(withIdentifier: "ViewUserVC", sender: nil)
+//        }
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("SPVC: \(SinglePhotoVC.indexPassed)")
+//        print("SPVC: \(SinglePhotoVC.indexPassed)")
         print(SinglePhotoVC.post)
         
         tableView.delegate = self
@@ -39,6 +39,10 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        downloadData(tableView)
+    }
+    
+    func downloadData(_ sender:AnyObject) {
         DataService.ds.REF_POSTS.queryOrderedByKey().queryEqual(toValue: SinglePhotoVC.post).observe(.value, with: { (snapshot) in
             
             self.posts = []
@@ -49,13 +53,22 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                         let key = snap.key
                         let post = Post(postKey: key, postData: postDict)
                         self.posts.insert(post, at: 0)
+                        print("1. POSTS \(self.posts.count)")
+                        if self.posts.count > 0 {
+                            self.perform(#selector(self.loadTableData(_:)), with: nil, afterDelay: 0.5)
+                        }
                     }
                 }
             }
-            if self.posts.count > 0 {
-                self.tableView.reloadData()
-            }
         })
+    }
+    
+    func loadTableData(_ sender:AnyObject) {
+        print("2. LOAD \(self.posts.count)")
+        if self.posts.count > 0 {
+            print("3. TRUE")
+            self.tableView.reloadData()
+        }
     }
     
     
@@ -70,7 +83,7 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
-        let post = posts[SinglePhotoVC.indexPassed!]
+        let post = posts[indexPath.row]
         
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SinglePhotoCell") as? SinglePhotoCell {
             cell.delegate = self

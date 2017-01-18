@@ -216,28 +216,28 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let post = posts[indexPath.row]
-        if let cell = collectionView.cellForItem(at: indexPath) {
+//        if let cell = collectionView.cellForItem(at: indexPath) {
             if UserPicCell.isConfigured == true {
                 ViewUserVC.postKeyToPass = post.postKey
                 SinglePhotoVC.post = post.postKey
-                self.indexToPass = collectionView.indexPath(for: cell)!.item
-                print(self.indexToPass)
-                SinglePhotoVC.indexPassed = self.indexToPass
-                print("Happens after index to pass and post key to pass")
-                if self.indexToPass != nil {
+//                self.indexToPass = collectionView.indexPath(for: cell)!.item
+//                print(self.indexToPass)
+//                SinglePhotoVC.indexPassed = self.indexToPass
+//                print("Happens after index to pass and post key to pass")
+//                if self.indexToPass != nil {
                     self.performSegue(withIdentifier: "SinglePhotoVC", sender: nil)
-                }
+//                }
             }
-        }
+//        }
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "SinglePhotoVC" {
-            let myVC = segue.destination as! SinglePhotoVC
-            myVC.usernamePassed = ViewUserVC.usernamePassed
-            myVC.isFromFeedVC = false
-        }
-    }
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "SinglePhotoVC" {
+//            let myVC = segue.destination as! SinglePhotoVC
+//            myVC.usernamePassed = ViewUserVC.usernamePassed
+//            myVC.isFromFeedVC = false
+//        }
+//    }
     
     func checkIfFollowing() {
         DataService.ds.REF_CURRENT_USER.child("following").child(ViewUserVC.usernamePassed).observeSingleEvent(of: .value, with: { (snapshot) in

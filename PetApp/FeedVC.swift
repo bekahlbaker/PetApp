@@ -40,23 +40,13 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.addSubview(refreshControl)
         
         NotificationCenter.default.addObserver(self, selector: #selector(refreshList(notification:)), name:NSNotification.Name(rawValue: "refreshMyTableView"), object: nil)
-//        
-//        loadData(tableView)
-    }
-    
-    func loadTableData(_ sender:AnyObject) {
-        print("4. LOAD \(self.posts.count)")
-        if self.posts.count > 0 {
-            print("5. TRUE")
-            self.tableView.reloadData()
-        }
     }
     
     func refreshList(notification: NSNotification){
-        self.loadData(tableView)
+        downloadData(tableView)
     }
     
-    func loadData(_ sender:AnyObject) {
+    func downloadData(_ sender:AnyObject) {
         DataService.ds.REF_CURRENT_USER.child("wall").observeSingleEvent(of: .value, with: { (snapshot) in
             self.posts = []
             self.postKeys = []
@@ -92,14 +82,22 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             }
         })
     }
+    
+    func loadTableData(_ sender:AnyObject) {
+        print("4. LOAD \(self.posts.count)")
+        if self.posts.count > 0 {
+            print("5. TRUE")
+            self.tableView.reloadData()
+        }
+    }
 
     func refresh(_ sender:AnyObject) {
-        self.perform(#selector(loadData(_:)), with: nil, afterDelay: 0.5)
+        self.perform(#selector(downloadData(_:)), with: nil, afterDelay: 0.5)
         self.refreshControl.endRefreshing()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-       loadData(tableView)
+       downloadData(tableView)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -115,11 +113,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 
         let post = self.posts[indexPath.row]
-        print(post)
+
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as? FeedCell {
             cell.delegate = self
             cell.configureCell(post)
-            print("Configuring cell")
              FeedVC.postKeyToPass = post.postKey
             
             let userKey = post.userKey
