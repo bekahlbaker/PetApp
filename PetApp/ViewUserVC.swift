@@ -58,6 +58,10 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         
         checkIfFollowing()
         
+        if let font = UIFont(name: "Avenir", size: 15) {
+            self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: font]
+        }
+        
         self.automaticallyAdjustsScrollViewInsets = false
 //
 //        DispatchQueue.global().async {

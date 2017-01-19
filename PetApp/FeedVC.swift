@@ -30,6 +30,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let font = UIFont(name: "Lobster1.4", size: 30) {
+            self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: font]
+        }
+        self.navigationController!.view.backgroundColor = Color.white
+        
          self.automaticallyAdjustsScrollViewInsets = false
         
         tableView.delegate = self
@@ -139,7 +144,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 return cell
             } else {
                 let userKey = post.userKey
-                DataService.ds.REF_USERS.child(userKey).child("user-info").observeSingleEvent(of: .value, with:  { (snapshot) in
+                DataService.ds.REF_USERS.child(userKey).child("user-info").observe( .value, with:  { (snapshot) in
                     if let dictionary = snapshot.value as? [String: Any] {
                         if let profileURL = dictionary["profileImgUrl"] as? String {
                             let ref = FIRStorage.storage().reference(forURL: profileURL)

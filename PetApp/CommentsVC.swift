@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SwiftKeychainWrapper
 
 class CommentsVC: ResponsiveTextFieldViewController, UITableViewDelegate, UITableViewDataSource {
     
@@ -98,7 +99,8 @@ class CommentsVC: ResponsiveTextFieldViewController, UITableViewDelegate, UITabl
     func postToFirebase() {
         let comment: Dictionary<String, Any> = [
             "comment": self.commentTextField.text! as String,
-            "username" : self.currentUsername as String
+            "username" : self.currentUsername as String,
+            "userKey": KeychainWrapper.standard.string(forKey: KEY_UID)! as String
         ]
         let firebasePost = DataService.ds.REF_POSTS.child(self.postKeyPassed)
         firebasePost.updateChildValues(["commentCount": self.commentCount])
