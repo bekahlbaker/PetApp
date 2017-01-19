@@ -1,5 +1,5 @@
 //
-//  SaveUserInfo+ProfileVC.swift
+//  ProfileVC+SaveUserInfo.swift
 //  PetApp
 //
 //  Created by Rebekah Baker on 1/2/17.
@@ -13,16 +13,6 @@ import SwiftKeychainWrapper
 
 extension ProfileVC {
     //SAVE and UPLOAD profile info & image
-    
-    @IBAction func cancelBtnPresser(_sender: AnyObject) {
-        _ = self.navigationController?.popViewController(animated: true)
-    }
-    
-    @IBAction func saveBtnPressed(_ sender: AnyObject) {
-        
-    }
-    
-    
     func save(sender: UIBarButtonItem) {
         if self.profileImg.image != nil {
             ProfileVC.profileCache.setObject(self.profileImg.image!, forKey: "profileImg")
@@ -39,15 +29,12 @@ extension ProfileVC {
                     }
                     if let profileImageUrl =  metadata?.downloadURL()?.absoluteString {
                         self.createUserInfo("profileImgUrl", value: profileImageUrl)
-                        print("Successfuly uploaded image to Firebase")
                     }
                 })
             }
         } else {
             print("No profile image to save")
         }
-        
-        
         if self.coverPhoto.image != nil {
             ProfileVC.coverCache.setObject(self.coverPhoto.image!, forKey: "coverImg")
             //save cover image
@@ -63,16 +50,13 @@ extension ProfileVC {
                     }
                     if let coverImageUrl =  metadata?.downloadURL()?.absoluteString {
                         self.createUserInfo("coverImgUrl", value: coverImageUrl)
-                        print("Successfuly uploaded cover image to Firebase")
                     }
                 })
             }
         } else {
             print("No cover image to save")
         }
-        
         //save profile info
-        
         if self.fullNameLbl.text != "" {
             self.createUserInfo("full-name", value: self.fullNameLbl.text! as String)
         } else {
@@ -111,15 +95,6 @@ extension ProfileVC {
         _ = self.navigationController?.popViewController(animated: true)
     }
     
-    
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ViewUserVC" {
-            let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
-            ViewUserVC.usernamePassed = userKey
-        }
-    }
-    
     func createUserInfo(_ key: String, value: String) {
         let userInfo: Dictionary<String, Any> = [
             key: value
@@ -141,7 +116,6 @@ extension ProfileVC {
     }
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        
         let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage
         
         if imagePicked == 1 {
@@ -149,7 +123,6 @@ extension ProfileVC {
         } else if imagePicked == 2 {
             profileImg.image = pickedImage
         }
-        
         dismiss(animated: true, completion: nil)
     }
     

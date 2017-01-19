@@ -9,7 +9,7 @@
 //
 //  ResponsiveTextFieldViewController.swift
 //  Swift version of: VBResponsiveTextFieldViewController
-//  Original code: https://github.com/ttippin84/VBResponsiveTextFieldViewController
+//  Original code: www.github.com/ttippin84/VBResponsiveTextFieldViewController
 //
 //  Created by David Sandor on 9/27/14.
 //  Copyright (c) 2014 David Sandor. All rights reserved.
@@ -18,8 +18,7 @@
 import Foundation
 import UIKit
 
-class ResponsiveTextFieldViewController : UIViewController
-{
+class ResponsiveTextFieldViewController : UIViewController {
     
     var kPreferredTextFieldToKeyboardOffset: CGFloat = 20.0
     var keyboardFrame: CGRect = CGRect.null
@@ -33,18 +32,14 @@ class ResponsiveTextFieldViewController : UIViewController
         
         NotificationCenter.default.addObserver(self, selector: #selector(ResponsiveTextFieldViewController.keyboardWillHide(_:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
-        for subview in self.view.subviews
-        {
-            if (subview.isKind(of: UITextField.self))
-            {
+        for subview in self.view.subviews {
+            if (subview.isKind(of: UITextField.self)) {
                 let textField = subview as! UITextField
                 textField.addTarget(self, action: #selector(ResponsiveTextFieldViewController.textFieldDidReturn(_:)), for: UIControlEvents.editingDidEndOnExit)
                 
                 textField.addTarget(self, action: #selector(UITextFieldDelegate.textFieldDidBeginEditing(_:)), for: UIControlEvents.editingDidBegin)
-                
             }
         }
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -52,26 +47,20 @@ class ResponsiveTextFieldViewController : UIViewController
         NotificationCenter.default.removeObserver(self)
     }
     
-    func keyboardWillShow(_ notification: NSNotification)
-    {
+    func keyboardWillShow(_ notification: NSNotification) {
         self.keyboardIsShowing = true
-        
         if let info = notification.userInfo {
             self.keyboardFrame = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
             self.arrangeViewOffsetFromKeyboard()
         }
-        
     }
     
-    func keyboardWillHide(_ notification: NSNotification)
-    {
+    func keyboardWillHide(_ notification: NSNotification) {
         self.keyboardIsShowing = false
-        
         self.returnViewToInitialFrame()
     }
     
-    func arrangeViewOffsetFromKeyboard()
-    {
+    func arrangeViewOffsetFromKeyboard() {
         let theApp: UIApplication = UIApplication.shared
         let windowView: UIView? = theApp.delegate!.window!
         
@@ -89,39 +78,30 @@ class ResponsiveTextFieldViewController : UIViewController
         })
     }
     
-    func returnViewToInitialFrame()
-    {
+    func returnViewToInitialFrame() {
         let initialViewRect: CGRect = CGRect(x:0.0, y:0.0, width:self.view.frame.size.width, height:self.view.frame.size.height)
-        
-        if (!initialViewRect.equalTo(self.view.frame))
-        {
+        if (!initialViewRect.equalTo(self.view.frame)) {
             UIView.animate(withDuration: 0.2, animations: {
                 self.view.frame = initialViewRect
-            });
+            })
         }
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
-    {
-        if (self.activeTextField != nil)
-        {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if (self.activeTextField != nil) {
             self.activeTextField?.resignFirstResponder()
             self.activeTextField = nil
         }
     }
     
-    func textFieldDidReturn(_ textField: UITextField!)
-    {
+    func textFieldDidReturn(_ textField: UITextField!) {
         textField.resignFirstResponder()
         self.activeTextField = nil
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField)
-    {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         self.activeTextField = textField
-        
-        if(self.keyboardIsShowing)
-        {
+        if(self.keyboardIsShowing) {
             self.arrangeViewOffsetFromKeyboard()
         }
     }

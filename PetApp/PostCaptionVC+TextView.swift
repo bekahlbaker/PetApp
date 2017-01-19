@@ -34,5 +34,4 @@ extension PostCaptionVC {
             textView.textColor = UIColor.lightGray
         }
     }
-
 }

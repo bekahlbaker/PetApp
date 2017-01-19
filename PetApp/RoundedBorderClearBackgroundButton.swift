@@ -16,7 +16,5 @@ class RoundedBorderClearBackgroundButton: UIButton {
         self.layer.cornerRadius = 3.0
         self.layer.borderWidth = 1.0
         self.layer.borderColor = UIColor.white.cgColor
-        
     }
-
 }

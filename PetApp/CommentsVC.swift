@@ -23,7 +23,6 @@ class CommentsVC: ResponsiveTextFieldViewController, UITableViewDelegate, UITabl
         if self.commentTextField.text != "" {
             postToFirebase()
             commentTextField.text = ""
-            print("Added comment to Post")
             commentTextField.resignFirstResponder()
             self.getCommentCount()
         } else {
@@ -33,14 +32,13 @@ class CommentsVC: ResponsiveTextFieldViewController, UITableViewDelegate, UITabl
             self.navigationController?.present(alert, animated: true, completion: nil)
         }
     }
-    
     @IBOutlet weak var commentTextField: UITextField!
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-         self.automaticallyAdjustsScrollViewInsets = false
+        self.automaticallyAdjustsScrollViewInsets = false
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -53,47 +51,12 @@ class CommentsVC: ResponsiveTextFieldViewController, UITableViewDelegate, UITabl
         self.navigationItem.leftBarButtonItem = newBackButton
         
         self.title = "Comments"
-
+        
+        getUsername()
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        if FeedVC.postKeyToPass != nil {
-            self.postKeyPassed = FeedVC.postKeyToPass
-            print("COMMENTS VC: \(self.postKeyPassed)")
-            
-            self.getCommentCount()
-            DataService.ds.REF_POSTS.child(self.postKeyPassed).child("comments").observe(.value, with: { (snapshot) in
-                
-                self.comments = []
-                
-                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                    for snap in snapshot {
-                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
-                            let key = snap.key
-                            let comment = Comment(postKey: key, postData: postDict)
-                            self.comments.append(comment)
-                        }
-                    }
-                }
-                if self.comments.count > 0 {
-                    self.tableView.reloadData()
-                }
-                
-            })
-        } else {
-            print("No post key")
-             _ = self.navigationController?.popViewController(animated: true)
-        }
-        
-        DataService.ds.REF_CURRENT_USER.child("user-info").observe(.value, with:  { (snapshot) in
-            if let dictionary = snapshot.value as? [String: Any] {
-                if let currentUser = dictionary["username"] as? String {
-                    print("BEKAH: \(currentUser)")
-                    self.currentUsername = currentUser as String!
-                }
-            }
-        })
-
+        downloadCommentData()
     }
     
     func postToFirebase() {
@@ -106,20 +69,7 @@ class CommentsVC: ResponsiveTextFieldViewController, UITableViewDelegate, UITabl
         firebasePost.updateChildValues(["commentCount": self.commentCount])
         firebasePost.child("comments").childByAutoId().setValue(comment)
     }
-    
 
-    func getCommentCount() {
-        DataService.ds.REF_POSTS.child(self.postKeyPassed).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String: Any] {
-                if let currentCount = dictionary["commentCount"] as? Int {
-                print("DOWNLOADED COUNT \(currentCount)")
-                self.commentCount = currentCount + 1
-                print(self.commentCount)
-                }
-            }
-        })
-    }
-    
     func alert(sender: UIBarButtonItem) {
         if self.commentTextField.text != "" {
             let alert = UIAlertController(title: "", message: "If you cancel now, your comment will be discarded.", preferredStyle: UIAlertControllerStyle.alert)
@@ -127,7 +77,6 @@ class CommentsVC: ResponsiveTextFieldViewController, UITableViewDelegate, UITabl
                 _ = self.navigationController?.popViewController(animated: true)
             })
             let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-                print("Cancel Button Pressed")
             }
             alert.addAction(discard)
             alert.addAction(cancel)
@@ -141,5 +90,4 @@ class CommentsVC: ResponsiveTextFieldViewController, UITableViewDelegate, UITabl
         view.endEditing(true)
         super.touchesBegan(touches, with: event)
     }
-
 }

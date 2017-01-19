@@ -90,8 +90,6 @@ class DataService {
     func completeSignIn(_ id: String, userData: Dictionary<String, String>) {
         DataService.ds.createFirebaseDBUser(id, userData: userData)
         KeychainWrapper.standard.set(id, forKey: KEY_UID)
-    }
-    
-    
+    }  
 }
 

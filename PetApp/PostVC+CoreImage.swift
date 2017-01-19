@@ -36,8 +36,6 @@ extension PostVC {
             filterButton.addTarget(self, action: #selector(filterButtonTapped(_:)), for: .touchUpInside)
             filterButton.clipsToBounds = true
             
-            // CODE FOR FILTERS WILL BE ADDED HERE...
-            
             // Create filters for each button
             let ciContext = CIContext(options: nil)
             let coreImage = CIImage(image: imageUnfiltered)
@@ -50,25 +48,21 @@ extension PostVC {
             
             // Assign filtered image to the button
             if itemCount == 0 {
-               if let img = PostVC.unFilteredImageCache.object(forKey: "unfilteredImage") {
+                if let img = PostVC.unFilteredImageCache.object(forKey: "unfilteredImage") {
                     filterButton.setImage(img, for: .normal)
                     filterButton.imageView?.contentMode = UIViewContentMode.scaleAspectFill
                 }
             } else {
-             filterButton.setImage(imageForButton, for: .normal)
+                filterButton.setImage(imageForButton, for: .normal)
                 filterButton.imageView?.contentMode = UIViewContentMode.scaleAspectFill
             }
-            
             // Add Buttons in the Scroll View
             xCoord +=  buttonWidth + gapBetweenButtons
             filterScrollView.addSubview(filterButton)
-        } // END FOR LOOP
-        
+        }
         // Resize Scroll View
         filterScrollView.contentSize = CGSize(width: buttonWidth * CGFloat(itemCount+2), height: yCoord)
     }
-    
-    
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
@@ -76,24 +70,12 @@ extension PostVC {
             originalImage.image = image
             PostVC.imageSelected = true
             PostVC.unFilteredImageCache.setObject(image, forKey: "unfilteredImage")
+            self.addFiltersToButtons(self.originalImage.image!)
         } else {
             print("Valid image not selected.")
         }
-        DispatchQueue.global().async {
-            self.addFiltersToButtons(self.originalImage.image!)
-            self.filterScrollView.isScrollEnabled = true
-            self.filterScrollView.isUserInteractionEnabled = true
-            self.loadingLbl.isHidden = true
-        }
-        DispatchQueue.main.async {
-            picker.dismiss(animated: true, completion: nil)
-            self.addImageBtn.setTitle("", for: .normal)
-            self.filterScrollView.isScrollEnabled = false
-            self.filterScrollView.isUserInteractionEnabled = false
-            self.imagePicker.isEnabled = false
-            self.loadingLbl.isHidden = false
-            self.activitySpinner.startAnimating()
-        }
+        picker.dismiss(animated: true, completion: nil)
+        self.addImageBtn.setTitle("", for: .normal)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -101,4 +83,16 @@ extension PostVC {
         dismiss(animated: true, completion: nil)
     }
     
+    func loadImage() {
+        if let img = PostVC.imageToPassBackCache.object(forKey: "imageToPassBack") {
+            originalImage.image = img
+            PostVC.imageSelected = true
+            if let unfilteredImg = PostVC.unFilteredImageCache.object(forKey: "unfilteredImage") {
+                self.addFiltersToButtons(unfilteredImg)
+            }
+        } else {
+            addImageBtn.setTitle("Add Image", for: .normal)
+        }
+        PostVC.imageToPassBackCache.removeObject(forKey: "imageToPassBack")
+    }
 }

@@ -84,10 +84,9 @@ class SinglePhotoCell: UITableViewCell {
     @IBAction func commentTapped(_ sender: AnyObject) {
         tapActionComment?(self)
     }
-
+    
     var tapActionUsername: ((UITableViewCell) -> Void)?
     var tapActionComment: ((UITableViewCell) -> Void)?
-
     var post: Post!
     var likesRef: FIRDatabaseReference!
     var isCurrentUser: Bool!
@@ -96,7 +95,7 @@ class SinglePhotoCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         self.saveBtn.isHidden = true
-
+        
         let tap = UITapGestureRecognizer(target: self, action: #selector(likeTapped))
         tap.numberOfTapsRequired = 1
         likesImg.addGestureRecognizer(tap)
@@ -104,9 +103,7 @@ class SinglePhotoCell: UITableViewCell {
     }
     
     func configureCell(_ post: Post) {
-        
         self.post = post
-        
         DispatchQueue.global().async {
             let currentUser = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
             if currentUser == self.post.userKey {
@@ -115,71 +112,56 @@ class SinglePhotoCell: UITableViewCell {
                 self.isCurrentUser = false
             }
         }
-
         DispatchQueue.main.async {
             self.likesRef = DataService.ds.REF_CURRENT_USER.child("likes").child(post.postKey)
-            
             self.caption.text = post.caption
-            
             self.usernameBtn.setTitle(post.username, for: .normal)
-            
             self.likes.text = String(post.likes)
-            
             self.comments.text = String(post.commentCount)
-            
             if post.commentCount > 0 {
-             self.viewCommentsBtn.setTitle("View all \(post.commentCount) comments", for: .normal)
+                self.viewCommentsBtn.setTitle("View all \(post.commentCount) comments", for: .normal)
             } else {
                 self.viewCommentsBtn.setTitle("Leave a comment", for: .normal)
             }
-            
             if self.isCurrentUser == false {
                 self.moreBtn.isHidden = true
             } else if self.isCurrentUser == true {
                 self.moreBtn.isHidden = false
             }
-            
+            //download feed Img
             if let imgURL = URL(string: post.imageURL) {
                 self.feedImageView.kf.setImage(with: imgURL)
-                print("using kingfisher for feed image")
             } else {
                 let ref = FIRStorage.storage().reference(forURL: post.imageURL)
                 ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
                     if error != nil {
                         print("Unable to Download image from Firebase storage.")
                     } else {
-                        print("Image downloaded from FB Storage.")
                         if let imgData = data {
                             if let img = UIImage(data: imgData) {
                                 self.feedImageView.image = img
                             }
                         }
                     }
-                    
                 })
-                
             }
-            
-            if let profileImgURL = URL(string: post.profileImgUrl) {
-                self.profileImg.kf.setImage(with: profileImgURL)
-                print("using kingfisher for feed image")
-            } else {
-                let ref = FIRStorage.storage().reference(forURL: post.profileImgUrl)
-                ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
-                    if error != nil {
-                        print("Unable to Download profile image from Firebase storage.")
-                    } else {
-                        print("Image downloaded from FB Storage.")
-                        if let imgData = data {
-                            if let profileImg = UIImage(data: imgData) {
-                                self.profileImg.image = profileImg
-                            }
-                        }
-                    }
-                    
-                })
-                
-            }
+            //download profile Img
+            //            if let profileImgURL = URL(string: post.profileImgUrl) {
+            //                self.profileImg.kf.setImage(with: profileImgURL)
+            //            } else {
+            //                let ref = FIRStorage.storage().reference(forURL: post.profileImgUrl)
+            //                ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+            //                    if error != nil {
+            //                        print("Unable to Download profile image from Firebase storage.")
+            //                    } else {
+            //                        if let imgData = data {
+            //                            if let profileImg = UIImage(data: imgData) {
+            //                                self.profileImg.image = profileImg
+            //                            }
+            //                        }
+            //                    }
+            //                })
+            //            }
             
             self.likesRef.observeSingleEvent(of: .value, with:  { (snapshot) in
                 if let _ = snapshot.value as? NSNull {
@@ -190,7 +172,6 @@ class SinglePhotoCell: UITableViewCell {
                     self.likesImgSm.image = UIImage(named: "filled-heart")
                 }
             })
-
         }
         SinglePhotoCell.isConfigured = true
     }

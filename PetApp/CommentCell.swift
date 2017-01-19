@@ -17,20 +17,14 @@ class CommentCell: UITableViewCell {
     @IBOutlet weak var usernameLbl: UILabel!
     
     var comment: Comment!
-    
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
     }
     
     func configureCell(_ postKey: String, comment: Comment) {
-        
         self.comment = comment
-        
         self.commentLbl.text = comment.comment
-        
         self.usernameLbl.text = comment.username
     }
-
 }

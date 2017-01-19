@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 class ResetPassVC: UIViewController {
-
+    
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var errorLbl: UILabel!
     @IBOutlet weak var signUpBtn: UIButton!
@@ -18,41 +18,36 @@ class ResetPassVC: UIViewController {
     @IBOutlet weak var successLbl: UILabel!
     
     @IBAction func sendEmailTapped(_ sender: AnyObject) {
-    
         let email = emailTextField.text
-
         FIRAuth.auth()?.sendPasswordReset(withEmail: email!, completion: { (error) in
             if let error = error {
                 if let errCode = FIRAuthErrorCode(rawValue: error._code) {
                     
                     switch errCode {
                     case .errorCodeInvalidEmail:
-                        print("Invalid email")
                         self.errorLbl.text = "Please enter a valid email address."
                     case .errorCodeUserNotFound:
-                        print("User not found.")
                         self.errorLbl.text = "There is not an account for that email. Do you need to sign up?"
                         self.signUpBtn.isHidden = false
                     default:
                         print("Create User Error: \(error)")
                     }
-
                 }
             } else {
                 print("Password reset email successfully sent.")
                 self.successLbl.isHidden = false
                 self.signInBtn.isHidden = false
             }
-
         })
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.signUpBtn.isHidden = true
         self.successLbl.isHidden = true
         self.signInBtn.isHidden = true
     }
 }
+

@@ -33,7 +33,6 @@ class FeedCell: UITableViewCell {
     @IBAction func moreBtnTapped(_ sender: Any) {
         let alertController = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
         let edit = UIAlertAction(title: "Edit", style: .default, handler: { (action) -> Void in
-            print("Edit btn tapped")
             self.moreBtn.isEnabled = false
             self.caption.isHidden = true
             self.captionEditTextView.isHidden = false
@@ -42,17 +41,13 @@ class FeedCell: UITableViewCell {
             self.captionEditTextView.becomeFirstResponder()
         })
         let delete = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) -> Void in
-            print("Delete btn tapped")
             let alert = UIAlertController(title: "Are you sure you want to delete this post?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
             let deletePost = UIAlertAction(title: "Delete Post", style: .destructive, handler: { (action) -> Void in
-                print("Delete presssed")
                 DataService.ds.REF_POSTS.child(self.post.postKey).removeValue()
                 self.removeFromFollowersWall(key: self.post.postKey)
-                print("Post removed")
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshMyTableView"), object: nil)
             })
             let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
-                print("Cancel Button Pressed")
             }
             
             alert.addAction(deletePost)
@@ -61,9 +56,7 @@ class FeedCell: UITableViewCell {
             self.delegate?.present(alert, animated: true, completion: nil)
             
         })
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel
-            , handler: { (action) -> Void in
-                print("Cancel btn tapped")
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) -> Void in
         })
         alertController.addAction(edit)
         alertController.addAction(delete)
@@ -71,7 +64,7 @@ class FeedCell: UITableViewCell {
         
         delegate?.present(alertController, animated: true, completion: nil)
     }
-
+    
     @IBOutlet weak var saveBtn: UIButton!
     @IBAction func saveBtnTapped(_ sender: Any) {
         self.moreBtn.isEnabled = true
@@ -81,15 +74,12 @@ class FeedCell: UITableViewCell {
         self.caption.text = self.captionEditTextView.text
         DataService.ds.REF_POSTS.child(self.post.postKey).updateChildValues(["caption": "\(caption.text!)"])
     }
-    
     @IBAction func usernameTapped(_ sender: AnyObject) {
         tapActionUsername?(self)
     }
-
     var tapActionUsername: ((UITableViewCell) -> Void)?
     var post: Post!
     var likesRef: FIRDatabaseReference!
-    
     static var isConfigured: Bool!
     var isCurrentUser: Bool!
     
@@ -101,13 +91,10 @@ class FeedCell: UITableViewCell {
         tap.numberOfTapsRequired = 1
         likesImg.addGestureRecognizer(tap)
         likesImg.isUserInteractionEnabled = true
-        
     }
-    
     
     func configureCell(_ post: Post) {
         self.post = post
-        
         DispatchQueue.global().async {
             let currentUser = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
             if currentUser == self.post.userKey {
@@ -116,43 +103,32 @@ class FeedCell: UITableViewCell {
                 self.isCurrentUser = false
             }
         }
-
         DispatchQueue.main.async {
             self.activitySpinner.startAnimating()
             self.profileActivitySpinner.startAnimating()
-            
             self.likesRef = DataService.ds.REF_CURRENT_USER.child("likes").child(post.postKey)
-            
             self.caption.text = post.caption
-            
             self.usernameBtn.setTitle(post.username, for: .normal)
-            
             self.likes.text = String(post.likes)
-            
             self.comments.text = String(post.commentCount)
-            
             if post.commentCount > 0 {
                 self.viewCommentsBtn.setTitle("View all \(post.commentCount) comments", for: .normal)
             } else {
                 self.viewCommentsBtn.setTitle("Leave a comment", for: .normal)
             }
-            
             if self.isCurrentUser == false {
                 self.moreBtn.isHidden = true
             } else if self.isCurrentUser == true {
                 self.moreBtn.isHidden = false
             }
-            
             if let imgURL = URL(string: post.imageURL) {
                 self.feedImageView.kf.setImage(with: imgURL)
-                print("using kingfisher for feed image")
             } else {
                 let ref = FIRStorage.storage().reference(forURL: post.imageURL)
                 ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
                     if error != nil {
                         print("Unable to Download image from Firebase storage.")
                     } else {
-                        print("Feed image downloaded from FB Storage.")
                         if let imgData = data {
                             if let img = UIImage(data: imgData) {
                                 self.feedImageView.image = img
@@ -162,7 +138,6 @@ class FeedCell: UITableViewCell {
                     }
                     
                 })
-                
             }
             self.likesRef.observeSingleEvent(of: .value, with:  { (snapshot) in
                 if let _ = snapshot.value as? NSNull {
@@ -175,8 +150,8 @@ class FeedCell: UITableViewCell {
             })
             FeedCell.isConfigured = true
         }
-}
-
+    }
+    
     func likeTapped(_ sender: UITapGestureRecognizer) {
         likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if let _ = snapshot.value as? NSNull {
@@ -201,17 +176,12 @@ class FeedCell: UITableViewCell {
                 for snap in snapshot {
                     if let dictionary = snap.value as? [String: Any] {
                         let followers = dictionary["user"] as! String
-                        print("FOLLOWERS \(followers)")
                         DataService.ds.REF_USERS.child(followers).child("wall").queryOrderedByKey().queryEqual(toValue: key).observeSingleEvent(of: .value, with: { (snapshot) in
                             if let _ = snapshot.value as? NSNull {
-                                print("Is not on followers wall")
                             } else {
-                                print("Is on followers wall")
                                 if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                                     for snap in snapshot {
-                                        print(snap.key)
-                                DataService.ds.REF_USERS.child(followers).child("wall").child(snap.key).removeValue()
-
+                                        DataService.ds.REF_USERS.child(followers).child("wall").child(snap.key).removeValue()
                                     }
                                 }
                             }

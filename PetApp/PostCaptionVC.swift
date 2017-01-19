@@ -33,36 +33,8 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
         self.saveBtn.isEnabled = false
         self.backBtn.isEnabled = false
         self.captionTextView.isEditable = false
-        
         DispatchQueue.global().async {
-            if let img = PostVC.filteredImageCache.object(forKey: "imageToPass") {
-                
-                if let imgData = UIImagePNGRepresentation(img){
-                    
-                    let imgUid = NSUUID().uuidString
-                    let metadata = FIRStorageMetadata()
-                    metadata.contentType = "image/png"
-                    
-                    DataService.ds.REF_POST_IMGS.child(imgUid).put(imgData, metadata: metadata) { (metadata, error) in
-                        if error != nil {
-                            print("Unable to upload image to Firebase")
-                        } else {
-                            print("Successfully uploaded image to Firebase")
-                            let downloadUrl = metadata?.downloadURL()?.absoluteString
-                            if let url = downloadUrl {
-                                self.postToFirebase(url)
-                                self.performSegue(withIdentifier: "toFeedVC", sender: nil)
-                            }
-                        }
-                        
-                    }
-                    
-                }
-            } else {
-                print("Couldn't find image")
-            }
-            PostVC.filteredImageCache.removeAllObjects()
-            PostVC.imageToPassBackCache.removeAllObjects()
+            self.saveImageToFireBase()
         }
     }
     
@@ -76,10 +48,10 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
         myActivityIndicator.center = view.center
         view.addSubview(myActivityIndicator)
         
-        captionTextView.text = "Write a caption..."
-        captionTextView.textColor = UIColor.lightGray
-        captionTextView.delegate = self
-        
+        getUserInfo()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         if let img = PostVC.filteredImageCache.object(forKey: "imageToPass") {
             self.postImage.image = img
             PostVC.imageToPassBackCache.setObject(img, forKey: "imageToPassBack")
@@ -87,12 +59,12 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
             self.postImage.image = img2
             PostVC.imageToPassBackCache.setObject(img2, forKey: "imageToPassBack")
         }
-        
-        
+    }
+    
+    func getUserInfo() {
         DataService.ds.REF_CURRENT_USER.child("user-info").observe( .value, with:  { (snapshot) in
             if let dictionary = snapshot.value as? [String: Any] {
                 if let currentUser = dictionary["username"] as? String {
-                    print("BEKAH: \(currentUser)")
                     self.currentUsername = currentUser as String!
                 }
                 if let profileImgUrl = dictionary["profileImgUrl"] as? String {
@@ -100,14 +72,12 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
                 }
             }
         })
-        
     }
     
     func postToFirebase(_ imageURL: String) {
         if self.captionTextView.text == "Write a caption..." {
             self.captionTextView.text = ""
         }
-        
         let post: Dictionary<String, Any> = [
             "caption": self.captionTextView.text! as String,
             "username": self.currentUsername as String,
@@ -119,13 +89,36 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
             "postKey": "" as String,
             "userKey": KeychainWrapper.standard.string(forKey: KEY_UID)! as String
         ]
-        
         let firebasePost = DataService.ds.REF_POSTS.childByAutoId()
         firebasePost.setValue(post)
-        print("POST KEY: \(firebasePost.key)")
         let key = firebasePost.key
         firebasePost.updateChildValues(["postKey": key])
         self.postToFollowersWall(key: key)
+    }
+    
+    func saveImageToFireBase() {
+        if let img = PostVC.filteredImageCache.object(forKey: "imageToPass") {
+            if let imgData = UIImagePNGRepresentation(img){
+                let imgUid = NSUUID().uuidString
+                let metadata = FIRStorageMetadata()
+                metadata.contentType = "image/png"
+                DataService.ds.REF_POST_IMGS.child(imgUid).put(imgData, metadata: metadata) { (metadata, error) in
+                    if error != nil {
+                        print("Unable to upload image to Firebase")
+                    } else {
+                        let downloadUrl = metadata?.downloadURL()?.absoluteString
+                        if let url = downloadUrl {
+                            self.postToFirebase(url)
+                            self.performSegue(withIdentifier: "toFeedVC", sender: nil)
+                        }
+                    }
+                }
+            }
+        } else {
+            print("Couldn't find image")
+        }
+        PostVC.filteredImageCache.removeAllObjects()
+        PostVC.imageToPassBackCache.removeAllObjects()
     }
     
     func postToFollowersWall(key: String) {
@@ -134,7 +127,6 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
                 for snap in snapshot {
                     if let dictionary = snap.value as? [String: Any] {
                         let followers = dictionary["user"] as! String
-                        print("FOLLOWERS \(followers)")
                         DataService.ds.REF_USERS.child(followers).child("wall").updateChildValues([key: true])
                     }
                 }

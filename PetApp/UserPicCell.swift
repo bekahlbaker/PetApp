@@ -11,21 +11,16 @@ import Firebase
 import Kingfisher
 
 class UserPicCell: UICollectionViewCell {
-    
-    @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
-    
+
     @IBOutlet weak var imageView: UIImageView!
     
     var post: Post!
     static var isConfigured: Bool!
     
     func configureCell(_ post: Post) {
-        
         self.post = post
-        
         if let imgURL = URL(string: post.imageURL) {
             self.imageView.kf.setImage(with: imgURL)
-            print("using kingfisher for feed image")
         } else {
             self.imageView.image = UIImage(named: "")
             let ref = FIRStorage.storage().reference(forURL: post.imageURL)
@@ -42,9 +37,6 @@ class UserPicCell: UICollectionViewCell {
                 }
             })
         }
-    
         UserPicCell.isConfigured = true
     }
-    
-    
 }
