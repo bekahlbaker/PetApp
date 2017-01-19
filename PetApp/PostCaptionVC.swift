@@ -40,9 +40,14 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
     
     var myActivityIndicator: UIActivityIndicatorView!
     var isAnimating = false
+    var userKeys = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        captionTextView.delegate = self
+        captionTextView.text = "Write a caption..."
+        captionTextView.textColor = UIColor.lightGray
         
         myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
         myActivityIndicator.center = view.center
@@ -121,15 +126,33 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
         PostVC.imageToPassBackCache.removeAllObjects()
     }
     
+//    func postToFollowersWall(key: String) {
+//        DataService.ds.REF_CURRENT_USER.child("followers").observeSingleEvent(of: .value, with: { (snapshot) in
+//            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+//                for snap in snapshot {
+//                    if let dictionary = snap.value as? [String: Any] {
+//                        let followers = dictionary["user"] as! String
+//                        DataService.ds.REF_USERS.child(followers).child("wall").updateChildValues([key: true])
+//                    }
+//                }
+//            }
+//        })
+//    }
+    
     func postToFollowersWall(key: String) {
         DataService.ds.REF_CURRENT_USER.child("followers").observeSingleEvent(of: .value, with: { (snapshot) in
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                for snap in snapshot {
-                    if let dictionary = snap.value as? [String: Any] {
-                        let followers = dictionary["user"] as! String
-                        DataService.ds.REF_USERS.child(followers).child("wall").updateChildValues([key: true])
+            if let _ = snapshot.value as? NSNull {
+                print("No followers")
+            } else {
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    for snap in snapshot {
+                        print(snap.key)
+                        self.userKeys.append(snap.key)
                     }
                 }
+            }
+            for i in 0..<self.userKeys.count {
+                DataService.ds.REF_USERS.child(self.userKeys[i]).child("wall").updateChildValues([key: true])
             }
         })
     }

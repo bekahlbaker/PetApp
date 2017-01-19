@@ -38,6 +38,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.addSubview(refreshControl)
         
         NotificationCenter.default.addObserver(self, selector: #selector(refreshList(notification:)), name:NSNotification.Name(rawValue: "refreshMyTableView"), object: nil)
+        
+        downloadData(tableView)
     }
     
     override func viewWillAppear(_ animated: Bool) {

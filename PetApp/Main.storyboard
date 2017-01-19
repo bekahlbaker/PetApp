@@ -64,7 +64,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetPic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cjr-4F-ec4">
-                                <rect key="frame" x="115" y="28" width="145" height="75"/>
+                                <rect key="frame" x="115.5" y="28" width="145" height="75"/>
                                 <fontDescription key="fontDescription" name="Lobster1.4" family="Lobster 1.4" pointSize="60"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -108,7 +108,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="bBk-fJ-e4m">
-                                <rect key="frame" x="24" y="125" width="327" height="134"/>
+                                <rect key="frame" x="24" y="130" width="327" height="134"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="PJp-Vs-ty3">
                                         <rect key="frame" x="0.0" y="0.0" width="327" height="30"/>
@@ -133,12 +133,12 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetPic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sYl-M0-VAb">
-                                <rect key="frame" x="24" y="20" width="327" height="70"/>
+                                <rect key="frame" x="24" y="20" width="327" height="75"/>
                                 <fontDescription key="fontDescription" name="Lobster1.4" family="Lobster 1.4" pointSize="60"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="23y-r5-JF9" customClass="RoundedCornerButton" customModule="PetApp" customModuleProvider="target">
-                                <rect key="frame" x="24" y="307" width="327" height="40"/>
+                                <rect key="frame" x="24" y="312" width="327" height="40"/>
                                 <color key="backgroundColor" red="0.30588235294117649" green="0.80392156862745101" blue="0.76862745098039209" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="UHP-5f-crJ"/>
@@ -167,7 +167,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eFv-9J-UgZ">
-                                <rect key="frame" x="138.5" y="268" width="98" height="32"/>
+                                <rect key="frame" x="138.5" y="273" width="98" height="32"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                 <state key="normal" title="Reset password">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -177,7 +177,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcy-ke-xmD">
-                                <rect key="frame" x="162.5" y="268" width="50" height="32"/>
+                                <rect key="frame" x="162.5" y="273" width="50" height="32"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                 <state key="normal" title="Sign Up">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -237,25 +237,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetPic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mvb-pT-dPI">
-                                <rect key="frame" x="24" y="20" width="327" height="70"/>
+                                <rect key="frame" x="24" y="20" width="327" height="75"/>
                                 <fontDescription key="fontDescription" name="Lobster1.4" family="Lobster 1.4" pointSize="60"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter the email address for your account.   A link will be sent for you to reset your password." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m1J-0T-70C">
-                                <rect key="frame" x="24" y="125" width="343" height="41"/>
+                                <rect key="frame" x="24" y="130" width="343" height="41"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="Xkw-cS-mMv">
-                                <rect key="frame" x="24" y="190" width="327" height="30"/>
+                                <rect key="frame" x="24" y="195" width="327" height="30"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dJc-0U-hXS" customClass="RoundedCornerButton" customModule="PetApp" customModuleProvider="target">
-                                <rect key="frame" x="24" y="297" width="327" height="40"/>
+                                <rect key="frame" x="24" y="302" width="327" height="40"/>
                                 <color key="backgroundColor" red="0.30588235289999999" green="0.80392156859999997" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="3xB-CT-IZD"/>
@@ -280,13 +280,13 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Your password reset email has been sent. Please check your inbox and follow the instructions. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Yf-0A-8WK">
-                                <rect key="frame" x="24" y="353" width="327" height="41"/>
+                                <rect key="frame" x="24" y="358" width="327" height="41"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pSh-u1-Qbb">
-                                <rect key="frame" x="162.5" y="257" width="50" height="32"/>
+                                <rect key="frame" x="162.5" y="262" width="50" height="32"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                 <state key="normal" title="Sign Up">
                                     <color key="titleColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -296,7 +296,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CEQ-Yv-MLn">
-                                <rect key="frame" x="166" y="402" width="43" height="32"/>
+                                <rect key="frame" x="166" y="407" width="43" height="32"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                 <state key="normal" title="Sign In"/>
                                 <connections>
@@ -304,7 +304,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJP-Ur-GvX">
-                                <rect key="frame" x="24" y="228" width="327" height="21"/>
+                                <rect key="frame" x="24" y="233" width="327" height="21"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                 <color key="textColor" red="0.97254901959999995" green="0.015686274510000001" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -1693,7 +1693,7 @@
                                     <barButtonItem image="camera-sm" id="IrG-ok-gRD">
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <segue destination="iiK-pT-sg2" kind="presentation" identifier="toPostVC" modalPresentationStyle="overCurrentContext" id="61E-j1-iUC"/>
+                                            <segue destination="iiK-pT-sg2" kind="presentation" identifier="toPostVC" customClass="RIghtToLeftSegue" customModule="PetApp" customModuleProvider="target" modalPresentationStyle="overCurrentContext" id="61E-j1-iUC"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="DfV-vW-tMs"/>
@@ -2063,7 +2063,7 @@
                         <outlet property="imageToFilter" destination="iaT-PM-N7O" id="ka8-a3-4wF"/>
                         <outlet property="loadingLbl" destination="gbX-Bl-Dzp" id="BfS-R7-ovf"/>
                         <outlet property="originalImage" destination="zGo-cJ-yz9" id="BLb-wY-dVp"/>
-                        <segue destination="aU1-se-YcD" kind="show" identifier="toPostCaptionVC" id="KuE-5c-cMS"/>
+                        <segue destination="aU1-se-YcD" kind="show" identifier="toPostCaptionVC" customClass="RIghtToLeftSegue" customModule="PetApp" customModuleProvider="target" id="KuE-5c-cMS"/>
                         <segue destination="avS-e6-anj" kind="show" identifier="toFeedVC" id="Z0q-gj-kUt"/>
                     </connections>
                 </viewController>
@@ -2120,7 +2120,6 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="lEh-gk-vd2"/>
                                         </constraints>
-                                        <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                         <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="15"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
@@ -2142,7 +2141,7 @@
                         <outlet property="captionTextView" destination="elW-wd-vws" id="ja8-Er-uDa"/>
                         <outlet property="postImage" destination="0DC-7e-MMx" id="7f3-4a-R9e"/>
                         <outlet property="saveBtn" destination="phf-rb-Lbb" id="Khz-x2-aDg"/>
-                        <segue destination="iiK-pT-sg2" kind="show" identifier="toPostVC" id="TLW-Q5-xSz"/>
+                        <segue destination="iiK-pT-sg2" kind="show" identifier="toPostVC" customClass="LeftToRightSegue" customModule="PetApp" customModuleProvider="target" id="TLW-Q5-xSz"/>
                         <segue destination="avS-e6-anj" kind="show" identifier="toFeedVC" id="dut-yX-PSM"/>
                     </connections>
                 </viewController>
@@ -2155,7 +2154,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="CcZ-BS-spZ" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="LrV-G2-l5Z">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="LrV-G2-l5Z">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2173,7 +2172,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="avS-e6-anj" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="7Z5-p6-s0R">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="7Z5-p6-s0R">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -2202,10 +2201,10 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Lqk-g8-n0s"/>
-        <segue reference="Wyi-JM-08t"/>
-        <segue reference="grG-OY-n7E"/>
+        <segue reference="vcX-KV-BRk"/>
         <segue reference="Z0q-gj-kUt"/>
-        <segue reference="61E-j1-iUC"/>
+        <segue reference="TLW-Q5-xSz"/>
+        <segue reference="grG-OY-n7E"/>
         <segue reference="nrV-ns-tsz"/>
         <segue reference="NaD-hV-ZAh"/>
         <segue reference="zsD-8J-Lsn"/>
