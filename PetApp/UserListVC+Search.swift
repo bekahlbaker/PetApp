@@ -16,7 +16,9 @@ extension UserListVC {
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 for snap in snapshot {
                     ViewUserVC.usernamePassed = snap.key
-                    self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
+                    if ViewUserVC.usernamePassed != nil {
+                        self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
+                    }
                 }
             }
         })

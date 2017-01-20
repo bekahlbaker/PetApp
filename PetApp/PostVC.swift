@@ -48,7 +48,6 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         alertController.addAction(cancel)
         
         present(alertController, animated: true, completion: nil)
-        
     }
     @IBOutlet weak var addImageBtn: UIButton!
     @IBAction func nextBtnTapped(_ sender: AnyObject) {

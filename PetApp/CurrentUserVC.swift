@@ -54,11 +54,33 @@ class CurrentUserVC: UIViewController, UICollectionViewDelegate, UICollectionVie
         layout.minimumLineSpacing = 0
         collectionView!.collectionViewLayout = layout
         
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshInfo(notification:)), name:NSNotification.Name(rawValue: "refreshCurrentUserVC"), object: nil)
+        
         downloadCollectionViewData()
+        downloadUserInfo()
+        setImgsFromCache()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
+//    override func viewDidAppear(_ animated: Bool) {
+//        downloadUserInfo()
+//    }
+    
+    func refreshInfo(notification: NSNotification){
         downloadUserInfo()
+        setImgsFromCache()
+    }
+    
+    func setImgsFromCache() {
+        DispatchQueue.global().async {
+            if ProfileVC.profileCache.object(forKey: "profileImg") != nil {
+                self.profileImg.image = ProfileVC.profileCache.object(forKey: "profileImg")
+                print("Using cached profile img")
+            }
+            if ProfileVC.coverCache.object(forKey: "coverImg") != nil {
+                self.coverImg.image = ProfileVC.coverCache.object(forKey: "coverImg")
+                print("Using cached cover Img")
+            }
+        }
     }
     
     func downloadCollectionViewData() {
@@ -118,26 +140,26 @@ class CurrentUserVC: UIViewController, UICollectionViewDelegate, UICollectionVie
         let edit = UIAlertAction(title: "Edit", style: .default, handler: { (action) -> Void in
             self.performSegue(withIdentifier: "ProfileVC", sender: nil)
         })
-        let delete = UIAlertAction(title: "Log Out", style: .destructive, handler: { (action) -> Void in
-            let alert = UIAlertController(title: "Are you sure you want to log out?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
-            let deletePost = UIAlertAction(title: "Log Out", style: .destructive, handler: { (action) -> Void in
+        let logOut = UIAlertAction(title: "Log Out", style: .destructive, handler: { (action) -> Void in
+            let alert = UIAlertController(title: nil, message: "Are you sure you want to log out?", preferredStyle: UIAlertControllerStyle.alert)
+            let confirmLogOut = UIAlertAction(title: "Log Out", style: .destructive, handler: { (action) -> Void in
                 KeychainWrapper.standard.removeObject(forKey: KEY_UID)
                 try! FIRAuth.auth()?.signOut()
                 self.performSegue(withIdentifier: "EntryVC", sender: nil)
             })
             let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
             }
-            alert.addAction(deletePost)
+            alert.addAction(confirmLogOut)
             alert.addAction(cancel)
             
-            self.show(alert, sender: nil)
+            self.navigationController?.present(alert, animated: true, completion: nil)
         })
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) -> Void in
         })
         alertController.addAction(edit)
-        alertController.addAction(delete)
+        alertController.addAction(logOut)
         alertController.addAction(cancel)
         
-        self.present(alertController, animated: true, completion: nil)
+        present(alertController, animated: true, completion: nil)
     }
 }

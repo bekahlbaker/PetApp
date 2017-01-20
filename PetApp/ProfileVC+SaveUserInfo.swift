@@ -32,6 +32,7 @@ extension ProfileVC {
                     }
                 })
             }
+//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshCurrentUserVC"), object: nil)
         } else {
             print("No profile image to save")
         }
@@ -53,6 +54,7 @@ extension ProfileVC {
                     }
                 })
             }
+//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshCurrentUserVC"), object: nil)
         } else {
             print("No cover image to save")
         }
@@ -92,6 +94,7 @@ extension ProfileVC {
         } else {
             self.removeUserInfo("about")
         }
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshCurrentUserVC"), object: nil)
         _ = self.navigationController?.popViewController(animated: true)
     }
     
@@ -123,6 +126,9 @@ extension ProfileVC {
         } else if imagePicked == 2 {
             profileImg.image = pickedImage
         }
+        ProfileVC.profileCache.removeAllObjects()
+        FeedVC.imageCache.removeAllObjects()
+        ProfileVC.coverCache.removeAllObjects()
         dismiss(animated: true, completion: nil)
     }
     

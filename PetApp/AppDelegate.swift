@@ -21,45 +21,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FIRApp.configure()
 //        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
-//        let uid = KeychainWrapper.standard.string(forKey: KEY_UID)
-//        if uid != nil {
-//            //download user image for UserVC
-//            DataService.ds.REF_CURRENT_USER.child("user-info").observeSingleEvent(of: .value, with: { (snapshot) in
-//                if let dictionary = snapshot.value as? [String: Any] {
-//                    
-//                    //download profile img
-//                    if let url = dictionary["profileImgUrl"] as? String {
-//                        let storage = FIRStorage.storage()
-//                        let storageRef = storage.reference(forURL: url)
-//                        storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
-//                            if error != nil {
-//                                print("Unable to download image from firebase")
-//                            } else {
-//                                let profileImg = UIImage(data: data!)
-//                                ProfileVC.profileCache.setObject(profileImg!, forKey: "profileImg")
-//                                print("Using didFinishLaunching pre-downloaded image for profile")
-//                            }
-//                        }
-//                    }
-//                    
-//                    //download cover photo
-//                    if let url = dictionary["coverImgUrl"] as? String {
-//                        let storage = FIRStorage.storage()
-//                        let storageRef = storage.reference(forURL: url)
-//                        storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
-//                            if error != nil {
-//                                print("Unable to download image from firebase")
-//                            } else {
-//                                let coverImg = UIImage(data: data!)
-//                                ProfileVC.coverCache.setObject(coverImg!, forKey: "coverImg")
-//                                print("Using didFinishLaunching pre-downloaded image for cover")
-//                            }
-//                        }
-//                    }
-//                }
-//                
-//            })
-//        }
+        if KeychainWrapper.standard.string(forKey: KEY_UID) != nil {
+            let uid = KeychainWrapper.standard.string(forKey: KEY_UID)
+            if uid != nil {
+                //download user image for UserVC
+                DataService.ds.REF_CURRENT_USER.child("user-info").observeSingleEvent(of: .value, with: { (snapshot) in
+                    if let dictionary = snapshot.value as? [String: Any] {
+                        
+                        //download profile img
+                        if let url = dictionary["profileImgUrl"] as? String {
+                            let storage = FIRStorage.storage()
+                            let storageRef = storage.reference(forURL: url)
+                            storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
+                                if error != nil {
+                                    print("Unable to download image from firebase")
+                                } else {
+                                    let profileImg = UIImage(data: data!)
+                                    ProfileVC.profileCache.setObject(profileImg!, forKey: "profileImg")
+                                    print("Using didFinishLaunching pre-downloaded image for profile")
+                                }
+                            }
+                        }
+                        
+                        //download cover photo
+                        if let url = dictionary["coverImgUrl"] as? String {
+                            let storage = FIRStorage.storage()
+                            let storageRef = storage.reference(forURL: url)
+                            storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
+                                if error != nil {
+                                    print("Unable to download image from firebase")
+                                } else {
+                                    let coverImg = UIImage(data: data!)
+                                    ProfileVC.coverCache.setObject(coverImg!, forKey: "coverImg")
+                                    print("Using didFinishLaunching pre-downloaded image for cover")
+                                }
+                            }
+                        }
+                    }
+                    
+                })
+            }   
+        }
         
         return true
     }
@@ -77,45 +79,47 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
         
-//        let uid = KeychainWrapper.standard.string(forKey: KEY_UID)
-//        if uid != nil {
-//        //download user info image for UserVC
-//        DataService.ds.REF_CURRENT_USER.child("user-info").observeSingleEvent(of: .value, with: { (snapshot) in
-//            if let dictionary = snapshot.value as? [String: Any] {
-//
-//                    //download profile img
-//                    if let url = dictionary["profileImgUrl"] as? String {
-//                        let storage = FIRStorage.storage()
-//                        let storageRef = storage.reference(forURL: url)
-//                        storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
-//                            if error != nil {
-//                                print("Unable to download image from firebase")
-//                            } else {
-//                                let profileImg = UIImage(data: data!)
-//                                ProfileVC.profileCache.setObject(profileImg!, forKey: "profileImg")
-//                                print("Using pre-downloaded image for profile")
-//                            }
-//                        }
-//                    }
-//
-//                    //download cover photo
-//                    if let url = dictionary["coverImgUrl"] as? String {
-//                        let storage = FIRStorage.storage()
-//                        let storageRef = storage.reference(forURL: url)
-//                        storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
-//                            if error != nil {
-//                                print("Unable to download image from firebase")
-//                            } else {
-//                                let coverImg = UIImage(data: data!)
-//                                ProfileVC.coverCache.setObject(coverImg!, forKey: "coverImg")
-//                                print("Using pre-downloaded image for cover")
-//                            }
-//                        }
-//                    }
-//            }
-//            
-//        })
-//    }
+        if KeychainWrapper.standard.string(forKey: KEY_UID) != nil {
+            let uid = KeychainWrapper.standard.string(forKey: KEY_UID)
+            if uid != nil {
+                //download user info image for UserVC
+                DataService.ds.REF_CURRENT_USER.child("user-info").observeSingleEvent(of: .value, with: { (snapshot) in
+                    if let dictionary = snapshot.value as? [String: Any] {
+                        
+                        //download profile img
+                        if let url = dictionary["profileImgUrl"] as? String {
+                            let storage = FIRStorage.storage()
+                            let storageRef = storage.reference(forURL: url)
+                            storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
+                                if error != nil {
+                                    print("Unable to download image from firebase")
+                                } else {
+                                    let profileImg = UIImage(data: data!)
+                                    ProfileVC.profileCache.setObject(profileImg!, forKey: "profileImg")
+                                    print("Using pre-downloaded image for profile")
+                                }
+                            }
+                        }
+                        
+                        //download cover photo
+                        if let url = dictionary["coverImgUrl"] as? String {
+                            let storage = FIRStorage.storage()
+                            let storageRef = storage.reference(forURL: url)
+                            storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
+                                if error != nil {
+                                    print("Unable to download image from firebase")
+                                } else {
+                                    let coverImg = UIImage(data: data!)
+                                    ProfileVC.coverCache.setObject(coverImg!, forKey: "coverImg")
+                                    print("Using pre-downloaded image for cover")
+                                }
+                            }
+                        }
+                    }
+                    
+                })
+            }
+        }
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {

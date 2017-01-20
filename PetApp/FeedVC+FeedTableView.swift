@@ -11,7 +11,7 @@ import Firebase
 
 extension FeedVC {
     func refreshList(notification: NSNotification){
-        downloadData(tableView)
+        refresh(self)
     }
     
     func downloadData(_ sender:AnyObject) {
@@ -24,20 +24,17 @@ extension FeedVC {
             } else {
                 if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     for snap in snapshot {
-                        print(snap.key)
                         self.postKeys.append(snap.key)
                     }
                 }
             }
             for i in 0..<self.postKeys.count {
                 DataService.ds.REF_POSTS.queryOrderedByKey().queryEqual(toValue: self.postKeys[i]).observeSingleEvent(of: .value, with: { (snapshot) in
-                    
                     if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                         for snap in snapshot {
                             if let postDict = snap.value as? Dictionary<String, AnyObject> {
                                 let post = Post(postKey: self.postKeys[i], postData: postDict)
                                 self.posts.insert(post, at: 0)
-                                print(self.posts.count)
                                 if self.posts.count > 0 {
                                     self.perform(#selector(self.loadTableData(_:)), with: nil, afterDelay: 0.5)
                                 }

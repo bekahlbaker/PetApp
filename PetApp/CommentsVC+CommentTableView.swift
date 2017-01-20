@@ -55,7 +55,9 @@ extension CommentsVC {
         let currentCell = tableView.cellForRow(at: tableView.indexPathForSelectedRow!)! as UITableViewCell
         let cellValue = comments[currentCell.tag]
         ViewUserVC.usernamePassed = cellValue.userKey
-        performSegue(withIdentifier: "ViewUserVC", sender: nil)
+        if ViewUserVC.usernamePassed != nil {
+            performSegue(withIdentifier: "ViewUserVC", sender: nil)
+        }
     }
     
     func getUsername() {

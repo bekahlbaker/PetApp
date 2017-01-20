@@ -70,8 +70,8 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             cell.delegate = self
             cell.configureCell(post)
             cell.tapActionUsername = { (cell) in
-                self.usernamePassed = post.userKey
-                if self.usernamePassed != nil {
+                ViewUserVC.usernamePassed = post.userKey
+                if ViewUserVC.usernamePassed != nil {
                     self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
                 }
             }

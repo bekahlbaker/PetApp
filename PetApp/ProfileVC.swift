@@ -30,27 +30,70 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     
     @IBOutlet weak var coverPhoto: UIImageView!
     @IBAction func editCoverPhotoTapped(_ sender: AnyObject) {
-        ProfileVC.coverCache.removeAllObjects()
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            imagePicked = 1
-            self.present(imagePicker, animated: true, completion: nil)
+//        ProfileVC.coverCache.removeAllObjects()
+        let alertController = UIAlertController(title: "Select Picture", message: nil, preferredStyle: .actionSheet)
+        let camera = UIAlertAction(title: "Camera", style: .default, handler: { (action) -> Void in
+            self.imagePicker.allowsEditing = true
+            self.imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+            self.present(self.imagePicker, animated: true, completion: nil)
+        })
+        let photoLibrary = UIAlertAction(title: "Photo Library", style: .default, handler: { (action) -> Void in
+            self.imagePicker.allowsEditing = true
+            self.imagePicker.sourceType = .photoLibrary
+            self.present(self.imagePicker, animated: true, completion: nil)
+        })
+        let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
         }
+        alertController.addAction(camera)
+        alertController.addAction(photoLibrary)
+        alertController.addAction(cancel)
+        self.imagePicked = 1
+        present(alertController, animated: true, completion: nil)
+ 
     }
     @IBAction func addImageTapped(_ sender: AnyObject) {
-        ProfileVC.profileCache.removeAllObjects()
-        FeedVC.imageCache.removeAllObjects()
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            imagePicked = 2
-            self.present(imagePicker, animated: true, completion: nil)
+//        ProfileVC.profileCache.removeAllObjects()
+//        FeedVC.imageCache.removeAllObjects()
+        let alertController = UIAlertController(title: "Select Picture", message: nil, preferredStyle: .actionSheet)
+        let camera = UIAlertAction(title: "Camera", style: .default, handler: { (action) -> Void in
+            self.imagePicker.allowsEditing = true
+            self.imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+            self.present(self.imagePicker, animated: true, completion: nil)
+        })
+        let photoLibrary = UIAlertAction(title: "Photo Library", style: .default, handler: { (action) -> Void in
+            self.imagePicker.allowsEditing = true
+            self.imagePicker.sourceType = .photoLibrary
+            self.present(self.imagePicker, animated: true, completion: nil)
+        })
+        let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
         }
+        alertController.addAction(camera)
+        alertController.addAction(photoLibrary)
+        alertController.addAction(cancel)
+        self.imagePicked = 2
+        present(alertController, animated: true, completion: nil)
     }
     @IBAction func tapGestureTapped(_ sender: AnyObject) {
-        ProfileVC.profileCache.removeAllObjects()
-        FeedVC.imageCache.removeAllObjects()
-        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-            imagePicked = 2
-            self.present(imagePicker, animated: true, completion: nil)
+//        ProfileVC.profileCache.removeAllObjects()
+//        FeedVC.imageCache.removeAllObjects()
+        let alertController = UIAlertController(title: "Select Picture", message: nil, preferredStyle: .actionSheet)
+        let camera = UIAlertAction(title: "Camera", style: .default, handler: { (action) -> Void in
+            self.imagePicker.allowsEditing = true
+            self.imagePicker.sourceType = UIImagePickerControllerSourceType.camera
+            self.present(self.imagePicker, animated: true, completion: nil)
+        })
+        let photoLibrary = UIAlertAction(title: "Photo Library", style: .default, handler: { (action) -> Void in
+            self.imagePicker.allowsEditing = true
+            self.imagePicker.sourceType = .photoLibrary
+            self.present(self.imagePicker, animated: true, completion: nil)
+        })
+        let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
         }
+        alertController.addAction(camera)
+        alertController.addAction(photoLibrary)
+        alertController.addAction(cancel)
+        self.imagePicked = 2
+        present(alertController, animated: true, completion: nil)
     }
     func alert(sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "", message: "If you cancel now, your profile changes will not be saved.", preferredStyle: UIAlertControllerStyle.alert)
@@ -75,9 +118,9 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         let saveBtn = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.done, target: self, action: #selector(save(sender:)))
         self.navigationItem.rightBarButtonItem = saveBtn
         
-        ProfileVC.profileCache.removeAllObjects()
-        FeedVC.imageCache.removeAllObjects()
-        ProfileVC.coverCache.removeAllObjects()
+//        ProfileVC.profileCache.removeAllObjects()
+//        FeedVC.imageCache.removeAllObjects()
+//        ProfileVC.coverCache.removeAllObjects()
         
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
@@ -86,11 +129,23 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         ageLbl.delegate = self
         ageLbl.addTarget(self, action: #selector(textFieldChanged(_:)) , for: UIControlEvents.editingChanged)
         
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
+        DispatchQueue.global().async {
+            if ProfileVC.profileCache.object(forKey: "profileImg") != nil {
+                self.profileImg.image = ProfileVC.profileCache.object(forKey: "profileImg")
+                print("Using cached profile img")
+            }
+            if ProfileVC.coverCache.object(forKey: "coverImg") != nil {
+                self.coverPhoto.image = ProfileVC.coverCache.object(forKey: "coverImg")
+                print("Using cached cover Img")
+            }
+        }
+        
         downloadUserInfo()
     }
+//    
+//    override func viewDidAppear(_ animated: Bool) {
+//        downloadUserInfo()
+//    }
     
     func downloadUserInfo() {
         //download profile info & image
@@ -105,9 +160,10 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 self.locationLbl.text = dictionary["location"] as? String
                 self.aboutLbl.text = dictionary["about"] as? String
                 //download profile img
-                if ProfileVC.profileCache.object(forKey: "profileImg") != nil {
-                    self.profileImg.image = ProfileVC.profileCache.object(forKey: "profileImg")
-                } else {
+//                if ProfileVC.profileCache.object(forKey: "profileImg") != nil {
+//                    self.profileImg.image = ProfileVC.profileCache.object(forKey: "profileImg")
+//                    print("Using cached img")
+//                } else {
                     guard let profileUrl = dictionary["profileImgUrl"] as? String else {
                         return
                     }
@@ -123,11 +179,11 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                             }
                         }
                     }
-                }
+//                }
                 //download cover photo
-                if ProfileVC.coverCache.object(forKey: "coverImg") != nil {
-                    self.coverPhoto.image = ProfileVC.coverCache.object(forKey: "coverImg")
-                } else {
+//                if ProfileVC.coverCache.object(forKey: "coverImg") != nil {
+//                    self.coverPhoto.image = ProfileVC.coverCache.object(forKey: "coverImg")
+//                } else {
                     guard let coverUrl = dictionary["coverImgUrl"] as? String else {
                         return
                     }
@@ -143,7 +199,7 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                             }
                         }
                     }
-                }
+//                }
             }
             
         })

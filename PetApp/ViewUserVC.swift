@@ -44,20 +44,7 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        checkIfFollowing()
-        
-        if let font = UIFont(name: "Avenir", size: 15) {
-            self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: font]
-        }
-        
         self.automaticallyAdjustsScrollViewInsets = false
-        
-        if ProfileVC.profileCache.object(forKey: "profileImg") != nil {
-            self.profileImg.image = ProfileVC.profileCache.object(forKey: "profileImg")
-        }
-        if ProfileVC.coverCache.object(forKey: "coverImg") != nil {
-            self.coverImg.image = ProfileVC.coverCache.object(forKey: "coverImg")
-        }
         
         collectionView.dataSource = self
         collectionView.delegate = self
@@ -71,7 +58,16 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         collectionView!.collectionViewLayout = layout
-        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        downloadViewUserContent()
+    }
+    
+    func downloadViewUserContent() {
+        print("Downloading Content")
+        checkIfFollowing()
+        downloadUserInfo()
         downloadCollectionViewData()
     }
     
@@ -119,18 +115,5 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
                 self.postsLbl.text = String(self.posts.count)
             }
         })
-    }
-    
-    func configureNavBar() {
-        let navigationBar = UINavigationBar(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 64))
-        navigationBar.backgroundColor = UIColor.white
-        navigationBar.isTranslucent = false
-        navigationBar.delegate = self;
-        let navigationItem = UINavigationItem()
-        navigationItem.title = "Title"
-        navigationBar.items = [navigationItem]
-        self.view.addSubview(navigationBar)
-        
-        edgesForExtendedLayout = []
     }
 }

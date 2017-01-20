@@ -24,9 +24,10 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let font = UIFont(name: "Lobster1.4", size: 30) {
-            self.navigationController?.navigationBar.titleTextAttributes = [NSFontAttributeName: font]
-        }
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 30))
+        let image = UIImage(named: "PetPicLogo")
+        imageView.image = image
+        navigationItem.titleView = imageView
         self.navigationController!.view.backgroundColor = Color.white
         self.automaticallyAdjustsScrollViewInsets = false
         
@@ -38,8 +39,6 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.addSubview(refreshControl)
         
         NotificationCenter.default.addObserver(self, selector: #selector(refreshList(notification:)), name:NSNotification.Name(rawValue: "refreshMyTableView"), object: nil)
-        
-        downloadData(tableView)
     }
     
     override func viewWillAppear(_ animated: Bool) {

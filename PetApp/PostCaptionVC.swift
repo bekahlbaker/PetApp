@@ -126,19 +126,6 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
         PostVC.imageToPassBackCache.removeAllObjects()
     }
     
-//    func postToFollowersWall(key: String) {
-//        DataService.ds.REF_CURRENT_USER.child("followers").observeSingleEvent(of: .value, with: { (snapshot) in
-//            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-//                for snap in snapshot {
-//                    if let dictionary = snap.value as? [String: Any] {
-//                        let followers = dictionary["user"] as! String
-//                        DataService.ds.REF_USERS.child(followers).child("wall").updateChildValues([key: true])
-//                    }
-//                }
-//            }
-//        })
-//    }
-    
     func postToFollowersWall(key: String) {
         DataService.ds.REF_CURRENT_USER.child("followers").observeSingleEvent(of: .value, with: { (snapshot) in
             if let _ = snapshot.value as? NSNull {
@@ -155,5 +142,11 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
                 DataService.ds.REF_USERS.child(self.userKeys[i]).child("wall").updateChildValues([key: true])
             }
         })
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toFeedVC" {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshMyTableView"), object: nil)
+        }
     }
 }
