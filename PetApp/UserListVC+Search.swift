@@ -25,18 +25,17 @@ extension UserListVC {
     }
     
     func getUserList() {
-        DataService.ds.REF_USER_LIST.observeSingleEvent(of: .value, with: { (snapshot) in
+        DataService.ds.REF_ACTIVE_USERS.observeSingleEvent(of: .value, with: { (snapshot) in
             self.userList = []
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                for snap in snapshot {
-                    if let dictionary = snap.value as? [String: Any] {
-                        let user = dictionary["username"] as! String
-                        self.userList.append(user)
+            if let _ = snapshot.value as? NSNull {
+                print("No users")
+            } else {
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    for snap in snapshot {
+                        self.userList.append(snap.key)
                         self.filterOutCurrentUser(user: self.currentUsername)
-                        print(self.userList)
-                    } else {
-                        print("No users")
                     }
+                    
                 }
             }
             if self.userList.count > 0 {

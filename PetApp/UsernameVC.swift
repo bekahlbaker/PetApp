@@ -18,7 +18,6 @@ class UsernameVC: UIViewController, UITextFieldDelegate {
             let userInfo: Dictionary<String, Any> = [
                 "username": usernameTextField.text! as String]
             DataService.ds.REF_ACTIVE_USERS.updateChildValues(["\(self.usernameTextField.text!)": true])
-            DataService.ds.REF_USER_LIST.childByAutoId().updateChildValues(userInfo)
             DataService.ds.REF_CURRENT_USER.child("user-personal").updateChildValues(userInfo)
             DataService.ds.REF_CURRENT_USER.child("user-info").updateChildValues(userInfo)
             
