@@ -108,16 +108,24 @@ class User {
         if let about = userData["about"] as? String {
             self._about = about
         }
+        
+        if let followers = userData["followersCt"] as? Int {
+            self._followers = followers
+        }
+        
+        if let following = userData["followingCt"] as? Int {
+            self._following = following
+        }
     }
     
-    func adjustFollowers(_ addFollower: Bool) {
+    func adjustFollowers(userKey: String, _ addFollower: Bool) {
         if addFollower {
             _followers = _followers + 1
         } else {
             _followers = _followers - 1
         }
         
-        DataService.ds.REF_CURRENT_USER.updateChildValues(["followers": followers])
+        DataService.ds.REF_USERS.child(userKey).child("user-info").updateChildValues(["followersCt": followers])
     }
     
     func adjustFollowing(_ addFollowing: Bool) {
@@ -127,6 +135,6 @@ class User {
             _following = _following - 1
         }
         
-        DataService.ds.REF_CURRENT_USER.updateChildValues(["following": following])
+        DataService.ds.REF_CURRENT_USER.child("user-info").updateChildValues(["followingCt": following])
     }
 }

@@ -26,24 +26,12 @@ extension ViewUserVC {
         let alert = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
         if isFollowing == false {
             let follow = UIAlertAction(title: "Follow", style: .default, handler: { (action) -> Void in
-                print("Follow btn tapped")
-                DataService.ds.REF_CURRENT_USER.child("following").updateChildValues(["\(ViewUserVC.usernamePassed!)": true])
-                self.adjustFollowing(true)
-                self.checkIfFollowing()
-                DataService.ds.REF_USERS.child("\(ViewUserVC.usernamePassed!)").child("followers").updateChildValues(["\(self.userKey)": true])
-                //            self.adjustFollowers(true)
-                
+                self.follow()
             })
             alert.addAction(follow)
         } else if isFollowing == true {
             let follow = UIAlertAction(title: "Unfollow", style: .destructive, handler: { (action) -> Void in
-                print("Unfollow btn tapped")
-                DataService.ds.REF_CURRENT_USER.child("following").removeValue()
-                self.adjustFollowing(false)
-                self.checkIfFollowing()
-                DataService.ds.REF_USERS.child("\(ViewUserVC.usernamePassed!)").child("followers").removeValue()
-                //            self.adjustFollowers(true)
-                
+              self.unfollow()
             })
             alert.addAction(follow)
         }
@@ -53,18 +41,21 @@ extension ViewUserVC {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func adjustFollowing(_ addFollowing: Bool) {
-        DataService.ds.REF_CURRENT_USER.observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String: Any] {
-                var following = dictionary["followingCt"] as? Int
-                print(following!)
-                if addFollowing {
-                    following = following! + 1
-                } else {
-                    following = following! - 1
-                }
-                DataService.ds.REF_CURRENT_USER.updateChildValues(["followingCt": following as Any])
-            }
-        })
+    func follow() {
+        print("Follow btn tapped")
+        DataService.ds.REF_CURRENT_USER.child("following").updateChildValues(["\(ViewUserVC.usernamePassed!)": true])
+        self.user.adjustFollowing(true)
+        DataService.ds.REF_USERS.child(ViewUserVC.usernamePassed).child("followers").updateChildValues(["\(KeychainWrapper.standard.string(forKey: KEY_UID)! as String)": true])
+        self.user.adjustFollowers(userKey: ViewUserVC.usernamePassed, true)
+        self.isFollowing = true
+    }
+    
+    func unfollow() {
+        print("Unfollow btn tapped")
+        DataService.ds.REF_CURRENT_USER.child("following").child(ViewUserVC.usernamePassed).removeValue()
+        self.user.adjustFollowing(false)
+        DataService.ds.REF_USERS.child(ViewUserVC.usernamePassed).child("followers").child(KeychainWrapper.standard.string(forKey: KEY_UID)! as String).removeValue()
+        self.user.adjustFollowers(userKey: ViewUserVC.usernamePassed, false)
+        self.isFollowing = false
     }
 }

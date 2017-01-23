@@ -14,14 +14,12 @@ extension ViewUserVC {
     func loadUserInfo() {
         DispatchQueue.global().async {
             let userKey = ViewUserVC.usernamePassed
-            DataService.ds.REF_USERS.child(userKey!).child("user-info").observe(.value, with: { (snapshot) in
+            DataService.ds.REF_USERS.child(userKey!).child("user-info").observeSingleEvent(of: .value, with: { (snapshot) in
                 if let userDict = snapshot.value as? Dictionary<String, AnyObject> {
-                    print(userDict)
                     let user = User(userKey: userKey!, userData: userDict)
                     self.user = user
                 }
                 if self.user != nil {
-                    print("Not nil")
                     self.configureUser(self.user)
                 } else {
                     print("No user info")
@@ -39,8 +37,8 @@ extension ViewUserVC {
         self.parentsNameLbl.text = user.parentsName
         self.locationLbl.text = user.location
         self.bioLbl.text = user.about
-        //        self.followersLabel.text = String(user.followers)
-        //        self.followingLabel.text = String(user.following)
+        self.followersLbl.text = String(user.followers)
+        self.followingLbl.text = String(user.following)
         
         if user.age != "" {
             self.ageAndBreedLbl.text = user.age
