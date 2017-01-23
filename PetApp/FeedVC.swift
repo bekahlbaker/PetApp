@@ -13,6 +13,11 @@ import Kingfisher
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    
+    @IBAction func viewCurrentUserTapped(_ sender: Any) {
+        performSegue(withIdentifier: "ViewUserVC", sender: nil)
+    }
+    
     @IBOutlet weak var tableView: UITableView!
     var posts = [Post]()
     var postKeys = [String]()
@@ -47,7 +52,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ViewUserVC" {
-            ViewUserVC.usernamePassed = FeedVC.usernameToPass
+            let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
+            ViewUserVC.usernamePassed = userKey
         }
     }
 }

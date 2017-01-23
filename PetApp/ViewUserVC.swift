@@ -26,6 +26,7 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     @IBOutlet weak var followersLbl: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var user: User!
     var isFollowing: Bool!
     static var postKeyToPass: String!
     let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
@@ -37,6 +38,8 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         DispatchQueue.global().async {
             if ViewUserVC.usernamePassed != self.userKey {
                 self.followTapped()
+            } else {
+               self.moreTapped()
             }
         }
     }
@@ -62,13 +65,6 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     
     override func viewWillAppear(_ animated: Bool) {
         downloadViewUserContent()
-    }
-    
-    func downloadViewUserContent() {
-        print("Downloading Content")
-        checkIfFollowing()
-        downloadUserInfo()
-        downloadCollectionViewData()
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

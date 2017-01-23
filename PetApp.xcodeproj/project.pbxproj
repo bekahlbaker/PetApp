@@ -51,11 +51,11 @@
 		279F2FA21E313A8400DD2A7B /* ViewUserVC+Follow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279F2FA11E313A8400DD2A7B /* ViewUserVC+Follow.swift */; };
 		279F2FA41E313B8700DD2A7B /* UserListVC+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279F2FA31E313B8700DD2A7B /* UserListVC+Search.swift */; };
 		279F2FA61E313CE700DD2A7B /* ViewUserVC+UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279F2FA51E313CE700DD2A7B /* ViewUserVC+UserInfo.swift */; };
-		279F2FA81E313D2100DD2A7B /* CurrentUserVC+UserInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279F2FA71E313D2100DD2A7B /* CurrentUserVC+UserInfo.swift */; };
 		279F2FAA1E316CC000DD2A7B /* LeftToRightSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279F2FA91E316CC000DD2A7B /* LeftToRightSegue.swift */; };
 		279F2FAC1E316E3400DD2A7B /* RIghtToLeftSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279F2FAB1E316E3400DD2A7B /* RIghtToLeftSegue.swift */; };
 		279F2FB01E326CC200DD2A7B /* UserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279F2FAF1E326CC200DD2A7B /* UserCell.swift */; };
 		279F2FB61E326DB800DD2A7B /* UserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279F2FB51E326DB800DD2A7B /* UserVC.swift */; };
+		279F2FBA1E355E8900DD2A7B /* CurrentUserVC+TableViewUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279F2FB91E355E8900DD2A7B /* CurrentUserVC+TableViewUser.swift */; };
 		27A2D5301E2539ED005CDCB7 /* UserListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A2D52F1E2539ED005CDCB7 /* UserListVC.swift */; };
 		27BD7DEC1DDF935300B9DB9A /* TextFieldMaxLengths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BD7DEB1DDF935300B9DB9A /* TextFieldMaxLengths.swift */; };
 		27BD7DF11DE4FBF800B9DB9A /* UsernameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BD7DF01DE4FBF800B9DB9A /* UsernameVC.swift */; };
@@ -110,11 +110,11 @@
 		279F2FA11E313A8400DD2A7B /* ViewUserVC+Follow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewUserVC+Follow.swift"; sourceTree = "<group>"; };
 		279F2FA31E313B8700DD2A7B /* UserListVC+Search.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserListVC+Search.swift"; sourceTree = "<group>"; };
 		279F2FA51E313CE700DD2A7B /* ViewUserVC+UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewUserVC+UserInfo.swift"; sourceTree = "<group>"; };
-		279F2FA71E313D2100DD2A7B /* CurrentUserVC+UserInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CurrentUserVC+UserInfo.swift"; sourceTree = "<group>"; };
 		279F2FA91E316CC000DD2A7B /* LeftToRightSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftToRightSegue.swift; sourceTree = "<group>"; };
 		279F2FAB1E316E3400DD2A7B /* RIghtToLeftSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RIghtToLeftSegue.swift; sourceTree = "<group>"; };
 		279F2FAF1E326CC200DD2A7B /* UserCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserCell.swift; sourceTree = "<group>"; };
 		279F2FB51E326DB800DD2A7B /* UserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserVC.swift; sourceTree = "<group>"; };
+		279F2FB91E355E8900DD2A7B /* CurrentUserVC+TableViewUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CurrentUserVC+TableViewUser.swift"; sourceTree = "<group>"; };
 		27A2D52F1E2539ED005CDCB7 /* UserListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListVC.swift; sourceTree = "<group>"; };
 		27BD7DEB1DDF935300B9DB9A /* TextFieldMaxLengths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldMaxLengths.swift; sourceTree = "<group>"; };
 		27BD7DF01DE4FBF800B9DB9A /* UsernameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsernameVC.swift; sourceTree = "<group>"; };
@@ -203,7 +203,6 @@
 				27BD7DF01DE4FBF800B9DB9A /* UsernameVC.swift */,
 				27166B321DCD03E200A57821 /* FeedVC.swift */,
 				2749947D1DD287530015B6F8 /* ProfileVC.swift */,
-				274474421DD6929B007EBABF /* CurrentUserVC.swift */,
 				2788DE471DEF614500078A41 /* ViewUserVC.swift */,
 				2748FE4B1E241B0D00A282A5 /* SinglePhotoVC.swift */,
 				274474561DDE209B007EBABF /* PostVC.swift */,
@@ -211,6 +210,7 @@
 				2778F4061DFF6570009BCF65 /* CommentsVC.swift */,
 				27A2D52F1E2539ED005CDCB7 /* UserListVC.swift */,
 				279F2FB51E326DB800DD2A7B /* UserVC.swift */,
+				274474421DD6929B007EBABF /* CurrentUserVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -263,9 +263,9 @@
 				2719A1461E1AB37B001A901F /* ProfileVC+SaveUserInfo.swift */,
 				271F085C1E3135BD00A8B867 /* FeedVC+FeedTableView.swift */,
 				279F2FA11E313A8400DD2A7B /* ViewUserVC+Follow.swift */,
-				279F2FA31E313B8700DD2A7B /* UserListVC+Search.swift */,
 				279F2FA51E313CE700DD2A7B /* ViewUserVC+UserInfo.swift */,
-				279F2FA71E313D2100DD2A7B /* CurrentUserVC+UserInfo.swift */,
+				279F2FA31E313B8700DD2A7B /* UserListVC+Search.swift */,
+				279F2FB91E355E8900DD2A7B /* CurrentUserVC+TableViewUser.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -445,7 +445,6 @@
 				279F2FB01E326CC200DD2A7B /* UserCell.swift in Sources */,
 				271F085B1E2835C000A8B867 /* ResponsiveTextField.swift in Sources */,
 				2788DE4B1DF09F6C00078A41 /* PostVC+CoreImage.swift in Sources */,
-				279F2FA81E313D2100DD2A7B /* CurrentUserVC+UserInfo.swift in Sources */,
 				27BD7DF11DE4FBF800B9DB9A /* UsernameVC.swift in Sources */,
 				27166B311DCD03BD00A57821 /* EntryVC.swift in Sources */,
 				279F2FAC1E316E3400DD2A7B /* RIghtToLeftSegue.swift in Sources */,
@@ -465,6 +464,7 @@
 				271F085D1E3135BD00A8B867 /* FeedVC+FeedTableView.swift in Sources */,
 				274474551DDE1EF8007EBABF /* Post.swift in Sources */,
 				278B91F71E09BED200918312 /* Comment.swift in Sources */,
+				279F2FBA1E355E8900DD2A7B /* CurrentUserVC+TableViewUser.swift in Sources */,
 				278B91F51E088C1C00918312 /* CommentCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

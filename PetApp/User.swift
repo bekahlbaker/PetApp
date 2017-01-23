@@ -12,6 +12,7 @@ import Firebase
 class User {
     
     fileprivate var _userKey: String!
+    fileprivate var _username: String!
     fileprivate var _name: String!
     fileprivate var _parentsName: String!
     fileprivate var _age: String!
@@ -24,6 +25,10 @@ class User {
     
     var userKey: String {
         return _userKey
+    }
+    
+    var username: String {
+        return _username
     }
     
     var name: String {
@@ -62,7 +67,8 @@ class User {
         return _following
     }
     
-    init(name: String, parentsName: String, age: String, species: String, breed: String, location: String, about: String, followers: Int, following: Int) {
+    init(username: String, name: String, parentsName: String, age: String, species: String, breed: String, location: String, about: String, followers: Int, following: Int) {
+        self._username = username
         self._name = name
         self._parentsName = parentsName
         self._age = age
@@ -76,6 +82,10 @@ class User {
     
     init(userKey: String, userData: Dictionary<String, AnyObject>) {
         self._userKey = userKey
+        
+        if let username = userData["username"] as? String {
+            self._username = username
+        }
         
         if let name = userData["full-name"] as? String {
             self._name = name

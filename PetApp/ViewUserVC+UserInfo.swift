@@ -11,86 +11,90 @@ import Firebase
 import SwiftKeychainWrapper
 
 extension ViewUserVC {
-    func downloadUserInfo() {
-        //download user info & image
+    func loadUserInfo() {
         DispatchQueue.global().async {
             let userKey = ViewUserVC.usernamePassed
             DataService.ds.REF_USERS.child(userKey!).child("user-info").observe(.value, with: { (snapshot) in
-                if let dictionary = snapshot.value as? [String: Any] {
-                    if let username = dictionary["username"] as? String {
-                        self.username.title = username
-                    }
-                    if let name = dictionary["full-name"] as? String {
-                        self.fullNameLbl.text = name
-                    }
-                    if let breed = dictionary["breed"] as? String {
-                        if let age = dictionary["age"] as? String {
-                            if age != "" {
-                                self.ageAndBreedLbl.text = "\(age)"
-                                if breed != "" {
-                                    self.ageAndBreedLbl.text = "\(age) \(breed)"
-                                } else {
-                                    if let species = dictionary["species"] as? String {
-                                        if species != "" {
-                                            self.ageAndBreedLbl.text = "\(age) \(species)"
-                                        }
-                                    }
-                                }
-                            } else {
-                                if breed != "" {
-                                    self.ageAndBreedLbl.text = "\(breed)"
-                                } else {
-                                    if let species = dictionary["species"] as? String {
-                                        if species != "" {
-                                            self.ageAndBreedLbl.text = "\(species)"
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    if let parent = dictionary["parents-name"] as? String {
-                        if parent != "" {
-                            self.parentsNameLbl.text = "Parent: \(parent)"
-                        }
-                    }
-                    if let location = dictionary["location"] as? String {
-                        self.locationLbl.text = location
-                    }
-                    if let about = dictionary["about"] as? String {
-                        self.bioLbl.text = about
-                    }
-                    if let following = dictionary["followingCt"] as? Int {
-                        self.followingLbl.text = "\(following)"
-                    }
-                    //download profile img
-                    if let url = dictionary["profileImgUrl"] as? String {
-                        let storage = FIRStorage.storage()
-                        let storageRef = storage.reference(forURL: url)
-                        storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
-                            if error != nil {
-                                print("Unable to download image from firebase")
-                            } else {
-                                let profileImg = UIImage(data: data!)
-                                self.profileImg.image = profileImg
-                            }
-                        }
-                    }
-                    //download cover photo
-                    if let url = dictionary["coverImgUrl"] as? String {
-                        let storage = FIRStorage.storage()
-                        let storageRef = storage.reference(forURL: url)
-                        storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
-                            if error != nil {
-                                print("Unable to download image from firebase")
-                            } else {
-                                let coverImg = UIImage(data: data!)
-                                self.coverImg.image = coverImg
-                            }
-                        }
-                    }
+                if let userDict = snapshot.value as? Dictionary<String, AnyObject> {
+                    print(userDict)
+                    let user = User(userKey: userKey!, userData: userDict)
+                    self.user = user
+                }
+                if self.user != nil {
+                    print("Not nil")
+                    self.configureUser(self.user)
+                } else {
+                    print("No user info")
                 }
             })
         }
+        
+    }
+    
+    func configureUser(_ user: User) {
+        self.user = user
+        
+        self.username.title = user.username
+        self.fullNameLbl.text = user.name
+        self.parentsNameLbl.text = user.parentsName
+        self.locationLbl.text = user.location
+        self.bioLbl.text = user.about
+        //        self.followersLabel.text = String(user.followers)
+        //        self.followingLabel.text = String(user.following)
+        
+        if user.age != "" {
+            self.ageAndBreedLbl.text = user.age
+            if user.breed != "" {
+                self.ageAndBreedLbl.text = user.age + " " + user.breed
+            } else {
+                if user.species != "" {
+                    self.ageAndBreedLbl.text = user.age + " " + user.species
+                }
+            }
+        } else {
+            if user.breed != "" {
+                self.ageAndBreedLbl.text = user.breed
+            } else {
+                if user.species != "" {
+                    self.ageAndBreedLbl.text = user.species
+                }
+            }
+        }
+    }
+    
+    
+    func downloadViewUserContent() {
+        checkIfFollowing()
+        loadUserInfo()
+        downloadCollectionViewData()
+    }
+    
+    
+    func moreTapped() {
+        let alertController = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
+        let edit = UIAlertAction(title: "Edit", style: .default, handler: { (action) -> Void in
+            self.performSegue(withIdentifier: "ProfileVC", sender: nil)
+        })
+        let logOut = UIAlertAction(title: "Log Out", style: .destructive, handler: { (action) -> Void in
+            let alert = UIAlertController(title: nil, message: "Are you sure you want to log out?", preferredStyle: UIAlertControllerStyle.alert)
+            let confirmLogOut = UIAlertAction(title: "Log Out", style: .destructive, handler: { (action) -> Void in
+                KeychainWrapper.standard.removeObject(forKey: KEY_UID)
+                try! FIRAuth.auth()?.signOut()
+                self.performSegue(withIdentifier: "EntryVC", sender: nil)
+            })
+            let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+            }
+            alert.addAction(confirmLogOut)
+            alert.addAction(cancel)
+            
+            self.navigationController?.present(alert, animated: true, completion: nil)
+        })
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) -> Void in
+        })
+        alertController.addAction(edit)
+        alertController.addAction(logOut)
+        alertController.addAction(cancel)
+        
+        present(alertController, animated: true, completion: nil)
     }
 }

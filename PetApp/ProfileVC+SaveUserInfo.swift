@@ -32,7 +32,6 @@ extension ProfileVC {
                     }
                 })
             }
-//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshCurrentUserVC"), object: nil)
         } else {
             print("No profile image to save")
         }
@@ -54,47 +53,18 @@ extension ProfileVC {
                     }
                 })
             }
-//            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshCurrentUserVC"), object: nil)
         } else {
             print("No cover image to save")
         }
         //save profile info
-        if self.fullNameLbl.text != "" {
-            self.createUserInfo("full-name", value: self.fullNameLbl.text! as String)
-        } else {
-            self.removeUserInfo("full-name")
-        }
-        if self.parentsNameLbl.text != "" {
-            self.createUserInfo("parents-name", value: parentsNameLbl.text! as String)
-        } else {
-            self.removeUserInfo("parents-name")
-        }
-        if ageLbl.text != "" {
-            self.createUserInfo("age", value: ageLbl.text! as String)
-        } else {
-            self.removeUserInfo("age")
-        }
-        if speciesLbl.text != "" {
-            self.createUserInfo("species", value: speciesLbl.text! as String)
-        } else {
-            self.removeUserInfo("species")
-        }
-        if breedLbl.text != "" {
-            self.createUserInfo("breed", value: breedLbl.text! as String)
-        } else {
-            self.removeUserInfo("breed")
-        }
-        if locationLbl.text != "" {
-            self.createUserInfo("location", value: locationLbl.text! as String)
-        } else {
-            self.removeUserInfo("location")
-        }
-        if aboutLbl.text != "" {
-            self.createUserInfo("about", value: aboutLbl.text! as String)
-        } else {
-            self.removeUserInfo("about")
-        }
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshCurrentUserVC"), object: nil)
+        createUserInfo("full-name", value: self.fullNameLbl.text! as String)
+        createUserInfo("parents-name", value: parentsNameLbl.text! as String)
+        createUserInfo("age", value: ageLbl.text! as String)
+        createUserInfo("species", value: speciesLbl.text! as String)
+        createUserInfo("breed", value: breedLbl.text! as String)
+        createUserInfo("location", value: locationLbl.text! as String)
+        createUserInfo("about", value: aboutLbl.text! as String)
+//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshCurrentUserVC"), object: nil)
         _ = self.navigationController?.popViewController(animated: true)
     }
     
@@ -104,11 +74,6 @@ extension ProfileVC {
         ]
         let firebasePost = DataService.ds.REF_CURRENT_USER.child("user-info")
         firebasePost.updateChildValues(userInfo)
-    }
-    
-    func removeUserInfo(_ key: String) {
-        let userInfoRef = DataService.ds.REF_CURRENT_USER.child("user-info")
-        userInfoRef.child(key).removeValue()
     }
     
     func textFieldChanged(_ textField: UITextField) {

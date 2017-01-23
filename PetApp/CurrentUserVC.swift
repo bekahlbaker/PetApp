@@ -11,25 +11,17 @@ import Firebase
 import Kingfisher
 import SwiftKeychainWrapper
 
-class CurrentUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UINavigationBarDelegate {
+class CurrentUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UINavigationBarDelegate, UITableViewDelegate, UITableViewDataSource {
     
-    @IBOutlet weak var coverImg: UIImageView!
-    @IBOutlet weak var profileImg: CircleImage!
-    @IBOutlet weak var username: UINavigationItem!
-    @IBOutlet weak var fullNameLbl: UILabel!
-    @IBOutlet weak var ageAndBreedLbl: UILabel!
-    @IBOutlet weak var parentsNameLbl: UILabel!
-    @IBOutlet weak var locationLbl: UILabel!
-    @IBOutlet weak var aboutLbl: UILabel!
-    @IBOutlet weak var postsLbl: UILabel!
-    @IBOutlet weak var followingLbl: UILabel!
-    @IBOutlet weak var followersLbl: UILabel!
+    @IBOutlet weak var tableViewUser: UITableView!
+
     @IBOutlet weak var collectionView: UICollectionView!
     
-    @IBAction func moreBtnTapped(_ sender: Any) {
+    @IBAction func moreBtnTapped(_ sender: UIBarButtonItem) {
         self.moreTapped()
     }
  
+    var user: User!
     var posts = [Post]()
     static var userImageCache: NSCache<NSString, UIImage> = NSCache()
     static var postKeyToPass: String!
@@ -40,9 +32,13 @@ class CurrentUserVC: UIViewController, UICollectionViewDelegate, UICollectionVie
         
         self.automaticallyAdjustsScrollViewInsets = false
         self.navigationController!.view.backgroundColor = Color.white
+        self.navigationController?.title = "User"
         
         collectionView.dataSource = self
         collectionView.delegate = self
+        
+        tableViewUser.dataSource = self
+        tableViewUser.delegate = self
         
         let screenSize = UIScreen.main.bounds
         let screenWidth = screenSize.width
@@ -54,40 +50,38 @@ class CurrentUserVC: UIViewController, UICollectionViewDelegate, UICollectionVie
         layout.minimumLineSpacing = 0
         collectionView!.collectionViewLayout = layout
         
-        NotificationCenter.default.addObserver(self, selector: #selector(refreshInfo(notification:)), name:NSNotification.Name(rawValue: "refreshCurrentUserVC"), object: nil)
-        
+//        NotificationCenter.default.addObserver(self, selector: #selector(refreshInfo(notification:)), name:NSNotification.Name(rawValue: "refreshCurrentUserVC"), object: nil)
+        loadUserInfo(tableViewUser)
         downloadCollectionViewData()
-        downloadUserInfo()
-        setImgsFromCache()
+//        setImgsFromCache()
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//        downloadUserInfo()
+    override func viewDidAppear(_ animated: Bool) {
+        loadUserInfo(tableViewUser)
+    }
+    
+//    func refreshInfo(notification: NSNotification){
+//        setImgsFromCache()
 //    }
     
-    func refreshInfo(notification: NSNotification){
-        downloadUserInfo()
-        setImgsFromCache()
-    }
-    
-    func setImgsFromCache() {
-        DispatchQueue.global().async {
-            if ProfileVC.profileCache.object(forKey: "profileImg") != nil {
-                self.profileImg.image = ProfileVC.profileCache.object(forKey: "profileImg")
-                print("Using cached profile img")
-            }
-            if ProfileVC.coverCache.object(forKey: "coverImg") != nil {
-                self.coverImg.image = ProfileVC.coverCache.object(forKey: "coverImg")
-                print("Using cached cover Img")
-            }
-        }
-    }
+//    func setImgsFromCache() {
+//        DispatchQueue.global().async {
+//            if ProfileVC.profileCache.object(forKey: "profileImg") != nil {
+//                self.profileImg.image = ProfileVC.profileCache.object(forKey: "profileImg")
+//                print("Using cached profile img")
+//            }
+//            if ProfileVC.coverCache.object(forKey: "coverImg") != nil {
+//                self.coverImg.image = ProfileVC.coverCache.object(forKey: "coverImg")
+//                print("Using cached cover Img")
+//            }
+//        }
+//    }
     
     func downloadCollectionViewData() {
         DataService.ds.REF_CURRENT_USER.child("user-info").observeSingleEvent(of: .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: Any] {
                 if let currentUser = dictionary["username"] as? String {
-                    self.username.title = currentUser
+                    self.navigationController?.title = currentUser
                     DataService.ds.REF_POSTS.queryOrdered(byChild: "username").queryEqual(toValue: currentUser).observeSingleEvent(of: .value, with: { (snapshot) in
                         self.posts = []
                         if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
@@ -100,7 +94,7 @@ class CurrentUserVC: UIViewController, UICollectionViewDelegate, UICollectionVie
                             }
                         }
                         self.collectionView.reloadData()
-                        self.postsLbl.text = String(self.posts.count)
+//                        self.postsLbl.text = String(self.posts.count)
                     })
                 }
             }
