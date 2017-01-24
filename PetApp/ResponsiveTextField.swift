@@ -20,6 +20,12 @@ import UIKit
 
 class ResponsiveTextFieldViewController : UIViewController {
     
+    @IBOutlet var swipeGesture: UISwipeGestureRecognizer!
+    @IBAction func swipeDetected(_ sender: Any) {
+        if swipeGesture.direction == UISwipeGestureRecognizerDirection.down {
+            NotificationCenter.default.post(name: NSNotification.Name.UIKeyboardWillHide, object: nil)   
+        }
+    }
     var kPreferredTextFieldToKeyboardOffset: CGFloat = 20.0
     var keyboardFrame: CGRect = CGRect.null
     var keyboardIsShowing: Bool = false
@@ -73,27 +79,27 @@ class ResponsiveTextFieldViewController : UIViewController {
         let targetPointOffset: CGFloat = targetTextFieldLowerPoint.y - convertedTextFieldLowerPoint.y
         let adjustedViewFrameCenter: CGPoint = CGPoint(x:self.view.center.x, y:self.view.center.y + targetPointOffset - 16.0)
         
-        UIView.animate(withDuration: 0.2, animations:  {
+        UIView.animate(withDuration: 0.1, animations:  {
             self.view.center = adjustedViewFrameCenter
         })
     }
     
     func returnViewToInitialFrame() {
-        let initialViewRect: CGRect = CGRect(x:0.0, y:0.0, width:self.view.frame.size.width, height:self.view.frame.size.height)
+        let initialViewRect: CGRect = CGRect(x:0.0, y:0.0, width:self.view.frame.size.width, height:self.view.frame.size.height + 32.0)
         if (!initialViewRect.equalTo(self.view.frame)) {
-            UIView.animate(withDuration: 0.2, animations: {
+            UIView.animate(withDuration: 0.1, animations: {
                 self.view.frame = initialViewRect
             })
         }
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        if (self.activeTextField != nil) {
-            self.activeTextField?.resignFirstResponder()
-            self.activeTextField = nil
-        }
-    }
-    
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        if (self.activeTextField != nil) {
+//            self.activeTextField?.resignFirstResponder()
+//            self.activeTextField = nil
+//        }
+//    }
+//    
     func textFieldDidReturn(_ textField: UITextField!) {
         textField.resignFirstResponder()
         self.activeTextField = nil

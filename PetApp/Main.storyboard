@@ -1418,7 +1418,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="c8B-Dj-dpd">
-                                <rect key="frame" x="0.0" y="20" width="375" height="601"/>
+                                <rect key="frame" x="0.0" y="36" width="375" height="615"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <view key="tableFooterView" userInteractionEnabled="NO" contentMode="scaleToFill" id="VuV-mc-Kes">
@@ -1435,7 +1435,7 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="  COMMENT" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JdB-fk-ys3">
-                                                    <rect key="frame" x="16" y="43" width="343" height="27"/>
+                                                    <rect key="frame" x="16" y="43" width="343" height="26"/>
                                                     <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -1494,6 +1494,9 @@
                                         <integer key="value" value="140"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outlet property="delegate" destination="gIc-dY-15p" id="qHx-07-pR1"/>
+                                </connections>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L7a-wv-I5n">
                                 <rect key="frame" x="324" y="619" width="35" height="35"/>
@@ -1508,21 +1511,23 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="JNJ-Te-h3w" firstAttribute="leading" secondItem="6QE-qe-zJy" secondAttribute="leadingMargin" id="0bH-8R-GsY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="L7a-wv-I5n" secondAttribute="trailing" id="8Sl-hG-S6l"/>
-                            <constraint firstItem="c8B-Dj-dpd" firstAttribute="top" secondItem="o9e-QN-4iH" secondAttribute="bottom" id="EdU-Op-8Ih"/>
+                            <constraint firstItem="c8B-Dj-dpd" firstAttribute="top" secondItem="o9e-QN-4iH" secondAttribute="bottom" constant="16" id="EdU-Op-8Ih"/>
                             <constraint firstItem="R5n-vL-Fzd" firstAttribute="top" secondItem="JNJ-Te-h3w" secondAttribute="bottom" constant="16" id="Gzt-GR-6cd"/>
                             <constraint firstItem="L7a-wv-I5n" firstAttribute="leading" secondItem="JNJ-Te-h3w" secondAttribute="trailing" constant="8" id="K3j-vJ-Zr4"/>
                             <constraint firstAttribute="trailing" secondItem="c8B-Dj-dpd" secondAttribute="trailing" id="KfH-T9-Zad"/>
                             <constraint firstItem="c8B-Dj-dpd" firstAttribute="leading" secondItem="6QE-qe-zJy" secondAttribute="leading" id="Rmg-fp-kxn"/>
-                            <constraint firstItem="JNJ-Te-h3w" firstAttribute="top" secondItem="c8B-Dj-dpd" secondAttribute="bottom" id="ZNC-MI-gKa"/>
+                            <constraint firstItem="c8B-Dj-dpd" firstAttribute="bottom" secondItem="JNJ-Te-h3w" secondAttribute="bottom" id="p9p-VN-rb3"/>
                             <constraint firstItem="L7a-wv-I5n" firstAttribute="centerY" secondItem="JNJ-Te-h3w" secondAttribute="centerY" id="zjh-cf-uzo"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <connections>
-                        <outlet property="commentTextField" destination="JNJ-Te-h3w" id="Qcr-Ru-AvN"/>
+                        <outlet property="bottomContraint" destination="Gzt-GR-6cd" id="GSC-gm-rZC"/>
+                        <outlet property="commentTextField" destination="JNJ-Te-h3w" id="jmV-1n-5Rn"/>
                         <outlet property="tableView" destination="c8B-Dj-dpd" id="Os4-w6-see"/>
                         <segue destination="avS-e6-anj" kind="show" identifier="toFeedVC" id="SMi-fh-w0v"/>
                         <segue destination="ABA-se-GwR" kind="show" identifier="ViewUserVC" id="Wyi-JM-08t"/>
@@ -2296,7 +2301,7 @@
         <segue reference="SMi-fh-w0v"/>
         <segue reference="61E-j1-iUC"/>
         <segue reference="Ioz-ly-Xrt"/>
-        <segue reference="Lqk-g8-n0s"/>
+        <segue reference="VOj-p2-r25"/>
         <segue reference="SDZ-21-9fi"/>
     </inferredMetricsTieBreakers>
 </document>

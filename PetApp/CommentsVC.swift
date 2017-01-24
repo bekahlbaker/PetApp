@@ -10,16 +10,20 @@ import UIKit
 import Firebase
 import SwiftKeychainWrapper
 
-class CommentsVC: ResponsiveTextFieldViewController, UITableViewDelegate, UITableViewDataSource {
+class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var scrollView: UIScrollView!
     
     var commentKey: String!
     var comments = [Comment]()
     var postKeyPassed: String!
     var commentCount = 0
     var currentUsername: String!
-
+    var keyBoardActive = false
+    var originalBottomConstraint: CGFloat!
+    
     @IBAction func commentBtnTapped(_ sender: AnyObject) {
         if self.commentTextField.text != "" {
             postToFirebase()
@@ -38,6 +42,12 @@ class CommentsVC: ResponsiveTextFieldViewController, UITableViewDelegate, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.commentTextField.delegate = self
+        
+        self.originalBottomConstraint = self.bottomContraint.constant
+        
+        self.commentTextField.returnKeyType = UIReturnKeyType.done
         
         self.automaticallyAdjustsScrollViewInsets = false
         
@@ -72,8 +82,9 @@ class CommentsVC: ResponsiveTextFieldViewController, UITableViewDelegate, UITabl
         let firebasePost = DataService.ds.REF_POSTS.child(self.postKeyPassed)
         firebasePost.updateChildValues(["commentCount": self.commentCount])
         firebasePost.child("comments").childByAutoId().setValue(comment)
+        NotificationCenter.default.post(name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
-
+    
     func alert(sender: UIBarButtonItem) {
         if self.commentTextField.text != "" {
             let alert = UIAlertController(title: "", message: "If you cancel now, your comment will be discarded.", preferredStyle: UIAlertControllerStyle.alert)
@@ -90,8 +101,5 @@ class CommentsVC: ResponsiveTextFieldViewController, UITableViewDelegate, UITabl
         }
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        view.endEditing(true)
-        super.touchesBegan(touches, with: event)
-    }
+    @IBOutlet weak var bottomContraint: NSLayoutConstraint!
 }

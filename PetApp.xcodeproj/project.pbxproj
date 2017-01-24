@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27017B351E38029200DD090D /* CommentsVC+TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27017B341E38029200DD090D /* CommentsVC+TextField.swift */; };
 		27166B101DCCE63800A57821 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27166B0F1DCCE63800A57821 /* AppDelegate.swift */; };
 		27166B121DCCE63800A57821 /* SignInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27166B111DCCE63800A57821 /* SignInVC.swift */; };
 		27166B171DCCE63800A57821 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 27166B161DCCE63800A57821 /* Assets.xcassets */; };
@@ -63,6 +64,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		27017B341E38029200DD090D /* CommentsVC+TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CommentsVC+TextField.swift"; sourceTree = "<group>"; };
 		27166B0C1DCCE63800A57821 /* PetApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PetApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		27166B0F1DCCE63800A57821 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		27166B111DCCE63800A57821 /* SignInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInVC.swift; sourceTree = "<group>"; };
@@ -222,16 +224,16 @@
 				27166B2C1DCCF67500A57821 /* RoundedBorderClearBackgroundButton.swift */,
 				274994771DD0EDC50015B6F8 /* CircleImage.swift */,
 				274474461DD6A5DA007EBABF /* UserPicCell.swift */,
-				2744744A1DD7965C007EBABF /* FeedCell.swift */,
 				2744744C1DD8EF78007EBABF /* DropShadow.swift */,
 				274474521DDE1B5E007EBABF /* NavBarDropShadow.swift */,
 				27BD7DEB1DDF935300B9DB9A /* TextFieldMaxLengths.swift */,
+				2744744A1DD7965C007EBABF /* FeedCell.swift */,
 				2778F4081E007955009BCF65 /* SinglePhotoCell.swift */,
 				278B91F41E088C1C00918312 /* CommentCell.swift */,
-				271F085A1E2835C000A8B867 /* ResponsiveTextField.swift */,
 				279F2FA91E316CC000DD2A7B /* LeftToRightSegue.swift */,
 				279F2FAB1E316E3400DD2A7B /* RIghtToLeftSegue.swift */,
 				279F2FAF1E326CC200DD2A7B /* UserCell.swift */,
+				271F085A1E2835C000A8B867 /* ResponsiveTextField.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -266,6 +268,7 @@
 				279F2FA51E313CE700DD2A7B /* ViewUserVC+UserInfo.swift */,
 				279F2FA31E313B8700DD2A7B /* UserListVC+Search.swift */,
 				279F2FB91E355E8900DD2A7B /* CurrentUserVC+TableViewUser.swift */,
+				27017B341E38029200DD090D /* CommentsVC+TextField.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -435,6 +438,7 @@
 				2788DE481DEF614500078A41 /* ViewUserVC.swift in Sources */,
 				27166B2D1DCCF67500A57821 /* RoundedBorderClearBackgroundButton.swift in Sources */,
 				27166B121DCCE63800A57821 /* SignInVC.swift in Sources */,
+				27017B351E38029200DD090D /* CommentsVC+TextField.swift in Sources */,
 				274474431DD6929B007EBABF /* CurrentUserVC.swift in Sources */,
 				2788DE511DF2086D00078A41 /* PostCaptionVC+TextView.swift in Sources */,
 				279F2FB61E326DB800DD2A7B /* UserVC.swift in Sources */,
