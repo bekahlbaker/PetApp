@@ -23,6 +23,7 @@ extension CommentsVC {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let comment = comments[indexPath.row]
         if let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell") as? CommentCell {
+            cell.delegate = self
             cell.configureCell(self.postKeyPassed, comment: comment)
             
             DataService.ds.REF_USERS.child(comment.userKey).child("user-info").observe( .value, with:  { (snapshot) in
@@ -80,6 +81,7 @@ extension CommentsVC {
                     for snap in snapshot {
                         if let postDict = snap.value as? Dictionary<String, AnyObject> {
                             let key = snap.key
+                            self.commentKey = key
                             let comment = Comment(postKey: key, postData: postDict)
                             self.comments.append(comment)
                         }
@@ -102,5 +104,13 @@ extension CommentsVC {
                 }
             }
         })
+    }
+    
+    func refreshList(notification: NSNotification){
+        downloadCommentData()
+    }
+    
+    func deleteComment() {
+        DataService.ds.REF_POSTS.child(self.postKeyPassed).child("comments").child(self.commentKey).removeValue()
     }
 }

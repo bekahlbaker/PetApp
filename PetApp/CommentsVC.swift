@@ -14,11 +14,12 @@ class CommentsVC: ResponsiveTextFieldViewController, UITableViewDelegate, UITabl
     
     @IBOutlet weak var tableView: UITableView!
     
+    var commentKey: String!
     var comments = [Comment]()
     var postKeyPassed: String!
     var commentCount = 0
     var currentUsername: String!
-    
+
     @IBAction func commentBtnTapped(_ sender: AnyObject) {
         if self.commentTextField.text != "" {
             postToFirebase()
@@ -49,6 +50,9 @@ class CommentsVC: ResponsiveTextFieldViewController, UITableViewDelegate, UITabl
         self.navigationItem.hidesBackButton = true
         let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(alert(sender:)))
         self.navigationItem.leftBarButtonItem = newBackButton
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshList(notification:)), name:NSNotification.Name(rawValue: "refreshCommentTableView"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(deleteComment), name:NSNotification.Name(rawValue: "deleteComment"), object: nil)
         
         self.title = "Comments"
         
