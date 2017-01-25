@@ -13,23 +13,20 @@ import SwiftKeychainWrapper
 class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     
     @IBOutlet weak var tableView: UITableView!
-    
-    @IBOutlet weak var scrollView: UIScrollView!
-    
+
     var commentKey: String!
     var comments = [Comment]()
-    var postKeyPassed: String!
-    var commentCount = 0
+    static var postKeyPassed: String!
     var currentUsername: String!
     var keyBoardActive = false
     var originalBottomConstraint: CGFloat!
+    var originalBottomViewConstraint: CGFloat!
     
     @IBAction func commentBtnTapped(_ sender: AnyObject) {
         if self.commentTextField.text != "" {
             postToFirebase()
             commentTextField.text = ""
             commentTextField.resignFirstResponder()
-            self.getCommentCount()
         } else {
             let alert = UIAlertController(title: "Please enter a comment", message: nil, preferredStyle: UIAlertControllerStyle.alert);
             let ok = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
@@ -39,13 +36,13 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     }
     @IBOutlet weak var commentTextField: UITextField!
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.commentTextField.delegate = self
         
         self.originalBottomConstraint = self.bottomContraint.constant
+        self.originalBottomViewConstraint = self.bottomViewConstraint.constant
         
         self.commentTextField.returnKeyType = UIReturnKeyType.done
         
@@ -79,10 +76,10 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             "username" : self.currentUsername as String,
             "userKey": KeychainWrapper.standard.string(forKey: KEY_UID)! as String
         ]
-        let firebasePost = DataService.ds.REF_POSTS.child(self.postKeyPassed)
-        firebasePost.updateChildValues(["commentCount": self.commentCount])
+        let firebasePost = DataService.ds.REF_POSTS.child(CommentsVC.postKeyPassed)
         firebasePost.child("comments").childByAutoId().setValue(comment)
         NotificationCenter.default.post(name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "adjustCommentCountTrue"), object: nil)
     }
     
     func alert(sender: UIBarButtonItem) {
@@ -102,4 +99,5 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     }
     
     @IBOutlet weak var bottomContraint: NSLayoutConstraint!
+    @IBOutlet weak var bottomViewConstraint: NSLayoutConstraint!
 }

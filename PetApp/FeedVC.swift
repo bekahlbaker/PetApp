@@ -55,5 +55,8 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
             let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
             ViewUserVC.usernamePassed = userKey
         }
+        if segue.identifier == "CommentsVC" {
+            CommentsVC.postKeyPassed = FeedVC.postKeyToPass
+        }
     }
 }

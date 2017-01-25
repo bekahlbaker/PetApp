@@ -115,7 +115,7 @@ class Post {
             _commentCount = _commentCount - 1
         }
         
-        _postRef.updateChildValues(["commentCount": commentCount])
+        DataService.ds.REF_POSTS.child(_postKey).updateChildValues(["commentCount": commentCount])
     }
 
 }

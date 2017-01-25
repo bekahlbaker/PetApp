@@ -83,6 +83,13 @@ extension FeedVC {
                             self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
                         }
                     }
+                    cell.tapActionComments = { (cell) in
+                        FeedVC.postKeyToPass = post.postKey
+                        print(FeedVC.postKeyToPass)
+                        if FeedVC.postKeyToPass != nil {
+                            self.performSegue(withIdentifier: "CommentsVC", sender: nil)
+                        }
+                    }
                 }
                 return cell
             } else {

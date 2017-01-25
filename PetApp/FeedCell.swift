@@ -78,6 +78,12 @@ class FeedCell: UITableViewCell {
         tapActionUsername?(self)
     }
     var tapActionUsername: ((UITableViewCell) -> Void)?
+    
+    @IBAction func viewCommentsTapped(_ sender: Any) {
+        tapActionComments?(self)
+    }
+    var tapActionComments: ((UITableViewCell) -> Void)?
+    
     var post: Post!
     var likesRef: FIRDatabaseReference!
     static var isConfigured: Bool!
@@ -91,6 +97,9 @@ class FeedCell: UITableViewCell {
         tap.numberOfTapsRequired = 1
         likesImg.addGestureRecognizer(tap)
         likesImg.isUserInteractionEnabled = true
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustCommentCountTrue(notification:)), name:NSNotification.Name(rawValue: "adjustCommentCountTrue"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustCommentCountFalse(notification:)), name:NSNotification.Name(rawValue: "adjustCommentCountFalse"), object: nil)
     }
     
     func configureCell(_ post: Post) {
@@ -190,5 +199,39 @@ class FeedCell: UITableViewCell {
                 }
             }
         })
+    }
+    
+    func adjustCommentCountTrue(notification: NSNotification) {
+
+            DataService.ds.REF_POSTS.child(post.postKey).child("commentCount").observeSingleEvent(of: .value, with: { (snapshot) in
+
+                self.post.adjustCommentCount(true)
+
+//                if let _ = snapshot.value as? NSNull {
+//                    print("No comments")
+//                } else {
+//                    if let count = snapshot.value as? Int {
+//                        print(count)
+//                    }
+//                }
+            })
+
+    }
+    
+    func adjustCommentCountFalse(notification: NSNotification) {
+        
+        DataService.ds.REF_POSTS.child(post.postKey).child("commentCount").observeSingleEvent(of: .value, with: { (snapshot) in
+
+                self.post.adjustCommentCount(false)
+
+            //                if let _ = snapshot.value as? NSNull {
+            //                    print("No comments")
+            //                } else {
+            //                    if let count = snapshot.value as? Int {
+            //                        print(count)
+            //                    }
+            //                }
+        })
+        
     }
 }

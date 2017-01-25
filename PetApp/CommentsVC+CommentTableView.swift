@@ -24,7 +24,7 @@ extension CommentsVC {
         let comment = comments[indexPath.row]
         if let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell") as? CommentCell {
             cell.delegate = self
-            cell.configureCell(self.postKeyPassed, comment: comment)
+            cell.configureCell(CommentsVC.postKeyPassed, comment: comment)
             
             DataService.ds.REF_USERS.child(comment.userKey).child("user-info").observe( .value, with:  { (snapshot) in
                 if let dictionary = snapshot.value as? [String: Any] {
@@ -73,9 +73,8 @@ extension CommentsVC {
     
     func downloadCommentData() {
         if FeedVC.postKeyToPass != nil {
-            self.postKeyPassed = FeedVC.postKeyToPass
-            self.getCommentCount()
-            DataService.ds.REF_POSTS.child(self.postKeyPassed).child("comments").observe(.value, with: { (snapshot) in
+            CommentsVC.postKeyPassed = FeedVC.postKeyToPass
+            DataService.ds.REF_POSTS.child(CommentsVC.postKeyPassed).child("comments").observe(.value, with: { (snapshot) in
                 self.comments = []
                 if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     for snap in snapshot {
@@ -95,22 +94,13 @@ extension CommentsVC {
             _ = self.navigationController?.popViewController(animated: true)
         }
     }
-
-    func getCommentCount() {
-        DataService.ds.REF_POSTS.child(self.postKeyPassed).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String: Any] {
-                if let currentCount = dictionary["commentCount"] as? Int {
-                    self.commentCount = currentCount + 1
-                }
-            }
-        })
-    }
     
     func refreshList(notification: NSNotification){
         downloadCommentData()
     }
     
     func deleteComment() {
-        DataService.ds.REF_POSTS.child(self.postKeyPassed).child("comments").child(self.commentKey).removeValue()
+        DataService.ds.REF_POSTS.child(CommentsVC.postKeyPassed).child("comments").child(self.commentKey).removeValue()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "adjustCommentCountFalse"), object: nil)
     }
 }

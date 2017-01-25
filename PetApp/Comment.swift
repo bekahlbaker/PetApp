@@ -15,6 +15,7 @@ class Comment {
     fileprivate var _username: String!
     fileprivate var _postKey: String!
     fileprivate var _userKey: String!
+    fileprivate var _commentCount: Int!
     
     var comment: String {
         return _comment
@@ -32,7 +33,11 @@ class Comment {
         return _userKey
     }
     
-    init(comment: String, username: String, userKey: String) {
+    var commentCount: Int {
+        return _commentCount
+    }
+    
+    init(comment: String, username: String, userKey: String, commentCount: Int) {
         self._comment = comment
         self._username = username
         self._userKey = userKey
@@ -52,5 +57,15 @@ class Comment {
         if let userKey = postData["userKey"] as? String {
             self._userKey = userKey
         }
+    }
+    
+    func adjustCommentCount(_ addComment: Bool, postKey: String) {
+        if addComment {
+            _commentCount = _commentCount + 1
+        } else {
+            _commentCount = _commentCount - 1
+        }
+        
+        DataService.ds.REF_POSTS.child(postKey).updateChildValues(["commentCount": commentCount])
     }
 }

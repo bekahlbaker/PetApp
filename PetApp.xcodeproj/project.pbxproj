@@ -262,13 +262,13 @@
 				2788DE4A1DF09F6C00078A41 /* PostVC+CoreImage.swift */,
 				2788DE501DF2086D00078A41 /* PostCaptionVC+TextView.swift */,
 				278B91F21E0889BE00918312 /* CommentsVC+CommentTableView.swift */,
+				27017B341E38029200DD090D /* CommentsVC+TextField.swift */,
 				2719A1461E1AB37B001A901F /* ProfileVC+SaveUserInfo.swift */,
 				271F085C1E3135BD00A8B867 /* FeedVC+FeedTableView.swift */,
 				279F2FA11E313A8400DD2A7B /* ViewUserVC+Follow.swift */,
 				279F2FA51E313CE700DD2A7B /* ViewUserVC+UserInfo.swift */,
 				279F2FA31E313B8700DD2A7B /* UserListVC+Search.swift */,
 				279F2FB91E355E8900DD2A7B /* CurrentUserVC+TableViewUser.swift */,
-				27017B341E38029200DD090D /* CommentsVC+TextField.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
