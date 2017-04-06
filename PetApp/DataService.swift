@@ -73,19 +73,19 @@ class DataService {
         REF_USERS.child(uid).child("user-personal").updateChildValues(userData)
     }
     
-    func firebaseAuthenticate(_ credential: FIRAuthCredential) {
-        FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
-            if error != nil {
-                print("Unable to authenticate with Firebase - \(error)")
-            } else {
-                print("Successfully autheticated with FIrebase")
-                if let user = user {
-                    let userData = ["provider": credential.provider]
-                    self.completeSignIn(user.uid, userData: userData)
-                }
-            }
-        })
-    }
+//    func firebaseAuthenticate(_ credential: FIRAuthCredential) {
+//        FIRAuth.auth()?.signIn(with: credential, completion: { (user, error) in
+//            if error != nil {
+//                print("Unable to authenticate with Firebase - \(error)")
+//            } else {
+//                print("Successfully autheticated with FIrebase")
+//                if let user = user {
+//                    let userData = ["provider": credential.provider]
+//                    self.completeSignIn(user.uid, userData: userData)
+//                }
+//            }
+//        })
+//    }
     
     func completeSignIn(_ id: String, userData: Dictionary<String, String>) {
         DataService.ds.createFirebaseDBUser(id, userData: userData)

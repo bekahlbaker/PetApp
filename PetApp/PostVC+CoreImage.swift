@@ -6,11 +6,11 @@
 //  Copyright © 2016 Rebekah Baker. All rights reserved.
 //  https:code.tutsplus.com/tutorials/ios-sdk-apply-photo-filters-with-core-image-in-swift--cms-27142
 //
+// swiftlint:disable force_cast
 
 import UIKit
 
 extension PostVC {
-    
     func filterButtonTapped(_ sender: UIButton) {
         let button = sender as UIButton
         imageToFilter.image = button.image(for: UIControlState.normal)
@@ -21,7 +21,7 @@ extension PostVC {
     func addFiltersToButtons(_ imageUnfiltered: UIImage) {
         var xCoord: CGFloat = 5
         let yCoord: CGFloat = 5
-        let buttonWidth:CGFloat = 80
+        let buttonWidth: CGFloat = 80
         let buttonHeight: CGFloat = 80
         let gapBetweenButtons: CGFloat = 5
         
@@ -44,7 +44,7 @@ extension PostVC {
             filter!.setValue(coreImage, forKey: kCIInputImageKey)
             let filteredImageData = filter!.value(forKey: kCIOutputImageKey) as! CIImage
             let filteredImageRef = ciContext.createCGImage(filteredImageData, from: filteredImageData.extent)
-            let imageForButton = UIImage(cgImage: filteredImageRef!);
+            let imageForButton = UIImage(cgImage: filteredImageRef!)
             
             // Assign filtered image to the button
             if itemCount == 0 {
@@ -77,7 +77,6 @@ extension PostVC {
         picker.dismiss(animated: true, completion: nil)
         self.addImageBtn.setTitle("", for: .normal)
     }
-    
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         PostVC.imageSelected = false
         dismiss(animated: true, completion: nil)

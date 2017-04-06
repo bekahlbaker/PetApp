@@ -13,7 +13,7 @@ pod 'Firebase/Storage'
 pod 'FirebaseUI/Storage'
 pod 'SwiftKeychainWrapper'
 pod 'Kingfisher', '~> 3.0'
-
+pod 'SwiftLint'
 
 
 end

@@ -85,7 +85,6 @@ extension ProfileVC {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage
-        
         if imagePicked == 1 {
             coverPhoto.image = pickedImage
         } else if imagePicked == 2 {
@@ -96,7 +95,6 @@ extension ProfileVC {
         ProfileVC.coverCache.removeAllObjects()
         dismiss(animated: true, completion: nil)
     }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
         super.touchesBegan(touches, with: event)

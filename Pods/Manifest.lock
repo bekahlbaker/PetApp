@@ -52,6 +52,7 @@ PODS:
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
   - SwiftKeychainWrapper (3.0.1)
+  - SwiftLint (0.16.1)
 
 DEPENDENCIES:
   - Firebase/Auth
@@ -61,6 +62,7 @@ DEPENDENCIES:
   - FirebaseUI/Storage
   - Kingfisher (~> 3.0)
   - SwiftKeychainWrapper
+  - SwiftLint
 
 SPEC CHECKSUMS:
   Firebase: b8134e285eb33201115bc688bc5d7f112923bc1f
@@ -78,7 +80,8 @@ SPEC CHECKSUMS:
   Kingfisher: 8d80f39da403cd9c9ee11984e1655f4d6a566cdb
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
+  SwiftLint: b8b683208cc09640898f16318a7a452274e91f61
 
-PODFILE CHECKSUM: 66b31c90fc8611327d1094b3e30c4b1a3fcc3eea
+PODFILE CHECKSUM: 45715f2435a097671113cc2e8a20e7bff843ced7
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.1.1

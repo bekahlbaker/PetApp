@@ -9,7 +9,6 @@
 import UIKit
 
 extension PostCaptionVC {
-    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         
         textField.resignFirstResponder()
@@ -27,7 +26,6 @@ extension PostCaptionVC {
             textView.textColor = UIColor.black
         }
     }
-    
     func textViewDidEndEditing(_ textView: UITextView) {
         if textView.text.isEmpty {
             textView.text = "Write a caption..."

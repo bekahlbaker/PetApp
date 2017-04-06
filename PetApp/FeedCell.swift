@@ -202,35 +202,19 @@ class FeedCell: UITableViewCell {
     }
     
     func adjustCommentCountTrue(notification: NSNotification) {
-
-            DataService.ds.REF_POSTS.child(post.postKey).child("commentCount").observeSingleEvent(of: .value, with: { (snapshot) in
-
-                self.post.adjustCommentCount(true)
-
-//                if let _ = snapshot.value as? NSNull {
-//                    print("No comments")
-//                } else {
-//                    if let count = snapshot.value as? Int {
-//                        print(count)
-//                    }
-//                }
-            })
-
+        
+        DataService.ds.REF_POSTS.child(post.postKey).child("commentCount").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            self.post.adjustCommentCount(true)
+        })
+        
     }
     
     func adjustCommentCountFalse(notification: NSNotification) {
         
         DataService.ds.REF_POSTS.child(post.postKey).child("commentCount").observeSingleEvent(of: .value, with: { (snapshot) in
-
-                self.post.adjustCommentCount(false)
-
-            //                if let _ = snapshot.value as? NSNull {
-            //                    print("No comments")
-            //                } else {
-            //                    if let count = snapshot.value as? Int {
-            //                        print(count)
-            //                    }
-            //                }
+            
+            self.post.adjustCommentCount(false)
         })
         
     }

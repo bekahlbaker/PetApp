@@ -10,23 +10,19 @@ import UIKit
 import Firebase
 
 extension CommentsVC {
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return comments.count
     }
-    
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let comment = comments[indexPath.row]
         if let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell") as? CommentCell {
             cell.delegate = self
             cell.configureCell(CommentsVC.postKeyPassed, comment: comment)
             
-            DataService.ds.REF_USERS.child(comment.userKey).child("user-info").observe( .value, with:  { (snapshot) in
+            DataService.ds.REF_USERS.child(comment.userKey).child("user-info").observe( .value, with: { (snapshot) in
                 if let dictionary = snapshot.value as? [String: Any] {
                     if let profileURL = dictionary["profileImgUrl"] as? String {
                         let ref = FIRStorage.storage().reference(forURL: profileURL)
@@ -40,7 +36,6 @@ extension CommentsVC {
                                     }
                                 }
                             }
-                            
                         })
                     }
                 }
@@ -60,9 +55,8 @@ extension CommentsVC {
             performSegue(withIdentifier: "ViewUserVC", sender: nil)
         }
     }
-    
     func getUsername() {
-        DataService.ds.REF_CURRENT_USER.child("user-info").observe(.value, with:  { (snapshot) in
+        DataService.ds.REF_CURRENT_USER.child("user-info").observe(.value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: Any] {
                 if let currentUser = dictionary["username"] as? String {
                     self.currentUsername = currentUser as String!
@@ -70,7 +64,6 @@ extension CommentsVC {
             }
         })
     }
-    
     func downloadCommentData() {
         if FeedVC.postKeyToPass != nil {
             CommentsVC.postKeyPassed = FeedVC.postKeyToPass
@@ -78,7 +71,7 @@ extension CommentsVC {
                 self.comments = []
                 if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     for snap in snapshot {
-                        if let postDict = snap.value as? Dictionary<String, AnyObject> {
+                        if let postDict = snap.value as? [String: AnyObject] {
                             let key = snap.key
                             self.commentKey = key
                             let comment = Comment(postKey: key, postData: postDict)
@@ -94,11 +87,9 @@ extension CommentsVC {
             _ = self.navigationController?.popViewController(animated: true)
         }
     }
-    
-    func refreshList(notification: NSNotification){
+    func refreshList(notification: NSNotification) {
         downloadCommentData()
     }
-    
     func deleteComment() {
         DataService.ds.REF_POSTS.child(CommentsVC.postKeyPassed).child("comments").child(self.commentKey).removeValue()
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "adjustCommentCountFalse"), object: nil)
