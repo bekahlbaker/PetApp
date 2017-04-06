@@ -11,7 +11,7 @@ An instagram-like app just for your pets!
 
 ## Versioning
 
-1.1
+Still a work in progress.
 
 ## Authors
 

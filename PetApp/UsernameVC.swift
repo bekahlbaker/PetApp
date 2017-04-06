@@ -15,12 +15,16 @@ class UsernameVC: UIViewController, UITextFieldDelegate {
         if usernameTextField.text == "" {
             self.errorLbl.text = "Please enter a username."
         } else {
-            let userInfo: [String: Any] = [
-                "username": usernameTextField.text! as String]
-            DataService.ds.REF_ACTIVE_USERS.updateChildValues(["\(self.usernameTextField.text!)": true])
-            DataService.ds.REF_CURRENT_USER.child("user-personal").updateChildValues(userInfo)
-            DataService.ds.REF_CURRENT_USER.child("user-info").updateChildValues(userInfo)
-            performSegue(withIdentifier: "toProfileVC", sender: nil)
+            if (usernameTextField.text?.characters.contains { [".", "#", "$", "[", "]"].contains( $0 ) })! {
+                self.errorLbl.text = "Username cannot contain \n '.' '#' '$' '[' or ']' \n please try again."
+            } else {
+                let userInfo: [String: Any] = [
+                    "username": usernameTextField.text! as String]
+                DataService.ds.REF_ACTIVE_USERS.updateChildValues(["\(self.usernameTextField.text!)": true])
+                DataService.ds.REF_CURRENT_USER.child("user-personal").updateChildValues(userInfo)
+                DataService.ds.REF_CURRENT_USER.child("user-info").updateChildValues(userInfo)
+                performSegue(withIdentifier: "toProfileVC", sender: nil)
+            }
         }
     }
     var usernameTaken = false
