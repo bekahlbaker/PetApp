@@ -21,22 +21,17 @@ class UserCell: UITableViewCell {
     @IBOutlet weak var followersLabel: UILabel!
     @IBOutlet weak var followingLabel: UILabel!
     @IBOutlet weak var postsLabel: UILabel!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
-        
     }
-    
     func configureUser(_ user: User) {
         self.user = user
-        
         self.nameLabel.text = user.name
         self.parentsNameLabel.text = user.parentsName
         self.locationLabel.text = user.location
         self.aboutLabel.text = user.about
 //        self.followersLabel.text = String(user.followers)
 //        self.followingLabel.text = String(user.following)
-        
         if user.age != "" {
             self.ageBreedSpeciesLabel.text = user.age
             if user.breed != "" {

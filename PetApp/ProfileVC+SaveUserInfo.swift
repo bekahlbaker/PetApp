@@ -20,7 +20,6 @@ extension ProfileVC {
             let imageName = UUID().uuidString
             let metadata = FIRStorageMetadata()
             metadata.contentType = "image/png"
-            
             if let uploadData = UIImagePNGRepresentation(self.profileImg.image!) {
                 DataService.ds.REF_USER_PROFILE.child(imageName).put(uploadData, metadata: metadata, completion: { (metadata, error) in
                     if error != nil {
@@ -41,7 +40,6 @@ extension ProfileVC {
             let coverImageName = UUID().uuidString
             let coverMetadata = FIRStorageMetadata()
             coverMetadata.contentType = "image/png"
-            
             if let uploadData = UIImagePNGRepresentation(self.coverPhoto.image!) {
                 DataService.ds.REF_USER_COVER.child(coverImageName).put(uploadData, metadata: coverMetadata, completion: { (metadata, error) in
                     if error != nil {
@@ -67,22 +65,19 @@ extension ProfileVC {
 //        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshCurrentUserVC"), object: nil)
         _ = self.navigationController?.popViewController(animated: true)
     }
-    
     func createUserInfo(_ key: String, value: String) {
-        let userInfo: Dictionary<String, Any> = [
+        let userInfo: [String: Any] = [
             key: value
         ]
         let firebasePost = DataService.ds.REF_CURRENT_USER.child("user-info")
         firebasePost.updateChildValues(userInfo)
     }
-    
     func textFieldChanged(_ textField: UITextField) {
         let ageEntered = ageLbl.text
         if textField.text != "" {
             textField.text = "\(ageEntered!) yo"
         }
     }
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage
         if imagePicked == 1 {

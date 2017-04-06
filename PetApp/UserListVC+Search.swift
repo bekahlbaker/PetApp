@@ -23,7 +23,6 @@ extension UserListVC {
             }
         })
     }
-    
     func getUserList() {
         DataService.ds.REF_ACTIVE_USERS.observeSingleEvent(of: .value, with: { (snapshot) in
             self.userList = []
@@ -35,7 +34,6 @@ extension UserListVC {
                         self.userList.append(snap.key)
                         self.filterOutCurrentUser(user: self.currentUsername)
                     }
-                    
                 }
             }
             if self.userList.count > 0 {
@@ -43,9 +41,8 @@ extension UserListVC {
             }
         })
     }
-    
     func getCurrentUsername() {
-        DataService.ds.REF_CURRENT_USER.child("user-info").observe( .value, with:  { (snapshot) in
+        DataService.ds.REF_CURRENT_USER.child("user-info").observe( .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: Any] {
                 if let currentUser = dictionary["username"] as? String {
                     self.currentUsername = currentUser as String!
@@ -53,7 +50,6 @@ extension UserListVC {
             }
         })
     }
-    
     func filterOutCurrentUser(user: String) {
         let userToRemove = user
         while self.userList.contains(user) {
@@ -62,7 +58,6 @@ extension UserListVC {
             }
         }
     }
-    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         if !inSearchMode {
             inSearchMode = true
@@ -70,7 +65,6 @@ extension UserListVC {
         }
         searchController.searchBar.resignFirstResponder()
     }
-    
     func configureSearchController() {
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
@@ -80,25 +74,20 @@ extension UserListVC {
         searchController.searchBar.sizeToFit()
         searchController.hidesNavigationBarDuringPresentation = false
         self.definesPresentationContext = true
-        
         tableView.tableHeaderView = searchController.searchBar
     }
-    
     func updateSearchResults(for searchController: UISearchController) {
         let searchString = searchController.searchBar.text
         filteredUserList = userList.filter({ (user) -> Bool in
             let userText: NSString = user as NSString
             return (userText.range(of: searchString!, options: NSString.CompareOptions.caseInsensitive).location) != NSNotFound
         })
-        
         tableView.reloadData()
     }
-    
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         inSearchMode = true
         tableView.reloadData()
     }
-    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         inSearchMode = false
         tableView.reloadData()

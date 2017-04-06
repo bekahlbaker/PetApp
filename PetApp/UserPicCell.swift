@@ -13,10 +13,8 @@ import Kingfisher
 class UserPicCell: UICollectionViewCell {
 
     @IBOutlet weak var imageView: UIImageView!
-    
     var post: Post!
     static var isConfigured: Bool!
-    
     func configureCell(_ post: Post) {
         self.post = post
         if let imgURL = URL(string: post.imageURL) {

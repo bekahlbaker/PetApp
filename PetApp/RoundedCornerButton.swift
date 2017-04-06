@@ -9,10 +9,8 @@
 import UIKit
 
 class RoundedCornerButton: UIButton {
-        
     override func awakeFromNib() {
         super.awakeFromNib()
-            
         self.layer.cornerRadius = 3.0
 //        self.layer.shadowOpacity = 0.5
 //        self.layer.shadowRadius = 3.0

@@ -9,14 +9,15 @@
 import UIKit
 import Firebase
 import SwiftKeychainWrapper
+import Bugsnag
 
 class EntryVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
     override func viewDidAppear(_ animated: Bool) {
+//        KeychainWrapper.standard.removeObject(forKey: KEY_UID)
         if let _ = KeychainWrapper.standard.string(forKey: KEY_UID) {
             print("ID found in Keychain.")
             performSegue(withIdentifier: "toFeedVC", sender: nil)

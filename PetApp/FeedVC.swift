@@ -12,12 +12,9 @@ import SwiftKeychainWrapper
 import Kingfisher
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
-    
     @IBAction func viewCurrentUserTapped(_ sender: Any) {
         performSegue(withIdentifier: "ViewUserVC", sender: nil)
     }
-    
     @IBOutlet weak var tableView: UITableView!
     var posts = [Post]()
     var postKeys = [String]()
@@ -25,31 +22,26 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     static var usernameToPass: String!
     static var postKeyToPass: String!
     var refreshControl: UIRefreshControl!
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 30))
         let image = UIImage(named: "PetPicLogo")
         imageView.image = image
         navigationItem.titleView = imageView
         self.navigationController!.view.backgroundColor = Color.white
         self.automaticallyAdjustsScrollViewInsets = false
-        
         tableView.delegate = self
         tableView.dataSource = self
-        
         refreshControl = UIRefreshControl()
         refreshControl.addTarget(self, action: #selector(refresh(_:)), for: UIControlEvents.valueChanged)
         tableView.addSubview(refreshControl)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(refreshList(notification:)), name:NSNotification.Name(rawValue: "refreshMyTableView"), object: nil)
     }
-    
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        print("ANYTHING")
         downloadData(tableView)
     }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ViewUserVC" {
             let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String

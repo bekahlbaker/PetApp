@@ -11,7 +11,6 @@ import Firebase
 import SwiftKeychainWrapper
 
 class SinglePhotoCell: UITableViewCell {
-    
     @IBOutlet weak var feedImageView: UIImageView!
     @IBOutlet weak var caption: UILabel!
     @IBOutlet weak var profileImg: CircleImage!
@@ -22,9 +21,7 @@ class SinglePhotoCell: UITableViewCell {
     @IBOutlet weak var usernameBtn: UIButton!
     @IBOutlet weak var captionEditTextView: UITextView!
     @IBOutlet weak var viewCommentsBtn: UIButton!
-    
-    var delegate: UIViewController?
-    
+    weak var delegate: UIViewController?
     @IBOutlet weak var saveBtn: UIButton!
     @IBAction func saveBtnTapped(_ sender: Any) {
         self.moreBtn.isEnabled = true
@@ -34,11 +31,10 @@ class SinglePhotoCell: UITableViewCell {
         self.caption.text = self.captionEditTextView.text
         DataService.ds.REF_POSTS.child(self.post.postKey).updateChildValues(["caption": "\(caption.text!)"])
     }
-    
     @IBOutlet weak var moreBtn: UIButton!
     @IBAction func moreBtnTapped(_ sender: Any) {
         let alertController = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
-        let edit = UIAlertAction(title: "Edit", style: .default, handler: { (action) -> Void in
+        let edit = UIAlertAction(title: "Edit", style: .default, handler: { (_) -> Void in
             print("Edit btn tapped")
             self.moreBtn.isEnabled = false
             self.caption.isHidden = true
@@ -47,61 +43,50 @@ class SinglePhotoCell: UITableViewCell {
             self.captionEditTextView.text = self.caption.text
             self.captionEditTextView.becomeFirstResponder()
         })
-        let delete = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) -> Void in
+        let delete = UIAlertAction(title: "Delete", style: .destructive, handler: { (_) -> Void in
             print("Delete btn tapped")
             let alert = UIAlertController(title: "Are you sure you want to delete this post?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
-            let deletePost = UIAlertAction(title: "Delete Post", style: .destructive, handler: { (action) -> Void in
+            let deletePost = UIAlertAction(title: "Delete Post", style: .destructive, handler: { (_) -> Void in
                 print("Delete presssed")
                 DataService.ds.REF_POSTS.child(self.post.postKey).removeValue()
                 print("Post removed")
                 _ = self.delegate?.navigationController?.popViewController(animated: true)
             })
-            let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+            let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) -> Void in
                 print("Cancel Button Pressed")
             }
-            
             alert.addAction(deletePost)
             alert.addAction(cancel)
-            
             self.delegate?.present(alert, animated: true, completion: nil)
-            
         })
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel
-            , handler: { (action) -> Void in
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) -> Void in
                 print("Cancel btn tapped")
         })
         alertController.addAction(edit)
         alertController.addAction(delete)
         alertController.addAction(cancel)
-        
         delegate?.present(alertController, animated: true, completion: nil)
     }
-    
     @IBAction func usernameTapped(_ sender: AnyObject) {
         tapActionUsername?(self)
     }
-    
     @IBAction func commentTapped(_ sender: AnyObject) {
         tapActionComment?(self)
     }
-    
     var tapActionUsername: ((UITableViewCell) -> Void)?
     var tapActionComment: ((UITableViewCell) -> Void)?
     var post: Post!
     var likesRef: FIRDatabaseReference!
     var isCurrentUser: Bool!
     static var isConfigured: Bool!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.saveBtn.isHidden = true
-        
         let tap = UITapGestureRecognizer(target: self, action: #selector(likeTapped))
         tap.numberOfTapsRequired = 1
         likesImg.addGestureRecognizer(tap)
         likesImg.isUserInteractionEnabled = true
     }
-    
     func configureCell(_ post: Post) {
         self.post = post
         DispatchQueue.global().async {
@@ -162,8 +147,7 @@ class SinglePhotoCell: UITableViewCell {
             //                    }
             //                })
             //            }
-            
-            self.likesRef.observeSingleEvent(of: .value, with:  { (snapshot) in
+            self.likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
                 if let _ = snapshot.value as? NSNull {
                     self.likesImg.image = UIImage(named: "empty-heart")
                     self.likesImgSm.image = UIImage(named: "empty-heart")
@@ -175,7 +159,6 @@ class SinglePhotoCell: UITableViewCell {
         }
         SinglePhotoCell.isConfigured = true
     }
-    
     func likeTapped(_ sender: UITapGestureRecognizer) {
         likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if let _ = snapshot.value as? NSNull {

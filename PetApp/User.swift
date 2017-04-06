@@ -5,12 +5,13 @@
 //  Created by Rebekah Baker on 11/14/16.
 //  Copyright © 2016 Rebekah Baker. All rights reserved.
 //
+// swiftlint:disable shorthand_operator
 
 import Foundation
+import UIKit
 import Firebase
 
 class User {
-    
     fileprivate var _userKey: String!
     fileprivate var _username: String!
     fileprivate var _name: String!
@@ -22,51 +23,39 @@ class User {
     fileprivate var _about: String!
     fileprivate var _followers: Int!
     fileprivate var _following: Int!
-    
     var userKey: String {
         return _userKey
     }
-    
     var username: String {
-        return _username
+        return _username ?? ""
     }
-    
     var name: String {
-        return _name
+        return _name ?? ""
     }
-    
     var parentsName: String {
-        return _parentsName
+        return _parentsName ?? ""
     }
-    
     var age: String {
-        return _age
+        return _age ?? ""
     }
-    
     var species: String {
-        return _species
+        return _species ?? ""
     }
-    
     var breed: String {
-        return _breed
+        return _breed ?? ""
     }
-    
     var location: String {
-        return _location
+        return _location ?? ""
     }
-    
     var about: String {
-        return _about
+        return _about ?? ""
     }
-    
     var followers: Int {
-        return _followers
+        return _followers ?? 0
     }
-    
     var following: Int {
-        return _following
+        return _following ?? 0
     }
-    
     init(username: String, name: String, parentsName: String, age: String, species: String, breed: String, location: String, about: String, followers: Int, following: Int) {
         self._username = username
         self._name = name
@@ -79,14 +68,11 @@ class User {
         self._followers = followers
         self._following = following
     }
-    
-    init(userKey: String, userData: Dictionary<String, AnyObject>) {
+    init(userKey: String, userData: [String: AnyObject]) {
         self._userKey = userKey
-        
         if let username = userData["username"] as? String {
             self._username = username
         }
-        
         if let name = userData["full-name"] as? String {
             self._name = name
         }
@@ -108,33 +94,27 @@ class User {
         if let about = userData["about"] as? String {
             self._about = about
         }
-        
         if let followers = userData["followersCt"] as? Int {
             self._followers = followers
         }
-        
         if let following = userData["followingCt"] as? Int {
             self._following = following
         }
     }
-    
     func adjustFollowers(userKey: String, _ addFollower: Bool) {
         if addFollower {
             _followers = _followers + 1
         } else {
             _followers = _followers - 1
         }
-        
         DataService.ds.REF_USERS.child(userKey).child("user-info").updateChildValues(["followersCt": followers])
     }
-    
     func adjustFollowing(_ addFollowing: Bool) {
         if addFollowing {
             _following = _following + 1
         } else {
             _following = _following - 1
         }
-        
         DataService.ds.REF_CURRENT_USER.child("user-info").updateChildValues(["followingCt": following])
     }
 }

@@ -11,14 +11,11 @@ import Firebase
 import SwiftKeychainWrapper
 
 class SignInVC: UIViewController, UITextFieldDelegate {
-    
-    
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var errorLbl: UILabel!
     @IBOutlet weak var signUpBtn: UIButton!
     @IBOutlet weak var resetPassBtn: UIButton!
-    
     @IBAction func loginPressed(_ sender: AnyObject) {
         if let email = emailField.text, let password = passwordField.text {
             if passwordField.text == "" {
@@ -45,7 +42,6 @@ class SignInVC: UIViewController, UITextFieldDelegate {
                             self.errorLbl.text = "Password is incorrect. Do you need to reset your password?"
                             self.signUpBtn.isHidden = true
                             self.resetPassBtn.isHidden = false
-                            
                         default:
                             print("Create User Error: \(error)")
                         }
@@ -61,19 +57,13 @@ class SignInVC: UIViewController, UITextFieldDelegate {
             })
         }
     }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.resetPassBtn.isHidden = true
         self.signUpBtn.isHidden = true
-        
     }
-    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
         super.touchesBegan(touches, with: event)
     }
 }
-

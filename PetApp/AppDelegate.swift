@@ -9,25 +9,24 @@
 import UIKit
 import Firebase
 import SwiftKeychainWrapper
+import Bugsnag
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FIRApp.configure()
+        Bugsnag.start(withApiKey: "0952122baf40f2f6780fcbc8b852cb56")
 //        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
-        
         if KeychainWrapper.standard.string(forKey: KEY_UID) != nil {
             let uid = KeychainWrapper.standard.string(forKey: KEY_UID)
             if uid != nil {
                 //download user image for UserVC
                 DataService.ds.REF_CURRENT_USER.child("user-info").observeSingleEvent(of: .value, with: { (snapshot) in
                     if let dictionary = snapshot.value as? [String: Any] {
-                        
                         //download profile img
                         if let url = dictionary["profileImgUrl"] as? String {
                             let storage = FIRStorage.storage()
@@ -42,7 +41,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 }
                             }
                         }
-                        
                         //download cover photo
                         if let url = dictionary["coverImgUrl"] as? String {
                             let storage = FIRStorage.storage()
@@ -58,11 +56,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             }
                         }
                     }
-                    
                 })
-            }   
+            }
         }
-        
         return true
     }
 
@@ -78,14 +74,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-        
         if KeychainWrapper.standard.string(forKey: KEY_UID) != nil {
             let uid = KeychainWrapper.standard.string(forKey: KEY_UID)
             if uid != nil {
                 //download user info image for UserVC
                 DataService.ds.REF_CURRENT_USER.child("user-info").observeSingleEvent(of: .value, with: { (snapshot) in
                     if let dictionary = snapshot.value as? [String: Any] {
-                        
                         //download profile img
                         if let url = dictionary["profileImgUrl"] as? String {
                             let storage = FIRStorage.storage()
@@ -100,7 +94,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 }
                             }
                         }
-                        
                         //download cover photo
                         if let url = dictionary["coverImgUrl"] as? String {
                             let storage = FIRStorage.storage()
@@ -116,7 +109,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             }
                         }
                     }
-                    
                 })
             }
         }
@@ -129,17 +121,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-    
     func application(_ application: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        
 //        return FBSDKApplicationDelegate.sharedInstance().application(application, open: url, sourceApplication: options[UIApplicationOpenURLOptionsKey.sourceApplication] as! String?, annotation: nil)
         return true
     }
-    
-    
     func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         return UIInterfaceOrientationMask.portrait
     }
 }
-
-

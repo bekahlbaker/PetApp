@@ -10,9 +10,7 @@ import UIKit
 import Firebase
 import Kingfisher
 
-
 class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
-    
     @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet weak var errorLbl: UILabel!
     @IBOutlet weak var fullNameLbl: UITextField!
@@ -22,50 +20,47 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     @IBOutlet weak var breedLbl: UITextField!
     @IBOutlet weak var locationLbl: UITextField!
     @IBOutlet weak var aboutLbl: UITextField!
-    
     var imagePicker = UIImagePickerController()
     var imagePicked = 0
     static var profileCache: NSCache<NSString, UIImage> = NSCache()
     static var coverCache: NSCache<NSString, UIImage> = NSCache()
-    
     @IBOutlet weak var coverPhoto: UIImageView!
     @IBAction func editCoverPhotoTapped(_ sender: AnyObject) {
 //        ProfileVC.coverCache.removeAllObjects()
         let alertController = UIAlertController(title: "Select Picture", message: nil, preferredStyle: .actionSheet)
-        let camera = UIAlertAction(title: "Camera", style: .default, handler: { (action) -> Void in
+        let camera = UIAlertAction(title: "Camera", style: .default, handler: { (_) -> Void in
             self.imagePicker.allowsEditing = true
             self.imagePicker.sourceType = UIImagePickerControllerSourceType.camera
             self.present(self.imagePicker, animated: true, completion: nil)
         })
-        let photoLibrary = UIAlertAction(title: "Photo Library", style: .default, handler: { (action) -> Void in
+        let photoLibrary = UIAlertAction(title: "Photo Library", style: .default, handler: { (_) -> Void in
             self.imagePicker.allowsEditing = true
             self.imagePicker.sourceType = .photoLibrary
             self.present(self.imagePicker, animated: true, completion: nil)
         })
-        let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+        let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) -> Void in
         }
         alertController.addAction(camera)
         alertController.addAction(photoLibrary)
         alertController.addAction(cancel)
         self.imagePicked = 1
         present(alertController, animated: true, completion: nil)
- 
     }
     @IBAction func addImageTapped(_ sender: AnyObject) {
 //        ProfileVC.profileCache.removeAllObjects()
 //        FeedVC.imageCache.removeAllObjects()
         let alertController = UIAlertController(title: "Select Picture", message: nil, preferredStyle: .actionSheet)
-        let camera = UIAlertAction(title: "Camera", style: .default, handler: { (action) -> Void in
+        let camera = UIAlertAction(title: "Camera", style: .default, handler: { (_) -> Void in
             self.imagePicker.allowsEditing = true
             self.imagePicker.sourceType = UIImagePickerControllerSourceType.camera
             self.present(self.imagePicker, animated: true, completion: nil)
         })
-        let photoLibrary = UIAlertAction(title: "Photo Library", style: .default, handler: { (action) -> Void in
+        let photoLibrary = UIAlertAction(title: "Photo Library", style: .default, handler: { (_) -> Void in
             self.imagePicker.allowsEditing = true
             self.imagePicker.sourceType = .photoLibrary
             self.present(self.imagePicker, animated: true, completion: nil)
         })
-        let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+        let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) -> Void in
         }
         alertController.addAction(camera)
         alertController.addAction(photoLibrary)
@@ -77,17 +72,17 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
 //        ProfileVC.profileCache.removeAllObjects()
 //        FeedVC.imageCache.removeAllObjects()
         let alertController = UIAlertController(title: "Select Picture", message: nil, preferredStyle: .actionSheet)
-        let camera = UIAlertAction(title: "Camera", style: .default, handler: { (action) -> Void in
+        let camera = UIAlertAction(title: "Camera", style: .default, handler: { (_) -> Void in
             self.imagePicker.allowsEditing = true
             self.imagePicker.sourceType = UIImagePickerControllerSourceType.camera
             self.present(self.imagePicker, animated: true, completion: nil)
         })
-        let photoLibrary = UIAlertAction(title: "Photo Library", style: .default, handler: { (action) -> Void in
+        let photoLibrary = UIAlertAction(title: "Photo Library", style: .default, handler: { (_) -> Void in
             self.imagePicker.allowsEditing = true
             self.imagePicker.sourceType = .photoLibrary
             self.present(self.imagePicker, animated: true, completion: nil)
         })
-        let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+        let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) -> Void in
         }
         alertController.addAction(camera)
         alertController.addAction(photoLibrary)
@@ -97,38 +92,30 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     }
     func alert(sender: UIBarButtonItem) {
         let alert = UIAlertController(title: "", message: "If you cancel now, your profile changes will not be saved.", preferredStyle: UIAlertControllerStyle.alert)
-        let discard = UIAlertAction(title: "Discard", style: .destructive, handler: { (action) -> Void in
+        let discard = UIAlertAction(title: "Discard", style: .destructive, handler: { (_) -> Void in
             _ = self.navigationController?.popViewController(animated: true)
         })
-        let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+        let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) -> Void in
         }
         alert.addAction(discard)
         alert.addAction(cancel)
-        
         self.navigationController?.present(alert, animated: true, completion: nil)
     }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.navigationItem.hidesBackButton = true
         let cancelBtn = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(alert(sender:)))
         self.navigationItem.leftBarButtonItem = cancelBtn
-        
         let saveBtn = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.done, target: self, action: #selector(save(sender:)))
         self.navigationItem.rightBarButtonItem = saveBtn
-        
 //        ProfileVC.profileCache.removeAllObjects()
 //        FeedVC.imageCache.removeAllObjects()
 //        ProfileVC.coverCache.removeAllObjects()
-        
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = true
-        
         ageLbl.delegate = self
-        ageLbl.addTarget(self, action: #selector(textFieldChanged(_:)) , for: UIControlEvents.editingChanged)
-        
+        ageLbl.addTarget(self, action: #selector(textFieldChanged(_:)), for: UIControlEvents.editingChanged)
         DispatchQueue.global().async {
             if ProfileVC.profileCache.object(forKey: "profileImg") != nil {
                 self.profileImg.image = ProfileVC.profileCache.object(forKey: "profileImg")
@@ -139,18 +126,15 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 print("Using cached cover Img")
             }
         }
-        
         downloadUserInfo()
     }
 //    
 //    override func viewDidAppear(_ animated: Bool) {
 //        downloadUserInfo()
 //    }
-    
     func downloadUserInfo() {
         //download profile info & image
         DataService.ds.REF_CURRENT_USER.child("user-info").observe(.value, with: { (snapshot) in
-            
             if let dictionary = snapshot.value as? [String: Any] {
                 self.fullNameLbl.text = dictionary["full-name"] as? String
                 self.parentsNameLbl.text = dictionary["parents-name"] as? String
@@ -201,7 +185,6 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                     }
 //                }
             }
-            
         })
     }
 }

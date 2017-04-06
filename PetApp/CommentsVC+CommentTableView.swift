@@ -21,7 +21,6 @@ extension CommentsVC {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell") as? CommentCell {
             cell.delegate = self
             cell.configureCell(CommentsVC.postKeyPassed, comment: comment)
-            
             DataService.ds.REF_USERS.child(comment.userKey).child("user-info").observe( .value, with: { (snapshot) in
                 if let dictionary = snapshot.value as? [String: Any] {
                     if let profileURL = dictionary["profileImgUrl"] as? String {
@@ -41,12 +40,10 @@ extension CommentsVC {
                 }
             })
             return cell
-            
         } else {
             return CommentCell()
         }
     }
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentCell = tableView.cellForRow(at: tableView.indexPathForSelectedRow!)! as UITableViewCell
         let cellValue = comments[currentCell.tag]

@@ -10,9 +10,7 @@ import UIKit
 import Firebase
 import SwiftKeychainWrapper
 
-
 class PostCaptionVC: UIViewController, UITextViewDelegate {
-    
     var profileImg: String!
     var currentUsername: String!
     @IBOutlet weak var postImage: UIImageView!
@@ -37,25 +35,19 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
             self.saveImageToFireBase()
         }
     }
-    
     var myActivityIndicator: UIActivityIndicatorView!
     var isAnimating = false
     var userKeys = [String]()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         captionTextView.delegate = self
         captionTextView.text = "Write a caption..."
         captionTextView.textColor = UIColor.lightGray
-        
         myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
         myActivityIndicator.center = view.center
         view.addSubview(myActivityIndicator)
-        
         getUserInfo()
     }
-    
     override func viewDidAppear(_ animated: Bool) {
         if let img = PostVC.filteredImageCache.object(forKey: "imageToPass") {
             self.postImage.image = img
@@ -65,9 +57,8 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
             PostVC.imageToPassBackCache.setObject(img2, forKey: "imageToPassBack")
         }
     }
-    
     func getUserInfo() {
-        DataService.ds.REF_CURRENT_USER.child("user-info").observe( .value, with:  { (snapshot) in
+        DataService.ds.REF_CURRENT_USER.child("user-info").observe( .value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: Any] {
                 if let currentUser = dictionary["username"] as? String {
                     self.currentUsername = currentUser as String!
@@ -78,17 +69,16 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
             }
         })
     }
-    
     func postToFirebase(_ imageURL: String) {
         if self.captionTextView.text == "Write a caption..." {
             self.captionTextView.text = ""
         }
-        let post: Dictionary<String, Any> = [
+        let post: [String: Any] = [
             "caption": self.captionTextView.text! as String,
             "username": self.currentUsername as String,
             "imageURL": imageURL as String,
             "likes": 0 as Int,
-            "profileImgUrl": self.profileImg,
+            "profileImgUrl": self.profileImg ?? "",
             "comments": "" as String,
             "commentCount": 0 as Int,
             "postKey": "" as String,
@@ -100,10 +90,9 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
         firebasePost.updateChildValues(["postKey": key])
         self.postToFollowersWall(key: key)
     }
-    
     func saveImageToFireBase() {
         if let img = PostVC.filteredImageCache.object(forKey: "imageToPass") {
-            if let imgData = UIImagePNGRepresentation(img){
+            if let imgData = UIImagePNGRepresentation(img) {
                 let imgUid = NSUUID().uuidString
                 let metadata = FIRStorageMetadata()
                 metadata.contentType = "image/png"
@@ -125,7 +114,6 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
         PostVC.filteredImageCache.removeAllObjects()
         PostVC.imageToPassBackCache.removeAllObjects()
     }
-    
     func postToFollowersWall(key: String) {
         DataService.ds.REF_CURRENT_USER.child("followers").observeSingleEvent(of: .value, with: { (snapshot) in
             if let _ = snapshot.value as? NSNull {
@@ -143,7 +131,6 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
             }
         })
     }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toFeedVC" {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshMyTableView"), object: nil)

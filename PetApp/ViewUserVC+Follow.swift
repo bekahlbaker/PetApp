@@ -21,26 +21,24 @@ extension ViewUserVC {
             }
         })
     }
-    
     func followTapped() {
         let alert = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
         if isFollowing == false {
-            let follow = UIAlertAction(title: "Follow", style: .default, handler: { (action) -> Void in
+            let follow = UIAlertAction(title: "Follow", style: .default, handler: { (_) -> Void in
                 self.follow()
             })
             alert.addAction(follow)
         } else if isFollowing == true {
-            let follow = UIAlertAction(title: "Unfollow", style: .destructive, handler: { (action) -> Void in
+            let follow = UIAlertAction(title: "Unfollow", style: .destructive, handler: { (_) -> Void in
               self.unfollow()
             })
             alert.addAction(follow)
         }
-        let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+        let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) -> Void in
         }
         alert.addAction(cancel)
         self.present(alert, animated: true, completion: nil)
     }
-    
     func follow() {
         print("Follow btn tapped")
         DataService.ds.REF_CURRENT_USER.child("following").updateChildValues(["\(ViewUserVC.usernamePassed!)": true])
@@ -49,7 +47,6 @@ extension ViewUserVC {
         self.user.adjustFollowers(userKey: ViewUserVC.usernamePassed, true)
         self.isFollowing = true
     }
-    
     func unfollow() {
         print("Unfollow btn tapped")
         DataService.ds.REF_CURRENT_USER.child("following").child(ViewUserVC.usernamePassed).removeValue()

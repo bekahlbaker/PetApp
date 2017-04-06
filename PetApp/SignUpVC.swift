@@ -11,8 +11,7 @@ import Firebase
 import SwiftKeychainWrapper
 
 class SignUpVC: UIViewController, UITextFieldDelegate {
-    
-    
+
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var password2: UITextField!
@@ -46,8 +45,8 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                     if let user = user {
                         let userData = ["provider": user.providerID, "email": email]
                         DataService.ds.completeSignIn(user.uid, userData: userData)
-                        DataService.ds.REF_CURRENT_USER.child("following").childByAutoId().updateChildValues(["user": user.uid])
-                        DataService.ds.REF_CURRENT_USER.child("followers").childByAutoId().updateChildValues(["user": user.uid])
+                        DataService.ds.REF_CURRENT_USER.child("following").updateChildValues([user.uid: true])
+                        DataService.ds.REF_CURRENT_USER.child("followers").updateChildValues([user.uid: true])
                         DataService.ds.REF_CURRENT_USER.child("user-info").updateChildValues(["followingCt": 1])
                         DataService.ds.REF_CURRENT_USER.child("user-info").updateChildValues(["followersCt": 1])
                     }
@@ -56,13 +55,9 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
             })
         }
     }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.signInBtn.isHidden = true
-        
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)

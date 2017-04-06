@@ -5,15 +5,14 @@
 //  Created by Rebekah Baker on 11/12/16.
 //  Copyright © 2016 Rebekah Baker. All rights reserved.
 //
+//  swiftlint:disable force_cast
 
 import UIKit
 import Firebase
 import Kingfisher
 import SwiftKeychainWrapper
 
-
 class FeedCell: UITableViewCell {
-    
     @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
     @IBOutlet weak var profileActivitySpinner: UIActivityIndicatorView!
     @IBOutlet weak var feedImageView: UIImageView!
@@ -26,13 +25,11 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var usernameBtn: UIButton!
     @IBOutlet weak var viewCommentsBtn: UIButton!
     @IBOutlet weak var captionEditTextView: UITextView!
-    
-    var delegate: UIViewController?
-    
+    weak var delegate: UIViewController?
     @IBOutlet weak var moreBtn: UIButton!
     @IBAction func moreBtnTapped(_ sender: Any) {
         let alertController = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
-        let edit = UIAlertAction(title: "Edit", style: .default, handler: { (action) -> Void in
+        let edit = UIAlertAction(title: "Edit", style: .default, handler: { (_) -> Void in
             self.moreBtn.isEnabled = false
             self.caption.isHidden = true
             self.captionEditTextView.isHidden = false
@@ -40,31 +37,26 @@ class FeedCell: UITableViewCell {
             self.captionEditTextView.text = self.caption.text
             self.captionEditTextView.becomeFirstResponder()
         })
-        let delete = UIAlertAction(title: "Delete", style: .destructive, handler: { (action) -> Void in
+        let delete = UIAlertAction(title: "Delete", style: .destructive, handler: { (_) -> Void in
             let alert = UIAlertController(title: "Are you sure you want to delete this post?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
-            let deletePost = UIAlertAction(title: "Delete Post", style: .destructive, handler: { (action) -> Void in
+            let deletePost = UIAlertAction(title: "Delete Post", style: .destructive, handler: { (_) -> Void in
                 DataService.ds.REF_POSTS.child(self.post.postKey).removeValue()
                 self.removeFromFollowersWall(key: self.post.postKey)
                 NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshMyTableView"), object: nil)
             })
-            let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (action) -> Void in
+            let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) -> Void in
             }
-            
             alert.addAction(deletePost)
             alert.addAction(cancel)
-            
             self.delegate?.present(alert, animated: true, completion: nil)
-            
         })
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (action) -> Void in
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) -> Void in
         })
         alertController.addAction(edit)
         alertController.addAction(delete)
         alertController.addAction(cancel)
-        
         delegate?.present(alertController, animated: true, completion: nil)
     }
-    
     @IBOutlet weak var saveBtn: UIButton!
     @IBAction func saveBtnTapped(_ sender: Any) {
         self.moreBtn.isEnabled = true
@@ -78,30 +70,24 @@ class FeedCell: UITableViewCell {
         tapActionUsername?(self)
     }
     var tapActionUsername: ((UITableViewCell) -> Void)?
-    
     @IBAction func viewCommentsTapped(_ sender: Any) {
         tapActionComments?(self)
     }
     var tapActionComments: ((UITableViewCell) -> Void)?
-    
     var post: Post!
     var likesRef: FIRDatabaseReference!
     static var isConfigured: Bool!
     var isCurrentUser: Bool!
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         self.saveBtn.isHidden = true
-        
         let tap = UITapGestureRecognizer(target: self, action: #selector(likeTapped))
         tap.numberOfTapsRequired = 1
         likesImg.addGestureRecognizer(tap)
         likesImg.isUserInteractionEnabled = true
-        
         NotificationCenter.default.addObserver(self, selector: #selector(adjustCommentCountTrue(notification:)), name:NSNotification.Name(rawValue: "adjustCommentCountTrue"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(adjustCommentCountFalse(notification:)), name:NSNotification.Name(rawValue: "adjustCommentCountFalse"), object: nil)
     }
-    
     func configureCell(_ post: Post) {
         self.post = post
         DispatchQueue.global().async {
@@ -145,10 +131,9 @@ class FeedCell: UITableViewCell {
                             }
                         }
                     }
-                    
                 })
             }
-            self.likesRef.observeSingleEvent(of: .value, with:  { (snapshot) in
+            self.likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
                 if let _ = snapshot.value as? NSNull {
                     self.likesImg.image = UIImage(named: "empty-heart")
                     self.likesImgSm.image = UIImage(named: "empty-heart")
@@ -160,7 +145,6 @@ class FeedCell: UITableViewCell {
             FeedCell.isConfigured = true
         }
     }
-    
     func likeTapped(_ sender: UITapGestureRecognizer) {
         likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if let _ = snapshot.value as? NSNull {
@@ -178,7 +162,6 @@ class FeedCell: UITableViewCell {
             }
         })
     }
-    
     func removeFromFollowersWall(key: String) {
         DataService.ds.REF_CURRENT_USER.child("followers").observeSingleEvent(of: .value, with: { (snapshot) in
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
@@ -200,22 +183,14 @@ class FeedCell: UITableViewCell {
             }
         })
     }
-    
     func adjustCommentCountTrue(notification: NSNotification) {
-        
-        DataService.ds.REF_POSTS.child(post.postKey).child("commentCount").observeSingleEvent(of: .value, with: { (snapshot) in
-            
+        DataService.ds.REF_POSTS.child(post.postKey).child("commentCount").observeSingleEvent(of: .value, with: { (_) in
             self.post.adjustCommentCount(true)
         })
-        
     }
-    
     func adjustCommentCountFalse(notification: NSNotification) {
-        
-        DataService.ds.REF_POSTS.child(post.postKey).child("commentCount").observeSingleEvent(of: .value, with: { (snapshot) in
-            
+        DataService.ds.REF_POSTS.child(post.postKey).child("commentCount").observeSingleEvent(of: .value, with: { (_) in
             self.post.adjustCommentCount(false)
         })
-        
     }
 }

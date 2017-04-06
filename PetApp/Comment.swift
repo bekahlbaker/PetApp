@@ -16,18 +16,15 @@ class Comment {
     fileprivate var _postKey: String!
     fileprivate var _userKey: String!
     fileprivate var _commentCount: Int!
-    
     var comment: String {
         return _comment
     }
-    
     var username: String {
         return _username
     }
     var postKey: String {
         return _postKey
     }
-    
     var userKey: String {
         return _userKey
     }
@@ -51,7 +48,6 @@ class Comment {
         if let postKey = postData["postKey"] as? String {
             self._postKey = postKey
         }
-        
         if let userKey = postData["userKey"] as? String {
             self._userKey = userKey
         }

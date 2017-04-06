@@ -17,25 +17,21 @@ extension PostVC {
         PostVC.imageSelected = true
         filterChosen = true
     }
-    
     func addFiltersToButtons(_ imageUnfiltered: UIImage) {
         var xCoord: CGFloat = 5
         let yCoord: CGFloat = 5
         let buttonWidth: CGFloat = 80
         let buttonHeight: CGFloat = 80
         let gapBetweenButtons: CGFloat = 5
-        
         var itemCount = 0
         for i in 0..<CIFilterNames.count {
             itemCount = i
-            
             // Button properties
             let filterButton = UIButton(type: .custom)
             filterButton.frame = CGRect(x: xCoord, y: yCoord, width: buttonWidth, height: buttonHeight)
             filterButton.tag = itemCount
             filterButton.addTarget(self, action: #selector(filterButtonTapped(_:)), for: .touchUpInside)
             filterButton.clipsToBounds = true
-            
             // Create filters for each button
             let ciContext = CIContext(options: nil)
             let coreImage = CIImage(image: imageUnfiltered)
@@ -45,7 +41,6 @@ extension PostVC {
             let filteredImageData = filter!.value(forKey: kCIOutputImageKey) as! CIImage
             let filteredImageRef = ciContext.createCGImage(filteredImageData, from: filteredImageData.extent)
             let imageForButton = UIImage(cgImage: filteredImageRef!)
-            
             // Assign filtered image to the button
             if itemCount == 0 {
                 if let img = PostVC.unFilteredImageCache.object(forKey: "unfilteredImage") {
@@ -63,7 +58,6 @@ extension PostVC {
         // Resize Scroll View
         filterScrollView.contentSize = CGSize(width: buttonWidth * CGFloat(itemCount+2), height: yCoord)
     }
-    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
             addImageBtn.setTitle("", for: .normal)
@@ -81,7 +75,6 @@ extension PostVC {
         PostVC.imageSelected = false
         dismiss(animated: true, completion: nil)
     }
-    
     func loadImage() {
         if let img = PostVC.imageToPassBackCache.object(forKey: "imageToPassBack") {
             originalImage.image = img

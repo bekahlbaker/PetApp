@@ -12,11 +12,11 @@ import Kingfisher
 import SwiftKeychainWrapper
 
 extension CurrentUserVC {
-    func loadUserInfo(_ sender:AnyObject) {
+    func loadUserInfo(_ sender: AnyObject) {
         DispatchQueue.global().async {
             let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
             DataService.ds.REF_USERS.child(userKey).child("user-info").observe(.value, with: { (snapshot) in
-                if let userDict = snapshot.value as? Dictionary<String, AnyObject> {
+                if let userDict = snapshot.value as? [String: AnyObject] {
                     print(userDict)
                     let user = User(userKey: userKey, userData: userDict)
                     self.user = user
@@ -29,23 +29,16 @@ extension CurrentUserVC {
                 }
             })
         }
-        
     }
-    
-    func loadTableData(_ sender:AnyObject) {
+    func loadTableData(_ sender: AnyObject) {
         self.tableViewUser.reloadData()
     }
-    
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
-        
     }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
-        
     }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let user = self.user {
             if let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell") as? UserCell {

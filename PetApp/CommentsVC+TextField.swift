@@ -12,7 +12,6 @@ import Firebase
 import SwiftKeychainWrapper
 
 extension CommentsVC {
-    
     func registerForKeyboardNotifications() {
         let notificationCenter = NotificationCenter.default
         notificationCenter.addObserver(self, selector: #selector(keyboardWillBeShown(notification:)), name: NSNotification.Name.UIKeyboardDidShow, object: nil)
@@ -26,7 +25,6 @@ extension CommentsVC {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self)
     }
-    
     func keyboardWillBeShown(notification: NSNotification) {
         self.keyBoardActive = true
         if let info = notification.userInfo {
