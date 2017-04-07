@@ -11,9 +11,15 @@ import Firebase
 
 extension FeedVC {
     func refreshList(notification: NSNotification) {
-        refresh(self)
+        downloadData { (_) in
+            DispatchQueue.main.async {
+                self.refreshControl.endRefreshing()
+                self.tableView.reloadData()
+                print("Reload Table")
+            }
+        }
     }
-    func downloadData(_ sender: AnyObject) {
+    func downloadData(completionHandler:@escaping (Bool) -> Void) {
         DispatchQueue.global().async {
             DataService.ds.REF_CURRENT_USER.child("wall").observeSingleEvent(of: .value, with: { (snapshot) in
                 self.posts = []
@@ -36,9 +42,7 @@ extension FeedVC {
                                     let post = Post(postKey: self.postKeys[i], postData: postDict)
                                     self.posts.insert(post, at: 0)
                                     if self.posts.count > 0 {
-                                        DispatchQueue.main.async {
-                                            self.perform(#selector(self.loadTableData(_:)), with: nil, afterDelay: 0.5)
-                                        }
+                                        completionHandler(true)
                                     }
                                 }
                             }
@@ -48,15 +52,15 @@ extension FeedVC {
             })
         }
     }
-    func loadTableData(_ sender: AnyObject) {
-        if self.posts.count > 0 {
-            self.tableView.reloadData()
-        }
-    }
-    func refresh(_ sender: AnyObject) {
-        self.perform(#selector(downloadData(_:)), with: nil, afterDelay: 0.5)
-        self.refreshControl.endRefreshing()
-    }
+//    func loadTableData(_ sender: AnyObject) {
+//        if self.posts.count > 0 {
+//            self.tableView.reloadData()
+//        }
+//    }
+//    func refresh(_ sender: AnyObject) {
+//        self.perform(#selector(downloadData(_:)), with: nil, afterDelay: 0.5)
+//        self.refreshControl.endRefreshing()
+//    }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
