@@ -106,6 +106,15 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         self.navigationItem.hidesBackButton = true
         let cancelBtn = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(alert(sender:)))
         self.navigationItem.leftBarButtonItem = cancelBtn
+//        let saveButton: UIButton = UIButton()
+//        saveButton.setTitle("Save", for: .normal)
+//        saveButton.frame = CGRect(x: 0, y: 0, width: 45, height: 45)
+//        saveButton.target(forAction: #selector(save(sender:)), withSender: nil)
+//        let rightBarItem: UIBarButtonItem = UIBarButtonItem()
+//        rightBarItem.customView = saveButton
+//        self.navigationItem.rightBarButtonItem = rightBarItem
+//
+//        
         let saveBtn = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.done, target: self, action: #selector(save(sender:)))
         self.navigationItem.rightBarButtonItem = saveBtn
 //        ProfileVC.profileCache.removeAllObjects()

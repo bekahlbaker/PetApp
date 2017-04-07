@@ -9,7 +9,6 @@
 import UIKit
 import Firebase
 import SwiftKeychainWrapper
-import Bugsnag
 
 class EntryVC: UIViewController {
 

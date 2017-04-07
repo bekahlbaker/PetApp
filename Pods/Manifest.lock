@@ -1,6 +1,4 @@
 PODS:
-  - Bugsnag (5.6.5):
-    - KSCrash/RecordingAdvanced (= 1.8.13)
   - Firebase/Auth (3.11.0):
     - Firebase/Core
     - FirebaseAuth (= 3.1.0)
@@ -50,9 +48,6 @@ PODS:
   - GoogleToolboxForMac/NSString+URLArguments (2.1.0)
   - GTMSessionFetcher/Core (1.1.7)
   - Kingfisher (3.2.4)
-  - KSCrash/Recording (1.8.13)
-  - KSCrash/RecordingAdvanced (1.8.13):
-    - KSCrash/Recording
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
@@ -60,7 +55,6 @@ PODS:
   - SwiftLint (0.16.1)
 
 DEPENDENCIES:
-  - Bugsnag
   - Firebase/Auth
   - Firebase/Core
   - Firebase/Database
@@ -71,7 +65,6 @@ DEPENDENCIES:
   - SwiftLint
 
 SPEC CHECKSUMS:
-  Bugsnag: a390acb8d937a9af54dd5044298a892e716c6eef
   Firebase: b8134e285eb33201115bc688bc5d7f112923bc1f
   FirebaseAnalytics: 9c67af0ebeb8d2146c9b4ea2616439affa947b58
   FirebaseAuth: b436e4ecebe068bf8e8c6e4e29de5756ffe7ee24
@@ -85,11 +78,10 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 2b2596cbb7186865e98cadf2b1e262d851c2b168
   GTMSessionFetcher: a1f8ed39e4fe21c68957daed472c7afbcdf29166
   Kingfisher: 8d80f39da403cd9c9ee11984e1655f4d6a566cdb
-  KSCrash: 4c3a83f133b60f4bd57e05235ebf8d46e36d378d
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
   SwiftLint: b8b683208cc09640898f16318a7a452274e91f61
 
-PODFILE CHECKSUM: 00ec24ac12cbf947b60a36bfd4929865564f3e61
+PODFILE CHECKSUM: 45715f2435a097671113cc2e8a20e7bff843ced7
 
 COCOAPODS: 1.1.1

@@ -9,7 +9,6 @@
 import UIKit
 import Firebase
 import SwiftKeychainWrapper
-import Bugsnag
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,7 +18,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FIRApp.configure()
-        Bugsnag.start(withApiKey: "0952122baf40f2f6780fcbc8b852cb56")
 //        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         if KeychainWrapper.standard.string(forKey: KEY_UID) != nil {
             let uid = KeychainWrapper.standard.string(forKey: KEY_UID)

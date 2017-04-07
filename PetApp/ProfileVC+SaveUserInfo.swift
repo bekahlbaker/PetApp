@@ -13,7 +13,8 @@ import SwiftKeychainWrapper
 
 extension ProfileVC {
     //SAVE and UPLOAD profile info & image
-    func save(sender: UIBarButtonItem) {
+    func save(sender: AnyObject) {
+        print("Saving pprofile")
         if self.profileImg.image != nil {
             ProfileVC.profileCache.setObject(self.profileImg.image!, forKey: "profileImg")
             //save profile image
