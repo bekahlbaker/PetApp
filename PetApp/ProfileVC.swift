@@ -11,6 +11,12 @@ import Firebase
 import Kingfisher
 
 class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+    @IBAction func cancelBtnTapped(_ sender: Any) {
+        alert()
+    }
+    @IBAction func saveBtnTapped(_ sender: Any) {
+        save()
+    }
     @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet weak var errorLbl: UILabel!
     @IBOutlet weak var fullNameLbl: UITextField!
@@ -90,32 +96,32 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         self.imagePicked = 2
         present(alertController, animated: true, completion: nil)
     }
-    func alert(sender: UIBarButtonItem) {
+    func alert() {
         let alert = UIAlertController(title: "", message: "If you cancel now, your profile changes will not be saved.", preferredStyle: UIAlertControllerStyle.alert)
         let discard = UIAlertAction(title: "Discard", style: .destructive, handler: { (_) -> Void in
-            _ = self.navigationController?.popViewController(animated: true)
+            if self.navigationController != nil {
+                _ = self.navigationController?.popViewController(animated: true)
+            } else {
+                self.performSegue(withIdentifier: "FeedVC", sender: nil)
+            }
         })
         let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) -> Void in
         }
         alert.addAction(discard)
         alert.addAction(cancel)
-        self.navigationController?.present(alert, animated: true, completion: nil)
+        if self.navigationController != nil {
+            self.navigationController?.present(alert, animated: true, completion: nil)
+        } else {
+            self.present(alert, animated: true, completion: nil)
+            self.performSegue(withIdentifier: "FeedVC", sender: nil)
+        }
     }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
-        let cancelBtn = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(alert(sender:)))
+        let cancelBtn = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.plain, target: self, action: #selector(alert))
         self.navigationItem.leftBarButtonItem = cancelBtn
-//        let saveButton: UIButton = UIButton()
-//        saveButton.setTitle("Save", for: .normal)
-//        saveButton.frame = CGRect(x: 0, y: 0, width: 45, height: 45)
-//        saveButton.target(forAction: #selector(save(sender:)), withSender: nil)
-//        let rightBarItem: UIBarButtonItem = UIBarButtonItem()
-//        rightBarItem.customView = saveButton
-//        self.navigationItem.rightBarButtonItem = rightBarItem
-//
-//        
-        let saveBtn = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.done, target: self, action: #selector(save(sender:)))
+        let saveBtn = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.done, target: self, action: #selector(save))
         self.navigationItem.rightBarButtonItem = saveBtn
 //        ProfileVC.profileCache.removeAllObjects()
 //        FeedVC.imageCache.removeAllObjects()

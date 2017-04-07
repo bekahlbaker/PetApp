@@ -13,7 +13,7 @@ import SwiftKeychainWrapper
 
 extension ProfileVC {
     //SAVE and UPLOAD profile info & image
-    func save(sender: AnyObject) {
+    func save() {
         print("Saving pprofile")
         if self.profileImg.image != nil {
             ProfileVC.profileCache.setObject(self.profileImg.image!, forKey: "profileImg")
@@ -63,8 +63,18 @@ extension ProfileVC {
         createUserInfo("breed", value: breedLbl.text! as String)
         createUserInfo("location", value: locationLbl.text! as String)
         createUserInfo("about", value: aboutLbl.text! as String)
-//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshCurrentUserVC"), object: nil)
-        _ = self.navigationController?.popViewController(animated: true)
+        checkIfHasFilledOutProfileOnce()
+    }
+    func checkIfHasFilledOutProfileOnce() {
+        if UserDefaults.standard.bool(forKey: "HasFilledOutProfileOnce") {
+            print("NOT first time viewing profile")
+                _ = self.navigationController?.popViewController(animated: true)
+        } else {
+            print("FIRST time viewing profile")
+            UserDefaults.standard.set(true, forKey: "HasFilledOutProfileOnce")
+            UserDefaults.standard.synchronize()
+            self.performSegue(withIdentifier: "FeedVC", sender: nil)
+        }
     }
     func createUserInfo(_ key: String, value: String) {
         let userInfo: [String: Any] = [
