@@ -51,7 +51,12 @@ class SignInVC: UIViewController, UITextFieldDelegate {
                         let userData = ["provider": user.providerID]
                         DataService.ds.completeSignIn(user.uid, userData: userData)
                         print("Email user authenticated with Firebase")
-                        self.performSegue(withIdentifier: "toFeedVC", sender: nil)
+                        if let _ = KeychainWrapper.standard.string(forKey: "Username") {
+                            print("Username found in Keychain.")
+                            self.performSegue(withIdentifier: "toFeedVC", sender: nil)
+                        } else {
+                            self.performSegue(withIdentifier: "toUsernameVC", sender: nil)
+                        }
                     }
                 }
             })

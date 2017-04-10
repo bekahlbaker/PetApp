@@ -109,12 +109,7 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         }
         alert.addAction(discard)
         alert.addAction(cancel)
-        if self.navigationController != nil {
-            self.navigationController?.present(alert, animated: true, completion: nil)
-        } else {
-            self.present(alert, animated: true, completion: nil)
-            self.performSegue(withIdentifier: "FeedVC", sender: nil)
-        }
+        checkIfHasFilledOutProfileOnce()
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -142,6 +137,7 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             }
         }
         downloadUserInfo()
+        print("HAS FILLED OUT PROFILE ONCE: \(UserDefaults.standard.bool(forKey: "HasFilledOutProfileOnce"))")
     }
 //    
 //    override func viewDidAppear(_ animated: Bool) {

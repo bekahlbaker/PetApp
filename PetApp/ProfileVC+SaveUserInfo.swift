@@ -66,15 +66,16 @@ extension ProfileVC {
         checkIfHasFilledOutProfileOnce()
     }
     func checkIfHasFilledOutProfileOnce() {
-        if UserDefaults.standard.bool(forKey: "HasFilledOutProfileOnce") {
-            print("NOT first time viewing profile")
+        DataService.ds.REF_CURRENT_USER.child("user-personal").child("HasFilledOutProfileOnce").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let _ = snapshot.value as? NSNull {
+                print("FIRST time viewing profile")
+                DataService.ds.REF_CURRENT_USER.child("user-personal").updateChildValues(["HasFilledOutProfileOnce": true])
+                self.performSegue(withIdentifier: "FeedVC", sender: nil)
+            } else {
+                print("NOT first time viewing profile")
                 _ = self.navigationController?.popViewController(animated: true)
-        } else {
-            print("FIRST time viewing profile")
-            UserDefaults.standard.set(true, forKey: "HasFilledOutProfileOnce")
-            UserDefaults.standard.synchronize()
-            self.performSegue(withIdentifier: "FeedVC", sender: nil)
-        }
+            }
+        })
     }
     func createUserInfo(_ key: String, value: String) {
         let userInfo: [String: Any] = [

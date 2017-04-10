@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
 
 class UsernameVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var usernameTextField: UITextField!
@@ -18,12 +19,15 @@ class UsernameVC: UIViewController, UITextFieldDelegate {
             if (usernameTextField.text?.characters.contains { [".", "#", "$", "[", "]"].contains( $0 ) })! {
                 self.errorLbl.text = "Username cannot contain \n '.' '#' '$' '[' or ']' \n please try again."
             } else {
-                let userInfo: [String: Any] = [
-                    "username": usernameTextField.text! as String]
-                DataService.ds.REF_ACTIVE_USERS.updateChildValues(["\(self.usernameTextField.text!)": true])
-                DataService.ds.REF_CURRENT_USER.child("user-personal").updateChildValues(userInfo)
-                DataService.ds.REF_CURRENT_USER.child("user-info").updateChildValues(userInfo)
-                performSegue(withIdentifier: "toProfileVC", sender: nil)
+                if let username = usernameTextField.text {
+                    let userInfo: [String: Any] = [
+                        "username": username]
+                    DataService.ds.REF_ACTIVE_USERS.updateChildValues([username: true])
+                    DataService.ds.REF_CURRENT_USER.child("user-personal").updateChildValues(userInfo)
+                    DataService.ds.REF_CURRENT_USER.child("user-info").updateChildValues(userInfo)
+                    KeychainWrapper.standard.set(username, forKey: "Username")
+                    performSegue(withIdentifier: "toProfileVC", sender: nil)
+                }
             }
         }
     }

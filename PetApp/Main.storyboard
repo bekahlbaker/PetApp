@@ -28,7 +28,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="doginwig" translatesAutoresizingMaskIntoConstraints="NO" id="A4p-64-0YQ">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dog-in-wig" translatesAutoresizingMaskIntoConstraints="NO" id="A4p-64-0YQ">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="dVJ-Pr-3pa">
@@ -64,7 +64,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetPic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cjr-4F-ec4">
-                                <rect key="frame" x="115.5" y="72" width="145" height="75"/>
+                                <rect key="frame" x="115" y="28" width="145" height="75"/>
                                 <fontDescription key="fontDescription" name="Lobster1.4" family="Lobster 1.4" pointSize="60"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -218,6 +218,7 @@
                         <outlet property="resetPassBtn" destination="eFv-9J-UgZ" id="jKn-lR-ev1"/>
                         <outlet property="signUpBtn" destination="wcy-ke-xmD" id="snq-NP-FvT"/>
                         <segue destination="avS-e6-anj" kind="show" identifier="toFeedVC" id="FTw-v6-tCL"/>
+                        <segue destination="fAe-DI-edP" kind="show" identifier="toUsernameVC" id="osl-ui-GjG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yIc-aG-kd9" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -503,13 +504,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZv-zB-1zN">
-                                <rect key="frame" x="24" y="176" width="327" height="19.5"/>
+                                <rect key="frame" x="24" y="176" width="327" height="20"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
                                 <color key="textColor" red="0.97254901959999995" green="0.015686274510000001" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ivO-UL-Bc3" customClass="RoundedCornerButton" customModule="PetApp" customModuleProvider="target">
-                                <rect key="frame" x="24" y="230.5" width="327" height="30"/>
+                                <rect key="frame" x="24" y="231" width="327" height="30"/>
                                 <color key="backgroundColor" red="0.30588235289999999" green="0.80392156859999997" blue="0.76862745099999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Pjs-gT-KtP"/>
@@ -524,6 +525,7 @@
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="kbg-tp-Q4h" firstAttribute="leading" secondItem="OXr-Bk-ZHJ" secondAttribute="leadingMargin" constant="8" id="0XG-kz-SM3"/>
                             <constraint firstItem="ivO-UL-Bc3" firstAttribute="leading" secondItem="OXr-Bk-ZHJ" secondAttribute="leadingMargin" constant="8" id="FIh-97-wJB"/>
@@ -538,6 +540,9 @@
                             <constraint firstItem="ivO-UL-Bc3" firstAttribute="top" secondItem="TZv-zB-1zN" secondAttribute="bottom" constant="35" id="g4m-BF-NnU"/>
                             <constraint firstItem="kbg-tp-Q4h" firstAttribute="top" secondItem="Nri-gl-sBI" secondAttribute="bottom" constant="8" id="t11-vw-tJf"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="Gr2-jg-ACR" appends="YES" id="cfe-Zi-xAd"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="errorLbl" destination="TZv-zB-1zN" id="diN-iU-dQo"/>
@@ -546,6 +551,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WDd-GG-6wM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="Gr2-jg-ACR">
+                    <connections>
+                        <action selector="tapGestureTapped:" destination="8e3-ft-Uph" id="hYD-gP-c4X"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="658" y="796"/>
         </scene>
@@ -594,7 +604,7 @@
                                 </items>
                             </navigationBar>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u4z-cR-Fxw" customClass="RoundedCornerButton" customModule="PetApp" customModuleProvider="target">
-                                <rect key="frame" x="87.5" y="63" width="200" height="30"/>
+                                <rect key="frame" x="88" y="63" width="200" height="30"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="L9o-yM-nWX"/>
@@ -609,7 +619,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blank-profile-picture" translatesAutoresizingMaskIntoConstraints="NO" id="x6N-fR-Pwe" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
-                                <rect key="frame" x="147.5" y="101" width="80" height="80"/>
+                                <rect key="frame" x="148" y="101" width="80" height="80"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
@@ -621,7 +631,7 @@
                                 </connections>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fng-Yj-c1c" customClass="RoundedCornerButton" customModule="PetApp" customModuleProvider="target">
-                                <rect key="frame" x="87.5" y="189" width="200" height="30"/>
+                                <rect key="frame" x="88" y="189" width="200" height="30"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="HCR-aJ-Q5K"/>
@@ -768,15 +778,10 @@
                         <outlet property="profileImg" destination="x6N-fR-Pwe" id="OSm-hZ-W3I"/>
                         <outlet property="speciesLbl" destination="OmQ-2M-Ums" id="xZ8-Gi-0Gx"/>
                         <segue destination="ABA-se-GwR" kind="show" identifier="ViewUserVC" customClass="RIghtToLeftSegue" customModule="PetApp" customModuleProvider="target" id="YlQ-Or-eMF"/>
-                        <segue destination="avS-e6-anj" kind="presentation" identifier="FeedVC" modalTransitionStyle="flipHorizontal" id="lgU-HH-gKS"/>
+                        <segue destination="avS-e6-anj" kind="presentation" identifier="FeedVC" modalPresentationStyle="overCurrentContext" modalTransitionStyle="coverVertical" id="lgU-HH-gKS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HAk-d2-Wgc" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="Gr2-jg-ACR">
-                    <connections>
-                        <action selector="tapGestureTapped:" destination="8e3-ft-Uph" id="hYD-gP-c4X"/>
-                    </connections>
-                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1495" y="796"/>
         </scene>
@@ -847,12 +852,12 @@
                         <viewControllerLayoutGuide type="top" id="u1j-vs-RdX"/>
                         <viewControllerLayoutGuide type="bottom" id="Jd9-3E-s8h"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="ZLW-Np-koL">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <view key="view" contentMode="scaleToFill" id="ZLW-Np-koL">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3r8-CU-z1x">
-                                <rect key="frame" x="0.0" y="20" width="375" height="320"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="320"/>
                                 <subviews>
                                     <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sBB-td-5gh">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="320"/>
@@ -992,7 +997,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="oXf-0A-NUb">
-                                <rect key="frame" x="0.0" y="340" width="375" height="283"/>
+                                <rect key="frame" x="0.0" y="320" width="375" height="239"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="1ci-ex-6qq">
                                     <size key="itemSize" width="120" height="120"/>
@@ -1027,7 +1032,7 @@
                                 </cells>
                             </collectionView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AST-jS-0JG">
-                                <rect key="frame" x="0.0" y="623" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="559" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem image="home-sm" id="TZW-52-p5I">
@@ -1236,12 +1241,12 @@
                         <viewControllerLayoutGuide type="top" id="dhv-TH-XNh"/>
                         <viewControllerLayoutGuide type="bottom" id="FOY-vF-yny"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" misplaced="YES" id="EKh-3m-z1H">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <view key="view" contentMode="scaleToFill" id="EKh-3m-z1H">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bMR-SN-Wep">
-                                <rect key="frame" x="0.0" y="579" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="559" width="375" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="RwC-ve-DHr"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="xsA-Fa-DUJ"/>
@@ -1256,7 +1261,7 @@
                                 </items>
                             </toolbar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="542" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="wTY-RD-waF">
-                                <rect key="frame" x="0.0" y="20" width="375" height="559"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SinglePhotoCell" rowHeight="542" id="6d2-yY-NUK" customClass="SinglePhotoCell" customModule="PetApp" customModuleProvider="target">
@@ -1471,11 +1476,11 @@
                                     <constraint firstAttribute="height" constant="44" id="usb-iM-2gZ"/>
                                 </constraints>
                                 <items>
-                                    <barButtonItem image="home-sm" id="hZn-OJ-qNQ">
+                                    <barButtonItem image="home-empty" id="hZn-OJ-qNQ">
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="05c-CH-jfy"/>
-                                    <barButtonItem image="photo" id="IrG-ok-gRD">
+                                    <barButtonItem image="camera-empty" id="IrG-ok-gRD">
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
                                             <segue destination="iiK-pT-sg2" kind="presentation" identifier="toPostVC" customClass="RIghtToLeftSegue" customModule="PetApp" customModuleProvider="target" modalPresentationStyle="overCurrentContext" id="61E-j1-iUC"/>
@@ -1560,7 +1565,7 @@
                                                         <constraint firstAttribute="width" constant="25" id="qGr-Zi-fE1"/>
                                                     </constraints>
                                                 </imageView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="speech-bubble-sm" translatesAutoresizingMaskIntoConstraints="NO" id="JYe-G5-aHa">
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Comment" translatesAutoresizingMaskIntoConstraints="NO" id="JYe-G5-aHa">
                                                     <rect key="frame" x="90" y="449" width="25" height="25"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="25" id="YKj-Jc-9SN"/>
@@ -1584,12 +1589,12 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1lD-bD-Xb6">
-                                                    <rect key="frame" x="324" y="441" width="35" height="35"/>
+                                                    <rect key="frame" x="324" y="446" width="35" height="30"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="35" id="QEc-2w-Zxb"/>
+                                                        <constraint firstAttribute="height" constant="30" id="QEc-2w-Zxb"/>
                                                         <constraint firstAttribute="width" constant="35" id="vtJ-yd-wUX"/>
                                                     </constraints>
-                                                    <state key="normal" image="more-sm"/>
+                                                    <state key="normal" image="More"/>
                                                     <connections>
                                                         <action selector="moreBtnTapped:" destination="XT7-dt-d1F" eventType="touchUpInside" id="smd-3n-IsD"/>
                                                     </connections>
@@ -1731,7 +1736,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zGo-cJ-yz9">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Empty-Photo" translatesAutoresizingMaskIntoConstraints="NO" id="zGo-cJ-yz9">
                                 <rect key="frame" x="0.0" y="55" width="375" height="375"/>
                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
@@ -1742,9 +1747,8 @@
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iaT-PM-N7O">
                                 <rect key="frame" x="0.0" y="55" width="375" height="375"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M8N-Ws-NoO">
-                                <rect key="frame" x="0.0" y="55" width="375" height="375"/>
-                                <fontDescription key="fontDescription" name="Avenir-Medium" family="Avenir" pointSize="25"/>
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M8N-Ws-NoO">
+                                <rect key="frame" x="0.5" y="55" width="375" height="375"/>
                                 <state key="normal">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -1975,7 +1979,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="EvZ-0H-Tc7" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="mNK-wu-GjY">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" misplaced="YES" id="mNK-wu-GjY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -1990,27 +1994,32 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Comment" width="94" height="87"/>
+        <image name="Empty-Photo" width="94" height="73"/>
+        <image name="More" width="97" height="48"/>
         <image name="blank-profile-picture" width="640" height="640"/>
         <image name="blur" width="640" height="426"/>
-        <image name="doginwig" width="1920" height="1275"/>
+        <image name="camera-empty" width="24" height="19"/>
+        <image name="dog-in-wig" width="960" height="638"/>
         <image name="empty-heart" width="70" height="70"/>
+        <image name="home-empty" width="24" height="23"/>
         <image name="home-sm" width="35" height="35"/>
         <image name="locate-sm" width="35" height="35"/>
         <image name="more-sm" width="35" height="35"/>
-        <image name="photo" width="32" height="26"/>
         <image name="speech-bubble-sm" width="35" height="35"/>
         <image name="user-sm" width="35" height="35"/>
         <image name="users-sm" width="35" height="35"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="NaD-hV-ZAh"/>
-        <segue reference="YlQ-Or-eMF"/>
+        <segue reference="61E-j1-iUC"/>
+        <segue reference="lgU-HH-gKS"/>
         <segue reference="Lqk-g8-n0s"/>
-        <segue reference="Ioz-ly-Xrt"/>
-        <segue reference="dXV-T8-2Jd"/>
+        <segue reference="vcX-KV-BRk"/>
+        <segue reference="NaD-hV-ZAh"/>
         <segue reference="zsD-8J-Lsn"/>
-        <segue reference="SDZ-21-9fi"/>
+        <segue reference="osl-ui-GjG"/>
+        <segue reference="xu2-ih-vp3"/>
+        <segue reference="nrV-ns-tsz"/>
         <segue reference="61S-To-qrI"/>
-        <segue reference="TLW-Q5-xSz"/>
     </inferredMetricsTieBreakers>
 </document>
