@@ -27,7 +27,7 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     var isFollowing: Bool!
     static var postKeyToPass: String!
     let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
-    static var usernamePassed: String!
+    static var usernamePassed = "KnOjqWcOnzVxSHqI1DLqq5NhxA62"
     var posts = [Post]()
     @IBOutlet weak var homeBtn: UIBarButtonItem!
     @IBAction func moreBtnTapped(_ sender: UIBarButtonItem) {

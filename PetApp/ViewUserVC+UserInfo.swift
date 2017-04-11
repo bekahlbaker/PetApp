@@ -15,9 +15,9 @@ extension ViewUserVC {
     func loadUserInfo() {
         DispatchQueue.global().async {
             let userKey = ViewUserVC.usernamePassed
-            DataService.ds.REF_USERS.child(userKey!).child("user-info").observeSingleEvent(of: .value, with: { (snapshot) in
+            DataService.ds.REF_USERS.child(userKey).child("user-info").observeSingleEvent(of: .value, with: { (snapshot) in
                 if let userDict = snapshot.value as? [String: AnyObject] {
-                    let user = User(userKey: userKey!, userData: userDict)
+                    let user = User(userKey: userKey, userData: userDict)
                     self.user = user
                 }
                 if self.user != nil {
@@ -55,6 +55,52 @@ extension ViewUserVC {
                 }
             }
         }
+        self.profileImg.image = UIImage(named: "user-sm")
+        DataService.ds.REF_CURRENT_USER.child("user-info").observe(.value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: Any] {
+                //download profile img
+                if ProfileVC.profileCache.object(forKey: "profileImg") != nil {
+                    self.profileImg.image = ProfileVC.profileCache.object(forKey: "profileImg")
+                    print("Using cached img")
+                } else {
+                    guard let profileUrl = dictionary["profileImgUrl"] as? String else {
+                        return
+                    }
+                    if profileUrl == (dictionary["profileImgUrl"] as? String)! {
+                        let storage = FIRStorage.storage()
+                        let storageRef = storage.reference(forURL: profileUrl)
+                        storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
+                            if error != nil {
+                                print("Unable to download image from firebase")
+                            } else {
+                                let profileImg = UIImage(data: data!)
+                                self.profileImg.image = profileImg
+                            }
+                        }
+                    }
+                }
+                //download cover photo
+                if ProfileVC.coverCache.object(forKey: "coverImg") != nil {
+                    self.coverImg.image = ProfileVC.coverCache.object(forKey: "coverImg")
+                } else {
+                    guard let coverUrl = dictionary["coverImgUrl"] as? String else {
+                        return
+                    }
+                    if coverUrl == (dictionary["coverImgUrl"] as? String)! {
+                        let storage = FIRStorage.storage()
+                        let storageRef = storage.reference(forURL: coverUrl)
+                        storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
+                            if error != nil {
+                                print("Unable to download image from firebase")
+                            } else {
+                                let coverImg = UIImage(data: data!)
+                                self.coverImg.image = coverImg
+                            }
+                        }
+                    }
+                }
+            }
+        })
     }
     func downloadViewUserContent() {
         checkIfFollowing()
@@ -71,6 +117,9 @@ extension ViewUserVC {
             let confirmLogOut = UIAlertAction(title: "Log Out", style: .destructive, handler: { (_) -> Void in
                 KeychainWrapper.standard.removeObject(forKey: KEY_UID)
                 try! FIRAuth.auth()?.signOut()
+                ProfileVC.profileCache.removeAllObjects()
+                FeedVC.imageCache.removeAllObjects()
+                ProfileVC.coverCache.removeAllObjects()
                 self.performSegue(withIdentifier: "EntryVC", sender: nil)
             })
             let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) -> Void in

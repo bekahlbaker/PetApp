@@ -41,7 +41,7 @@ extension ViewUserVC {
     }
     func follow() {
         print("Follow btn tapped")
-        DataService.ds.REF_CURRENT_USER.child("following").updateChildValues(["\(ViewUserVC.usernamePassed!)": true])
+        DataService.ds.REF_CURRENT_USER.child("following").updateChildValues(["\(ViewUserVC.usernamePassed)": true])
         self.user.adjustFollowing(true)
         DataService.ds.REF_USERS.child(ViewUserVC.usernamePassed).child("followers").updateChildValues(["\(KeychainWrapper.standard.string(forKey: KEY_UID)! as String)": true])
         self.user.adjustFollowers(userKey: ViewUserVC.usernamePassed, true)

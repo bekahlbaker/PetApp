@@ -11,11 +11,13 @@ import Firebase
 
 extension FeedVC {
     func refreshList(notification: NSNotification) {
-        downloadData { (_) in
-            DispatchQueue.main.async {
-                self.refreshControl.endRefreshing()
-                self.tableView.reloadData()
-                print("Reload Table")
+        downloadData { (successDownloadingData) in
+            if successDownloadingData {
+                    self.refreshControl.endRefreshing()
+                    self.tableView.reloadData()
+                    print("Reload Table")
+            } else {
+                print("Unable to download data, try again")
             }
         }
     }
@@ -70,6 +72,7 @@ extension FeedVC {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let post = self.posts[indexPath.row]
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as? FeedCell {
+            cell.profileImg.image = UIImage(named: "user-sm")
             cell.delegate = self
             cell.configureCell(post)
             FeedVC.postKeyToPass = post.postKey

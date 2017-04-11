@@ -99,17 +99,20 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     func alert() {
         let alert = UIAlertController(title: "", message: "If you cancel now, your profile changes will not be saved.", preferredStyle: UIAlertControllerStyle.alert)
         let discard = UIAlertAction(title: "Discard", style: .destructive, handler: { (_) -> Void in
-            if self.navigationController != nil {
-                _ = self.navigationController?.popViewController(animated: true)
-            } else {
-                self.performSegue(withIdentifier: "FeedVC", sender: nil)
+            self.checkIfHasFilledOutProfileOnce { (hasFilledOutProfile) in
+                if hasFilledOutProfile {
+                    _ = self.navigationController?.popViewController(animated: true)
+                } else {
+                    DataService.ds.REF_CURRENT_USER.child("user-personal").updateChildValues(["HasFilledOutProfileOnce": true])
+                    self.performSegue(withIdentifier: "FeedVC", sender: nil)
+                }
             }
         })
         let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) -> Void in
         }
         alert.addAction(discard)
         alert.addAction(cancel)
-        checkIfHasFilledOutProfileOnce()
+        self.navigationController?.present(alert, animated: true, completion: nil)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -126,18 +129,17 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         imagePicker.allowsEditing = true
         ageLbl.delegate = self
         ageLbl.addTarget(self, action: #selector(textFieldChanged(_:)), for: UIControlEvents.editingChanged)
-        DispatchQueue.global().async {
-            if ProfileVC.profileCache.object(forKey: "profileImg") != nil {
-                self.profileImg.image = ProfileVC.profileCache.object(forKey: "profileImg")
-                print("Using cached profile img")
-            }
-            if ProfileVC.coverCache.object(forKey: "coverImg") != nil {
-                self.coverPhoto.image = ProfileVC.coverCache.object(forKey: "coverImg")
-                print("Using cached cover Img")
-            }
-        }
+//        DispatchQueue.main.async {
+//            if ProfileVC.profileCache.object(forKey: "profileImg") != nil {
+//                self.profileImg.image = ProfileVC.profileCache.object(forKey: "profileImg")
+//                print("Using cached profile img")
+//            }
+//            if ProfileVC.coverCache.object(forKey: "coverImg") != nil {
+//                self.coverPhoto.image = ProfileVC.coverCache.object(forKey: "coverImg")
+//                print("Using cached cover Img")
+//            }
+//        }
         downloadUserInfo()
-        print("HAS FILLED OUT PROFILE ONCE: \(UserDefaults.standard.bool(forKey: "HasFilledOutProfileOnce"))")
     }
 //    
 //    override func viewDidAppear(_ animated: Bool) {
@@ -155,10 +157,11 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 self.locationLbl.text = dictionary["location"] as? String
                 self.aboutLbl.text = dictionary["about"] as? String
                 //download profile img
-//                if ProfileVC.profileCache.object(forKey: "profileImg") != nil {
-//                    self.profileImg.image = ProfileVC.profileCache.object(forKey: "profileImg")
-//                    print("Using cached img")
-//                } else {
+                self.profileImg.image = UIImage(named: "user-sm")
+                if ProfileVC.profileCache.object(forKey: "profileImg") != nil {
+                    self.profileImg.image = ProfileVC.profileCache.object(forKey: "profileImg")
+                    print("Using cached img")
+                } else {
                     guard let profileUrl = dictionary["profileImgUrl"] as? String else {
                         return
                     }
@@ -174,11 +177,11 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                             }
                         }
                     }
-//                }
+                }
                 //download cover photo
-//                if ProfileVC.coverCache.object(forKey: "coverImg") != nil {
-//                    self.coverPhoto.image = ProfileVC.coverCache.object(forKey: "coverImg")
-//                } else {
+                if ProfileVC.coverCache.object(forKey: "coverImg") != nil {
+                    self.coverPhoto.image = ProfileVC.coverCache.object(forKey: "coverImg")
+                } else {
                     guard let coverUrl = dictionary["coverImgUrl"] as? String else {
                         return
                     }
@@ -194,7 +197,7 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                             }
                         }
                     }
-//                }
+                }
             }
         })
     }

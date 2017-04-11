@@ -55,16 +55,43 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let post = posts[indexPath.row]
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SinglePhotoCell") as? SinglePhotoCell {
+            cell.profileImg.image = UIImage(named: "user-sm")
             cell.delegate = self
             cell.configureCell(post)
-            cell.tapActionUsername = { (cell) in
-                ViewUserVC.usernamePassed = post.userKey
-                if ViewUserVC.usernamePassed != nil {
-                    self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
+            let userKey = post.userKey
+            if FeedVC.imageCache.object(forKey: userKey as NSString) != nil {
+                cell.profileImg.image = FeedVC.imageCache.object(forKey: userKey as NSString)
+                cell.tapActionUsername = { (cell) in
+                    ViewUserVC.usernamePassed = post.userKey
+                    if ViewUserVC.usernamePassed != nil {
+                        self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
+                    }
                 }
+                FeedVC.postKeyToPass = post.postKey
+                return cell
+            } else {
+                let userKey = post.userKey
+                DataService.ds.REF_USERS.child(userKey).child("user-info").observe( .value, with: { (snapshot) in
+                    if let dictionary = snapshot.value as? [String: Any] {
+                        if let profileURL = dictionary["profileImgUrl"] as? String {
+                            let ref = FIRStorage.storage().reference(forURL: profileURL)
+                            ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+                                if error != nil {
+                                    print("Unable to Download profile image from Firebase storage.")
+                                } else {
+                                    if let imgData = data {
+                                        if let profileImg = UIImage(data: imgData) {
+                                            cell.profileImg.image = profileImg
+                                            FeedVC.imageCache.setObject(profileImg, forKey: userKey as NSString)
+                                        }
+                                    }
+                                }
+                            })
+                        }
+                    }
+                })
+                return cell
             }
-            FeedVC.postKeyToPass = post.postKey
-            return cell
         } else {
             return SinglePhotoCell()
         }

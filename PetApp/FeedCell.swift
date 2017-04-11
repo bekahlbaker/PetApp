@@ -14,7 +14,6 @@ import SwiftKeychainWrapper
 
 class FeedCell: UITableViewCell {
     @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
-    @IBOutlet weak var profileActivitySpinner: UIActivityIndicatorView!
     @IBOutlet weak var feedImageView: UIImageView!
     @IBOutlet weak var caption: UILabel!
     @IBOutlet weak var profileImg: CircleImage!
@@ -100,7 +99,7 @@ class FeedCell: UITableViewCell {
         }
         DispatchQueue.main.async {
             self.activitySpinner.startAnimating()
-            self.profileActivitySpinner.startAnimating()
+//            self.profileImg.image = UIImage(named: "user-sm")
             self.likesRef = DataService.ds.REF_CURRENT_USER.child("likes").child(post.postKey)
             self.caption.text = post.caption
             self.usernameBtn.setTitle(post.username, for: .normal)
@@ -118,6 +117,7 @@ class FeedCell: UITableViewCell {
             }
             if let imgURL = URL(string: post.imageURL) {
                 self.feedImageView.kf.setImage(with: imgURL)
+                print("Using kingfisher for feed images")
             } else {
                 let ref = FIRStorage.storage().reference(forURL: post.imageURL)
                 ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in

@@ -12,9 +12,6 @@ import SwiftKeychainWrapper
 import Kingfisher
 
 class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    @IBAction func viewCurrentUserTapped(_ sender: Any) {
-        performSegue(withIdentifier: "ViewUserVC", sender: nil)
-    }
     @IBOutlet weak var tableView: UITableView!
     var posts = [Post]()
     var postKeys = [String]()
@@ -36,11 +33,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         refreshControl.addTarget(self, action: #selector(refreshList(notification:)), for: UIControlEvents.valueChanged)
         tableView.addSubview(refreshControl)
         NotificationCenter.default.addObserver(self, selector: #selector(refreshList(notification:)), name:NSNotification.Name(rawValue: "refreshMyTableView"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshMyTableView"), object: nil)
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        print("ANYTHING")
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshMyTableView"), object: nil)
+
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ViewUserVC" {
