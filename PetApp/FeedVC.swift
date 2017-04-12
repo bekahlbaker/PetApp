@@ -15,9 +15,11 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet weak var tableView: UITableView!
     var posts = [Post]()
     var postKeys = [String]()
+    var userKeyArray = [String]()
+    var postKeysArray = [String]()
     static var imageCache: NSCache<NSString, UIImage> = NSCache()
-    static var usernameToPass: String!
-    static var postKeyToPass: String!
+    var userKeyToPass: String!
+    var postKeyToPass: String!
     var refreshControl: UIRefreshControl!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,17 +37,16 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         NotificationCenter.default.addObserver(self, selector: #selector(refreshList(notification:)), name:NSNotification.Name(rawValue: "refreshMyTableView"), object: nil)
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshMyTableView"), object: nil)
     }
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-
-    }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ViewUserVC" {
-            let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
-            ViewUserVC.usernamePassed = userKey
+            if let myVC = segue.destination as? ViewUserVC {
+                myVC.userKeyPassed = self.userKeyToPass
+            }
         }
         if segue.identifier == "CommentsVC" {
-            CommentsVC.postKeyPassed = FeedVC.postKeyToPass
+            if let myVC = segue.destination as? CommentsVC {
+             myVC.postKeyPassed = self.postKeyToPass
+            }
         }
     }
 }

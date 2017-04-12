@@ -13,9 +13,9 @@ extension FeedVC {
     func refreshList(notification: NSNotification) {
         downloadData { (successDownloadingData) in
             if successDownloadingData {
-                    self.refreshControl.endRefreshing()
-                    self.tableView.reloadData()
-                    print("Reload Table")
+                self.refreshControl.endRefreshing()
+                self.tableView.reloadData()
+                print("Reload Table")
             } else {
                 print("Unable to download data, try again")
             }
@@ -45,6 +45,12 @@ extension FeedVC {
                                     self.posts.insert(post, at: 0)
                                     if self.posts.count > 0 {
                                         completionHandler(true)
+                                        if let userKey = postDict["userKey"] as? String {
+                                            self.userKeyArray.insert(userKey, at: 0)
+                                        }
+                                        if let postKey = postDict["postKey"] as? String {
+                                            self.postKeysArray.insert(postKey, at: 0)
+                                        }
                                     }
                                 }
                             }
@@ -54,15 +60,6 @@ extension FeedVC {
             })
         }
     }
-//    func loadTableData(_ sender: AnyObject) {
-//        if self.posts.count > 0 {
-//            self.tableView.reloadData()
-//        }
-//    }
-//    func refresh(_ sender: AnyObject) {
-//        self.perform(#selector(downloadData(_:)), with: nil, afterDelay: 0.5)
-//        self.refreshControl.endRefreshing()
-//    }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -70,56 +67,63 @@ extension FeedVC {
         return posts.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let post = self.posts[indexPath.row]
         if let cell = tableView.dequeueReusableCell(withIdentifier: "FeedCell") as? FeedCell {
             cell.profileImg.image = UIImage(named: "user-sm")
             cell.delegate = self
-            cell.configureCell(post)
-            FeedVC.postKeyToPass = post.postKey
-            let userKey = post.userKey
-            if FeedVC.imageCache.object(forKey: userKey as NSString) != nil {
-                cell.profileImg.image = FeedVC.imageCache.object(forKey: userKey as NSString)
-                if FeedCell.isConfigured == true {
-                    cell.tapActionUsername = { (cell) in
-                        FeedVC.usernameToPass = post.userKey
-                        if FeedVC.usernameToPass != nil {
-                            self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
-                        }
-                    }
-                    cell.tapActionComments = { (cell) in
-                        FeedVC.postKeyToPass = post.postKey
-                        print(FeedVC.postKeyToPass)
-                        if FeedVC.postKeyToPass != nil {
-                            self.performSegue(withIdentifier: "CommentsVC", sender: nil)
-                        }
-                    }
-                }
-                return cell
-            } else {
-                let userKey = post.userKey
-                DataService.ds.REF_USERS.child(userKey).child("user-info").observe( .value, with: { (snapshot) in
-                    if let dictionary = snapshot.value as? [String: Any] {
-                        if let profileURL = dictionary["profileImgUrl"] as? String {
-                            let ref = FIRStorage.storage().reference(forURL: profileURL)
-                            ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
-                                if error != nil {
-                                    print("Unable to Download profile image from Firebase storage.")
-                                } else {
-                                    if let imgData = data {
-                                        if let profileImg = UIImage(data: imgData) {
-                                            cell.profileImg.image = profileImg
-                                            FeedVC.imageCache.setObject(profileImg, forKey: userKey as NSString)
+            let post = self.posts[indexPath.row]
+            cell.configureCell(post, completionHandler: { (success) -> Void in
+                if success {
+                    cell.usernameBtn.tag = indexPath.row
+                    cell.viewCommentsBtn.tag = indexPath.row
+                    cell.usernameBtn.addTarget(self, action: #selector(self.usernameBtnTapped(sender:)), for: UIControlEvents.touchUpInside)
+                    cell.viewCommentsBtn.addTarget(self, action: #selector(self.commentBtnTapped(sender:)), for: UIControlEvents.touchUpInside)
+                    let user = cell.usernameBtn.tag
+                    let userKey = self.userKeyArray[user]
+                    if FeedVC.imageCache.object(forKey: userKey as NSString) != nil {
+                        cell.profileImg.image = FeedVC.imageCache.object(forKey: userKey as NSString)
+                    } else {
+                        cell.usernameBtn.tag = indexPath.row
+                        let user = cell.usernameBtn.tag
+                        let userKey = self.userKeyArray[user]
+                        DataService.ds.REF_USERS.child(userKey).child("user-info").observe( .value, with: { (snapshot) in
+                            if let dictionary = snapshot.value as? [String: Any] {
+                                if let profileURL = dictionary["profileImgUrl"] as? String {
+                                    let ref = FIRStorage.storage().reference(forURL: profileURL)
+                                    ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+                                        if error != nil {
+                                            print("Unable to Download profile image from Firebase storage.")
+                                        } else {
+                                            if let imgData = data {
+                                                if let profileImg = UIImage(data: imgData) {
+                                                    cell.profileImg.image = profileImg
+                                                    FeedVC.imageCache.setObject(profileImg, forKey: userKey as NSString)
+                                                }
+                                            }
                                         }
-                                    }
+                                    })
                                 }
-                            })
-                        }
+                            }
+                        })
                     }
-                })
-                return cell
-            }
+                } else {
+                    print("Could not configure cell")
+                }
+            })
+            return cell
         } else {
             return FeedCell()
         }
+    }
+    
+    func usernameBtnTapped(sender: UIButton) {
+        let userKey = sender.tag
+        self.userKeyToPass = self.userKeyArray[userKey]
+        performSegue(withIdentifier: "ViewUserVC", sender: nil)
+    }
+    func commentBtnTapped(sender: UIButton) {
+        let postKey = sender.tag
+        self.postKeyToPass = self.postKeysArray[postKey]
+        print(self.postKeyToPass)
+        performSegue(withIdentifier: "CommentsVC", sender: nil)
     }
 }

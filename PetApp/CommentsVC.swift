@@ -15,7 +15,7 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
 
     var commentKey: String!
     var comments = [Comment]()
-    static var postKeyPassed: String!
+    var postKeyPassed: String!
     var currentUsername: String!
     var keyBoardActive = false
     var originalBottomConstraint: CGFloat!
@@ -54,6 +54,7 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         getUsername()
     }
     override func viewDidAppear(_ animated: Bool) {
+        print("COMMENTS VC POST KEY: \(self.postKeyPassed)")
         downloadCommentData()
     }
     func postToFirebase() {
@@ -62,7 +63,7 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             "username": self.currentUsername as String,
             "userKey": KeychainWrapper.standard.string(forKey: KEY_UID)! as String
         ]
-        let firebasePost = DataService.ds.REF_POSTS.child(CommentsVC.postKeyPassed)
+        let firebasePost = DataService.ds.REF_POSTS.child(self.postKeyPassed)
         firebasePost.child("comments").childByAutoId().setValue(comment)
         NotificationCenter.default.post(name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "adjustCommentCountTrue"), object: nil)

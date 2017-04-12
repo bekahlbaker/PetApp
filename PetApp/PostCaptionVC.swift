@@ -15,21 +15,10 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
     var currentUsername: String!
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var captionTextView: UITextView!
-    @IBOutlet weak var backBtn: UIBarButtonItem!
-    @IBAction func backBtnTapped(_ sender: AnyObject) {
-        self.myActivityIndicator.startAnimating()
-        DispatchQueue.global().async {
-            PostVC.imageSelected = true
-        }
-        DispatchQueue.main.async {
-            self.performSegue(withIdentifier: "toPostVC", sender: nil)
-        }
-    }
     @IBOutlet weak var saveBtn: UIBarButtonItem!
     @IBAction func savePostTapped(_ sender: AnyObject) {
         self.myActivityIndicator.startAnimating()
         self.saveBtn.isEnabled = false
-        self.backBtn.isEnabled = false
         self.captionTextView.isEditable = false
         DispatchQueue.global().async {
             self.saveImageToFireBase()

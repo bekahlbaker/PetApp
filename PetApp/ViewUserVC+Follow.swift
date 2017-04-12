@@ -13,7 +13,7 @@ import SwiftKeychainWrapper
 
 extension ViewUserVC {
     func checkIfFollowing() {
-        DataService.ds.REF_CURRENT_USER.child("following").child(ViewUserVC.usernamePassed).observeSingleEvent(of: .value, with: { (snapshot) in
+        DataService.ds.REF_CURRENT_USER.child("following").child(self.userKeyPassed).observeSingleEvent(of: .value, with: { (snapshot) in
             if let _ = snapshot.value as? NSNull {
                 self.isFollowing = false
             } else {
@@ -40,19 +40,21 @@ extension ViewUserVC {
         self.present(alert, animated: true, completion: nil)
     }
     func follow() {
-        print("Follow btn tapped")
-        DataService.ds.REF_CURRENT_USER.child("following").updateChildValues(["\(ViewUserVC.usernamePassed)": true])
-        self.user.adjustFollowing(true)
-        DataService.ds.REF_USERS.child(ViewUserVC.usernamePassed).child("followers").updateChildValues(["\(KeychainWrapper.standard.string(forKey: KEY_UID)! as String)": true])
-        self.user.adjustFollowers(userKey: ViewUserVC.usernamePassed, true)
-        self.isFollowing = true
+        if let userKey = self.userKeyPassed {
+            DataService.ds.REF_CURRENT_USER.child("following").updateChildValues(["\(userKey)": true])
+            self.user.adjustFollowing(true)
+            DataService.ds.REF_USERS.child(userKey).child("followers").updateChildValues(["\(KeychainWrapper.standard.string(forKey: KEY_UID)! as String)": true])
+            self.user.adjustFollowers(userKey: userKey, true)
+            self.isFollowing = true
+        }
     }
     func unfollow() {
-        print("Unfollow btn tapped")
-        DataService.ds.REF_CURRENT_USER.child("following").child(ViewUserVC.usernamePassed).removeValue()
-        self.user.adjustFollowing(false)
-        DataService.ds.REF_USERS.child(ViewUserVC.usernamePassed).child("followers").child(KeychainWrapper.standard.string(forKey: KEY_UID)! as String).removeValue()
-        self.user.adjustFollowers(userKey: ViewUserVC.usernamePassed, false)
-        self.isFollowing = false
+        if let userKey = self.userKeyPassed {
+            DataService.ds.REF_CURRENT_USER.child("following").child(userKey).removeValue()
+            self.user.adjustFollowing(false)
+            DataService.ds.REF_USERS.child(userKey).child("followers").child(KeychainWrapper.standard.string(forKey: KEY_UID)! as String).removeValue()
+            self.user.adjustFollowers(userKey: userKey, false)
+            self.isFollowing = false
+        }
     }
 }

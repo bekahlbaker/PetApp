@@ -11,8 +11,6 @@ import Firebase
 import CoreImage
 
 class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextViewDelegate {
-    @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
-    @IBOutlet weak var loadingLbl: UILabel!
     @IBOutlet weak var filterScrollView: UIScrollView!
     @IBOutlet weak var originalImage: UIImageView!
     @IBOutlet weak var imageToFilter: UIImageView!
@@ -98,13 +96,7 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     var myActivityIndicator: UIActivityIndicatorView!
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.isNavigationBarHidden = true
-        self.loadingLbl.isHidden = true
-        self.activitySpinner.stopAnimating()
         PostVC.imageSelected = false
-        myActivityIndicator = UIActivityIndicatorView(activityIndicatorStyle: UIActivityIndicatorViewStyle.gray)
-        myActivityIndicator.center = view.center
-        view.addSubview(myActivityIndicator)
         self.loadImage()
         postImagePicker = UIImagePickerController()
         postImagePicker.delegate = self

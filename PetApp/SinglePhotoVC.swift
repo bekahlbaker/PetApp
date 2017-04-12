@@ -62,12 +62,12 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
             if FeedVC.imageCache.object(forKey: userKey as NSString) != nil {
                 cell.profileImg.image = FeedVC.imageCache.object(forKey: userKey as NSString)
                 cell.tapActionUsername = { (cell) in
-                    ViewUserVC.usernamePassed = post.userKey
-                    if ViewUserVC.usernamePassed != nil {
-                        self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
-                    }
+//                    ViewUserVC.usernamePassed = post.userKey
+//                    if ViewUserVC.usernamePassed != nil {
+//                        self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
+//                    }
                 }
-                FeedVC.postKeyToPass = post.postKey
+//                FeedVC.postKeyToPass = post.postKey
                 return cell
             } else {
                 let userKey = post.userKey

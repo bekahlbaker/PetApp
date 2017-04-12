@@ -14,18 +14,19 @@ import SwiftKeychainWrapper
 extension ViewUserVC {
     func loadUserInfo() {
         DispatchQueue.global().async {
-            let userKey = ViewUserVC.usernamePassed
-            DataService.ds.REF_USERS.child(userKey).child("user-info").observeSingleEvent(of: .value, with: { (snapshot) in
-                if let userDict = snapshot.value as? [String: AnyObject] {
-                    let user = User(userKey: userKey, userData: userDict)
-                    self.user = user
-                }
-                if self.user != nil {
-                    self.configureUser(self.user)
-                } else {
-                    print("No user info")
-                }
-            })
+            if let userKey = self.userKeyPassed {
+                DataService.ds.REF_USERS.child(userKey).child("user-info").observeSingleEvent(of: .value, with: { (snapshot) in
+                    if let userDict = snapshot.value as? [String: AnyObject] {
+                        let user = User(userKey: userKey, userData: userDict)
+                        self.user = user
+                    }
+                    if self.user != nil {
+                        self.configureUser(self.user)
+                    } else {
+                        print("No user info")
+                    }
+                })
+            }
         }
     }
     func configureUser(_ user: User) {

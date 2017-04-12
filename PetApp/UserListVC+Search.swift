@@ -15,10 +15,10 @@ extension UserListVC {
         DataService.ds.REF_USERS.queryOrdered(byChild: "user-info/username").queryEqual(toValue: username).observeSingleEvent(of: .value, with: { (snapshot) in
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 for snap in snapshot {
-                    ViewUserVC.usernamePassed = snap.key
-                    if ViewUserVC.usernamePassed != nil {
-                        self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
-                    }
+//                    ViewUserVC.usernamePassed = snap.key
+//                    if ViewUserVC.usernamePassed != nil {
+//                        self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
+//                    }
                 }
             }
         })

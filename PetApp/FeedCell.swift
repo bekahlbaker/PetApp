@@ -65,14 +65,6 @@ class FeedCell: UITableViewCell {
         self.caption.text = self.captionEditTextView.text
         DataService.ds.REF_POSTS.child(self.post.postKey).updateChildValues(["caption": "\(caption.text!)"])
     }
-    @IBAction func usernameTapped(_ sender: AnyObject) {
-        tapActionUsername?(self)
-    }
-    var tapActionUsername: ((UITableViewCell) -> Void)?
-    @IBAction func viewCommentsTapped(_ sender: Any) {
-        tapActionComments?(self)
-    }
-    var tapActionComments: ((UITableViewCell) -> Void)?
     var post: Post!
     var likesRef: FIRDatabaseReference!
     static var isConfigured: Bool!
@@ -87,7 +79,7 @@ class FeedCell: UITableViewCell {
         NotificationCenter.default.addObserver(self, selector: #selector(adjustCommentCountTrue(notification:)), name:NSNotification.Name(rawValue: "adjustCommentCountTrue"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(adjustCommentCountFalse(notification:)), name:NSNotification.Name(rawValue: "adjustCommentCountFalse"), object: nil)
     }
-    func configureCell(_ post: Post) {
+    func configureCell(_ post: Post, completionHandler:@escaping (Bool) -> Void) {
         self.post = post
         DispatchQueue.global().async {
             let currentUser = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
@@ -99,7 +91,6 @@ class FeedCell: UITableViewCell {
         }
         DispatchQueue.main.async {
             self.activitySpinner.startAnimating()
-//            self.profileImg.image = UIImage(named: "user-sm")
             self.likesRef = DataService.ds.REF_CURRENT_USER.child("likes").child(post.postKey)
             self.caption.text = post.caption
             self.usernameBtn.setTitle(post.username, for: .normal)
@@ -142,8 +133,8 @@ class FeedCell: UITableViewCell {
                     self.likesImgSm.image = UIImage(named: "filled-heart")
                 }
             })
-            FeedCell.isConfigured = true
         }
+                   completionHandler(true)
     }
     func likeTapped(_ sender: UITapGestureRecognizer) {
         likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -152,13 +143,13 @@ class FeedCell: UITableViewCell {
                 self.likesImgSm.image = UIImage(named: "empty-heart")
                 self.post.adjustLikes(true)
                 self.likesRef.setValue(true)
-                self.configureCell(self.post)
+//                self.configureCell(self.post)
             } else {
                 self.likesImg.image = UIImage(named: "filled-heart")
                 self.likesImgSm.image = UIImage(named: "filled-heart")
                 self.post.adjustLikes(false)
                 self.likesRef.removeValue()
-                self.configureCell(self.post)
+//                self.configureCell(self.post)
             }
         })
     }
@@ -186,11 +177,13 @@ class FeedCell: UITableViewCell {
     func adjustCommentCountTrue(notification: NSNotification) {
         DataService.ds.REF_POSTS.child(post.postKey).child("commentCount").observeSingleEvent(of: .value, with: { (_) in
             self.post.adjustCommentCount(true)
+            print("ADJUST POST : \(self.post.postKey)")
         })
     }
     func adjustCommentCountFalse(notification: NSNotification) {
         DataService.ds.REF_POSTS.child(post.postKey).child("commentCount").observeSingleEvent(of: .value, with: { (_) in
             self.post.adjustCommentCount(false)
+            print("ADJUST POST : \(self.post.postKey)")
         })
     }
 }

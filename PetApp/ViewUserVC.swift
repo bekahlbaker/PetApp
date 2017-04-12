@@ -27,12 +27,12 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     var isFollowing: Bool!
     static var postKeyToPass: String!
     let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
-    static var usernamePassed = "KnOjqWcOnzVxSHqI1DLqq5NhxA62"
+    var userKeyPassed: String!
     var posts = [Post]()
     @IBOutlet weak var homeBtn: UIBarButtonItem!
     @IBAction func moreBtnTapped(_ sender: UIBarButtonItem) {
         DispatchQueue.global().async {
-            if ViewUserVC.usernamePassed != self.userKey {
+            if self.userKeyPassed != self.userKey {
                 self.followTapped()
             } else {
                self.moreTapped()
@@ -80,7 +80,7 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         }
     }
     func downloadCollectionViewData() {
-        DataService.ds.REF_POSTS.queryOrdered(byChild: "userKey").queryEqual(toValue: ViewUserVC.usernamePassed).observeSingleEvent(of: .value, with: { (snapshot) in
+        DataService.ds.REF_POSTS.queryOrdered(byChild: "userKey").queryEqual(toValue: self.userKeyPassed).observeSingleEvent(of: .value, with: { (snapshot) in
             self.posts = []
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 for snap in snapshot {
