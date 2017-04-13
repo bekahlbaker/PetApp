@@ -30,10 +30,12 @@ class FeedCell: UITableViewCell {
         if self.isCurrentUser == false {
             let alertController = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
             let report = UIAlertAction(title: "Report", style: .destructive, handler: { (_) -> Void in
-                let alert = UIAlertController(title: "Are you sure you want to report this post?", message: "Does this post contain offensive material?", preferredStyle: UIAlertControllerStyle.alert)
+                let alert = UIAlertController(title: "Are you sure you want to report this post?", message: "This post will not appear on your feed any longer.", preferredStyle: UIAlertControllerStyle.alert)
                 let deletePost = UIAlertAction(title: "Report Post", style: .destructive, handler: { (_) -> Void in
 //Handle reporting a post
-                    print("Handle reporting a post")
+                    DataService.ds.REF_BASE.child("flagged-posts").child(KeychainWrapper.standard.string(forKey: KEY_UID)! as String).updateChildValues([self.post.postKey: true])
+                    DataService.ds.REF_CURRENT_USER.child("wall").child(self.post.postKey).removeValue()
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshMyTableView"), object: nil)
                 })
                 let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) -> Void in
                 }
