@@ -13,13 +13,16 @@ import SwiftKeychainWrapper
 
 extension ViewUserVC {
     func checkIfFollowing() {
-        DataService.ds.REF_CURRENT_USER.child("following").child(self.userKeyPassed).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let _ = snapshot.value as? NSNull {
-                self.isFollowing = false
-            } else {
-                self.isFollowing = true
-            }
-        })
+        if let userKey = self.userKeyPassed {
+            print(userKey)
+            DataService.ds.REF_CURRENT_USER.child("following").child(userKey).observeSingleEvent(of: .value, with: { (snapshot) in
+                if let _ = snapshot.value as? NSNull {
+                    self.isFollowing = false
+                } else {
+                    self.isFollowing = true
+                }
+            })
+        }
     }
     func followTapped() {
         let alert = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)

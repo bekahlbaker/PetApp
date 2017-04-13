@@ -45,9 +45,9 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 70
-        self.navigationItem.hidesBackButton = true
-        let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(alert(sender:)))
-        self.navigationItem.leftBarButtonItem = newBackButton
+//        self.navigationItem.hidesBackButton = true
+//        let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(alert(sender:)))
+//        self.navigationItem.leftBarButtonItem = newBackButton
         NotificationCenter.default.addObserver(self, selector: #selector(refreshList(notification:)), name:NSNotification.Name(rawValue: "refreshCommentTableView"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(deleteComment), name:NSNotification.Name(rawValue: "deleteComment"), object: nil)
         self.title = "Comments"
@@ -66,7 +66,7 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         let firebasePost = DataService.ds.REF_POSTS.child(self.postKeyPassed)
         firebasePost.child("comments").childByAutoId().setValue(comment)
         NotificationCenter.default.post(name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "adjustCommentCountTrue"), object: nil)
+//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "adjustCommentCountTrue"), object: nil)
     }
     func alert(sender: UIBarButtonItem) {
         if self.commentTextField.text != "" {

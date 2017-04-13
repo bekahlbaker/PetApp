@@ -24,7 +24,7 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 30))
-        let image = UIImage(named: "PetPicLogo")
+        let image = UIImage(named: "PetsPic")
         imageView.image = image
         navigationItem.titleView = imageView
         self.navigationController!.view.backgroundColor = Color.white

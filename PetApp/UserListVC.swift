@@ -6,6 +6,7 @@
 //  Created by Rebekah Baker on 1/10/17.
 //  Copyright © 2017 Rebekah Baker. All rights reserved.
 //
+// swiftlint:disable force_cast
 
 import UIKit
 import Foundation
@@ -13,14 +14,11 @@ import Firebase
 
 class UserListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
     var searchController: UISearchController!
-    @IBAction func homeBtnTapped(_ sender: Any) {
-        self.dismiss(animated: true, completion: nil)
-    }
     @IBOutlet weak var tableView: UITableView!
     var userList = [String]()
     var filteredUserList = [String]()
     var inSearchMode = false
-    var usernameToPass: String!
+    var userKeyToPass: String!
     var currentUsername: String!
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,14 +45,31 @@ class UserListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell")!
         if inSearchMode {
             cell.textLabel?.text = filteredUserList[indexPath.row]
+            let username = cell.textLabel?.text
+            self.getUserKey(username: username!) { (success) in
+                if success {
+                    print("SUCCESS")
+                }
+            }
         } else {
             cell.textLabel?.text = userList[indexPath.row]
+            let username = cell.textLabel?.text
+            self.getUserKey(username: username!) { (success) in
+                if success {
+                    print("SUCCESS")
+                }
+            }
         }
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let currentCell = tableView.cellForRow(at: tableView.indexPathForSelectedRow!)! as UITableViewCell
-        let username = (currentCell.textLabel?.text)!
-        self.getUserKey(username: username)
+        performSegue(withIdentifier: "ViewUserVC", sender: nil)
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ViewUserVC" {
+            let myVC = segue.destination as! ViewUserVC
+                myVC.userKeyPassed = self.userKeyToPass
+                print("SEGUE: \(myVC.userKeyPassed)")
+        }
     }
 }
