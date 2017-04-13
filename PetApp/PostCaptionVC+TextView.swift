@@ -27,6 +27,18 @@ extension PostCaptionVC {
         if textView.text.isEmpty {
             textView.text = "Write a caption..."
             textView.textColor = UIColor.lightGray
+            self.characterCount.text = "140"
         }
+    }
+    func textViewDidChange(_ textView: UITextView) {
+        updateCharacterCount()
+    }
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        updateCharacterCount()
+        let maxCharacter: Int = 140
+        return textView.text.characters.count +  (text.characters.count - range.length) <= maxCharacter
+    }
+    func updateCharacterCount() {
+       self.characterCount.text = String(140 - self.captionTextView.text.characters.count)
     }
 }

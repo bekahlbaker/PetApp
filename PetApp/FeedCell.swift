@@ -23,46 +23,67 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var comments: UILabel!
     @IBOutlet weak var usernameBtn: UIButton!
     @IBOutlet weak var viewCommentsBtn: UIButton!
-    @IBOutlet weak var captionEditTextView: UITextView!
+    @IBOutlet weak var captionEditTextFIeld: UITextField!
     weak var delegate: UIViewController?
     @IBOutlet weak var moreBtn: UIButton!
     @IBAction func moreBtnTapped(_ sender: Any) {
-        let alertController = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
-        let edit = UIAlertAction(title: "Edit", style: .default, handler: { (_) -> Void in
-            self.moreBtn.isEnabled = false
-            self.caption.isHidden = true
-            self.captionEditTextView.isHidden = false
-            self.saveBtn.isHidden = false
-            self.captionEditTextView.text = self.caption.text
-            self.captionEditTextView.becomeFirstResponder()
-        })
-        let delete = UIAlertAction(title: "Delete", style: .destructive, handler: { (_) -> Void in
-            let alert = UIAlertController(title: "Are you sure you want to delete this post?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
-            let deletePost = UIAlertAction(title: "Delete Post", style: .destructive, handler: { (_) -> Void in
-                DataService.ds.REF_POSTS.child(self.post.postKey).removeValue()
-                self.removeFromFollowersWall(key: self.post.postKey)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshMyTableView"), object: nil)
+        if self.isCurrentUser == false {
+            let alertController = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
+            let report = UIAlertAction(title: "Report", style: .destructive, handler: { (_) -> Void in
+                let alert = UIAlertController(title: "Are you sure you want to report this post?", message: "Does this post contain offensive material?", preferredStyle: UIAlertControllerStyle.alert)
+                let deletePost = UIAlertAction(title: "Report Post", style: .destructive, handler: { (_) -> Void in
+//Handle reporting a post
+                    print("Handle reporting a post")
+                })
+                let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) -> Void in
+                }
+                alert.addAction(deletePost)
+                alert.addAction(cancel)
+                self.delegate?.present(alert, animated: true, completion: nil)
             })
-            let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) -> Void in
-            }
-            alert.addAction(deletePost)
-            alert.addAction(cancel)
-            self.delegate?.present(alert, animated: true, completion: nil)
-        })
-        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) -> Void in
-        })
-        alertController.addAction(edit)
-        alertController.addAction(delete)
-        alertController.addAction(cancel)
-        delegate?.present(alertController, animated: true, completion: nil)
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) -> Void in
+            })
+            alertController.addAction(report)
+            alertController.addAction(cancel)
+            delegate?.present(alertController, animated: true, completion: nil)
+        } else if self.isCurrentUser == true {
+            let alertController = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
+            let edit = UIAlertAction(title: "Edit", style: .default, handler: { (_) -> Void in
+                self.moreBtn.isEnabled = false
+                self.caption.isHidden = true
+                self.captionEditTextFIeld.isHidden = false
+                self.saveBtn.isHidden = false
+                self.captionEditTextFIeld.text = self.caption.text
+                self.captionEditTextFIeld.becomeFirstResponder()
+            })
+            let delete = UIAlertAction(title: "Delete", style: .destructive, handler: { (_) -> Void in
+                let alert = UIAlertController(title: "Are you sure you want to delete this post?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+                let deletePost = UIAlertAction(title: "Delete Post", style: .destructive, handler: { (_) -> Void in
+                    DataService.ds.REF_POSTS.child(self.post.postKey).removeValue()
+                    self.removeFromFollowersWall(key: self.post.postKey)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshMyTableView"), object: nil)
+                })
+                let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) -> Void in
+                }
+                alert.addAction(deletePost)
+                alert.addAction(cancel)
+                self.delegate?.present(alert, animated: true, completion: nil)
+            })
+            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) -> Void in
+            })
+            alertController.addAction(edit)
+            alertController.addAction(delete)
+            alertController.addAction(cancel)
+            delegate?.present(alertController, animated: true, completion: nil)
+        }
     }
     @IBOutlet weak var saveBtn: UIButton!
     @IBAction func saveBtnTapped(_ sender: Any) {
         self.moreBtn.isEnabled = true
         self.caption.isHidden = false
-        self.captionEditTextView.isHidden = true
+        self.captionEditTextFIeld.isHidden = true
         self.saveBtn.isHidden = true
-        self.caption.text = self.captionEditTextView.text
+        self.caption.text = self.captionEditTextFIeld.text
         DataService.ds.REF_POSTS.child(self.post.postKey).updateChildValues(["caption": "\(caption.text!)"])
     }
     var post: Post!
@@ -100,11 +121,6 @@ class FeedCell: UITableViewCell {
                 self.viewCommentsBtn.setTitle("View all \(post.commentCount) comments", for: .normal)
             } else {
                 self.viewCommentsBtn.setTitle("Leave a comment", for: .normal)
-            }
-            if self.isCurrentUser == false {
-                self.moreBtn.isHidden = true
-            } else if self.isCurrentUser == true {
-                self.moreBtn.isHidden = false
             }
             if let imgURL = URL(string: post.imageURL) {
                 self.feedImageView.kf.setImage(with: imgURL)

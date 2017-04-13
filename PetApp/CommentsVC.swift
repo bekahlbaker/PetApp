@@ -45,9 +45,6 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         tableView.dataSource = self
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 70
-//        self.navigationItem.hidesBackButton = true
-//        let newBackButton = UIBarButtonItem(title: "Back", style: UIBarButtonItemStyle.plain, target: self, action: #selector(alert(sender:)))
-//        self.navigationItem.leftBarButtonItem = newBackButton
         NotificationCenter.default.addObserver(self, selector: #selector(refreshList(notification:)), name:NSNotification.Name(rawValue: "refreshCommentTableView"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(deleteComment), name:NSNotification.Name(rawValue: "deleteComment"), object: nil)
         self.title = "Comments"

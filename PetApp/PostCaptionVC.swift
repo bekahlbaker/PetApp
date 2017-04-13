@@ -15,6 +15,7 @@ class PostCaptionVC: UIViewController, UITextViewDelegate {
     var currentUsername: String!
     @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var captionTextView: UITextView!
+    @IBOutlet weak var characterCount: UILabel!
     @IBOutlet weak var saveBtn: UIBarButtonItem!
     @IBAction func savePostTapped(_ sender: AnyObject) {
         self.myActivityIndicator.startAnimating()
