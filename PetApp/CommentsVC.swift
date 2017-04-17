@@ -15,7 +15,9 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
 
     var commentKey: String!
     var comments = [Comment]()
+    var userKeyArray = [String]()
     var postKeyPassed: String!
+    var userKeyToPass: String!
     var currentUsername: String!
     var keyBoardActive = false
     var originalBottomConstraint: CGFloat!
@@ -51,8 +53,7 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         getUsername()
     }
     override func viewDidAppear(_ animated: Bool) {
-        print("COMMENTS VC POST KEY: \(self.postKeyPassed)")
-        downloadCommentData()
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshCommentTableView"), object: nil)
     }
     func postToFirebase() {
         let comment: [String: Any] = [
@@ -82,4 +83,12 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     }
     @IBOutlet weak var bottomContraint: NSLayoutConstraint!
     @IBOutlet weak var bottomViewConstraint: NSLayoutConstraint!
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ViewUserVC" {
+            if let myVC = segue.destination as? ViewUserVC {
+                myVC.userKeyPassed = self.userKeyToPass
+            }
+        }
+    }
+
 }

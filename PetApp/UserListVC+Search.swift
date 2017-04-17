@@ -71,7 +71,7 @@ extension UserListVC {
         searchController.searchBar.placeholder = "Search here..."
         searchController.searchBar.delegate = self
         searchController.searchBar.sizeToFit()
-        searchController.hidesNavigationBarDuringPresentation = false
+        searchController.hidesNavigationBarDuringPresentation = true
         self.definesPresentationContext = true
         tableView.tableHeaderView = searchController.searchBar
     }

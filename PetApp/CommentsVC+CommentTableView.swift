@@ -46,11 +46,8 @@ extension CommentsVC {
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let currentCell = tableView.cellForRow(at: tableView.indexPathForSelectedRow!)! as UITableViewCell
-        let cellValue = comments[currentCell.tag]
-//        ViewUserVC.usernamePassed = cellValue.userKey
-//        if ViewUserVC.usernamePassed != nil {
-//            performSegue(withIdentifier: "ViewUserVC", sender: nil)
-//        }
+        self.userKeyToPass = self.userKeyArray[currentCell.tag]
+        performSegue(withIdentifier: "ViewUserVC", sender: nil)
     }
     func getUsername() {
         DataService.ds.REF_CURRENT_USER.child("user-info").observe(.value, with: { (snapshot) in
@@ -61,7 +58,7 @@ extension CommentsVC {
             }
         })
     }
-    func downloadCommentData() {
+    func downloadCommentData(completionHandler:@escaping (Bool) -> Void) {
         if self.postKeyPassed != nil {
             DataService.ds.REF_POSTS.child(self.postKeyPassed).child("comments").observe(.value, with: { (snapshot) in
                 self.comments = []
@@ -72,11 +69,14 @@ extension CommentsVC {
                             self.commentKey = key
                             let comment = Comment(postKey: key, postData: postDict)
                             self.comments.append(comment)
+                            if self.comments.count > 0 {
+                                completionHandler(true)
+                                if let userKey = postDict["userKey"] as? String {
+                                    self.userKeyArray.insert(userKey, at: 0)
+                                }
+                            }
                         }
                     }
-                }
-                if self.comments.count > 0 {
-                    self.tableView.reloadData()
                 }
             })
         } else {
@@ -84,7 +84,14 @@ extension CommentsVC {
         }
     }
     func refreshList(notification: NSNotification) {
-        downloadCommentData()
+        downloadCommentData { (successDownloadingData) in
+            if successDownloadingData {
+                self.tableView.reloadData()
+                print("Reload Table")
+            } else {
+                print("Unable to download data, try again")
+            }
+        }
     }
     func deleteComment() {
         DataService.ds.REF_POSTS.child(self.postKeyPassed).child("comments").child(self.commentKey).removeValue()

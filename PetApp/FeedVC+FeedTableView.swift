@@ -114,7 +114,6 @@ extension FeedVC {
             return FeedCell()
         }
     }
-    
     func usernameBtnTapped(sender: UIButton) {
         let userKey = sender.tag
         self.userKeyToPass = self.userKeyArray[userKey]

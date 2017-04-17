@@ -62,6 +62,7 @@ extension PostVC {
         if let image = info[UIImagePickerControllerEditedImage] as? UIImage {
             addImageBtn.setTitle("", for: .normal)
             originalImage.image = image
+            imageToFilter.image = image
             PostVC.imageSelected = true
             PostVC.unFilteredImageCache.setObject(image, forKey: "unfilteredImage")
             self.addFiltersToButtons(self.originalImage.image!)
