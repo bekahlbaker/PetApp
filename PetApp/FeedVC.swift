@@ -37,6 +37,15 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
         tableView.addSubview(refreshControl)
         NotificationCenter.default.addObserver(self, selector: #selector(refreshList(notification:)), name:NSNotification.Name(rawValue: "refreshMyTableView"), object: nil)
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshMyTableView"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(noInternetConnectionError(notification:)), name:NSNotification.Name(rawValue: "noInternetConnectionError"), object: nil)
+    }
+    func noInternetConnectionError(notification: NSNotification) {
+        let alert = UIAlertController(title: "No Internet Connection", message: "Please check your internet connection and try again.", preferredStyle: UIAlertControllerStyle.alert)
+        alert.addAction(UIAlertAction(title: "Okay", style: .default, handler: { (_: UIAlertAction) in
+            self.refreshControl.endRefreshing()
+//handle no internet connection
+        }))
+        self.present(alert, animated: true, completion: nil)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ViewUserVC" {

@@ -22,40 +22,49 @@ extension FeedVC {
         }
     }
     func downloadData(completionHandler:@escaping (Bool) -> Void) {
-        DispatchQueue.global().async {
-            DataService.ds.REF_CURRENT_USER.child("wall").observeSingleEvent(of: .value, with: { (snapshot) in
-                self.posts = []
-                self.postKeys = []
-                if let _ = snapshot.value as? NSNull {
-                    print("Is not following anyone")
-                } else {
-                    print(snapshot)
-                    if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                        for snap in snapshot {
-                            self.postKeys.append(snap.key)
-                        }
-                    }
-                }
-                for i in 0..<self.postKeys.count {
-                    DataService.ds.REF_POSTS.queryOrderedByKey().queryEqual(toValue: self.postKeys[i]).observeSingleEvent(of: .value, with: { (snapshot) in
-                        if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                            for snap in snapshot {
-                                if let postDict = snap.value as? [String: AnyObject] {
-                                    let post = Post(postKey: self.postKeys[i], postData: postDict)
-                                    self.posts.insert(post, at: 0)
-                                    if self.posts.count > 0 {
-                                        completionHandler(true)
-                                        if let userKey = postDict["userKey"] as? String {
-                                            self.userKeyArray.insert(userKey, at: 0)
-                                        }
-                                        if let postKey = postDict["postKey"] as? String {
-                                            self.postKeysArray.insert(postKey, at: 0)
-                                        }
-                                    }
+        DispatchQueue.global().asyncAfter(deadline: .now() + 2.0) {
+            let connectedRef = FIRDatabase.database().reference(withPath: ".info/connected")
+            connectedRef.observe(.value, with: { snapshot in
+                if let connected = snapshot.value as? Bool, connected {
+                    print("Connected")
+                    DataService.ds.REF_CURRENT_USER.child("wall").observeSingleEvent(of: .value, with: { (snapshot) in
+                        self.posts = []
+                        self.postKeys = []
+                        if let _ = snapshot.value as? NSNull {
+                            print("Is not following anyone")
+                        } else {
+                            print(snapshot)
+                            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                                for snap in snapshot {
+                                    self.postKeys.append(snap.key)
                                 }
                             }
                         }
+                        for i in 0..<self.postKeys.count {
+                            DataService.ds.REF_POSTS.queryOrderedByKey().queryEqual(toValue: self.postKeys[i]).observeSingleEvent(of: .value, with: { (snapshot) in
+                                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                                    for snap in snapshot {
+                                        if let postDict = snap.value as? [String: AnyObject] {
+                                            let post = Post(postKey: self.postKeys[i], postData: postDict)
+                                            self.posts.insert(post, at: 0)
+                                            if self.posts.count > 0 {
+                                                completionHandler(true)
+                                                if let userKey = postDict["userKey"] as? String {
+                                                    self.userKeyArray.insert(userKey, at: 0)
+                                                }
+                                                if let postKey = postDict["postKey"] as? String {
+                                                    self.postKeysArray.insert(postKey, at: 0)
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            })
+                        }
                     })
+                } else {
+                    print("Not connected")
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "noInternetConnectionError"), object: nil)
                 }
             })
         }

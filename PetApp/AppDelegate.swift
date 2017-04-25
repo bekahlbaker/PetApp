@@ -19,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FIRApp.configure()
 //        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        FIRDatabase.database().persistenceEnabled = true
         if KeychainWrapper.standard.string(forKey: KEY_UID) != nil {
             let uid = KeychainWrapper.standard.string(forKey: KEY_UID)
             if uid != nil {
