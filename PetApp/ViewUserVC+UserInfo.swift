@@ -14,19 +14,35 @@ import SwiftKeychainWrapper
 extension ViewUserVC {
     func loadUserInfo() {
         DispatchQueue.global().async {
-            if let userKey = self.userKeyPassed {
-                DataService.ds.REF_USERS.child(userKey).child("user-info").observeSingleEvent(of: .value, with: { (snapshot) in
-                    if let userDict = snapshot.value as? [String: AnyObject] {
-                        let user = User(userKey: userKey, userData: userDict)
-                        self.user = user
-                    }
-                    if self.user != nil {
-                        self.configureUser(self.user)
-                    } else {
-                        print("No user info")
-                    }
-                })
-            }
+                if self.userKeyPassed != nil {
+                    print("NOT CURRENT USER")
+                    self.isCurrentUser = false
+                    DataService.ds.REF_USERS.child(self.userKeyPassed).child("user-info").observeSingleEvent(of: .value, with: { (snapshot) in
+                        if let userDict = snapshot.value as? [String: AnyObject] {
+                            let user = User(userKey: self.userKeyPassed, userData: userDict)
+                            self.user = user
+                        }
+                        if self.user != nil {
+                            self.configureUser(self.user)
+                        } else {
+                            print("No user info")
+                        }
+                    })
+                } else {
+                    print("CURRENT USER")
+                    self.isCurrentUser = true
+                    DataService.ds.REF_USERS.child(self.userKey).child("user-info").observeSingleEvent(of: .value, with: { (snapshot) in
+                        if let userDict = snapshot.value as? [String: AnyObject] {
+                            let user = User(userKey: self.userKey, userData: userDict)
+                            self.user = user
+                        }
+                        if self.user != nil {
+                            self.configureUser(self.user)
+                        } else {
+                            print("No user info")
+                        }
+                    })
+                }
         }
     }
     func configureUser(_ user: User) {

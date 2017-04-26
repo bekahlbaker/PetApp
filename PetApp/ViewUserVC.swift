@@ -5,6 +5,7 @@
 //  Created by Rebekah Baker on 11/30/16.
 //  Copyright © 2016 Rebekah Baker. All rights reserved.
 //
+// swiftlint:disable force_cast
 
 import UIKit
 import Firebase
@@ -23,22 +24,24 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     @IBOutlet weak var followingLbl: UILabel!
     @IBOutlet weak var followersLbl: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var followingBtn: UIButton!
+    @IBAction func followingBtnTapped(_ sender: UIButton) {
+        print(followingBtn.tag)
+        performSegue(withIdentifier: "FollowListVC", sender: followingBtn.tag)
+    }
+    @IBOutlet weak var followersBtn: UIButton!
+    @IBAction func followersBtnTapped(_ sender: UIButton) {
+        print(followersBtn.tag)
+        performSegue(withIdentifier: "FollowListVC", sender: followersBtn.tag)
+    }
     var user: User!
     var isFollowing: Bool!
     static var postKeyToPass: String!
+    var userKeyToPass: String!
     let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
     var userKeyPassed: String!
+    var isCurrentUser: Bool!
     var posts = [Post]()
-    @IBOutlet weak var homeBtn: UIBarButtonItem!
-    @IBAction func moreBtnTapped(_ sender: UIBarButtonItem) {
-        DispatchQueue.global().async {
-            if self.userKeyPassed != self.userKey {
-                self.followTapped()
-            } else {
-               self.moreTapped()
-            }
-        }
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
@@ -52,10 +55,17 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         collectionView!.collectionViewLayout = layout
+        let moreBtn = UIBarButtonItem(title: "More", style: UIBarButtonItemStyle.plain, target: self, action: #selector(moreBtnTapped))
+        self.navigationItem.rightBarButtonItem = moreBtn
     }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         downloadViewUserContent()
+        if self.userKeyPassed != nil {
+            self.userKeyToPass = self.userKeyPassed
+        } else {
+            self.userKeyToPass = self.userKey
+        }
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let post = posts[indexPath.row]
@@ -81,21 +91,56 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         }
     }
     func downloadCollectionViewData() {
-        DataService.ds.REF_POSTS.queryOrdered(byChild: "userKey").queryEqual(toValue: self.userKeyPassed).observeSingleEvent(of: .value, with: { (snapshot) in
-            self.posts = []
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                for snap in snapshot {
-                    if let postDict = snap.value as? [String: AnyObject] {
-                        let key = snap.key
-                        let post = Post(postKey: key, postData: postDict)
-                        self.posts.insert(post, at: 0)
+        if self.userKeyPassed != nil {
+            DataService.ds.REF_POSTS.queryOrdered(byChild: "userKey").queryEqual(toValue: self.userKeyPassed).observeSingleEvent(of: .value, with: { (snapshot) in
+                self.posts = []
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    for snap in snapshot {
+                        if let postDict = snap.value as? [String: AnyObject] {
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            self.posts.insert(post, at: 0)
+                        }
                     }
                 }
+                if self.posts.count > 0 {
+                    self.collectionView.reloadData()
+                    self.postsLbl.text = String(self.posts.count)
+                }
+            })
+        } else {
+            DataService.ds.REF_POSTS.queryOrdered(byChild: "userKey").queryEqual(toValue: self.userKey).observeSingleEvent(of: .value, with: { (snapshot) in
+                self.posts = []
+                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    for snap in snapshot {
+                        if let postDict = snap.value as? [String: AnyObject] {
+                            let key = snap.key
+                            let post = Post(postKey: key, postData: postDict)
+                            self.posts.insert(post, at: 0)
+                        }
+                    }
+                }
+                if self.posts.count > 0 {
+                    self.collectionView.reloadData()
+                    self.postsLbl.text = String(self.posts.count)
+                }
+            })
+        }
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "FollowListVC" {
+            if let myVC = segue.destination as? FollowListVC {
+                myVC.userKeyPassed = self.userKeyToPass
+                myVC.btnTagPassed = sender as! Int!
+                myVC.isCurrentUser = self.isCurrentUser
             }
-            if self.posts.count > 0 {
-                self.collectionView.reloadData()
-                self.postsLbl.text = String(self.posts.count)
-            }
-        })
+        }
+    }
+    func moreBtnTapped() {
+        if self.userKeyPassed != nil {
+            self.followTapped()
+        } else {
+            self.moreTapped()
+        }
     }
 }

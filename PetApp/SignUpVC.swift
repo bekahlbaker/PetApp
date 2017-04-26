@@ -47,8 +47,8 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                         DataService.ds.completeSignIn(user.uid, userData: userData)
                         DataService.ds.REF_CURRENT_USER.child("following").updateChildValues([user.uid: true])
                         DataService.ds.REF_CURRENT_USER.child("followers").updateChildValues([user.uid: true])
-                        DataService.ds.REF_CURRENT_USER.child("user-info").updateChildValues(["followingCt": 1])
-                        DataService.ds.REF_CURRENT_USER.child("user-info").updateChildValues(["followersCt": 1])
+                        DataService.ds.REF_CURRENT_USER.child("user-info").updateChildValues(["followingCt": 0])
+                        DataService.ds.REF_CURRENT_USER.child("user-info").updateChildValues(["followersCt": 0])
                     }
                     self.performSegue(withIdentifier: "toUsernameVC", sender: nil)
                 }
