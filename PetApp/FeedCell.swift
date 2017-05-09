@@ -161,13 +161,17 @@ class FeedCell: UITableViewCell {
                 self.likesImgSm.image = UIImage(named: "empty-heart")
                 self.post.adjustLikes(true)
                 self.likesRef.setValue(true)
-//                self.configureCell(self.post)
+                self.configureCell(self.post, completionHandler: { (_) in
+                    return
+                })
             } else {
                 self.likesImg.image = UIImage(named: "filled-heart")
                 self.likesImgSm.image = UIImage(named: "filled-heart")
                 self.post.adjustLikes(false)
                 self.likesRef.removeValue()
-//                self.configureCell(self.post)
+                self.configureCell(self.post, completionHandler: { (_) in
+                return
+            })
             }
         })
     }

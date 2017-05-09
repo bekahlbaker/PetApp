@@ -8,6 +8,7 @@
 
 import UIKit
 import SwiftKeychainWrapper
+import Firebase
 
 class UsernameVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var usernameTextField: UITextField!
