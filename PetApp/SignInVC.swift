@@ -27,23 +27,23 @@ class SignInVC: UIViewController, UITextFieldDelegate {
                         switch errCode {
                         case .errorCodeInvalidEmail:
                             self.errorLbl.text = "Please enter a valid email address."
-                            self.resetPassBtn.isHidden = true
-                            self.signUpBtn.isHidden = true
+//                            self.resetPassBtn.isHidden = true
+//                            self.signUpBtn.isHidden = true
                         case .errorCodeUserNotFound:
 
                             self.errorLbl.text = "There is not an account for that email. Do you need to sign up?"
-                            self.resetPassBtn.isHidden = true
-                            self.signUpBtn.isHidden = false
+//                            self.resetPassBtn.isHidden = true
+//                            self.signUpBtn.isHidden = false
                         case .errorCodeTooManyRequests:
                             self.errorLbl.text = "Too many requests. Please wait before trying to sign in again."
-                            self.resetPassBtn.isHidden = true
-                            self.signUpBtn.isHidden = true
+//                            self.resetPassBtn.isHidden = true
+//                            self.signUpBtn.isHidden = true
                         case .errorCodeWrongPassword:
                             self.errorLbl.text = "Password is incorrect. Do you need to reset your password?"
-                            self.signUpBtn.isHidden = true
-                            self.resetPassBtn.isHidden = false
+//                            self.signUpBtn.isHidden = true
+//                            self.resetPassBtn.isHidden = false
                         default:
-                            print("Create User Error: \(error)")
+                            print("Create User Error: \(String(describing: error))")
                         }
                     }
                 } else {
@@ -64,8 +64,8 @@ class SignInVC: UIViewController, UITextFieldDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.resetPassBtn.isHidden = true
-        self.signUpBtn.isHidden = true
+//        self.resetPassBtn.isHidden = true
+//        self.signUpBtn.isHidden = true
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
