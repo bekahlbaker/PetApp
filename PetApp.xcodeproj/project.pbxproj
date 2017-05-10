@@ -41,6 +41,8 @@
 		27589DF21E9689C90037FC43 /* PetAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27589DF11E9689C90037FC43 /* PetAppTests.swift */; };
 		275F146E1EAFB8380026C13C /* FollowListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275F146D1EAFB8380026C13C /* FollowListVC.swift */; };
 		275F14701EAFB8600026C13C /* FollowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275F146F1EAFB8600026C13C /* FollowCell.swift */; };
+		276C7A081EC3B1D8004E647D /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 276C7A071EC3B1D8004E647D /* Raleway-Bold.ttf */; };
+		276C7A0A1EC3B1E1004E647D /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 276C7A091EC3B1E1004E647D /* Raleway-Regular.ttf */; };
 		2778F4071DFF6570009BCF65 /* CommentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2778F4061DFF6570009BCF65 /* CommentsVC.swift */; };
 		2778F4091E007955009BCF65 /* SinglePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2778F4081E007955009BCF65 /* SinglePhotoCell.swift */; };
 		2778F40D1E047D72009BCF65 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2778F40C1E047D72009BCF65 /* CoreData.framework */; };
@@ -114,6 +116,9 @@
 		27589DF31E9689C90037FC43 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		275F146D1EAFB8380026C13C /* FollowListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowListVC.swift; sourceTree = "<group>"; };
 		275F146F1EAFB8600026C13C /* FollowCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowCell.swift; sourceTree = "<group>"; };
+		276C7A061EC3AF2D004E647D /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-Bold.ttf"; path = "../../../Library/Fonts/Raleway-Bold.ttf"; sourceTree = "<group>"; };
+		276C7A071EC3B1D8004E647D /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-Bold.ttf"; path = "../../Library/Fonts/Raleway-Bold.ttf"; sourceTree = "<group>"; };
+		276C7A091EC3B1E1004E647D /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-Regular.ttf"; path = "../../Library/Fonts/Raleway-Regular.ttf"; sourceTree = "<group>"; };
 		2778F4061DFF6570009BCF65 /* CommentsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsVC.swift; sourceTree = "<group>"; };
 		2778F4081E007955009BCF65 /* SinglePhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePhotoCell.swift; sourceTree = "<group>"; };
 		2778F40C1E047D72009BCF65 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -162,6 +167,8 @@
 		27166B031DCCE63800A57821 = {
 			isa = PBXGroup;
 			children = (
+				276C7A091EC3B1E1004E647D /* Raleway-Regular.ttf */,
+				276C7A071EC3B1D8004E647D /* Raleway-Bold.ttf */,
 				27166B0E1DCCE63800A57821 /* PetApp */,
 				27589DF01E9689C90037FC43 /* PetAppTests */,
 				27166B0D1DCCE63800A57821 /* Products */,
@@ -205,6 +212,7 @@
 				27166B1B1DCCE63800A57821 /* Info.plist */,
 				27166B281DCCF2F400A57821 /* Lobster1.4.otf */,
 				2714FE4C1EB2555D009873BB /* Raleway-Regular.ttf */,
+				276C7A061EC3AF2D004E647D /* Raleway-Bold.ttf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -425,6 +433,8 @@
 				274994721DCD36AB0015B6F8 /* Main.storyboard in Resources */,
 				2714FE4B1EB120F6009873BB /* GoogleService-Info.plist in Resources */,
 				27166B291DCCF2F400A57821 /* Lobster1.4.otf in Resources */,
+				276C7A081EC3B1D8004E647D /* Raleway-Bold.ttf in Resources */,
+				276C7A0A1EC3B1E1004E647D /* Raleway-Regular.ttf in Resources */,
 				27166B171DCCE63800A57821 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -19,10 +19,8 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var signInBtn: UIButton!
     @IBAction func logInPressed(_ sender: RoundedCornerButton) {
         if passwordField.text == "" {
-            self.errorLbl.alpha = 1
             self.errorLbl.text = "Please enter a valid password."
         } else if passwordField.text != password2.text {
-            self.errorLbl.alpha = 1
             self.errorLbl.text = "Your passwords do not match. Please try again."
         } else if let email = emailField.text, let password = passwordField.text {
             FIRAuth.auth()?.createUser(withEmail: email, password: password, completion: { (user, error) in
@@ -30,15 +28,12 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                     if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
                         switch errCode {
                         case .errorCodeInvalidEmail:
-                            self.errorLbl.alpha = 1
                             self.errorLbl.text = "Please enter a valid email address."
 //                            self.signInBtn.isHidden = true
                         case .errorCodeEmailAlreadyInUse:
-                            self.errorLbl.alpha = 1
                             self.errorLbl.text = "This email is already in use. Do you need to sign in?"
 //                            self.signInBtn.isHidden = false
                         case .errorCodeWeakPassword:
-                            self.errorLbl.alpha = 1
                             self.errorLbl.text = "Your password needs to be at least 6 characters. Please enter a new password."
 //                            self.signInBtn.isHidden = true
                         default:
