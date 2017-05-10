@@ -26,19 +26,22 @@ class SignInVC: UIViewController, UITextFieldDelegate {
                     if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
                         switch errCode {
                         case .errorCodeInvalidEmail:
+                            self.errorLbl.alpha = 1
                             self.errorLbl.text = "Please enter a valid email address."
 //                            self.resetPassBtn.isHidden = true
 //                            self.signUpBtn.isHidden = true
                         case .errorCodeUserNotFound:
-
+                            self.errorLbl.alpha = 1
                             self.errorLbl.text = "There is not an account for that email. Do you need to sign up?"
 //                            self.resetPassBtn.isHidden = true
 //                            self.signUpBtn.isHidden = false
                         case .errorCodeTooManyRequests:
+                            self.errorLbl.alpha = 1
                             self.errorLbl.text = "Too many requests. Please wait before trying to sign in again."
 //                            self.resetPassBtn.isHidden = true
 //                            self.signUpBtn.isHidden = true
                         case .errorCodeWrongPassword:
+                            self.errorLbl.alpha = 1
                             self.errorLbl.text = "Password is incorrect. Do you need to reset your password?"
 //                            self.signUpBtn.isHidden = true
 //                            self.resetPassBtn.isHidden = false
