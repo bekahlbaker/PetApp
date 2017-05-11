@@ -27,20 +27,12 @@ class SignInVC: UIViewController, UITextFieldDelegate {
                         switch errCode {
                         case .errorCodeInvalidEmail:
                             self.errorLbl.text = "Please enter a valid email address."
-//                            self.resetPassBtn.isHidden = true
-//                            self.signUpBtn.isHidden = true
                         case .errorCodeUserNotFound:
                             self.errorLbl.text = "There is not an account for that email. Do you need to sign up?"
-//                            self.resetPassBtn.isHidden = true
-//                            self.signUpBtn.isHidden = false
                         case .errorCodeTooManyRequests:
                             self.errorLbl.text = "Too many requests. Please wait before trying to sign in again."
-//                            self.resetPassBtn.isHidden = true
-//                            self.signUpBtn.isHidden = true
                         case .errorCodeWrongPassword:
                             self.errorLbl.text = "Password is incorrect. Do you need to reset your password?"
-//                            self.signUpBtn.isHidden = true
-//                            self.resetPassBtn.isHidden = false
                         default:
                             print("Create User Error: \(String(describing: error))")
                         }
@@ -50,21 +42,17 @@ class SignInVC: UIViewController, UITextFieldDelegate {
                         let userData = ["provider": user.providerID]
                         DataService.ds.completeSignIn(user.uid, userData: userData)
                         print("Email user authenticated with Firebase")
-                        if let _ = KeychainWrapper.standard.string(forKey: "Username") {
-                            print("Username found in Keychain.")
-                            self.performSegue(withIdentifier: "toFeedVC", sender: nil)
-                        } else {
-                            self.performSegue(withIdentifier: "toUsernameVC", sender: nil)
-                        }
+                        DataService.ds.REF_CURRENT_USER.child("user-personal").child("username").observeSingleEvent(of: .value, with: { (snapshot) in
+                            if let _ = snapshot.value as? NSNull {
+                                self.performSegue(withIdentifier: "toUsernameVC", sender: nil)
+                            } else {
+                                self.performSegue(withIdentifier: "toFeedVC", sender: nil)
+                            }
+                        })
                     }
                 }
             })
         }
-    }
-    override func viewDidLoad() {
-        super.viewDidLoad()
-//        self.resetPassBtn.isHidden = true
-//        self.signUpBtn.isHidden = true
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)

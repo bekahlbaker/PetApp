@@ -62,6 +62,7 @@
 		27A2D5301E2539ED005CDCB7 /* UserListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A2D52F1E2539ED005CDCB7 /* UserListVC.swift */; };
 		27BD7DEC1DDF935300B9DB9A /* TextFieldMaxLengths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BD7DEB1DDF935300B9DB9A /* TextFieldMaxLengths.swift */; };
 		27BD7DF11DE4FBF800B9DB9A /* UsernameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27BD7DF01DE4FBF800B9DB9A /* UsernameVC.swift */; };
+		27C502FA1EC3D6EE0012CBA8 /* LeftPaddedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27C502F91EC3D6EE0012CBA8 /* LeftPaddedTextField.swift */; };
 		B61761CB0A8D5494AA1962C9 /* Pods_PetApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE1B3ADE42D2BA19DA972589 /* Pods_PetApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -138,6 +139,7 @@
 		27A2D52F1E2539ED005CDCB7 /* UserListVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserListVC.swift; sourceTree = "<group>"; };
 		27BD7DEB1DDF935300B9DB9A /* TextFieldMaxLengths.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextFieldMaxLengths.swift; sourceTree = "<group>"; };
 		27BD7DF01DE4FBF800B9DB9A /* UsernameVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsernameVC.swift; sourceTree = "<group>"; };
+		27C502F91EC3D6EE0012CBA8 /* LeftPaddedTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LeftPaddedTextField.swift; sourceTree = "<group>"; };
 		6CD65ED0F38C43BADF665691 /* Pods-PetApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PetApp/Pods-PetApp.debug.xcconfig"; sourceTree = "<group>"; };
 		CE1B3ADE42D2BA19DA972589 /* Pods_PetApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PetApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D33CB02ABE7EC0697EAF044B /* Pods-PetApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PetApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-PetApp/Pods-PetApp.release.xcconfig"; sourceTree = "<group>"; };
@@ -265,6 +267,7 @@
 				279F2FAF1E326CC200DD2A7B /* UserCell.swift */,
 				271F085A1E2835C000A8B867 /* ResponsiveTextField.swift */,
 				275F146F1EAFB8600026C13C /* FollowCell.swift */,
+				27C502F91EC3D6EE0012CBA8 /* LeftPaddedTextField.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -516,6 +519,7 @@
 			files = (
 				27BD7DEC1DDF935300B9DB9A /* TextFieldMaxLengths.swift in Sources */,
 				2749947E1DD287530015B6F8 /* ProfileVC.swift in Sources */,
+				27C502FA1EC3D6EE0012CBA8 /* LeftPaddedTextField.swift in Sources */,
 				279F2FAA1E316CC000DD2A7B /* LeftToRightSegue.swift in Sources */,
 				27166B2B1DCCF5F300A57821 /* RoundedCornerButton.swift in Sources */,
 				274474471DD6A5DA007EBABF /* UserPicCell.swift in Sources */,

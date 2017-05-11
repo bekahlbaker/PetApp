@@ -50,20 +50,11 @@ extension ViewUserVC {
         self.username.title = user.username
         self.fullNameLbl.text = user.name
         self.parentsNameLbl.text = user.parentsName
+//        self.secondparentsNameLbl.text = user.secondParentsName
         self.locationLbl.text = user.location
         self.bioLbl.text = user.about
         self.followersLbl.text = String(user.followers)
         self.followingLbl.text = String(user.following)
-        if user.age != "" {
-            self.ageAndBreedLbl.text = user.age
-            if user.breed != "" {
-                self.ageAndBreedLbl.text = user.age + " " + user.breed
-            } else {
-                if user.species != "" {
-                    self.ageAndBreedLbl.text = user.age + " " + user.species
-                }
-            }
-        } else {
             if user.breed != "" {
                 self.ageAndBreedLbl.text = user.breed
             } else {
@@ -71,7 +62,6 @@ extension ViewUserVC {
                     self.ageAndBreedLbl.text = user.species
                 }
             }
-        }
         self.profileImg.image = UIImage(named: "user-sm")
         DataService.ds.REF_CURRENT_USER.child("user-info").observe(.value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: Any] {
@@ -96,26 +86,6 @@ extension ViewUserVC {
                         }
                     }
                 }
-                //download cover photo
-                if ProfileVC.coverCache.object(forKey: "coverImg") != nil {
-                    self.coverImg.image = ProfileVC.coverCache.object(forKey: "coverImg")
-                } else {
-                    guard let coverUrl = dictionary["coverImgUrl"] as? String else {
-                        return
-                    }
-                    if coverUrl == (dictionary["coverImgUrl"] as? String)! {
-                        let storage = FIRStorage.storage()
-                        let storageRef = storage.reference(forURL: coverUrl)
-                        storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
-                            if error != nil {
-                                print("Unable to download image from firebase")
-                            } else {
-                                let coverImg = UIImage(data: data!)
-                                self.coverImg.image = coverImg
-                            }
-                        }
-                    }
-                }
             }
         })
     }
@@ -136,7 +106,6 @@ extension ViewUserVC {
                 try! FIRAuth.auth()?.signOut()
                 ProfileVC.profileCache.removeAllObjects()
                 FeedVC.imageCache.removeAllObjects()
-                ProfileVC.coverCache.removeAllObjects()
                 self.performSegue(withIdentifier: "EntryVC", sender: nil)
             })
             let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) -> Void in

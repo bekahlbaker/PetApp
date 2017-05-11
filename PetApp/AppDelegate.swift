@@ -40,20 +40,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 }
                             }
                         }
-                        //download cover photo
-                        if let url = dictionary["coverImgUrl"] as? String {
-                            let storage = FIRStorage.storage()
-                            let storageRef = storage.reference(forURL: url)
-                            storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
-                                if error != nil {
-                                    print("Unable to download image from firebase")
-                                } else {
-                                    let coverImg = UIImage(data: data!)
-                                    ProfileVC.coverCache.setObject(coverImg!, forKey: "coverImg")
-                                    print("Using didFinishLaunching pre-downloaded image for cover")
-                                }
-                            }
-                        }
                     }
                 })
             }
@@ -111,20 +97,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                     let profileImg = UIImage(data: data!)
                                     ProfileVC.profileCache.setObject(profileImg!, forKey: "profileImg")
                                     print("Using pre-downloaded image for profile")
-                                }
-                            }
-                        }
-                        //download cover photo
-                        if let url = dictionary["coverImgUrl"] as? String {
-                            let storage = FIRStorage.storage()
-                            let storageRef = storage.reference(forURL: url)
-                            storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
-                                if error != nil {
-                                    print("Unable to download image from firebase")
-                                } else {
-                                    let coverImg = UIImage(data: data!)
-                                    ProfileVC.coverCache.setObject(coverImg!, forKey: "coverImg")
-                                    print("Using pre-downloaded image for cover")
                                 }
                             }
                         }

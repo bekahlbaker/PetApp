@@ -35,30 +35,11 @@ extension ProfileVC {
         } else {
             print("No profile image to save")
         }
-        if self.coverPhoto.image != nil {
-            ProfileVC.coverCache.setObject(self.coverPhoto.image!, forKey: "coverImg")
-            //save cover image
-            let coverImageName = UUID().uuidString
-            let coverMetadata = FIRStorageMetadata()
-            coverMetadata.contentType = "image/png"
-            if let uploadData = UIImagePNGRepresentation(self.coverPhoto.image!) {
-                DataService.ds.REF_USER_COVER.child(coverImageName).put(uploadData, metadata: coverMetadata, completion: { (metadata, error) in
-                    if error != nil {
-                        print(error as Any)
-                        return
-                    }
-                    if let coverImageUrl =  metadata?.downloadURL()?.absoluteString {
-                        self.createUserInfo("coverImgUrl", value: coverImageUrl)
-                    }
-                })
-            }
-        } else {
-            print("No cover image to save")
-        }
         //save profile info
         createUserInfo("full-name", value: self.fullNameLbl.text! as String)
         createUserInfo("parents-name", value: parentsNameLbl.text! as String)
-        createUserInfo("age", value: ageLbl.text! as String)
+        createUserInfo("second-parents-name", value: secondParentsNameLbl.text! as String)
+//        createUserInfo("age", value: ageLbl.text! as String)
         createUserInfo("species", value: speciesLbl.text! as String)
         createUserInfo("breed", value: breedLbl.text! as String)
         createUserInfo("location", value: locationLbl.text! as String)
@@ -90,22 +71,18 @@ extension ProfileVC {
         let firebasePost = DataService.ds.REF_CURRENT_USER.child("user-info")
         firebasePost.updateChildValues(userInfo)
     }
-    func textFieldChanged(_ textField: UITextField) {
-        let ageEntered = ageLbl.text
-        if textField.text != "" {
-            textField.text = "\(ageEntered!) yo"
-        }
+    func countAboutLblChar(_ textField: UITextField) {
+        let text = textField.text
+        let count = text?.characters.count
+        let charLeft = 140 - count!
+        self.charCount.text = String(charLeft)
     }
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
-        let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage
-        if imagePicked == 1 {
-            coverPhoto.image = pickedImage
-        } else if imagePicked == 2 {
+        if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
             profileImg.image = pickedImage
         }
         ProfileVC.profileCache.removeAllObjects()
         FeedVC.imageCache.removeAllObjects()
-        ProfileVC.coverCache.removeAllObjects()
         dismiss(animated: true, completion: nil)
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

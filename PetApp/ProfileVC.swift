@@ -11,28 +11,20 @@ import Firebase
 import Kingfisher
 
 class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
-    @IBAction func cancelBtnTapped(_ sender: Any) {
-        alert()
-    }
-    @IBAction func saveBtnTapped(_ sender: Any) {
-        save()
-    }
     @IBOutlet weak var profileImg: UIImageView!
     @IBOutlet weak var errorLbl: UILabel!
     @IBOutlet weak var fullNameLbl: UITextField!
     @IBOutlet weak var parentsNameLbl: UITextField!
+    @IBOutlet weak var secondParentsNameLbl: LeftPaddedTextField!
     @IBOutlet weak var ageLbl: UITextField!
     @IBOutlet weak var speciesLbl: UITextField!
     @IBOutlet weak var breedLbl: UITextField!
     @IBOutlet weak var locationLbl: UITextField!
     @IBOutlet weak var aboutLbl: UITextField!
+    @IBOutlet weak var charCount: UILabel!
     var imagePicker = UIImagePickerController()
-    var imagePicked = 0
     static var profileCache: NSCache<NSString, UIImage> = NSCache()
-    static var coverCache: NSCache<NSString, UIImage> = NSCache()
-    @IBOutlet weak var coverPhoto: UIImageView!
-    @IBAction func editCoverPhotoTapped(_ sender: AnyObject) {
-//        ProfileVC.coverCache.removeAllObjects()
+    @IBAction func addProfileImgTapped(_ sender: Any) {
         let alertController = UIAlertController(title: "Select Picture", message: nil, preferredStyle: .actionSheet)
         let camera = UIAlertAction(title: "Camera", style: .default, handler: { (_) -> Void in
             self.imagePicker.allowsEditing = true
@@ -49,51 +41,6 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         alertController.addAction(camera)
         alertController.addAction(photoLibrary)
         alertController.addAction(cancel)
-        self.imagePicked = 1
-        present(alertController, animated: true, completion: nil)
-    }
-    @IBAction func addImageTapped(_ sender: AnyObject) {
-//        ProfileVC.profileCache.removeAllObjects()
-//        FeedVC.imageCache.removeAllObjects()
-        let alertController = UIAlertController(title: "Select Picture", message: nil, preferredStyle: .actionSheet)
-        let camera = UIAlertAction(title: "Camera", style: .default, handler: { (_) -> Void in
-            self.imagePicker.allowsEditing = true
-            self.imagePicker.sourceType = UIImagePickerControllerSourceType.camera
-            self.present(self.imagePicker, animated: true, completion: nil)
-        })
-        let photoLibrary = UIAlertAction(title: "Photo Library", style: .default, handler: { (_) -> Void in
-            self.imagePicker.allowsEditing = true
-            self.imagePicker.sourceType = .photoLibrary
-            self.present(self.imagePicker, animated: true, completion: nil)
-        })
-        let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) -> Void in
-        }
-        alertController.addAction(camera)
-        alertController.addAction(photoLibrary)
-        alertController.addAction(cancel)
-        self.imagePicked = 2
-        present(alertController, animated: true, completion: nil)
-    }
-    @IBAction func tapGestureTapped(_ sender: AnyObject) {
-//        ProfileVC.profileCache.removeAllObjects()
-//        FeedVC.imageCache.removeAllObjects()
-        let alertController = UIAlertController(title: "Select Picture", message: nil, preferredStyle: .actionSheet)
-        let camera = UIAlertAction(title: "Camera", style: .default, handler: { (_) -> Void in
-            self.imagePicker.allowsEditing = true
-            self.imagePicker.sourceType = UIImagePickerControllerSourceType.camera
-            self.present(self.imagePicker, animated: true, completion: nil)
-        })
-        let photoLibrary = UIAlertAction(title: "Photo Library", style: .default, handler: { (_) -> Void in
-            self.imagePicker.allowsEditing = true
-            self.imagePicker.sourceType = .photoLibrary
-            self.present(self.imagePicker, animated: true, completion: nil)
-        })
-        let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) -> Void in
-        }
-        alertController.addAction(camera)
-        alertController.addAction(photoLibrary)
-        alertController.addAction(cancel)
-        self.imagePicked = 2
         present(alertController, animated: true, completion: nil)
     }
     func alert() {
@@ -114,6 +61,12 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         alert.addAction(cancel)
         self.navigationController?.present(alert, animated: true, completion: nil)
     }
+    @IBAction func addParentTapped(_ sender: Any) {
+        secondParentsNameLbl.alpha = 1
+    }
+    @IBAction func addBreedTapped(_ sender: Any) {
+        breedLbl.alpha = 1
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.hidesBackButton = true
@@ -121,41 +74,24 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         self.navigationItem.leftBarButtonItem = cancelBtn
         let saveBtn = UIBarButtonItem(title: "Save", style: UIBarButtonItemStyle.done, target: self, action: #selector(save))
         self.navigationItem.rightBarButtonItem = saveBtn
-//        ProfileVC.profileCache.removeAllObjects()
-//        FeedVC.imageCache.removeAllObjects()
-//        ProfileVC.coverCache.removeAllObjects()
         imagePicker.delegate = self
         imagePicker.sourceType = .photoLibrary
         imagePicker.allowsEditing = true
-        ageLbl.delegate = self
-        ageLbl.addTarget(self, action: #selector(textFieldChanged(_:)), for: UIControlEvents.editingChanged)
-//        DispatchQueue.main.async {
-//            if ProfileVC.profileCache.object(forKey: "profileImg") != nil {
-//                self.profileImg.image = ProfileVC.profileCache.object(forKey: "profileImg")
-//                print("Using cached profile img")
-//            }
-//            if ProfileVC.coverCache.object(forKey: "coverImg") != nil {
-//                self.coverPhoto.image = ProfileVC.coverCache.object(forKey: "coverImg")
-//                print("Using cached cover Img")
-//            }
-//        }
+        aboutLbl.delegate = self
+        aboutLbl.addTarget(self, action: #selector(countAboutLblChar(_:)), for: UIControlEvents.editingChanged)
         downloadUserInfo()
     }
-//    
-//    override func viewDidAppear(_ animated: Bool) {
-//        downloadUserInfo()
-//    }
     func downloadUserInfo() {
         //download profile info & image
         DataService.ds.REF_CURRENT_USER.child("user-info").observe(.value, with: { (snapshot) in
             if let dictionary = snapshot.value as? [String: Any] {
                 self.fullNameLbl.text = dictionary["full-name"] as? String
                 self.parentsNameLbl.text = dictionary["parents-name"] as? String
-                self.ageLbl.text = dictionary["age"] as? String
                 self.speciesLbl.text = dictionary["species"] as? String
                 self.breedLbl.text = dictionary["breed"] as? String
                 self.locationLbl.text = dictionary["location"] as? String
                 self.aboutLbl.text = dictionary["about"] as? String
+                self.navigationItem.title = dictionary["username"] as? String
                 //download profile img
                 self.profileImg.image = UIImage(named: "user-sm")
                 if ProfileVC.profileCache.object(forKey: "profileImg") != nil {
@@ -174,26 +110,6 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                             } else {
                                 let profileImg = UIImage(data: data!)
                                 self.profileImg.image = profileImg
-                            }
-                        }
-                    }
-                }
-                //download cover photo
-                if ProfileVC.coverCache.object(forKey: "coverImg") != nil {
-                    self.coverPhoto.image = ProfileVC.coverCache.object(forKey: "coverImg")
-                } else {
-                    guard let coverUrl = dictionary["coverImgUrl"] as? String else {
-                        return
-                    }
-                    if coverUrl == (dictionary["coverImgUrl"] as? String)! {
-                        let storage = FIRStorage.storage()
-                        let storageRef = storage.reference(forURL: coverUrl)
-                        storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
-                            if error != nil {
-                                print("Unable to download image from firebase")
-                            } else {
-                                let coverImg = UIImage(data: data!)
-                                self.coverPhoto.image = coverImg
                             }
                         }
                     }

@@ -779,7 +779,7 @@
                         <outlet property="errorLbl" destination="TZv-zB-1zN" id="diN-iU-dQo"/>
                         <outlet property="usernameTextField" destination="mUP-yB-nyH" id="FvH-8i-6oQ"/>
                         <segue destination="9Gv-Rx-iaK" kind="show" identifier="toTabBarController" id="9HM-58-vDj"/>
-                        <segue destination="8e3-ft-Uph" kind="showDetail" identifier="toProfileVC" action="showViewController:sender:" id="JVH-1h-fiz"/>
+                        <segue destination="9Gv-Rx-iaK" kind="show" identifier="toProfileVC" id="q4Y-mR-hg2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WDd-GG-6wM" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -800,198 +800,224 @@
                         <viewControllerLayoutGuide type="bottom" id="eWV-PC-WBe"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="zzj-oC-mws">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="COh-ku-7ml">
-                                <rect key="frame" x="0.0" y="20" width="375" height="320"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="  " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gua-JH-ei4">
+                                <rect key="frame" x="121" y="323" width="132" height="19.5"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                <color key="textColor" red="0.97254901959999995" green="0.015686274510000001" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Name" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4wy-BP-gkC" customClass="LeftPaddedTextField" customModule="PetApp" customModuleProvider="target">
+                                <rect key="frame" x="120" y="8" width="231" height="25"/>
+                                <color key="backgroundColor" red="0.84696626663208008" green="0.84711211919784546" blue="0.84695702791213989" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="320" id="NtA-58-ufW"/>
+                                    <constraint firstAttribute="height" constant="25" id="VUB-vZ-PDe"/>
                                 </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="blur" translatesAutoresizingMaskIntoConstraints="NO" id="XYV-Oc-ckP">
-                                <rect key="frame" x="0.0" y="20" width="375" height="320"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="13"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                        <integer key="value" value="35"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Parent" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="i6O-ev-DOQ" customClass="LeftPaddedTextField" customModule="PetApp" customModuleProvider="target">
+                                <rect key="frame" x="120" y="41" width="231" height="25"/>
+                                <color key="backgroundColor" red="0.84696626663208008" green="0.84711211919784546" blue="0.84695702791213989" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="320" id="HK1-Ak-cac"/>
+                                    <constraint firstAttribute="height" constant="25" id="hFV-9v-Xjo"/>
                                 </constraints>
-                            </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u4z-cR-Fxw" customClass="RoundedCornerButton" customModule="PetApp" customModuleProvider="target">
-                                <rect key="frame" x="88" y="28" width="200" height="30"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="13"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                        <integer key="value" value="35"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P9c-mR-Syv">
+                                <rect key="frame" x="276" y="140" width="75" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="200" id="L9o-yM-nWX"/>
-                                    <constraint firstAttribute="height" constant="30" id="eoq-jp-Rj3"/>
+                                    <constraint firstAttribute="height" constant="25" id="mTj-uI-ML8"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                <state key="normal" title="Edit Cover Photo">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="13"/>
+                                <state key="normal" title="Add a breed">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="editCoverPhotoTapped:" destination="8e3-ft-Uph" eventType="touchUpInside" id="3dw-ZL-GgU"/>
+                                    <action selector="addBreedTapped:" destination="8e3-ft-Uph" eventType="touchUpInside" id="7Ff-Cp-gLK"/>
                                 </connections>
                             </button>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user-sm" translatesAutoresizingMaskIntoConstraints="NO" id="x6N-fR-Pwe" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
-                                <rect key="frame" x="148" y="66" width="80" height="80"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Breed" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="i7e-E5-EJo" customClass="LeftPaddedTextField" customModule="PetApp" customModuleProvider="target">
+                                <rect key="frame" x="24" y="140" width="327" height="25"/>
+                                <color key="backgroundColor" red="0.84696626659999996" green="0.84711211919999996" blue="0.84695702790000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="53u-Mw-VM9"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="13"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                        <integer key="value" value="35"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Location" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="44q-PY-byf" customClass="LeftPaddedTextField" customModule="PetApp" customModuleProvider="target">
+                                <rect key="frame" x="24" y="173" width="327" height="25"/>
+                                <color key="backgroundColor" red="0.84696626659999996" green="0.84711211919999996" blue="0.84695702790000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="7lF-vZ-6yD"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                        <integer key="value" value="35"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Bio" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="AK2-mz-5hG" customClass="LeftPaddedTextField" customModule="PetApp" customModuleProvider="target">
+                                <rect key="frame" x="24" y="206" width="327" height="25"/>
+                                <color key="backgroundColor" red="0.84696626659999996" green="0.84711211919999996" blue="0.84695702790000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="Yq8-hP-vrg"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                        <integer key="value" value="140"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dog-in-wig" translatesAutoresizingMaskIntoConstraints="NO" id="x6N-fR-Pwe" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
+                                <rect key="frame" x="24" y="8" width="80" height="80"/>
+                                <color key="backgroundColor" red="0.84696626663208008" green="0.84711211919784546" blue="0.84695702791213989" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="80" id="Cx2-kB-27d"/>
-                                    <constraint firstAttribute="width" constant="80" id="b8u-A7-dfF"/>
+                                    <constraint firstAttribute="height" constant="80" id="lv3-Rj-Xbv"/>
+                                    <constraint firstAttribute="width" constant="80" id="uF0-gN-blE"/>
                                 </constraints>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="Gr2-jg-ACR" appends="YES" id="dV3-zP-uMe"/>
-                                </connections>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fng-Yj-c1c" customClass="RoundedCornerButton" customModule="PetApp" customModuleProvider="target">
-                                <rect key="frame" x="88" y="154" width="200" height="30"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="HCR-aJ-Q5K"/>
-                                    <constraint firstAttribute="width" constant="200" id="MNK-gY-qzq"/>
-                                    <constraint firstAttribute="width" constant="200" id="sKI-hp-qqh"/>
-                                    <constraint firstAttribute="height" constant="30" id="ubo-vy-ksW"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                <state key="normal" title="Edit Profile Picture">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zNP-ni-cRH">
+                                <rect key="frame" x="24" y="8" width="80" height="80"/>
+                                <state key="normal" title="Add">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="addImageTapped:" destination="8e3-ft-Uph" eventType="touchUpInside" id="SFu-SO-6kF"/>
+                                    <action selector="addProfileImgTapped:" destination="8e3-ft-Uph" eventType="touchUpInside" id="FRa-mF-S3g"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Eez-ki-35S">
-                                <rect key="frame" x="24" y="184" width="327" height="285.5"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gua-JH-ei4">
-                                        <rect key="frame" x="0.0" y="0.0" width="327" height="19.5"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
-                                        <color key="textColor" red="0.97254901959999995" green="0.015686274510000001" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pet's Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="4wy-BP-gkC">
-                                        <rect key="frame" x="0.0" y="27.5" width="327" height="30"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
-                                                <integer key="value" value="35"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Parent's Name" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="i6O-ev-DOQ">
-                                        <rect key="frame" x="0.0" y="65.5" width="327" height="30"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
-                                                <integer key="value" value="35"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Age" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="3nh-bw-Hx5">
-                                        <rect key="frame" x="0.0" y="103.5" width="327" height="30"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
-                                                <integer key="value" value="5"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Species" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="OmQ-2M-Ums">
-                                        <rect key="frame" x="0.0" y="141.5" width="327" height="30"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
-                                                <integer key="value" value="35"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Breed" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="i7e-E5-EJo">
-                                        <rect key="frame" x="0.0" y="179.5" width="327" height="30"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
-                                                <integer key="value" value="35"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Location" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="44q-PY-byf">
-                                        <rect key="frame" x="0.0" y="217.5" width="327" height="30"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
-                                                <integer key="value" value="35"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Bio" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="AK2-mz-5hG">
-                                        <rect key="frame" x="0.0" y="255.5" width="327" height="30"/>
-                                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
-                                                <integer key="value" value="140"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
-                                    </textField>
-                                </subviews>
-                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mv6-FO-i4Z">
+                                <rect key="frame" x="243" y="66" width="108" height="27"/>
+                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="12"/>
+                                <state key="normal" title="Add another parent">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="addParentTapped:" destination="8e3-ft-Uph" eventType="touchUpInside" id="9Oc-h6-qsa"/>
+                                </connections>
+                            </button>
+                            <textField opaque="NO" clipsSubviews="YES" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Parent" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="a76-3B-Mb1" customClass="LeftPaddedTextField" customModule="PetApp" customModuleProvider="target">
+                                <rect key="frame" x="120" y="74" width="231" height="25"/>
+                                <color key="backgroundColor" red="0.84696626659999996" green="0.84711211919999996" blue="0.84695702790000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="Ntt-c9-9HR"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="13"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                        <integer key="value" value="35"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Species" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="OmQ-2M-Ums" customClass="LeftPaddedTextField" customModule="PetApp" customModuleProvider="target">
+                                <rect key="frame" x="24" y="107" width="327" height="25"/>
+                                <color key="backgroundColor" red="0.84696626659999996" green="0.84711211919999996" blue="0.84695702790000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="9jS-j5-C1z"/>
+                                </constraints>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="maxLength">
+                                        <integer key="value" value="35"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="140" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R61-QN-fqk">
+                                <rect key="frame" x="330" y="239" width="21" height="15.5"/>
+                                <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="13"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="Eez-ki-35S" firstAttribute="leading" secondItem="zzj-oC-mws" secondAttribute="leadingMargin" constant="8" id="1q3-hA-cfr"/>
-                            <constraint firstItem="XYV-Oc-ckP" firstAttribute="top" secondItem="jWt-Gs-7f5" secondAttribute="bottom" id="20U-wr-Q8x"/>
-                            <constraint firstItem="fng-Yj-c1c" firstAttribute="top" secondItem="x6N-fR-Pwe" secondAttribute="bottom" constant="8" id="3ab-HN-x19"/>
-                            <constraint firstItem="fng-Yj-c1c" firstAttribute="centerX" secondItem="zzj-oC-mws" secondAttribute="centerX" id="6Y4-Yc-6MB"/>
-                            <constraint firstItem="u4z-cR-Fxw" firstAttribute="top" secondItem="jWt-Gs-7f5" secondAttribute="bottom" constant="8" id="Aaf-hw-mia"/>
-                            <constraint firstItem="Eez-ki-35S" firstAttribute="top" secondItem="fng-Yj-c1c" secondAttribute="bottom" id="Cf2-YD-eux"/>
-                            <constraint firstAttribute="trailing" secondItem="COh-ku-7ml" secondAttribute="trailing" id="LR0-gU-tJ5"/>
-                            <constraint firstItem="x6N-fR-Pwe" firstAttribute="top" secondItem="u4z-cR-Fxw" secondAttribute="bottom" constant="8" id="Qns-kz-IRz"/>
-                            <constraint firstItem="u4z-cR-Fxw" firstAttribute="centerX" secondItem="zzj-oC-mws" secondAttribute="centerX" id="St2-5y-W2X"/>
-                            <constraint firstItem="COh-ku-7ml" firstAttribute="leading" secondItem="zzj-oC-mws" secondAttribute="leading" id="aSW-Bc-Kdr"/>
-                            <constraint firstItem="XYV-Oc-ckP" firstAttribute="leading" secondItem="zzj-oC-mws" secondAttribute="leading" id="aXS-ZB-Oag"/>
-                            <constraint firstItem="COh-ku-7ml" firstAttribute="top" secondItem="jWt-Gs-7f5" secondAttribute="bottom" id="pOO-8a-LVa"/>
-                            <constraint firstAttribute="trailing" secondItem="XYV-Oc-ckP" secondAttribute="trailing" id="pfF-ue-X7U"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="Eez-ki-35S" secondAttribute="trailing" constant="8" id="qcK-yw-0EG"/>
-                            <constraint firstItem="x6N-fR-Pwe" firstAttribute="centerX" secondItem="zzj-oC-mws" secondAttribute="centerX" id="rGr-L1-JNo"/>
+                            <constraint firstItem="4wy-BP-gkC" firstAttribute="top" secondItem="jWt-Gs-7f5" secondAttribute="bottom" constant="8" id="4IX-bm-sYB"/>
+                            <constraint firstItem="AK2-mz-5hG" firstAttribute="top" secondItem="44q-PY-byf" secondAttribute="bottom" constant="8" id="8aX-3h-nzJ"/>
+                            <constraint firstItem="a76-3B-Mb1" firstAttribute="top" secondItem="i6O-ev-DOQ" secondAttribute="bottom" constant="8" id="8hU-2v-p9b"/>
+                            <constraint firstItem="44q-PY-byf" firstAttribute="leading" secondItem="zzj-oC-mws" secondAttribute="leadingMargin" constant="8" id="AVF-Dw-jUx"/>
+                            <constraint firstItem="P9c-mR-Syv" firstAttribute="top" secondItem="OmQ-2M-Ums" secondAttribute="bottom" constant="8" id="EDx-Gh-oHN"/>
+                            <constraint firstItem="zNP-ni-cRH" firstAttribute="height" secondItem="x6N-fR-Pwe" secondAttribute="height" id="GyZ-5r-boT"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="4wy-BP-gkC" secondAttribute="trailing" constant="8" id="JoV-Qd-Yu3"/>
+                            <constraint firstItem="i7e-E5-EJo" firstAttribute="leading" secondItem="zzj-oC-mws" secondAttribute="leadingMargin" constant="8" id="LF2-Ab-tlm"/>
+                            <constraint firstItem="x6N-fR-Pwe" firstAttribute="top" secondItem="jWt-Gs-7f5" secondAttribute="bottom" constant="8" id="OfJ-Fw-aDh"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="R61-QN-fqk" secondAttribute="trailing" constant="8" id="Q2G-nS-apn"/>
+                            <constraint firstItem="R61-QN-fqk" firstAttribute="top" secondItem="AK2-mz-5hG" secondAttribute="bottom" constant="8" id="Q4c-h4-OCa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="44q-PY-byf" secondAttribute="trailing" constant="8" id="Qm4-DX-alK"/>
+                            <constraint firstItem="zNP-ni-cRH" firstAttribute="centerY" secondItem="x6N-fR-Pwe" secondAttribute="centerY" id="QyY-wF-hXV"/>
+                            <constraint firstItem="44q-PY-byf" firstAttribute="top" secondItem="i7e-E5-EJo" secondAttribute="bottom" constant="8" id="RPb-J5-WO6"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="P9c-mR-Syv" secondAttribute="trailing" constant="8" id="T24-FT-XAN"/>
+                            <constraint firstItem="OmQ-2M-Ums" firstAttribute="leading" secondItem="zzj-oC-mws" secondAttribute="leadingMargin" constant="8" id="T4A-7h-Lic"/>
+                            <constraint firstItem="4wy-BP-gkC" firstAttribute="leading" secondItem="x6N-fR-Pwe" secondAttribute="trailing" constant="16" id="UfX-Go-wKu"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="i6O-ev-DOQ" secondAttribute="trailing" constant="8" id="Ugn-hE-aof"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="i7e-E5-EJo" secondAttribute="trailing" constant="8" id="W3t-1F-Sg3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Mv6-FO-i4Z" secondAttribute="trailing" constant="8" id="ZLy-sh-wZX"/>
+                            <constraint firstItem="zNP-ni-cRH" firstAttribute="centerX" secondItem="x6N-fR-Pwe" secondAttribute="centerX" id="eQY-o2-JxZ"/>
+                            <constraint firstItem="i6O-ev-DOQ" firstAttribute="leading" secondItem="x6N-fR-Pwe" secondAttribute="trailing" constant="16" id="fV3-R5-m1w"/>
+                            <constraint firstItem="i6O-ev-DOQ" firstAttribute="top" secondItem="4wy-BP-gkC" secondAttribute="bottom" constant="8" id="fcR-Fv-rRV"/>
+                            <constraint firstItem="a76-3B-Mb1" firstAttribute="leading" secondItem="x6N-fR-Pwe" secondAttribute="trailing" constant="16" id="gsq-CX-77n"/>
+                            <constraint firstItem="zNP-ni-cRH" firstAttribute="width" secondItem="x6N-fR-Pwe" secondAttribute="width" id="hi1-ef-Vth"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="AK2-mz-5hG" secondAttribute="trailing" constant="8" id="inm-hf-Pr7"/>
+                            <constraint firstItem="Mv6-FO-i4Z" firstAttribute="top" secondItem="i6O-ev-DOQ" secondAttribute="bottom" id="k07-QD-d7G"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="OmQ-2M-Ums" secondAttribute="trailing" constant="8" id="kUf-WR-HcR"/>
+                            <constraint firstItem="OmQ-2M-Ums" firstAttribute="top" secondItem="a76-3B-Mb1" secondAttribute="bottom" constant="8" id="nSC-i1-u4W"/>
+                            <constraint firstItem="AK2-mz-5hG" firstAttribute="leading" secondItem="zzj-oC-mws" secondAttribute="leadingMargin" constant="8" id="umS-Nl-zL2"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="a76-3B-Mb1" secondAttribute="trailing" constant="8" id="w0C-s8-g3a"/>
+                            <constraint firstItem="i7e-E5-EJo" firstAttribute="top" secondItem="OmQ-2M-Ums" secondAttribute="bottom" constant="8" id="xQY-bz-sAE"/>
+                            <constraint firstItem="x6N-fR-Pwe" firstAttribute="leading" secondItem="zzj-oC-mws" secondAttribute="leadingMargin" constant="8" id="ys7-qn-LOr"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="aboutLbl" destination="AK2-mz-5hG" id="kEL-ja-4Fm"/>
-                        <outlet property="ageLbl" destination="3nh-bw-Hx5" id="1bt-nx-blo"/>
                         <outlet property="breedLbl" destination="i7e-E5-EJo" id="CaV-Sr-bU9"/>
-                        <outlet property="coverPhoto" destination="COh-ku-7ml" id="ukE-Wu-Y8n"/>
+                        <outlet property="charCount" destination="R61-QN-fqk" id="k3Q-aI-1Wd"/>
                         <outlet property="errorLbl" destination="gua-JH-ei4" id="6Hg-7A-QVb"/>
                         <outlet property="fullNameLbl" destination="4wy-BP-gkC" id="rcs-5d-kLe"/>
                         <outlet property="locationLbl" destination="44q-PY-byf" id="mpV-Rx-kDc"/>
                         <outlet property="parentsNameLbl" destination="i6O-ev-DOQ" id="Cnl-Pd-HyI"/>
                         <outlet property="profileImg" destination="x6N-fR-Pwe" id="OSm-hZ-W3I"/>
+                        <outlet property="secondParentsNameLbl" destination="a76-3B-Mb1" id="W0g-rr-WBu"/>
                         <outlet property="speciesLbl" destination="OmQ-2M-Ums" id="xZ8-Gi-0Gx"/>
                         <segue destination="ABA-se-GwR" kind="show" identifier="ViewUserVC" id="ks9-iV-bwr"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HAk-d2-Wgc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6807" y="889"/>
+            <point key="canvasLocation" x="6736.8000000000002" y="888.30584707646187"/>
         </scene>
         <!--User ListVC-->
         <scene sceneID="O30-zH-4V0">
@@ -1050,11 +1076,11 @@
                         <viewControllerLayoutGuide type="bottom" id="2qp-eX-yk0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TdC-gv-zBC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tYH-55-YsQ">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="554"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FollowCell" id="hZu-7T-WG7" customClass="FollowCell" customModule="PetApp" customModuleProvider="target">
@@ -1097,11 +1123,11 @@
                         <viewControllerLayoutGuide type="bottom" id="Jd9-3E-s8h"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ZLW-Np-koL">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3r8-CU-z1x">
-                                <rect key="frame" x="0.0" y="20" width="375" height="280"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="280"/>
                                 <subviews>
                                     <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.60000002384185791" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sBB-td-5gh">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="426"/>
@@ -1247,7 +1273,7 @@
                                 </constraints>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="oXf-0A-NUb">
-                                <rect key="frame" x="0.0" y="300" width="375" height="318"/>
+                                <rect key="frame" x="0.0" y="280" width="375" height="274"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="1ci-ex-6qq">
                                     <size key="itemSize" width="120" height="120"/>
@@ -1473,11 +1499,11 @@
                         <viewControllerLayoutGuide type="bottom" id="FOY-vF-yny"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="EKh-3m-z1H">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="560" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zwj-MA-RQV">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SinglePhotoCell" rowHeight="560" id="3eG-hg-LED" customClass="SinglePhotoCell" customModule="PetApp" customModuleProvider="target">
@@ -1915,6 +1941,7 @@
                         <outlet property="tableView" destination="mY4-Tr-zgP" id="57u-wd-SEJ"/>
                         <segue destination="gIc-dY-15p" kind="show" identifier="CommentsVC" id="61S-To-qrI"/>
                         <segue destination="ABA-se-GwR" kind="show" identifier="ViewUserVC" id="XRJ-RW-2nF"/>
+                        <segue destination="8e3-ft-Uph" kind="show" identifier="toProfileVC" id="MDz-VF-CoG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OEL-cy-RY3" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -2239,13 +2266,13 @@
         <image name="user-sm" width="96" height="96"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="zsD-8J-Lsn"/>
         <segue reference="N7H-GA-ORb"/>
-        <segue reference="PM7-ev-GOT"/>
-        <segue reference="xu2-ih-vp3"/>
-        <segue reference="SJM-lh-SJu"/>
-        <segue reference="JVH-1h-fiz"/>
-        <segue reference="ks9-iV-bwr"/>
-        <segue reference="9MW-Q6-fsk"/>
+        <segue reference="WFH-sr-mHP"/>
+        <segue reference="SDZ-21-9fi"/>
+        <segue reference="MDz-VF-CoG"/>
         <segue reference="61S-To-qrI"/>
+        <segue reference="ks9-iV-bwr"/>
+        <segue reference="SJM-lh-SJu"/>
     </inferredMetricsTieBreakers>
 </document>

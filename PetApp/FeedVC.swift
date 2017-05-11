@@ -23,6 +23,12 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
     var refreshControl: UIRefreshControl!
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.checkIfHasFilledOutProfileOnce { (hasFilledOutProfile) in
+            if !hasFilledOutProfile {
+//                DataService.ds.REF_CURRENT_USER.child("user-personal").updateChildValues(["HasFilledOutProfileOnce": true])
+                self.performSegue(withIdentifier: "toProfileVC", sender: nil)
+            }
+        }
         let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 30))
         imageView.contentMode = .scaleAspectFit
         let image = UIImage(named: "PetsPic")
@@ -46,6 +52,17 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
 //handle no internet connection
         }))
         self.present(alert, animated: true, completion: nil)
+    }
+    func checkIfHasFilledOutProfileOnce(completionHandler:@escaping (Bool) -> Void) {
+        DataService.ds.REF_CURRENT_USER.child("user-personal").child("HasFilledOutProfileOnce").observeSingleEvent(of: .value, with: { (snapshot) in
+            if let _ = snapshot.value as? NSNull {
+                print("FIRST time viewing profile")
+                completionHandler(false)
+            } else {
+                print("NOT first time viewing profile")
+                completionHandler(true)
+            }
+        })
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ViewUserVC" {
