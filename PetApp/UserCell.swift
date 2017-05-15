@@ -30,24 +30,13 @@ class UserCell: UITableViewCell {
         self.parentsNameLabel.text = user.parentsName
         self.locationLabel.text = user.location
         self.aboutLabel.text = user.about
-//        self.followersLabel.text = String(user.followers)
-//        self.followingLabel.text = String(user.following)
-        if user.age != "" {
-            self.ageBreedSpeciesLabel.text = user.age
-            if user.breed != "" {
-                self.ageBreedSpeciesLabel.text = user.age + " " + user.breed
-            } else {
-                if user.species != "" {
-                    self.ageBreedSpeciesLabel.text = user.age + " " + user.species
-                }
-            }
+        //        self.followersLabel.text = String(user.followers)
+        //        self.followingLabel.text = String(user.following)
+        if user.breed != "" {
+            self.ageBreedSpeciesLabel.text = user.breed
         } else {
-            if user.breed != "" {
-                self.ageBreedSpeciesLabel.text = user.breed
-            } else {
-                if user.species != "" {
-                    self.ageBreedSpeciesLabel.text = user.species
-                }
+            if user.species != "" {
+                self.ageBreedSpeciesLabel.text = user.species
             }
         }
     }

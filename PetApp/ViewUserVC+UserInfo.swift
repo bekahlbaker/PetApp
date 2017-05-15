@@ -31,9 +31,9 @@ extension ViewUserVC {
                 } else {
                     print("CURRENT USER")
                     self.isCurrentUser = true
-                    DataService.ds.REF_USERS.child(self.userKey).child("user-info").observeSingleEvent(of: .value, with: { (snapshot) in
+                    DataService.ds.REF_USERS.child(self.currentUserKey).child("user-info").observeSingleEvent(of: .value, with: { (snapshot) in
                         if let userDict = snapshot.value as? [String: AnyObject] {
-                            let user = User(userKey: self.userKey, userData: userDict)
+                            let user = User(userKey: self.currentUserKey, userData: userDict)
                             self.user = user
                         }
                         if self.user != nil {
@@ -47,7 +47,7 @@ extension ViewUserVC {
     }
     func configureUser(_ user: User) {
         self.user = user
-        self.username.title = user.username
+        self.navigationItem.title = user.username
         self.fullNameLbl.text = user.name
         self.parentsNameLbl.text = user.parentsName
 //        self.secondparentsNameLbl.text = user.secondParentsName

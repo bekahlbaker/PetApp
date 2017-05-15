@@ -38,8 +38,6 @@ extension ProfileVC {
         //save profile info
         createUserInfo("full-name", value: self.fullNameLbl.text! as String)
         createUserInfo("parents-name", value: parentsNameLbl.text! as String)
-        createUserInfo("second-parents-name", value: secondParentsNameLbl.text! as String)
-//        createUserInfo("age", value: ageLbl.text! as String)
         createUserInfo("species", value: speciesLbl.text! as String)
         createUserInfo("breed", value: breedLbl.text! as String)
         createUserInfo("location", value: locationLbl.text! as String)

@@ -18,6 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FIRApp.configure()
+        let navigationBarAppearace = UINavigationBar.appearance()
+        let font = UIFont(name: "Raleway-Regular", size: 20)
+        navigationBarAppearace.titleTextAttributes = [NSFontAttributeName: font!, NSForegroundColorAttributeName: UIColor(red:0.98, green:0.11, blue:0.34, alpha:1.0)]
+        navigationBarAppearace.tintColor = UIColor(red:0.98, green:0.11, blue:0.34, alpha:1.0)
 //        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         FIRDatabase.database().persistenceEnabled = true
         if KeychainWrapper.standard.string(forKey: KEY_UID) != nil {

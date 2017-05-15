@@ -22,11 +22,11 @@ extension FeedVC {
         }
     }
     func downloadData(completionHandler:@escaping (Bool) -> Void) {
-        DispatchQueue.global().asyncAfter(deadline: .now() + 2.0) {
-            let connectedRef = FIRDatabase.database().reference(withPath: ".info/connected")
-            connectedRef.observe(.value, with: { snapshot in
-                if let connected = snapshot.value as? Bool, connected {
-                    print("Connected")
+        DispatchQueue.global().async {
+//            let connectedRef = FIRDatabase.database().reference(withPath: ".info/connected")
+//            connectedRef.observe(.value, with: { snapshot in
+//                if let connected = snapshot.value as? Bool, connected {
+//                    print("Connected")
                     DataService.ds.REF_CURRENT_USER.child("wall").observeSingleEvent(of: .value, with: { (snapshot) in
                         self.posts = []
                         self.postKeys = []
@@ -62,11 +62,11 @@ extension FeedVC {
                             })
                         }
                     })
-                } else {
-                    print("Not connected")
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "noInternetConnectionError"), object: nil)
-                }
-            })
+//                } else {
+//                    print("Not connected")
+//                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "noInternetConnectionError"), object: nil)
+//                }
+//            })
         }
     }
     func numberOfSections(in tableView: UITableView) -> Int {

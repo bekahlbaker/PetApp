@@ -11,13 +11,15 @@ import Foundation
 import Firebase
 
 extension UserListVC {
-    func getUserKey(username: String, completionHandler:@escaping (Bool) -> Void) {
+    func getUserKey(username: String, completionHandler: @escaping (_ userKey: String) -> Void) {
+        var string = String()
         DataService.ds.REF_USERS.queryOrdered(byChild: "user-info/username").queryEqual(toValue: username).observeSingleEvent(of: .value, with: { (snapshot) in
             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                 for snap in snapshot {
-                    self.userKeyToPass = snap.key
-                    print(self.userKeyToPass)
-                    completionHandler(true)
+                    string = snap.key
+//                    self.userKeyToPass = snap.key
+//                    print(self.userKeyToPass)
+                    completionHandler(string)
                 }
             }
         })

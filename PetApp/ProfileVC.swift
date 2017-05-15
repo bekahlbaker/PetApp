@@ -15,8 +15,6 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     @IBOutlet weak var errorLbl: UILabel!
     @IBOutlet weak var fullNameLbl: UITextField!
     @IBOutlet weak var parentsNameLbl: UITextField!
-    @IBOutlet weak var secondParentsNameLbl: LeftPaddedTextField!
-    @IBOutlet weak var ageLbl: UITextField!
     @IBOutlet weak var speciesLbl: UITextField!
     @IBOutlet weak var breedLbl: UITextField!
     @IBOutlet weak var locationLbl: UITextField!
@@ -60,9 +58,6 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         alert.addAction(discard)
         alert.addAction(cancel)
         self.navigationController?.present(alert, animated: true, completion: nil)
-    }
-    @IBAction func addParentTapped(_ sender: Any) {
-        secondParentsNameLbl.alpha = 1
     }
     @IBAction func addBreedTapped(_ sender: Any) {
         breedLbl.alpha = 1

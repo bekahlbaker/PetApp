@@ -20,6 +20,7 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     @IBOutlet weak var parentsNameLbl: UILabel!
     @IBOutlet weak var locationLbl: UILabel!
     @IBOutlet weak var bioLbl: UILabel!
+    @IBOutlet weak var paging: UIImageView!
     @IBOutlet weak var postsLbl: UILabel!
     @IBOutlet weak var followingLbl: UILabel!
     @IBOutlet weak var followersLbl: UILabel!
@@ -38,10 +39,11 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     var isFollowing: Bool!
     static var postKeyToPass: String!
     var userKeyToPass: String!
-    let userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
+    let currentUserKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
     var userKeyPassed: String!
     var isCurrentUser: Bool!
     var posts = [Post]()
+    var pageNumber = 1
     override func viewDidLoad() {
         super.viewDidLoad()
         self.automaticallyAdjustsScrollViewInsets = false
@@ -55,17 +57,47 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         collectionView!.collectionViewLayout = layout
-        let moreBtn = UIBarButtonItem(title: "More", style: UIBarButtonItemStyle.plain, target: self, action: #selector(moreBtnTapped))
+        let moreBtn = UIBarButtonItem(image: UIImage(named:"more-dots"), style: .plain, target: self, action: #selector(moreBtnTapped))
         self.navigationItem.rightBarButtonItem = moreBtn
+        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture(gesture:)))
+        swipeRight.direction = UISwipeGestureRecognizerDirection.right
+        self.view.addGestureRecognizer(swipeRight)
+        let swipeLeft = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture(gesture:)))
+        swipeLeft.direction = UISwipeGestureRecognizerDirection.left
+        self.view.addGestureRecognizer(swipeLeft)
+        showPageOne()
     }
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        downloadViewUserContent()
-        if self.userKeyPassed != nil {
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(true)
+//        print(self.currentUserKey)
+//        print(self.userKeyPassed)
+//        if self.userKeyPassed == nil {
+//            self.isCurrentUser = true
+//            self.userKeyPassed = self.currentUserKey
+//            self.userKeyToPass = self.userKeyPassed
+//            downloadViewUserContent()
+//        } else {
+//            self.isCurrentUser = false
+//            self.userKeyToPass = self.currentUserKey
+//            downloadViewUserContent()
+//        }
+//        print(self.isCurrentUser)
+//    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        print(self.currentUserKey)
+        print(self.userKeyPassed)
+        if self.userKeyPassed == nil {
+            self.isCurrentUser = true
+//            self.userKeyPassed = self.currentUserKey
             self.userKeyToPass = self.userKeyPassed
+            downloadViewUserContent()
         } else {
-            self.userKeyToPass = self.userKey
+            self.isCurrentUser = false
+            self.userKeyToPass = self.currentUserKey
+            downloadViewUserContent()
         }
+        print(self.isCurrentUser)
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let post = posts[indexPath.row]
@@ -109,7 +141,7 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
                 }
             })
         } else {
-            DataService.ds.REF_POSTS.queryOrdered(byChild: "userKey").queryEqual(toValue: self.userKey).observeSingleEvent(of: .value, with: { (snapshot) in
+            DataService.ds.REF_POSTS.queryOrdered(byChild: "userKey").queryEqual(toValue: self.currentUserKey).observeSingleEvent(of: .value, with: { (snapshot) in
                 self.posts = []
                 if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     for snap in snapshot {
@@ -137,10 +169,46 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         }
     }
     func moreBtnTapped() {
-        if self.userKeyPassed != nil {
+        if self.isCurrentUser == false {
             self.followTapped()
-        } else {
+        } else if self.isCurrentUser == true {
             self.moreTapped()
         }
+    }
+    func respondToSwipeGesture(gesture: UIGestureRecognizer) {
+        if let swipeGesture = gesture as? UISwipeGestureRecognizer {
+            switch swipeGesture.direction {
+            case UISwipeGestureRecognizerDirection.right:
+                print("Swiped right")
+                if pageNumber == 2 {
+                    showPageOne()
+                }
+            case UISwipeGestureRecognizerDirection.left:
+                print("Swiped left")
+                if pageNumber == 1 {
+                    showPageTwo()
+                }
+            default:
+                break
+            }
+        }
+    }
+    func showPageOne() {
+        pageNumber = 1
+        fullNameLbl.isHidden = false
+        bioLbl.isHidden = false
+        parentsNameLbl.isHidden = true
+        ageAndBreedLbl.isHidden = true
+        locationLbl.isHidden = true
+        paging.image = UIImage(named: "page1")
+    }
+    func showPageTwo() {
+        pageNumber = 2
+        fullNameLbl.isHidden = true
+        bioLbl.isHidden = true
+        parentsNameLbl.isHidden = false
+        ageAndBreedLbl.isHidden = false
+        locationLbl.isHidden = false
+        paging.image = UIImage(named: "page2")
     }
 }

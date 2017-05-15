@@ -16,7 +16,6 @@ class User {
     fileprivate var _username: String!
     fileprivate var _name: String!
     fileprivate var _parentsName: String!
-    fileprivate var _secondParentsName: String!
     fileprivate var _species: String!
     fileprivate var _breed: String!
     fileprivate var _location: String!
@@ -34,9 +33,6 @@ class User {
     }
     var parentsName: String {
         return _parentsName ?? ""
-    }
-    var secondParentsName: String {
-        return _secondParentsName ?? ""
     }
     var species: String {
         return _species ?? ""
@@ -56,11 +52,10 @@ class User {
     var following: Int {
         return _following ?? 0
     }
-    init(username: String, name: String, parentsName: String, secondParentsName: String,species: String, breed: String, location: String, about: String, followers: Int, following: Int) {
+    init(username: String, name: String, parentsName: String, species: String, breed: String, location: String, about: String, followers: Int, following: Int) {
         self._username = username
         self._name = name
         self._parentsName = parentsName
-        self._secondParentsName = secondParentsName
         self._species = species
         self._breed = breed
         self._location = location
@@ -78,9 +73,6 @@ class User {
         }
         if let parentsName = userData["parents-name"] as? String {
             self._parentsName = parentsName
-        }
-        if let secondParentsName = userData["second-parents-name"] as? String {
-            self._secondParentsName = secondParentsName
         }
         if let species = userData["species"] as? String {
             self._species = species

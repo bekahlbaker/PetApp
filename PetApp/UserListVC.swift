@@ -45,30 +45,45 @@ class UserListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell")!
         if inSearchMode {
             cell.textLabel?.text = filteredUserList[indexPath.row]
-            let username = cell.textLabel?.text
-            self.getUserKey(username: username!) { (success) in
-                if success {
-                    print("SUCCESS")
-                }
-            }
+//            let username = cell.textLabel?.text
+//            self.getUserKey(username: username!) { (userKey) in
+//                self.userKeyToPass = userKey
+//            }
         } else {
             cell.textLabel?.text = userList[indexPath.row]
-            let username = cell.textLabel?.text
-            self.getUserKey(username: username!) { (success) in
-                if success {
-                    print("SUCCESS")
-                }
-            }
+//            let username = cell.textLabel?.text
+//            self.getUserKey(username: username!) { (userKey) in
+//                self.userKeyToPass = userKey
+//                print("USERKEY TO PASS: \(self.userKeyToPass)")
+//            }
         }
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        performSegue(withIdentifier: "ViewUserVC", sender: nil)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell")!
+        if inSearchMode {
+            cell.textLabel?.text = filteredUserList[indexPath.row]
+            let username = cell.textLabel?.text
+            self.getUserKey(username: username!) { (userKey) in
+                self.userKeyToPass = userKey
+                print("USERKEY TO PASS: \(self.userKeyToPass)")
+                self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
+            }
+        } else {
+            cell.textLabel?.text = userList[indexPath.row]
+            let username = cell.textLabel?.text
+            self.getUserKey(username: username!) { (userKey) in
+                self.userKeyToPass = userKey
+                print("USERKEY TO PASS: \(self.userKeyToPass)")
+                self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
+            }
+        }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ViewUserVC" {
             let myVC = segue.destination as! ViewUserVC
                 myVC.userKeyPassed = self.userKeyToPass
+            print("USERKEY BEING PASSED: \(self.userKeyToPass)")
                 print("SEGUE: \(myVC.userKeyPassed)")
         }
     }
