@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import Kingfisher
+import SwiftKeychainWrapper
 
 class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     @IBOutlet weak var profileImg: UIImageView!
@@ -22,6 +23,7 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     @IBOutlet weak var charCount: UILabel!
     var imagePicker = UIImagePickerController()
     static var profileCache: NSCache<NSString, UIImage> = NSCache()
+    let currentUserKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
     @IBAction func addProfileImgTapped(_ sender: Any) {
         let alertController = UIAlertController(title: "Select Picture", message: nil, preferredStyle: .actionSheet)
         let camera = UIAlertAction(title: "Camera", style: .default, handler: { (_) -> Void in
@@ -88,11 +90,11 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 self.aboutLbl.text = dictionary["about"] as? String
                 self.navigationItem.title = dictionary["username"] as? String
                 //download profile img
-                self.profileImg.image = UIImage(named: "user-sm")
-                if ProfileVC.profileCache.object(forKey: "profileImg") != nil {
-                    self.profileImg.image = ProfileVC.profileCache.object(forKey: "profileImg")
-                    print("Using cached img")
-                } else {
+//                self.profileImg.image = UIImage(named: "user-sm")
+//                if ProfileVC.profileCache.object(forKey: "\(self.currentUserKey)" as NSString) != nil {
+//                    self.profileImg.image = ProfileVC.profileCache.object(forKey: "\(self.currentUserKey)" as NSString)
+//                    print("Using cached img")
+//                } else {
                     guard let profileUrl = dictionary["profileImgUrl"] as? String else {
                         return
                     }
@@ -108,7 +110,7 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                             }
                         }
                     }
-                }
+//                }
             }
         })
     }

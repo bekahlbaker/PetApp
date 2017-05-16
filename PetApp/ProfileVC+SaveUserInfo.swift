@@ -16,7 +16,7 @@ extension ProfileVC {
     func save() {
         print("Saving pprofile")
         if self.profileImg.image != nil {
-            ProfileVC.profileCache.setObject(self.profileImg.image!, forKey: "profileImg")
+//            ProfileVC.profileCache.setObject(self.profileImg.image!, forKey: "\(self.currentUserKey)" as NSString)
             //save profile image
             let imageName = UUID().uuidString
             let metadata = FIRStorageMetadata()
@@ -79,7 +79,7 @@ extension ProfileVC {
         if let pickedImage = info[UIImagePickerControllerEditedImage] as? UIImage {
             profileImg.image = pickedImage
         }
-        ProfileVC.profileCache.removeAllObjects()
+//        ProfileVC.profileCache.removeAllObjects()
         FeedVC.imageCache.removeAllObjects()
         dismiss(animated: true, completion: nil)
     }

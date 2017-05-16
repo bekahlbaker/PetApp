@@ -39,7 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                     print("Unable to download image from firebase")
                                 } else {
                                     let profileImg = UIImage(data: data!)
-                                    ProfileVC.profileCache.setObject(profileImg!, forKey: "profileImg")
+                                    ProfileVC.profileCache.setObject(profileImg!, forKey: "\(String(describing: uid))" as NSString)
                                     print("Using didFinishLaunching pre-downloaded image for profile")
                                 }
                             }
@@ -49,28 +49,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         return true
-    }
-    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        if let uid = KeychainWrapper.standard.string(forKey: KEY_UID) {
-            if let token = FIRInstanceID.instanceID().token() {
-                print("CURRENT TOKEN: \(token)")
-                DataService.ds.REF_USERS.child(uid).child("user-personal").updateChildValues(["tokenid": token])
-            } else {
-                let token = deviceToken.reduce("", {$0 + String(format: "%02X", $1)})
-                print("Device Token: \(token)")
-                DataService.ds.REF_USERS.child(uid).child("user-personal").updateChildValues(["tokenid": token])
-            }
-        }
-    }
-    private func application(application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: NSError) {
-        print(error)
-    }
-    func tokenRefreshNotification(notification: NSNotification) {
-        if let refreshedToken = FIRInstanceID.instanceID().token() {
-            if let uid = KeychainWrapper.standard.string(forKey: KEY_UID) {
-                DataService.ds.REF_USERS.child(uid).child("user-personal").updateChildValues(["tokenid": refreshedToken])
-            }
-        }
     }
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

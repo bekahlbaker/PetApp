@@ -85,19 +85,15 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
 //    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
-        print(self.currentUserKey)
-        print(self.userKeyPassed)
+        print(checkIfUserIsCurrentUser())
+        downloadViewUserContent()
+    }
+    func checkIfUserIsCurrentUser() -> Bool {
         if self.userKeyPassed == nil {
-            self.isCurrentUser = true
-//            self.userKeyPassed = self.currentUserKey
-            self.userKeyToPass = self.userKeyPassed
-            downloadViewUserContent()
+            return true
         } else {
-            self.isCurrentUser = false
-            self.userKeyToPass = self.currentUserKey
-            downloadViewUserContent()
+            return false
         }
-        print(self.isCurrentUser)
     }
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let post = posts[indexPath.row]
@@ -123,8 +119,8 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         }
     }
     func downloadCollectionViewData() {
-        if self.userKeyPassed != nil {
-            DataService.ds.REF_POSTS.queryOrdered(byChild: "userKey").queryEqual(toValue: self.userKeyPassed).observeSingleEvent(of: .value, with: { (snapshot) in
+        if checkIfUserIsCurrentUser() {
+            DataService.ds.REF_POSTS.queryOrdered(byChild: "userKey").queryEqual(toValue: self.currentUserKey).observeSingleEvent(of: .value, with: { (snapshot) in
                 self.posts = []
                 if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     for snap in snapshot {
@@ -141,7 +137,7 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
                 }
             })
         } else {
-            DataService.ds.REF_POSTS.queryOrdered(byChild: "userKey").queryEqual(toValue: self.currentUserKey).observeSingleEvent(of: .value, with: { (snapshot) in
+            DataService.ds.REF_POSTS.queryOrdered(byChild: "userKey").queryEqual(toValue: self.userKeyPassed).observeSingleEvent(of: .value, with: { (snapshot) in
                 self.posts = []
                 if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     for snap in snapshot {
@@ -169,10 +165,10 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         }
     }
     func moreBtnTapped() {
-        if self.isCurrentUser == false {
-            self.followTapped()
-        } else if self.isCurrentUser == true {
-            self.moreTapped()
+        if checkIfUserIsCurrentUser() {
+            moreTapped()
+        } else {
+            followTapped()
         }
     }
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {

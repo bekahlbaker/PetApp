@@ -14,7 +14,6 @@ import SwiftKeychainWrapper
 extension ViewUserVC {
     func checkIfFollowing() {
         if let userKey = self.userKeyPassed {
-            print(userKey)
             DataService.ds.REF_CURRENT_USER.child("following").child(userKey).observeSingleEvent(of: .value, with: { (snapshot) in
                 if let _ = snapshot.value as? NSNull {
                     self.isFollowing = false
