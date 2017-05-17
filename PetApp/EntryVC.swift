@@ -17,12 +17,14 @@ class EntryVC: UIViewController {
     }
     override func viewDidAppear(_ animated: Bool) {
 //        KeychainWrapper.standard.removeObject(forKey: KEY_UID)
-        if let _ = KeychainWrapper.standard.string(forKey: KEY_UID), let _ = KeychainWrapper.standard.string(forKey: "Username") {
+        if let _ = KeychainWrapper.standard.string(forKey: KEY_UID) {
             print("ID and username found in Keychain.")
             performSegue(withIdentifier: "toFeedVC", sender: nil)
+        } else {
+            print(KeychainWrapper.standard.string(forKey: KEY_UID))
         }
-        for (key, value) in UserDefaults.standard.dictionaryRepresentation() {
-            print("\(key) = \(value) \n")
-        }
+//        for (key, value) in UserDefaults.standard.dictionaryRepresentation() {
+//            print("\(key) = \(value) \n")
+//        }
     }
 }
