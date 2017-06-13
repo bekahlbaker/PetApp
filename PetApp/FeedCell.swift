@@ -20,7 +20,6 @@ class FeedCell: UITableViewCell {
     @IBOutlet weak var caption: UILabel!
     @IBOutlet weak var profileImg: CircleImage!
     @IBOutlet weak var likesImg: UIImageView!
-    @IBOutlet weak var likesImgSm: UIImageView!
     @IBOutlet weak var likes: UILabel!
     @IBOutlet weak var comments: UILabel!
     @IBOutlet weak var usernameBtn: UIButton!
@@ -119,22 +118,23 @@ class FeedCell: UITableViewCell {
                 print("Swiped right")
 //                let left = CGAffineTransform(translationX: -300, y: 0)
                 let right = CGAffineTransform(translationX: 0, y: 0)
-                UIView.animate(withDuration: 0.6, delay: 0.0, options: [], animations: {
+                UIView.animate(withDuration: 1, delay: 0.0, options: [], animations: {
                     // Add the transformation in this block
                     // self.container is your view that you want to animate
                     self.cellContentView.transform = right
-                    self.goViewImage.image = UIImage(named: "GO-left")
+                    self.goViewImage.transform = CGAffineTransform(rotationAngle: CGFloat.pi * 2)
                 }, completion: nil)
             case UISwipeGestureRecognizerDirection.left:
                 print("Swiped left")
                 // These values depends on the positioning of your element
                 let left = CGAffineTransform(translationX: -self.cellContentView.frame.width + 22, y: 0)
 //                let right = CGAffineTransform(translationX: 0, y: 0)
-                UIView.animate(withDuration: 0.6, delay: 0.0, options: [], animations: {
+                UIView.animate(withDuration: 1, delay: 0.0, options: [], animations: {
                     // Add the transformation in this block
                     // self.container is your view that you want to animate
                     self.cellContentView.transform = left
-                    self.goViewImage.image = UIImage(named: "GO-right")
+//                    self.goViewImage.image = UIImage(named: "GO-right")
+                    self.goViewImage.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
                 }, completion: nil)
 //                UIView.animate(withDuration: 1, animations: {
 //                    self.cellContentView.center = CGPoint(x: self.cellContentView.frame.width * 2 + 24, y: self.cellContentView.center.y)
@@ -144,7 +144,7 @@ class FeedCell: UITableViewCell {
             }
         }
     }
-    func configureCell(_ post: Post, completionHandler:@escaping (Bool) -> Void) {
+    func configureCell(_ post: Post) {
         self.post = post
         DispatchQueue.global().async {
             let currentUser = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
@@ -175,7 +175,7 @@ class FeedCell: UITableViewCell {
             }, completion: nil)
             if let imgURL = URL(string: post.imageURL) {
                 self.feedImageView.kf.setImage(with: imgURL)
-                print("Using kingfisher for feed images")
+ //               print("Using kingfisher for feed images")
             } else {
                 let ref = FIRStorage.storage().reference(forURL: post.imageURL)
                 ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
@@ -191,36 +191,43 @@ class FeedCell: UITableViewCell {
                     }
                 })
             }
-//            self.likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
-//                if let _ = snapshot.value as? NSNull {
-//                    self.likesImg.image = UIImage(named: "empty-heart")
-//                    self.likesImgSm.image = UIImage(named: "empty-heart")
-//                } else {
-//                    self.likesImg.image = UIImage(named: "filled-heart")
-//                    self.likesImgSm.image = UIImage(named: "filled-heart")
-//                }
-//            })
+            self.likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                if let _ = snapshot.value as? NSNull {
+                    self.likesImg.image = UIImage(named: "paw-print")
+                } else {
+                    self.likesImg.image = UIImage(named: "like-paw-print")
+                }
+            })
         }
-                   completionHandler(true)
     }
     func likeTapped(_ sender: UITapGestureRecognizer) {
         likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if let _ = snapshot.value as? NSNull {
-//                self.likesImg.image = UIImage(named: "empty-heart")
-//                self.likesImgSm.image = UIImage(named: "empty-heart")
+                self.likesImg.image = UIImage(named: "paw-print")
                 self.post.adjustLikes(true)
                 self.likesRef.setValue(true)
-                self.configureCell(self.post, completionHandler: { (_) in
-                    return
+//                self.configureCell(self.post)
+                self.likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                    if let _ = snapshot.value as? NSNull {
+                        self.likesImg.image = UIImage(named: "paw-print")
+                    } else {
+                        self.likesImg.image = UIImage(named: "like-paw-print")
+                    }
                 })
+                self.likes.text = String(self.post.likes)
             } else {
-//                self.likesImg.image = UIImage(named: "filled-heart")
-//                self.likesImgSm.image = UIImage(named: "filled-heart")
+                self.likesImg.image = UIImage(named: "like-paw-print")
                 self.post.adjustLikes(false)
                 self.likesRef.removeValue()
-                self.configureCell(self.post, completionHandler: { (_) in
-                return
-            })
+//                self.configureCell(self.post)
+                self.likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                    if let _ = snapshot.value as? NSNull {
+                        self.likesImg.image = UIImage(named: "paw-print")
+                    } else {
+                        self.likesImg.image = UIImage(named: "like-paw-print")
+                    }
+                })
+                self.likes.text = String(self.post.likes)
             }
         })
     }

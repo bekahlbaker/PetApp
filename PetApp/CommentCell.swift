@@ -20,7 +20,7 @@ class CommentCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.deleteBtn.isHidden = true
+        //self.deleteBtn.isHidden = true
     }
     func configureCell(_ postKey: String, comment: Comment) {
         self.comment = comment

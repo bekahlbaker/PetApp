@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="EvZ-0H-Tc7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="EvZ-0H-Tc7">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -1704,54 +1704,51 @@
                                                     <rect key="frame" x="20" y="0.0" width="355" height="300"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dog-in-wig" translatesAutoresizingMaskIntoConstraints="NO" id="UD5-au-Ivn" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
-                                                            <rect key="frame" x="16" y="16" width="35" height="35"/>
+                                                            <rect key="frame" x="16" y="4" width="35" height="35"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="35" id="ADb-Vx-s7r"/>
                                                                 <constraint firstAttribute="height" constant="35" id="PrW-Qc-J3t"/>
                                                             </constraints>
                                                         </imageView>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="like-paw-print" translatesAutoresizingMaskIntoConstraints="NO" id="ufH-fg-98K">
-                                                            <rect key="frame" x="299" y="16" width="30" height="30"/>
+                                                            <rect key="frame" x="299" y="4" width="30" height="30"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" constant="30" id="BBT-UE-teV"/>
                                                                 <constraint firstAttribute="height" constant="30" id="Pdg-Xm-fv4"/>
                                                             </constraints>
                                                         </imageView>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BiY-IE-kl0">
-                                                            <rect key="frame" x="299" y="16" width="30" height="30"/>
+                                                            <rect key="frame" x="299" y="4" width="30" height="30"/>
                                                             <state key="normal" title="  "/>
                                                             <connections>
                                                                 <action selector="likeTapped:" destination="XT7-dt-d1F" eventType="touchUpInside" id="js2-OF-6Pf"/>
                                                             </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4jZ-HB-nLh">
-                                                            <rect key="frame" x="299" y="46" width="30" height="30"/>
-                                                            <constraints>
-                                                                <constraint firstAttribute="width" constant="30" id="9hA-ib-uOw"/>
-                                                                <constraint firstAttribute="height" constant="30" id="blR-uZ-F9G"/>
-                                                            </constraints>
+                                                            <rect key="frame" x="316.5" y="38" width="12.5" height="14"/>
                                                             <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="12"/>
                                                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ldo-zY-XKn">
-                                                            <rect key="frame" x="59" y="18" width="232" height="31"/>
+                                                            <rect key="frame" x="59" y="6" width="232" height="31"/>
                                                             <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="16"/>
                                                             <state key="normal" title="Username">
                                                                 <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
                                                         </button>
-                                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CiY-7w-YIk">
-                                                            <rect key="frame" x="16" y="80" width="323" height="15"/>
+                                                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CiY-7w-YIk">
+                                                            <rect key="frame" x="16" y="56" width="323" height="42.5"/>
+                                                            <string key="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque interdum rutrum sodales. Nullam mattis fermentum libero, non volutpat.</string>
                                                             <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="12"/>
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1lD-bD-Xb6">
-                                                            <rect key="frame" x="294" y="265" width="35" height="30"/>
+                                                            <rect key="frame" x="307" y="280" width="22" height="5"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="35" id="Glu-f0-OLo"/>
-                                                                <constraint firstAttribute="height" constant="30" id="bJt-dT-Ueg"/>
+                                                                <constraint firstAttribute="width" constant="22" id="Glu-f0-OLo"/>
+                                                                <constraint firstAttribute="height" constant="5" id="bJt-dT-Ueg"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name=".SFNSDisplay" family=".SF NS Display" pointSize="34"/>
                                                             <state key="normal" image="feed-more-btn"/>
@@ -1760,32 +1757,33 @@
                                                             </connections>
                                                         </button>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JFx-Pn-gq0">
-                                                            <rect key="frame" x="45" y="264" width="117" height="32"/>
-                                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="14"/>
+                                                            <rect key="frame" x="36" y="269" width="106" height="27"/>
+                                                            <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="12"/>
                                                             <state key="normal" title="View all comments">
                                                                 <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
                                                         </button>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="comment" translatesAutoresizingMaskIntoConstraints="NO" id="JYe-G5-aHa">
-                                                            <rect key="frame" x="16" y="267" width="25" height="25"/>
+                                                            <rect key="frame" x="16" y="273.5" width="16" height="17"/>
                                                             <constraints>
-                                                                <constraint firstAttribute="width" constant="25" id="P5s-2e-jtl"/>
-                                                                <constraint firstAttribute="height" constant="25" id="jre-sN-nTe"/>
+                                                                <constraint firstAttribute="width" constant="16" id="P5s-2e-jtl"/>
+                                                                <constraint firstAttribute="height" constant="17" id="jre-sN-nTe"/>
                                                             </constraints>
                                                         </imageView>
                                                     </subviews>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <constraints>
                                                         <constraint firstAttribute="bottom" secondItem="JFx-Pn-gq0" secondAttribute="bottom" constant="4" id="2j1-cc-BHq"/>
-                                                        <constraint firstItem="ufH-fg-98K" firstAttribute="top" secondItem="Qyc-vK-KsN" secondAttribute="top" constant="16" id="2nx-GU-OEK"/>
+                                                        <constraint firstItem="ufH-fg-98K" firstAttribute="top" secondItem="Qyc-vK-KsN" secondAttribute="top" constant="4" id="2nx-GU-OEK"/>
                                                         <constraint firstItem="CiY-7w-YIk" firstAttribute="leading" secondItem="Qyc-vK-KsN" secondAttribute="leading" constant="16" id="7QA-gM-Mmn"/>
                                                         <constraint firstItem="JYe-G5-aHa" firstAttribute="centerY" secondItem="JFx-Pn-gq0" secondAttribute="centerY" id="7Qe-dv-P3L"/>
                                                         <constraint firstItem="1lD-bD-Xb6" firstAttribute="centerY" secondItem="JYe-G5-aHa" secondAttribute="centerY" id="Isn-pW-CcC"/>
+                                                        <constraint firstAttribute="trailing" secondItem="4jZ-HB-nLh" secondAttribute="trailing" constant="26" id="KkP-Ir-i0R"/>
                                                         <constraint firstItem="BiY-IE-kl0" firstAttribute="width" secondItem="ufH-fg-98K" secondAttribute="width" id="NKY-p1-9D9"/>
                                                         <constraint firstItem="JYe-G5-aHa" firstAttribute="leading" secondItem="Qyc-vK-KsN" secondAttribute="leading" constant="16" id="RXs-VR-ocb"/>
-                                                        <constraint firstItem="UD5-au-Ivn" firstAttribute="top" secondItem="Qyc-vK-KsN" secondAttribute="top" constant="16" id="S8u-d7-vy0"/>
+                                                        <constraint firstItem="UD5-au-Ivn" firstAttribute="top" secondItem="Qyc-vK-KsN" secondAttribute="top" constant="4" id="S8u-d7-vy0"/>
                                                         <constraint firstItem="JFx-Pn-gq0" firstAttribute="leading" secondItem="JYe-G5-aHa" secondAttribute="trailing" constant="4" id="UUr-pu-ZMO"/>
-                                                        <constraint firstItem="4jZ-HB-nLh" firstAttribute="top" secondItem="ufH-fg-98K" secondAttribute="bottom" id="b69-M1-VsN"/>
+                                                        <constraint firstItem="4jZ-HB-nLh" firstAttribute="top" secondItem="ufH-fg-98K" secondAttribute="bottom" constant="4" id="b69-M1-VsN"/>
                                                         <constraint firstItem="BiY-IE-kl0" firstAttribute="height" secondItem="ufH-fg-98K" secondAttribute="height" id="c2e-fU-mp9"/>
                                                         <constraint firstItem="ufH-fg-98K" firstAttribute="leading" secondItem="Ldo-zY-XKn" secondAttribute="trailing" constant="8" id="f3t-Ab-xIm"/>
                                                         <constraint firstItem="UD5-au-Ivn" firstAttribute="leading" secondItem="Qyc-vK-KsN" secondAttribute="leading" constant="16" id="fuC-nj-zQd"/>
@@ -1795,7 +1793,6 @@
                                                         <constraint firstItem="Ldo-zY-XKn" firstAttribute="leading" secondItem="UD5-au-Ivn" secondAttribute="trailing" constant="8" id="o1w-Uo-Vje"/>
                                                         <constraint firstItem="Ldo-zY-XKn" firstAttribute="centerY" secondItem="UD5-au-Ivn" secondAttribute="centerY" id="qNe-ZR-a7e"/>
                                                         <constraint firstItem="BiY-IE-kl0" firstAttribute="centerY" secondItem="ufH-fg-98K" secondAttribute="centerY" id="t99-Sd-dWE"/>
-                                                        <constraint firstItem="4jZ-HB-nLh" firstAttribute="centerX" secondItem="ufH-fg-98K" secondAttribute="centerX" id="tB7-dj-2Px"/>
                                                         <constraint firstItem="CiY-7w-YIk" firstAttribute="top" secondItem="4jZ-HB-nLh" secondAttribute="bottom" constant="4" id="vMj-5s-UAp"/>
                                                         <constraint firstAttribute="trailing" secondItem="ufH-fg-98K" secondAttribute="trailing" constant="26" id="vpz-r5-QkD"/>
                                                         <constraint firstAttribute="height" constant="300" id="yMa-lR-a2k"/>
@@ -1880,8 +1877,8 @@
                         <constraints>
                             <constraint firstItem="mY4-Tr-zgP" firstAttribute="leading" secondItem="OEl-vz-gyI" secondAttribute="leading" id="2Wt-HM-Cz1"/>
                             <constraint firstAttribute="trailing" secondItem="mY4-Tr-zgP" secondAttribute="trailing" id="5fB-NT-Gc7"/>
-                            <constraint firstItem="6cU-uY-F5a" firstAttribute="top" secondItem="mY4-Tr-zgP" secondAttribute="bottom" id="IaX-DC-Qem"/>
-                            <constraint firstItem="mY4-Tr-zgP" firstAttribute="top" secondItem="dyP-c2-y0W" secondAttribute="bottom" id="vsy-gn-OFH"/>
+                            <constraint firstItem="mY4-Tr-zgP" firstAttribute="top" secondItem="dyP-c2-y0W" secondAttribute="bottom" id="Bu9-ZK-pKj"/>
+                            <constraint firstItem="6cU-uY-F5a" firstAttribute="top" secondItem="mY4-Tr-zgP" secondAttribute="bottom" id="j2j-N4-OV8"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
@@ -2237,9 +2234,9 @@
         <image name="page1" width="41" height="18"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="WFH-sr-mHP"/>
         <segue reference="NaD-hV-ZAh"/>
         <segue reference="XRJ-RW-2nF"/>
+        <segue reference="WFH-sr-mHP"/>
         <segue reference="MDz-VF-CoG"/>
         <segue reference="61S-To-qrI"/>
         <segue reference="SDZ-21-9fi"/>

@@ -15,7 +15,6 @@ extension FeedVC {
             if successDownloadingData {
                 self.refreshControl.endRefreshing()
                 self.tableView.reloadData()
-                print("Reload Table")
             } else {
                 print("Unable to download data, try again")
             }
@@ -80,8 +79,7 @@ extension FeedVC {
             cell.profileImg.image = UIImage(named: "user-sm")
             cell.delegate = self
             let post = self.posts[indexPath.row]
-            cell.configureCell(post, completionHandler: { (success) -> Void in
-                if success {
+            cell.configureCell(post)
                     cell.usernameBtn.tag = indexPath.row
                     cell.viewCommentsBtn.tag = indexPath.row
                     cell.usernameBtn.addTarget(self, action: #selector(self.usernameBtnTapped(sender:)), for: UIControlEvents.touchUpInside)
@@ -114,10 +112,6 @@ extension FeedVC {
                             }
                         })
                     }
-                } else {
-                    print("Could not configure cell")
-                }
-            })
             return cell
         } else {
             return FeedCell()

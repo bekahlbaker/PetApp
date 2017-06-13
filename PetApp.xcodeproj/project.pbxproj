@@ -237,7 +237,6 @@
 				27166B2E1DCD03A500A57821 /* SignUpVC.swift */,
 				27BD7DF01DE4FBF800B9DB9A /* UsernameVC.swift */,
 				27166B321DCD03E200A57821 /* FeedVC.swift */,
-				2749947D1DD287530015B6F8 /* ProfileVC.swift */,
 				2788DE471DEF614500078A41 /* ViewUserVC.swift */,
 				2748FE4B1E241B0D00A282A5 /* SinglePhotoVC.swift */,
 				274474561DDE209B007EBABF /* PostVC.swift */,
@@ -267,6 +266,7 @@
 				279F2FAF1E326CC200DD2A7B /* UserCell.swift */,
 				271F085A1E2835C000A8B867 /* ResponsiveTextField.swift */,
 				275F146F1EAFB8600026C13C /* FollowCell.swift */,
+				2749947D1DD287530015B6F8 /* ProfileVC.swift */,
 				27C502F91EC3D6EE0012CBA8 /* LeftPaddedTextField.swift */,
 			);
 			name = View;
