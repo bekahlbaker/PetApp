@@ -64,7 +64,7 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         let firebasePost = DataService.ds.REF_POSTS.child(self.postKeyPassed)
         firebasePost.child("comments").childByAutoId().setValue(comment)
         NotificationCenter.default.post(name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "adjustCommentCountTrue"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "adjustCommentCountTrue"), object: nil)
     }
     func alert(sender: UIBarButtonItem) {
         if self.commentTextField.text != "" {

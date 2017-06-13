@@ -13,6 +13,7 @@ extension FeedVC {
     func refreshList(notification: NSNotification) {
         downloadData { (successDownloadingData) in
             if successDownloadingData {
+                print("Downloaded data")
                 self.refreshControl.endRefreshing()
                 self.tableView.reloadData()
             } else {
@@ -32,33 +33,29 @@ extension FeedVC {
                         if let _ = snapshot.value as? NSNull {
                             print("Is not following anyone")
                         } else {
-                            print(snapshot)
                             if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                                 for snap in snapshot {
-                                    self.postKeys.append(snap.key)
-                                }
-                            }
-                        }
-                        for i in 0..<self.postKeys.count {
-                            DataService.ds.REF_POSTS.queryOrderedByKey().queryEqual(toValue: self.postKeys[i]).observeSingleEvent(of: .value, with: { (snapshot) in
-                                if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                                    for snap in snapshot {
-                                        if let postDict = snap.value as? [String: AnyObject] {
-                                            let post = Post(postKey: self.postKeys[i], postData: postDict)
-                                            self.posts.insert(post, at: 0)
-                                            if self.posts.count > 0 {
-                                                completionHandler(true)
-                                                if let userKey = postDict["userKey"] as? String {
-                                                    self.userKeyArray.insert(userKey, at: 0)
-                                                }
-                                                if let postKey = postDict["postKey"] as? String {
-                                                    self.postKeysArray.insert(postKey, at: 0)
+                                    DataService.ds.REF_POSTS.queryOrderedByKey().queryEqual(toValue: snap.key).observeSingleEvent(of: .value, with: { (snapshot) in
+                                        if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                                            for snap in snapshot {
+                                                if let postDict = snap.value as? [String: AnyObject] {
+                                                    let post = Post(postKey: snap.key, postData: postDict)
+                                                    self.posts.insert(post, at: 0)
+                                                    if self.posts.count > 0 {
+                                                        completionHandler(true)
+                                                        if let userKey = postDict["userKey"] as? String {
+                                                            self.userKeyArray.insert(userKey, at: 0)
+                                                        }
+                                                        if let postKey = postDict["postKey"] as? String {
+                                                            self.postKeysArray.insert(postKey, at: 0)
+                                                        }
+                                                    }
                                                 }
                                             }
                                         }
-                                    }
+                                    })
                                 }
-                            })
+                            }
                         }
                     })
 //                } else {
