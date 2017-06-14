@@ -16,22 +16,10 @@ class SinglePhotoCell: UITableViewCell {
     @IBOutlet weak var caption: UILabel!
     @IBOutlet weak var profileImg: CircleImage!
     @IBOutlet weak var likesImg: UIImageView!
-    @IBOutlet weak var likesImgSm: UIImageView!
     @IBOutlet weak var likes: UILabel!
-    @IBOutlet weak var comments: UILabel!
     @IBOutlet weak var usernameBtn: UIButton!
-    @IBOutlet weak var captionEditTextField: UITextField!
     @IBOutlet weak var viewCommentsBtn: UIButton!
     weak var delegate: UIViewController?
-    @IBOutlet weak var saveBtn: UIButton!
-    @IBAction func saveBtnTapped(_ sender: Any) {
-        self.moreBtn.isEnabled = true
-        self.caption.isHidden = false
-        self.captionEditTextField.isHidden = true
-        self.saveBtn.isHidden = true
-        self.caption.text = self.captionEditTextField.text
-        DataService.ds.REF_POSTS.child(self.post.postKey).updateChildValues(["caption": "\(caption.text!)"])
-    }
     @IBOutlet weak var moreBtn: UIButton!
     @IBAction func moreBtnTapped(_ sender: Any) {
         if self.isCurrentUser == false {
@@ -57,14 +45,6 @@ class SinglePhotoCell: UITableViewCell {
             delegate?.present(alertController, animated: true, completion: nil)
         } else if self.isCurrentUser == true {
             let alertController = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
-            let edit = UIAlertAction(title: "Edit", style: .default, handler: { (_) -> Void in
-                self.moreBtn.isEnabled = false
-                self.caption.isHidden = true
-                self.captionEditTextField.isHidden = false
-                self.saveBtn.isHidden = false
-                self.captionEditTextField.text = self.caption.text
-                self.captionEditTextField.becomeFirstResponder()
-            })
             let delete = UIAlertAction(title: "Delete", style: .destructive, handler: { (_) -> Void in
                 let alert = UIAlertController(title: "Are you sure you want to delete this post?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
                 let deletePost = UIAlertAction(title: "Delete Post", style: .destructive, handler: { (_) -> Void in
@@ -80,7 +60,6 @@ class SinglePhotoCell: UITableViewCell {
             })
             let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) -> Void in
             })
-            alertController.addAction(edit)
             alertController.addAction(delete)
             alertController.addAction(cancel)
             delegate?.present(alertController, animated: true, completion: nil)
@@ -91,11 +70,12 @@ class SinglePhotoCell: UITableViewCell {
     var isCurrentUser: Bool!
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.saveBtn.isHidden = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(likeTapped))
         tap.numberOfTapsRequired = 1
         likesImg.addGestureRecognizer(tap)
         likesImg.isUserInteractionEnabled = true
+        self.commentTextFieldVIew.layer.borderColor = UIColor.lightGray.cgColor
+        self.commentTextFieldVIew.layer.borderWidth = 0.5
     }
     func configureCell(_ post: Post, completionHandler:@escaping (Bool) -> Void) {
         self.post = post
@@ -108,6 +88,7 @@ class SinglePhotoCell: UITableViewCell {
             }
         }
         DispatchQueue.main.async {
+            self.downloadCommentCount()
             self.likesRef = DataService.ds.REF_CURRENT_USER.child("likes").child(post.postKey)
             self.caption.text = post.caption
             self.usernameBtn.setTitle(post.username, for: .normal)
@@ -131,11 +112,9 @@ class SinglePhotoCell: UITableViewCell {
             }
             self.likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
                 if let _ = snapshot.value as? NSNull {
-                    self.likesImg.image = UIImage(named: "empty-heart")
-                    self.likesImgSm.image = UIImage(named: "empty-heart")
+                    self.likesImg.image = UIImage(named: "paw-print")
                 } else {
-                    self.likesImg.image = UIImage(named: "filled-heart")
-                    self.likesImgSm.image = UIImage(named: "filled-heart")
+                    self.likesImg.image = UIImage(named: "like-paw-print")
                 }
             })
         }
@@ -144,13 +123,11 @@ class SinglePhotoCell: UITableViewCell {
     func likeTapped(_ sender: UITapGestureRecognizer) {
         likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
             if let _ = snapshot.value as? NSNull {
-                self.likesImg.image = UIImage(named: "empty-heart")
-                self.likesImgSm.image = UIImage(named: "empty-heart")
+                self.likesImg.image = UIImage(named: "paw-print")
                 self.post.adjustLikes(true)
                 self.likesRef.setValue(true)
             } else {
-                self.likesImg.image = UIImage(named: "filled-heart")
-                self.likesImgSm.image = UIImage(named: "filled-heart")
+                self.likesImg.image = UIImage(named: "like-paw-print")
                 self.post.adjustLikes(false)
                 self.likesRef.removeValue()
             }
@@ -173,6 +150,29 @@ class SinglePhotoCell: UITableViewCell {
                             }
                         })
                     }
+                }
+            }
+        })
+    }
+    @IBOutlet weak var commentTextFieldVIew: UIView!
+    @IBOutlet weak var commentTextField: UITextField!
+    @IBAction func sendCommentTapped(_ sender: Any) {
+        let comment: [String: Any] = [
+            "comment": self.commentTextField.text! as String,
+            "username": self.post.username as String,
+            "userKey": KeychainWrapper.standard.string(forKey: KEY_UID)! as String
+        ]
+        let firebasePost = DataService.ds.REF_POSTS.child(self.post.postKey)
+        firebasePost.child("comments").childByAutoId().setValue(comment)
+        self.commentTextField.text = ""
+    }
+    func downloadCommentCount() {
+        DataService.ds.REF_POSTS.child(self.post.postKey).child("comments").observe(.value, with: { (snapshot) in
+            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                if snapshot.count > 0 {
+                   self.viewCommentsBtn.setTitle("View all \(snapshot.count) comments", for: .normal)
+                } else {
+                    self.viewCommentsBtn.setTitle("Leave a comment", for: .normal)
                 }
             }
         })

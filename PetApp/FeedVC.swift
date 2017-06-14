@@ -29,12 +29,12 @@ class FeedVC: UIViewController, UITableViewDelegate, UITableViewDataSource {
                 self.performSegue(withIdentifier: "toProfileVC", sender: nil)
             }
         }
-        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 30))
-        imageView.contentMode = .scaleAspectFit
-        let image = UIImage(named: "PetsPic")
-        imageView.image = image
-        navigationItem.titleView = imageView
-        self.navigationController!.view.backgroundColor = Color.white
+//        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 60, height: 30))
+//        imageView.contentMode = .scaleAspectFit
+//        let image = UIImage(named: "PetsPic")
+//        imageView.image = image
+//        navigationItem.titleView = imageView
+//        self.navigationController!.view.backgroundColor = Color.white
         self.automaticallyAdjustsScrollViewInsets = false
         tableView.delegate = self
         tableView.dataSource = self
