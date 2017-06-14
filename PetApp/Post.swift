@@ -15,7 +15,7 @@ class Post {
     fileprivate var _username: String!
     fileprivate var _profileImgUrl: String!
     fileprivate var _caption: String!
-    fileprivate var _commentCount: Int!
+//    fileprivate var _commentCount: Int!
     fileprivate var _imageURL: String!
     fileprivate var _likes: Int!
     fileprivate var _postKey: String!
@@ -30,9 +30,9 @@ class Post {
     var caption: String {
         return _caption ?? ""
     }
-    var commentCount: Int {
-        return _commentCount ?? 0
-    }
+//    var commentCount: Int {
+//        return _commentCount ?? 0
+//    }
     var imageURL: String {
         return _imageURL ?? ""
     }
@@ -45,13 +45,13 @@ class Post {
     var userKey: String {
         return _userKey ?? ""
     }
-    init(username: String, userKey: String, profileImgUrl: String, caption: String, commentCount: Int, imageURL: String, likes: Int) {
+    init(username: String, userKey: String, profileImgUrl: String, caption: String, imageURL: String, likes: Int) {
 
         self._username = username
         self._userKey = userKey
         self._profileImgUrl = profileImgUrl
         self._caption = caption
-        self._commentCount = commentCount
+//        self._commentCount = commentCount
         self._imageURL = imageURL
         self._likes = likes
     }
@@ -69,9 +69,9 @@ class Post {
         if let caption = postData["caption"] as? String {
             self._caption = caption
         }
-        if let commentCount = postData["commentCount"] as? Int {
-            self._commentCount = commentCount
-        }
+//        if let commentCount = postData["commentCount"] as? Int {
+//            self._commentCount = commentCount
+//        }
         if let imageURL = postData["imageURL"] as? String {
             self._imageURL = imageURL
         }
@@ -88,12 +88,12 @@ class Post {
         }
         _postRef.updateChildValues(["likes": likes])
     }
-    func adjustCommentCount(_ addComment: Bool) {
-        if addComment {
-            _commentCount = _commentCount + 1
-        } else {
-            _commentCount = _commentCount - 1
-        }
-        DataService.ds.REF_POSTS.child(_postKey).updateChildValues(["commentCount": commentCount])
-    }
+//    func adjustCommentCount(_ addComment: Bool) {
+//        if addComment {
+//            _commentCount = _commentCount + 1
+//        } else {
+//            _commentCount = _commentCount - 1
+//        }
+//        DataService.ds.REF_POSTS.child(_postKey).updateChildValues(["commentCount": commentCount])
+//    }
 }

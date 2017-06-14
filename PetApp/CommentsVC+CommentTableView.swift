@@ -95,6 +95,6 @@ extension CommentsVC {
     }
     func deleteComment() {
         DataService.ds.REF_POSTS.child(self.postKeyPassed).child("comments").child(self.commentKey).removeValue()
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "adjustCommentCountFalse"), object: nil)
+//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "adjustCommentCountFalse"), object: nil)
     }
 }

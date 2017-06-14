@@ -112,12 +112,6 @@ class SinglePhotoCell: UITableViewCell {
             self.caption.text = post.caption
             self.usernameBtn.setTitle(post.username, for: .normal)
             self.likes.text = String(post.likes)
-            self.comments.text = String(post.commentCount)
-            if post.commentCount > 0 {
-                self.viewCommentsBtn.setTitle("View all \(post.commentCount) comments", for: .normal)
-            } else {
-                self.viewCommentsBtn.setTitle("Leave a comment", for: .normal)
-            }
             //download feed Img
             if let imgURL = URL(string: post.imageURL) {
                 self.feedImageView.kf.setImage(with: imgURL)

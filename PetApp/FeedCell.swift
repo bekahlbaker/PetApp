@@ -92,6 +92,8 @@ class FeedCell: UITableViewCell {
         let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(respondToSwipeGesture(gesture:)))
         swipeRight.direction = UISwipeGestureRecognizerDirection.right
         self.cellContentView.addGestureRecognizer(swipeRight)
+        self.commentTextFieldView.layer.borderColor = UIColor.lightGray.cgColor
+        self.commentTextFieldView.layer.borderWidth = 0.5
     }
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
@@ -124,26 +126,19 @@ class FeedCell: UITableViewCell {
             }
         }
         DispatchQueue.main.async {
+            self.downloadComments()
             self.activitySpinner.startAnimating()
             self.likesRef = DataService.ds.REF_CURRENT_USER.child("likes").child(post.postKey)
             self.caption.text = post.caption
             self.usernameBtn.setTitle(post.username, for: .normal)
             self.likes.text = String(post.likes)
-            if post.commentCount > 0 {
-                self.viewCommentsBtn.setTitle("View all \(post.commentCount) comments", for: .normal)
-            } else {
-                self.viewCommentsBtn.setTitle("Leave a comment", for: .normal)
-            }
             let right = CGAffineTransform(translationX: 0, y: 0)
             UIView.animate(withDuration: 0, delay: 0.0, options: [], animations: {
-                // Add the transformation in this block
-                // self.container is your view that you want to animate
                 self.cellContentView.transform = right
                 self.goViewImage.image = UIImage(named: "GO-left")
             }, completion: nil)
             if let imgURL = URL(string: post.imageURL) {
                 self.feedImageView.kf.setImage(with: imgURL)
- //               print("Using kingfisher for feed images")
             } else {
                 let ref = FIRStorage.storage().reference(forURL: post.imageURL)
                 ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
@@ -218,4 +213,26 @@ class FeedCell: UITableViewCell {
             }
         })
     }
+    var comments = [Comment]()
+    @IBOutlet weak var cmtUsernameLbl1: UILabel!
+    @IBOutlet weak var cmtLbl1: UILabel!
+    @IBOutlet weak var cmtUsernameLbl2: UILabel!
+    @IBOutlet weak var cmtLbl2: UILabel!
+    @IBOutlet weak var cmtUsernameLbl3: UILabel!
+    @IBOutlet weak var cmtLbl3: UILabel!
+    @IBOutlet weak var cmtUsernameLbl4: UILabel!
+    @IBOutlet weak var cmtLbl4: UILabel!
+    @IBOutlet weak var sendCommentBtn: UIButton!
+    @IBAction func sendCommentBtnTapped(_ sender: Any) {
+        let comment: [String: Any] = [
+            "comment": self.commentTextField.text! as String,
+            "username": self.post.username as String,
+            "userKey": KeychainWrapper.standard.string(forKey: KEY_UID)! as String
+        ]
+        let firebasePost = DataService.ds.REF_POSTS.child(self.post.postKey)
+        firebasePost.child("comments").childByAutoId().setValue(comment)
+        self.commentTextField.text = ""
+    }
+    @IBOutlet weak var commentTextField: UITextField!
+    @IBOutlet weak var commentTextFieldView: UIView!
 }

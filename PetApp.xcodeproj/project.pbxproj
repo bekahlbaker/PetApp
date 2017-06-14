@@ -43,6 +43,7 @@
 		275F14701EAFB8600026C13C /* FollowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275F146F1EAFB8600026C13C /* FollowCell.swift */; };
 		276C7A081EC3B1D8004E647D /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 276C7A071EC3B1D8004E647D /* Raleway-Bold.ttf */; };
 		276C7A0A1EC3B1E1004E647D /* Raleway-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 276C7A091EC3B1E1004E647D /* Raleway-Regular.ttf */; };
+		276DF5A11EF0849D00AF7FD8 /* FeedCell+Comments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 276DF5A01EF0849D00AF7FD8 /* FeedCell+Comments.swift */; };
 		2778F4071DFF6570009BCF65 /* CommentsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2778F4061DFF6570009BCF65 /* CommentsVC.swift */; };
 		2778F4091E007955009BCF65 /* SinglePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2778F4081E007955009BCF65 /* SinglePhotoCell.swift */; };
 		2778F40D1E047D72009BCF65 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2778F40C1E047D72009BCF65 /* CoreData.framework */; };
@@ -120,6 +121,7 @@
 		276C7A061EC3AF2D004E647D /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-Bold.ttf"; path = "../../../Library/Fonts/Raleway-Bold.ttf"; sourceTree = "<group>"; };
 		276C7A071EC3B1D8004E647D /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-Bold.ttf"; path = "../../Library/Fonts/Raleway-Bold.ttf"; sourceTree = "<group>"; };
 		276C7A091EC3B1E1004E647D /* Raleway-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "Raleway-Regular.ttf"; path = "../../Library/Fonts/Raleway-Regular.ttf"; sourceTree = "<group>"; };
+		276DF5A01EF0849D00AF7FD8 /* FeedCell+Comments.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FeedCell+Comments.swift"; sourceTree = "<group>"; };
 		2778F4061DFF6570009BCF65 /* CommentsVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentsVC.swift; sourceTree = "<group>"; };
 		2778F4081E007955009BCF65 /* SinglePhotoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SinglePhotoCell.swift; sourceTree = "<group>"; };
 		2778F40C1E047D72009BCF65 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -311,6 +313,7 @@
 				279F2FA11E313A8400DD2A7B /* ViewUserVC+Follow.swift */,
 				279F2FA51E313CE700DD2A7B /* ViewUserVC+UserInfo.swift */,
 				279F2FA31E313B8700DD2A7B /* UserListVC+Search.swift */,
+				276DF5A01EF0849D00AF7FD8 /* FeedCell+Comments.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -539,6 +542,7 @@
 				279F2FA21E313A8400DD2A7B /* ViewUserVC+Follow.swift in Sources */,
 				274994781DD0EDC50015B6F8 /* CircleImage.swift in Sources */,
 				2748FE4C1E241B0D00A282A5 /* SinglePhotoVC.swift in Sources */,
+				276DF5A11EF0849D00AF7FD8 /* FeedCell+Comments.swift in Sources */,
 				279F2FB01E326CC200DD2A7B /* UserCell.swift in Sources */,
 				271F085B1E2835C000A8B867 /* ResponsiveTextField.swift in Sources */,
 				2788DE4B1DF09F6C00078A41 /* PostVC+CoreImage.swift in Sources */,

@@ -13,7 +13,6 @@ extension FeedVC {
     func refreshList(notification: NSNotification) {
         downloadData { (successDownloadingData) in
             if successDownloadingData {
-                print("Downloaded data")
                 self.refreshControl.endRefreshing()
                 self.tableView.reloadData()
             } else {
