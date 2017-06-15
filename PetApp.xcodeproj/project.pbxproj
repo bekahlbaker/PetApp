@@ -50,7 +50,7 @@
 		2788DE481DEF614500078A41 /* ViewUserVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2788DE471DEF614500078A41 /* ViewUserVC.swift */; };
 		2788DE4B1DF09F6C00078A41 /* PostVC+CoreImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2788DE4A1DF09F6C00078A41 /* PostVC+CoreImage.swift */; };
 		2788DE4F1DF2070C00078A41 /* PostCaptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2788DE4E1DF2070C00078A41 /* PostCaptionVC.swift */; };
-		2788DE511DF2086D00078A41 /* PostCaptionVC+TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2788DE501DF2086D00078A41 /* PostCaptionVC+TextView.swift */; };
+		2788DE511DF2086D00078A41 /* PostVC+TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2788DE501DF2086D00078A41 /* PostVC+TextView.swift */; };
 		278B91F31E0889BE00918312 /* CommentsVC+CommentTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278B91F21E0889BE00918312 /* CommentsVC+CommentTableView.swift */; };
 		278B91F51E088C1C00918312 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278B91F41E088C1C00918312 /* CommentCell.swift */; };
 		278B91F71E09BED200918312 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 278B91F61E09BED200918312 /* Comment.swift */; };
@@ -128,7 +128,7 @@
 		2788DE471DEF614500078A41 /* ViewUserVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewUserVC.swift; sourceTree = "<group>"; };
 		2788DE4A1DF09F6C00078A41 /* PostVC+CoreImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PostVC+CoreImage.swift"; sourceTree = "<group>"; };
 		2788DE4E1DF2070C00078A41 /* PostCaptionVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCaptionVC.swift; sourceTree = "<group>"; };
-		2788DE501DF2086D00078A41 /* PostCaptionVC+TextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PostCaptionVC+TextView.swift"; sourceTree = "<group>"; };
+		2788DE501DF2086D00078A41 /* PostVC+TextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PostVC+TextView.swift"; sourceTree = "<group>"; };
 		278B91F21E0889BE00918312 /* CommentsVC+CommentTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CommentsVC+CommentTableView.swift"; sourceTree = "<group>"; };
 		278B91F41E088C1C00918312 /* CommentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		278B91F61E09BED200918312 /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
@@ -305,7 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				2788DE4A1DF09F6C00078A41 /* PostVC+CoreImage.swift */,
-				2788DE501DF2086D00078A41 /* PostCaptionVC+TextView.swift */,
+				2788DE501DF2086D00078A41 /* PostVC+TextView.swift */,
 				271F085C1E3135BD00A8B867 /* FeedVC+FeedTableView.swift */,
 				278B91F21E0889BE00918312 /* CommentsVC+CommentTableView.swift */,
 				27017B341E38029200DD090D /* CommentsVC+TextField.swift */,
@@ -537,7 +537,7 @@
 				27166B2D1DCCF67500A57821 /* RoundedBorderClearBackgroundButton.swift in Sources */,
 				27166B121DCCE63800A57821 /* SignInVC.swift in Sources */,
 				27017B351E38029200DD090D /* CommentsVC+TextField.swift in Sources */,
-				2788DE511DF2086D00078A41 /* PostCaptionVC+TextView.swift in Sources */,
+				2788DE511DF2086D00078A41 /* PostVC+TextView.swift in Sources */,
 				2744744D1DD8EF78007EBABF /* DropShadow.swift in Sources */,
 				279F2FA21E313A8400DD2A7B /* ViewUserVC+Follow.swift in Sources */,
 				274994781DD0EDC50015B6F8 /* CircleImage.swift in Sources */,
@@ -622,7 +622,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: bekahlbaker@gmail.com (Q5Y9W24KEM)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Bekah Baker (UZ2RNEZN9E)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -641,7 +641,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -673,7 +673,7 @@
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: bekahlbaker@gmail.com (Q5Y9W24KEM)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Bekah Baker (UZ2RNEZN9E)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -686,7 +686,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -747,12 +747,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = Q455MXT946;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Bekah Baker (UZ2RNEZN9E)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = PetAppTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bekahlynnbaker.PetAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PetApp.app/PetApp";
 			};
@@ -762,12 +765,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = Q455MXT946;
+				CODE_SIGN_IDENTITY = "iPhone Developer: Bekah Baker (UZ2RNEZN9E)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = PetAppTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bekahlynnbaker.PetAppTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PetApp.app/PetApp";
 			};

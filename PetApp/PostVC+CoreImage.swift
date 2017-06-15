@@ -14,7 +14,7 @@ extension PostVC {
     func filterButtonTapped(_ sender: UIButton) {
         let button = sender as UIButton
         imageToFilter.image = button.image(for: UIControlState.normal)
-        PostVC.imageSelected = true
+        self.imageSelected = true
         filterChosen = true
     }
     func addFiltersToButtons(_ imageUnfiltered: UIImage) {
@@ -43,7 +43,7 @@ extension PostVC {
             let imageForButton = UIImage(cgImage: filteredImageRef!)
             // Assign filtered image to the button
             if itemCount == 0 {
-                if let img = PostVC.unFilteredImageCache.object(forKey: "unfilteredImage") {
+                if let img = self.unFilteredImageCache.object(forKey: "unfilteredImage") {
                     filterButton.setImage(img, for: .normal)
                     filterButton.imageView?.contentMode = UIViewContentMode.scaleAspectFill
                 }
@@ -63,8 +63,8 @@ extension PostVC {
             addImageBtn.setTitle("", for: .normal)
             originalImage.image = image
             imageToFilter.image = image
-            PostVC.imageSelected = true
-            PostVC.unFilteredImageCache.setObject(image, forKey: "unfilteredImage")
+            self.imageSelected = true
+            self.unFilteredImageCache.setObject(image, forKey: "unfilteredImage")
             self.addFiltersToButtons(self.originalImage.image!)
         } else {
             print("Valid image not selected.")
@@ -73,19 +73,19 @@ extension PostVC {
         self.addImageBtn.setTitle("", for: .normal)
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
-        PostVC.imageSelected = false
+        self.imageSelected = false
         dismiss(animated: true, completion: nil)
     }
-    func loadImage() {
-        if let img = PostVC.imageToPassBackCache.object(forKey: "imageToPassBack") {
-            originalImage.image = img
-            PostVC.imageSelected = true
-            if let unfilteredImg = PostVC.unFilteredImageCache.object(forKey: "unfilteredImage") {
-                self.addFiltersToButtons(unfilteredImg)
-            }
-        } else {
-            addImageBtn.setTitle("Add Image", for: .normal)
-        }
-        PostVC.imageToPassBackCache.removeObject(forKey: "imageToPassBack")
-    }
+//    func loadImage() {
+//        if let img = PostVC.imageToPassBackCache.object(forKey: "imageToPassBack") {
+//            originalImage.image = img
+//            PostVC.imageSelected = true
+//            if let unfilteredImg = PostVC.unFilteredImageCache.object(forKey: "unfilteredImage") {
+//                self.addFiltersToButtons(unfilteredImg)
+//            }
+//        } else {
+//            addImageBtn.setTitle("Add Image", for: .normal)
+//        }
+//        PostVC.imageToPassBackCache.removeObject(forKey: "imageToPassBack")
+//    }
 }

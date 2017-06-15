@@ -1,5 +1,5 @@
 //
-//  PostCaptionVC+TextView.swift
+//  PostVC+TextView.swift
 //  PetApp
 //
 //  Created by Rebekah Baker on 12/2/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension PostCaptionVC {
+extension PostVC {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
