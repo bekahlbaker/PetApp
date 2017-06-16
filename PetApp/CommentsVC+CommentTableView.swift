@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import SwiftKeychainWrapper
 
 extension CommentsVC {
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -62,11 +63,12 @@ extension CommentsVC {
         if self.postKeyPassed != nil {
             DataService.ds.REF_POSTS.child(self.postKeyPassed).child("comments").observe(.value, with: { (snapshot) in
                 self.comments = []
+                self.commentKeys = []
                 if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     for snap in snapshot {
                         if let postDict = snap.value as? [String: AnyObject] {
                             let key = snap.key
-                            self.commentKey = key
+                            self.commentKeys.append(key)
                             let comment = Comment(postKey: key, postData: postDict)
                             self.comments.append(comment)
                             if self.comments.count > 0 {
@@ -93,8 +95,37 @@ extension CommentsVC {
             }
         }
     }
-    func deleteComment() {
-        DataService.ds.REF_POSTS.child(self.postKeyPassed).child("comments").child(self.commentKey).removeValue()
-//        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "adjustCommentCountFalse"), object: nil)
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if let cell: CommentCell = self.tableView.cellForRow(at: indexPath) as? CommentCell {
+            if self.currentUsername == cell.usernameLbl.text {
+                return true
+            }
+        }
+        return false
+    }
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { (_) in
+            let alert = UIAlertController(title: "Are you sure you want to delete this comment?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+            let yes = UIAlertAction(title: "Delete", style: .destructive, handler: { (_) in
+                //DELETE ITEM AT INDEX PATH
+                let commentKey = self.commentKeys[indexPath.row]
+                self.deleteComment(commentKey: commentKey, sender: indexPath.row)
+            })
+            let no = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            alert.addAction(yes)
+            alert.addAction(no)
+            self.present(alert, animated: true, completion: nil)
+        }
+        delete.backgroundColor = UIColor(red:0.96, green:0.14, blue:0.35, alpha:1.0)
+        return [delete]
+    }
+    func deleteComment(commentKey: String, sender: Int) {
+        print("SENDER \(sender)")
+        print(self.commentKeys)
+        print(self.comments)
+        DataService.ds.REF_POSTS.child(self.postKeyPassed).child("comments").child(commentKey).removeValue()
+        self.commentKeys.remove(at: sender)
+        self.comments.remove(at: sender)
+        self.tableView.reloadData()
     }
 }

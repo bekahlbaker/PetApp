@@ -12,7 +12,7 @@ import Firebase
 import Kingfisher
 import SwiftKeychainWrapper
 
-class FeedCell: UITableViewCell {
+class FeedCell: UITableViewCell, UITextFieldDelegate {
 
     @IBOutlet weak var cellContentView: UIView!
     @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
@@ -94,6 +94,7 @@ class FeedCell: UITableViewCell {
         self.cellContentView.addGestureRecognizer(swipeRight)
         self.commentTextFieldView.layer.borderColor = UIColor.lightGray.cgColor
         self.commentTextFieldView.layer.borderWidth = 0.5
+        self.commentTextField.delegate = self
     }
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
@@ -235,4 +236,8 @@ class FeedCell: UITableViewCell {
     }
     @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var commentTextFieldView: UIView!
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
 }

@@ -29,16 +29,16 @@ extension CommentsVC {
         self.keyBoardActive = true
         if let info = notification.userInfo {
             let keyboardFrame: CGRect = (info[UIKeyboardFrameEndUserInfoKey] as! NSValue).cgRectValue
-            UIView.animate(withDuration: 0.2, animations: { () -> Void in
-                self.bottomContraint.constant = keyboardFrame.size.height + 16
-                self.bottomViewConstraint.constant = keyboardFrame.size.height + 16
+            UIView.animate(withDuration: 0.5, animations: { () -> Void in
+//                self.bottomContraint.constant = keyboardFrame.size.height + 16
+                self.bottomViewConstraint.constant = keyboardFrame.size.height - 32
             })
         }
     }
     func keyboardWillBeHidden(notification: NSNotification) {
         self.keyBoardActive = false
         UIView.animate(withDuration: 0.2, animations: { () -> Void in
-            self.bottomContraint.constant = self.originalBottomConstraint
+//            self.bottomContraint.constant = self.originalBottomConstraint
             self.bottomViewConstraint.constant = self.originalBottomViewConstraint
         })
     }

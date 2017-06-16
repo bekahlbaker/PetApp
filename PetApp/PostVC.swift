@@ -41,7 +41,6 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         if self.imageSelected == true {
             let alert = UIAlertController(title: nil, message: "If you cancel now, your image edits will be discarded.", preferredStyle: UIAlertControllerStyle.alert)
             let discardPost = UIAlertAction(title: "Discard Post", style: .destructive, handler: { (_) -> Void in
-//                self.imageToPassBackCache.removeAllObjects()
                 self.performSegue(withIdentifier: "toFeedVC", sender: nil)
             })
             let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) -> Void in
@@ -56,8 +55,6 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     var postImagePicker: UIImagePickerController!
     var imageSelected: Bool!
     var unFilteredImageCache: NSCache<NSString, UIImage> = NSCache()
-//    var filteredImageCache: NSCache<NSString, UIImage> = NSCache()
-//    var imageToPassBackCache: NSCache<NSString, UIImage> = NSCache()
     var filterChosen = false
     var CIFilterNames = [
         "CIPhotoEffectChrome",
@@ -73,7 +70,6 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         super.viewDidLoad()
         self.imageSelected = false
         self.addImageBtn.setTitle("Add Image", for: .normal)
-//        self.loadImage()
         postImagePicker = UIImagePickerController()
         postImagePicker.delegate = self
         captionTextView.delegate = self
@@ -156,8 +152,6 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         } else {
             print("Couldn't find image")
         }
-//        self.filteredImageCache.removeAllObjects()
-//        self.imageToPassBackCache.removeAllObjects()
     }
     func postToFollowersWall(key: String) {
         DataService.ds.REF_CURRENT_USER.child("followers").observeSingleEvent(of: .value, with: { (snapshot) in

@@ -12,9 +12,10 @@ import SwiftKeychainWrapper
 
 class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate {
     @IBOutlet weak var tableView: UITableView!
-
+    @IBOutlet weak var commentTextView: UIView!
     var commentKey: String!
     var comments = [Comment]()
+    var commentKeys = [String]()
     var userKeyArray = [String]()
     var postKeyPassed: String!
     var userKeyToPass: String!
@@ -39,7 +40,6 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.commentTextField.delegate = self
-        self.originalBottomConstraint = self.bottomContraint.constant
         self.originalBottomViewConstraint = self.bottomViewConstraint.constant
         self.commentTextField.returnKeyType = UIReturnKeyType.done
         self.automaticallyAdjustsScrollViewInsets = false
@@ -48,9 +48,10 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 70
         NotificationCenter.default.addObserver(self, selector: #selector(refreshList(notification:)), name:NSNotification.Name(rawValue: "refreshCommentTableView"), object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(deleteComment), name:NSNotification.Name(rawValue: "deleteComment"), object: nil)
         self.title = "Comments"
         getUsername()
+        self.commentTextView.layer.borderColor = UIColor.lightGray.cgColor
+        self.commentTextView.layer.borderWidth = 0.5
     }
     override func viewDidAppear(_ animated: Bool) {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshCommentTableView"), object: nil)
@@ -80,7 +81,6 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             _ = self.navigationController?.popViewController(animated: true)
         }
     }
-    @IBOutlet weak var bottomContraint: NSLayoutConstraint!
     @IBOutlet weak var bottomViewConstraint: NSLayoutConstraint!
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ViewUserVC" {
