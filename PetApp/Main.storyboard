@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="EvZ-0H-Tc7">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="EvZ-0H-Tc7">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -982,6 +982,7 @@
                         <outlet property="profileImg" destination="x6N-fR-Pwe" id="OSm-hZ-W3I"/>
                         <outlet property="speciesLbl" destination="OmQ-2M-Ums" id="xZ8-Gi-0Gx"/>
                         <segue destination="ABA-se-GwR" kind="show" identifier="ViewUserVC" id="ks9-iV-bwr"/>
+                        <segue destination="FOH-oA-jlS" kind="show" identifier="FeedVC" id="WU3-CL-rPt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HAk-d2-Wgc" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1034,7 +1035,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J14-8c-mV2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5385" y="1806"/>
+            <point key="canvasLocation" x="5169" y="1805"/>
         </scene>
         <!--Follow ListVC-->
         <scene sceneID="qZs-2e-Meh">
@@ -1048,17 +1049,75 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tYH-55-YsQ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="78" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tYH-55-YsQ">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FollowCell" id="hZu-7T-WG7" customClass="FollowCell" customModule="PetApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UsernameListCell" rowHeight="50" id="hZu-7T-WG7" customClass="UsernameListCell" customModule="PetApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hZu-7T-WG7" id="ogx-Hs-45d">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="15Z-Qo-aGo">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
+                                                    <subviews>
+                                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dog-in-wig" translatesAutoresizingMaskIntoConstraints="NO" id="g18-Jl-bK1" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
+                                                            <rect key="frame" x="16" y="4" width="40" height="40"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="40" id="iC1-ay-hjb"/>
+                                                                <constraint firstAttribute="height" constant="40" id="wbz-lW-rzl"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="following" translatesAutoresizingMaskIntoConstraints="NO" id="5hp-y1-NgX">
+                                                            <rect key="frame" x="274" y="9" width="30" height="30"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="30" id="BwU-ge-I39"/>
+                                                                <constraint firstAttribute="width" constant="30" id="oB2-gL-mKK"/>
+                                                            </constraints>
+                                                        </imageView>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uOf-7g-dgb">
+                                                            <rect key="frame" x="64" y="17" width="202" height="15.5"/>
+                                                            <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="13"/>
+                                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x8p-H4-gEF">
+                                                            <rect key="frame" x="270" y="5" width="38" height="38"/>
+                                                            <connections>
+                                                                <action selector="followBtnTapped:" destination="hZu-7T-WG7" eventType="touchUpInside" id="ng2-3W-EgZ"/>
+                                                            </connections>
+                                                        </button>
+                                                    </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="uOf-7g-dgb" firstAttribute="centerY" secondItem="15Z-Qo-aGo" secondAttribute="centerY" id="FAM-BN-IHh"/>
+                                                        <constraint firstItem="x8p-H4-gEF" firstAttribute="width" secondItem="5hp-y1-NgX" secondAttribute="width" constant="8" id="GGp-6Q-Nqa"/>
+                                                        <constraint firstItem="x8p-H4-gEF" firstAttribute="centerX" secondItem="5hp-y1-NgX" secondAttribute="centerX" id="KLt-9W-JBU"/>
+                                                        <constraint firstItem="5hp-y1-NgX" firstAttribute="leading" secondItem="uOf-7g-dgb" secondAttribute="trailing" constant="8" id="KZg-v2-lvO"/>
+                                                        <constraint firstAttribute="trailing" secondItem="5hp-y1-NgX" secondAttribute="trailing" constant="16" id="Uhf-hO-lxW"/>
+                                                        <constraint firstItem="x8p-H4-gEF" firstAttribute="centerY" secondItem="5hp-y1-NgX" secondAttribute="centerY" id="VJ1-yb-xTi"/>
+                                                        <constraint firstItem="g18-Jl-bK1" firstAttribute="leading" secondItem="15Z-Qo-aGo" secondAttribute="leading" constant="16" id="W1g-Cv-Npc"/>
+                                                        <constraint firstItem="5hp-y1-NgX" firstAttribute="centerY" secondItem="15Z-Qo-aGo" secondAttribute="centerY" id="c8D-RI-LPE"/>
+                                                        <constraint firstItem="uOf-7g-dgb" firstAttribute="leading" secondItem="g18-Jl-bK1" secondAttribute="trailing" constant="8" id="cqA-KF-F6b"/>
+                                                        <constraint firstItem="x8p-H4-gEF" firstAttribute="height" secondItem="5hp-y1-NgX" secondAttribute="height" constant="8" id="ia1-KP-oXn"/>
+                                                        <constraint firstItem="g18-Jl-bK1" firstAttribute="centerY" secondItem="15Z-Qo-aGo" secondAttribute="centerY" id="xNM-EQ-E2O"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="bottom" secondItem="15Z-Qo-aGo" secondAttribute="bottom" id="O9b-fp-7in"/>
+                                                <constraint firstAttribute="trailing" secondItem="15Z-Qo-aGo" secondAttribute="trailing" id="QKc-s3-al6"/>
+                                                <constraint firstItem="15Z-Qo-aGo" firstAttribute="leading" secondItem="ogx-Hs-45d" secondAttribute="leading" id="d6V-ME-xCY"/>
+                                                <constraint firstItem="15Z-Qo-aGo" firstAttribute="top" secondItem="ogx-Hs-45d" secondAttribute="top" id="o6X-52-b2g"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="followingImg" destination="5hp-y1-NgX" id="4BW-K6-bTd"/>
+                                            <outlet property="profileImg" destination="g18-Jl-bK1" id="thF-Nz-enj"/>
+                                            <outlet property="usernameLbl" destination="uOf-7g-dgb" id="Dqb-3e-a7X"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
@@ -1077,11 +1136,12 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="tYH-55-YsQ" id="fZQ-gs-dy0"/>
+                        <segue destination="ABA-se-GwR" kind="show" identifier="ViewUserVC" id="nEU-xA-YIA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tBP-z2-Vy4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6542" y="1707"/>
+            <point key="canvasLocation" x="6397.5" y="1804.2253521126761"/>
         </scene>
         <!--ViewUserVC-->
         <scene sceneID="Hb0-BN-HMg">
@@ -2247,6 +2307,7 @@
         <image name="dog-in-wig" width="960" height="638"/>
         <image name="dog-multiple" width="40" height="31"/>
         <image name="feed-more-btn" width="45" height="10"/>
+        <image name="following" width="60" height="60"/>
         <image name="home" width="32" height="31"/>
         <image name="like-paw-print" width="60" height="62"/>
         <image name="more-dots" width="25" height="6"/>
@@ -2255,14 +2316,14 @@
         <image name="send" width="38" height="28"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="ks9-iV-bwr"/>
         <segue reference="MDz-VF-CoG"/>
-        <segue reference="r8q-Eq-6Ug"/>
-        <segue reference="uEA-SO-mV1"/>
+        <segue reference="WU3-CL-rPt"/>
+        <segue reference="61S-To-qrI"/>
         <segue reference="NaD-hV-ZAh"/>
-        <segue reference="f7T-iy-TzN"/>
-        <segue reference="iut-Rb-1yP"/>
-        <segue reference="SDZ-21-9fi"/>
         <segue reference="zsD-8J-Lsn"/>
+        <segue reference="SDZ-21-9fi"/>
         <segue reference="SJM-lh-SJu"/>
+        <segue reference="uEA-SO-mV1"/>
     </inferredMetricsTieBreakers>
 </document>

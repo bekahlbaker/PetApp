@@ -47,8 +47,7 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
                         DataService.ds.completeSignIn(user.uid, userData: userData)
                         DataService.ds.REF_CURRENT_USER.child("following").updateChildValues([user.uid: true])
                         DataService.ds.REF_CURRENT_USER.child("followers").updateChildValues([user.uid: true])
-                        DataService.ds.REF_CURRENT_USER.child("user-info").updateChildValues(["followingCt": 0])
-                        DataService.ds.REF_CURRENT_USER.child("user-info").updateChildValues(["followersCt": 0])
+                        self.addAutoFollowing()
                     }
                     self.performSegue(withIdentifier: "toUsernameVC", sender: nil)
                 }
@@ -62,5 +61,13 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
         super.touchesBegan(touches, with: event)
+    }
+    func addAutoFollowing() {
+        DataService.ds.REF_CURRENT_USER.child("following").updateChildValues(["5KJbJuSPuCWUMWICnFxfsYTqi2S2": true])
+        DataService.ds.REF_CURRENT_USER.child("following").updateChildValues(["5N0qlMIq9bRZvZ4cN9A3h2Z7eTu1": true])
+        DataService.ds.REF_CURRENT_USER.child("following").updateChildValues(["8EHDRnJa7SN2HRle2VBCswr5PIB21": true])
+        DataService.ds.REF_CURRENT_USER.child("following").updateChildValues(["HxyMeztxd5VjL2ItvCQXoZcHDzA2": true])
+        DataService.ds.REF_CURRENT_USER.child("following").updateChildValues(["KnOjqWcOnzVxSHqI1DLqq5NhxA62": true])
+        
     }
 }

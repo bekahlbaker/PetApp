@@ -30,8 +30,6 @@ class UserCell: UITableViewCell {
         self.parentsNameLabel.text = user.parentsName
         self.locationLabel.text = user.location
         self.aboutLabel.text = user.about
-        //        self.followersLabel.text = String(user.followers)
-        //        self.followingLabel.text = String(user.following)
         if user.breed != "" {
             self.ageBreedSpeciesLabel.text = user.breed
         } else {

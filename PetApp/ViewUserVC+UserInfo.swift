@@ -16,17 +16,14 @@ extension ViewUserVC {
         if checkIfUserIsCurrentUser() {
             print("IS CURRENT USER")
             DataService.ds.REF_USERS.child(self.currentUserKey).child("user-info").observeSingleEvent(of: .value, with: { (snapshot) in
-                print(snapshot)
                 if let userDict = snapshot.value as? [String: AnyObject] {
                     let user = User(userKey: self.currentUserKey, userData: userDict)
                     self.user = user
                     DispatchQueue.global().async {
                         guard let profileUrl = userDict["profileImgUrl"] as? String else {
-                            
                             return
                         }
                         if profileUrl == (userDict["profileImgUrl"] as? String)! {
-                            print(profileUrl)
                             let storage = FIRStorage.storage()
                             let storageRef = storage.reference(forURL: profileUrl)
                             storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
@@ -51,17 +48,14 @@ extension ViewUserVC {
         } else {
             print("IS NOT CURRENT USER")
             DataService.ds.REF_USERS.child(self.userKeyPassed).child("user-info").observeSingleEvent(of: .value, with: { (snapshot) in
-                print(snapshot)
                 if let userDict = snapshot.value as? [String: AnyObject] {
                     let user = User(userKey: self.userKeyPassed, userData: userDict)
                     self.user = user
                     DispatchQueue.global().async {
                         guard let profileUrl = userDict["profileImgUrl"] as? String else {
-                            
                             return
                         }
                         if profileUrl == (userDict["profileImgUrl"] as? String)! {
-                            print(profileUrl)
                             let storage = FIRStorage.storage()
                             let storageRef = storage.reference(forURL: profileUrl)
                             storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
@@ -92,8 +86,6 @@ extension ViewUserVC {
         //        self.secondparentsNameLbl.text = user.secondParentsName
         self.locationLbl.text = user.location
         self.bioLbl.text = user.about
-        self.followersLbl.text = String(user.followers)
-        self.followingLbl.text = String(user.following)
         if user.breed != "" {
             self.ageAndBreedLbl.text = user.breed
         } else {
@@ -102,6 +94,20 @@ extension ViewUserVC {
             }
         }
         self.profileImg.image = UIImage(named: "user-sm")
+        DataService.ds.REF_USERS.child(userKey).child("following").observe(.value, with: { (snapshot) in
+            if let _ = snapshot.value as? NSNull {
+                print("Not following anyone")
+            } else {
+                self.followingLbl.text = String(snapshot.childrenCount - 1)
+            }
+        })
+        DataService.ds.REF_USERS.child(userKey).child("followers").observe(.value, with: { (snapshot) in
+            if let _ = snapshot.value as? NSNull {
+                print("No followers")
+            } else {
+                self.followersLbl.text = String(snapshot.childrenCount - 1)
+            }
+        })
     }
     func downloadViewUserContent() {
         checkIfFollowing()

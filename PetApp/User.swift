@@ -20,8 +20,6 @@ class User {
     fileprivate var _breed: String!
     fileprivate var _location: String!
     fileprivate var _about: String!
-    fileprivate var _followers: Int!
-    fileprivate var _following: Int!
     var userKey: String {
         return _userKey
     }
@@ -46,13 +44,7 @@ class User {
     var about: String {
         return _about ?? ""
     }
-    var followers: Int {
-        return _followers ?? 0
-    }
-    var following: Int {
-        return _following ?? 0
-    }
-    init(username: String, name: String, parentsName: String, species: String, breed: String, location: String, about: String, followers: Int, following: Int) {
+    init(username: String, name: String, parentsName: String, species: String, breed: String, location: String, about: String) {
         self._username = username
         self._name = name
         self._parentsName = parentsName
@@ -60,8 +52,6 @@ class User {
         self._breed = breed
         self._location = location
         self._about = about
-        self._followers = followers
-        self._following = following
     }
     init(userKey: String, userData: [String: AnyObject]) {
         self._userKey = userKey
@@ -86,27 +76,5 @@ class User {
         if let about = userData["about"] as? String {
             self._about = about
         }
-        if let followers = userData["followersCt"] as? Int {
-            self._followers = followers
-        }
-        if let following = userData["followingCt"] as? Int {
-            self._following = following
-        }
-    }
-    func adjustFollowers(userKey: String, _ addFollower: Bool) {
-        if addFollower {
-            _followers = _followers + 1
-        } else {
-            _followers = _followers - 1
-        }
-        DataService.ds.REF_USERS.child(userKey).child("user-info").updateChildValues(["followersCt": followers])
-    }
-    func adjustFollowing(_ addFollowing: Bool) {
-        if addFollowing {
-            _following = _following + 1
-        } else {
-            _following = _following - 1
-        }
-        DataService.ds.REF_CURRENT_USER.child("user-info").updateChildValues(["followingCt": following])
     }
 }

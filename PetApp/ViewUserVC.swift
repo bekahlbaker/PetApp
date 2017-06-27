@@ -67,22 +67,7 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         self.view.addGestureRecognizer(swipeLeft)
         showPageOne()
     }
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(true)
-//        print(self.currentUserKey)
-//        print(self.userKeyPassed)
-//        if self.userKeyPassed == nil {
-//            self.isCurrentUser = true
-//            self.userKeyPassed = self.currentUserKey
-//            self.userKeyToPass = self.userKeyPassed
-//            downloadViewUserContent()
-//        } else {
-//            self.isCurrentUser = false
-//            self.userKeyToPass = self.currentUserKey
-//            downloadViewUserContent()
-//        }
-//        print(self.isCurrentUser)
-//    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
         print(checkIfUserIsCurrentUser())
@@ -90,8 +75,10 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
     }
     func checkIfUserIsCurrentUser() -> Bool {
         if self.userKeyPassed == nil {
+            self.userKeyToPass = self.currentUserKey
             return true
         } else {
+            self.userKeyToPass = self.userKeyPassed
             return false
         }
     }

@@ -44,18 +44,14 @@ extension ViewUserVC {
     func follow() {
         if let userKey = self.userKeyPassed {
             DataService.ds.REF_CURRENT_USER.child("following").updateChildValues(["\(userKey)": true])
-            self.user.adjustFollowing(true)
             DataService.ds.REF_USERS.child(userKey).child("followers").updateChildValues(["\(KeychainWrapper.standard.string(forKey: KEY_UID)! as String)": true])
-            self.user.adjustFollowers(userKey: userKey, true)
             self.isFollowing = true
         }
     }
     func unfollow() {
         if let userKey = self.userKeyPassed {
             DataService.ds.REF_CURRENT_USER.child("following").child(userKey).removeValue()
-            self.user.adjustFollowing(false)
             DataService.ds.REF_USERS.child(userKey).child("followers").child(KeychainWrapper.standard.string(forKey: KEY_UID)! as String).removeValue()
-            self.user.adjustFollowers(userKey: userKey, false)
             self.isFollowing = false
         }
     }
