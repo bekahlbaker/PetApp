@@ -130,6 +130,7 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         let key = firebasePost.key
         firebasePost.updateChildValues(["postKey": key])
         self.postToFollowersWall(key: key)
+        DataService.ds.REF_CURRENT_USER.child("posts").updateChildValues([key: true])
     }
     func saveImageToFireBase() {
         if let img = self.imageToFilter.image {
@@ -175,4 +176,5 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshMyTableView"), object: nil)
         }
     }
+    @IBOutlet weak var captionTextViewTopConstraint: NSLayoutConstraint!
 }

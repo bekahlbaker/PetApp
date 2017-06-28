@@ -95,6 +95,13 @@ class FeedCell: UITableViewCell, UITextFieldDelegate {
         self.commentTextFieldView.layer.borderColor = UIColor.lightGray.cgColor
         self.commentTextFieldView.layer.borderWidth = 0.5
         self.commentTextField.delegate = self
+        DataService.ds.REF_CURRENT_USER.child("user-info").observe( .value, with: { (snapshot) in
+            if let dictionary = snapshot.value as? [String: Any] {
+                if let currentUser = dictionary["username"] as? String {
+                    self.currentUsername = currentUser as String!
+                }
+            }
+        })
     }
     func respondToSwipeGesture(gesture: UIGestureRecognizer) {
         if let swipeGesture = gesture as? UISwipeGestureRecognizer {
@@ -224,10 +231,11 @@ class FeedCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var cmtUsernameLbl4: UILabel!
     @IBOutlet weak var cmtLbl4: UILabel!
     @IBOutlet weak var sendCommentBtn: UIButton!
+    var currentUsername: String!
     @IBAction func sendCommentBtnTapped(_ sender: Any) {
         let comment: [String: Any] = [
             "comment": self.commentTextField.text! as String,
-            "username": self.post.username as String,
+            "username": self.currentUsername as String,
             "userKey": KeychainWrapper.standard.string(forKey: KEY_UID)! as String
         ]
         let firebasePost = DataService.ds.REF_POSTS.child(self.post.postKey)

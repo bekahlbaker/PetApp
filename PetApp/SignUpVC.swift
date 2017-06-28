@@ -63,11 +63,26 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         super.touchesBegan(touches, with: event)
     }
     func addAutoFollowing() {
-        DataService.ds.REF_CURRENT_USER.child("following").updateChildValues(["5KJbJuSPuCWUMWICnFxfsYTqi2S2": true])
-        DataService.ds.REF_CURRENT_USER.child("following").updateChildValues(["5N0qlMIq9bRZvZ4cN9A3h2Z7eTu1": true])
-        DataService.ds.REF_CURRENT_USER.child("following").updateChildValues(["8EHDRnJa7SN2HRle2VBCswr5PIB21": true])
-        DataService.ds.REF_CURRENT_USER.child("following").updateChildValues(["HxyMeztxd5VjL2ItvCQXoZcHDzA2": true])
-        DataService.ds.REF_CURRENT_USER.child("following").updateChildValues(["KnOjqWcOnzVxSHqI1DLqq5NhxA62": true])
-        
+        DataService.ds.REF_CURRENT_USER.child("following").updateChildValues(["8QcWittLktYDQsCXDt274XSJYMR2": true])
+        DataService.ds.REF_CURRENT_USER.child("following").updateChildValues(["A3v26EF36pMUNlLh62GXwDWKn6k2": true])
+        DataService.ds.REF_CURRENT_USER.child("following").updateChildValues(["CsoDtpveDIhqWPlVc8mCEEWxGlp1": true])
+        DataService.ds.REF_CURRENT_USER.child("following").updateChildValues(["sBsROT2OywOlMcKxbXFj6a1C9tq1": true])
+        DataService.ds.REF_CURRENT_USER.child("following").updateChildValues(["v2PvUj0ddqVe0kJRoeIWtVZR9dj1": true])
+        DataService.ds.REF_CURRENT_USER.child("wall").updateChildValues(["-KnfBYx1XT796QW_Uiqj": true])
+        DataService.ds.REF_CURRENT_USER.child("wall").updateChildValues(["-KnfDPSLGxlPNBQoiJKu": true])
+        DataService.ds.REF_CURRENT_USER.child("wall").updateChildValues(["-KnfG6r_wN7a5bURVjyl": true])
+        DataService.ds.REF_CURRENT_USER.child("wall").updateChildValues(["-KnfLJWbACRSBOdPMJuF": true])
+        DataService.ds.REF_CURRENT_USER.child("wall").updateChildValues(["-KnfLcTG1KfRtnIEAc2Y": true])
+        DataService.ds.REF_CURRENT_USER.child("wall").updateChildValues(["-KnfLpbvyW9rrePONhbu": true])
+        DataService.ds.REF_CURRENT_USER.child("wall").updateChildValues(["-KnfLyA7s67LtK9T71KJ": true])
+        DataService.ds.REF_CURRENT_USER.child("wall").updateChildValues(["-KnfMRA_8x7uMgZMS4c4": true])
+        DataService.ds.REF_CURRENT_USER.child("wall").updateChildValues(["-KnfMbWpI4BL3sHLQOVt": true])
+        DataService.ds.REF_CURRENT_USER.child("wall").updateChildValues(["-KnfMivCE6XR7Z6DK0I-": true])
+        DataService.ds.REF_CURRENT_USER.child("wall").updateChildValues(["-KnfNFNI6yMEVxuvRoOg": true])
+        DataService.ds.REF_CURRENT_USER.child("wall").updateChildValues(["-KnfNLfbIMvJpFRhx36V": true])
+        DataService.ds.REF_CURRENT_USER.child("wall").updateChildValues(["-KnfPC7Jj4Ia2JPyd0PQ": true])
+        DataService.ds.REF_CURRENT_USER.child("wall").updateChildValues(["-KnfPJyl2WwRLY0f7nzy": true])
+        DataService.ds.REF_CURRENT_USER.child("wall").updateChildValues(["-KnfPRGyOENe7R_HkAx2": true])
+        DataService.ds.REF_CURRENT_USER.child("wall").updateChildValues(["-KnfPWmDusnXBeN76G4O": true])
     }
 }

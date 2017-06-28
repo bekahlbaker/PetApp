@@ -46,14 +46,22 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
     func alert() {
         let alert = UIAlertController(title: "", message: "If you cancel now, your profile changes will not be saved.", preferredStyle: UIAlertControllerStyle.alert)
         let discard = UIAlertAction(title: "Discard", style: .destructive, handler: { (_) -> Void in
-            self.checkIfHasFilledOutProfileOnce { (hasFilledOutProfile) in
-                if hasFilledOutProfile {
-                    _ = self.navigationController?.popViewController(animated: true)
-                } else {
+            DataService.ds.REF_CURRENT_USER.child("user-personal").child("HasFilledOutProfileOnce").observeSingleEvent(of: .value, with: { (snapshot) in
+                if let _ = snapshot.value as? NSNull {
                     DataService.ds.REF_CURRENT_USER.child("user-personal").updateChildValues(["HasFilledOutProfileOnce": true])
                     self.performSegue(withIdentifier: "FeedVC", sender: nil)
+                } else {
+                    _ = self.navigationController?.popViewController(animated: true)
                 }
-            }
+            })
+//            self.checkIfHasFilledOutProfileOnce { (hasFilledOutProfile) in
+//                if hasFilledOutProfile {
+//                    _ = self.navigationController?.popViewController(animated: true)
+//                } else {
+//                    DataService.ds.REF_CURRENT_USER.child("user-personal").updateChildValues(["HasFilledOutProfileOnce": true])
+//                    self.performSegue(withIdentifier: "FeedVC", sender: nil)
+//                }
+//            }
         })
         let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) -> Void in
         }
@@ -89,12 +97,6 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 self.locationLbl.text = dictionary["location"] as? String
                 self.aboutLbl.text = dictionary["about"] as? String
                 self.navigationItem.title = dictionary["username"] as? String
-                //download profile img
-//                self.profileImg.image = UIImage(named: "user-sm")
-//                if ProfileVC.profileCache.object(forKey: "\(self.currentUserKey)" as NSString) != nil {
-//                    self.profileImg.image = ProfileVC.profileCache.object(forKey: "\(self.currentUserKey)" as NSString)
-//                    print("Using cached img")
-//                } else {
                     guard let profileUrl = dictionary["profileImgUrl"] as? String else {
                         return
                     }
@@ -114,4 +116,13 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
             }
         })
     }
+//    override func viewDidAppear(_ animated: Bool) {
+//        DataService.ds.REF_CURRENT_USER.child("user-personal").child("HasFilledOutProfileOnce").observe( .value, with: { (snapshot) in
+//            if let _ = snapshot.value as? NSNull {
+//                print("FIRST time viewing profile")
+//            } else {
+//                print("NOT first time viewing profile")
+//            }
+//        })
+//    }
 }

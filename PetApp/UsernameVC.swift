@@ -60,4 +60,8 @@ class UsernameVC: UIViewController, UITextFieldDelegate {
             }
         }
     }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+        super.touchesBegan(touches, with: event)
+    }
 }

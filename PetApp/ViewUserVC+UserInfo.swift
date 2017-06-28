@@ -14,7 +14,6 @@ import SwiftKeychainWrapper
 extension ViewUserVC {
     func loadUserInfo() {
         if checkIfUserIsCurrentUser() {
-            print("IS CURRENT USER")
             DataService.ds.REF_USERS.child(self.currentUserKey).child("user-info").observeSingleEvent(of: .value, with: { (snapshot) in
                 if let userDict = snapshot.value as? [String: AnyObject] {
                     let user = User(userKey: self.currentUserKey, userData: userDict)
@@ -46,7 +45,6 @@ extension ViewUserVC {
                 }
             })
         } else {
-            print("IS NOT CURRENT USER")
             DataService.ds.REF_USERS.child(self.userKeyPassed).child("user-info").observeSingleEvent(of: .value, with: { (snapshot) in
                 if let userDict = snapshot.value as? [String: AnyObject] {
                     let user = User(userKey: self.userKeyPassed, userData: userDict)

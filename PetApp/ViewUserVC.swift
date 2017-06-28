@@ -106,38 +106,44 @@ class ViewUserVC: UIViewController, UICollectionViewDelegate, UICollectionViewDa
         }
     }
     func downloadCollectionViewData() {
+        self.posts = []
+        var postKeys = [String]()
         if checkIfUserIsCurrentUser() {
-            DataService.ds.REF_POSTS.queryOrdered(byChild: "userKey").queryEqual(toValue: self.currentUserKey).observeSingleEvent(of: .value, with: { (snapshot) in
-                self.posts = []
+            DataService.ds.REF_CURRENT_USER.child("posts").observeSingleEvent(of: .value, with: { (snapshot) in
                 if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     for snap in snapshot {
-                        if let postDict = snap.value as? [String: AnyObject] {
-                            let key = snap.key
-                            let post = Post(postKey: key, postData: postDict)
-                            self.posts.insert(post, at: 0)
-                        }
-                    }
+                        postKeys.append(snap.key)                    }
                 }
-                if self.posts.count > 0 {
-                    self.collectionView.reloadData()
-                    self.postsLbl.text = String(self.posts.count)
+                for i in 0..<postKeys.count {
+                  DataService.ds.REF_POSTS.child(postKeys[i]).observeSingleEvent(of: .value, with: { (snapshot) in
+                    if let postDict = snapshot.value as? [String: AnyObject] {
+                        let post = Post(postKey: postKeys[i], postData: postDict)
+                        self.posts.insert(post, at: 0)
+                        if self.posts.count > 0 {
+                            self.collectionView.reloadData()
+                            self.postsLbl.text = String(self.posts.count)
+                        }
+                        }
+                    })
                 }
             })
         } else {
-            DataService.ds.REF_POSTS.queryOrdered(byChild: "userKey").queryEqual(toValue: self.userKeyPassed).observeSingleEvent(of: .value, with: { (snapshot) in
-                self.posts = []
+            DataService.ds.REF_USERS.child(self.userKeyPassed).child("posts").observeSingleEvent(of: .value, with: { (snapshot) in
                 if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     for snap in snapshot {
-                        if let postDict = snap.value as? [String: AnyObject] {
-                            let key = snap.key
-                            let post = Post(postKey: key, postData: postDict)
-                            self.posts.insert(post, at: 0)
-                        }
-                    }
+                        postKeys.append(snap.key)                    }
                 }
-                if self.posts.count > 0 {
-                    self.collectionView.reloadData()
-                    self.postsLbl.text = String(self.posts.count)
+                for i in 0..<postKeys.count {
+                    DataService.ds.REF_POSTS.child(postKeys[i]).observeSingleEvent(of: .value, with: { (snapshot) in
+                        if let postDict = snapshot.value as? [String: AnyObject] {
+                            let post = Post(postKey: postKeys[i], postData: postDict)
+                            self.posts.insert(post, at: 0)
+                            if self.posts.count > 0 {
+                                self.collectionView.reloadData()
+                                self.postsLbl.text = String(self.posts.count)
+                            }
+                        }
+                    })
                 }
             })
         }
