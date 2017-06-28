@@ -54,14 +54,14 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                     _ = self.navigationController?.popViewController(animated: true)
                 }
             })
-//            self.checkIfHasFilledOutProfileOnce { (hasFilledOutProfile) in
-//                if hasFilledOutProfile {
-//                    _ = self.navigationController?.popViewController(animated: true)
-//                } else {
-//                    DataService.ds.REF_CURRENT_USER.child("user-personal").updateChildValues(["HasFilledOutProfileOnce": true])
-//                    self.performSegue(withIdentifier: "FeedVC", sender: nil)
-//                }
-//            }
+            //            self.checkIfHasFilledOutProfileOnce { (hasFilledOutProfile) in
+            //                if hasFilledOutProfile {
+            //                    _ = self.navigationController?.popViewController(animated: true)
+            //                } else {
+            //                    DataService.ds.REF_CURRENT_USER.child("user-personal").updateChildValues(["HasFilledOutProfileOnce": true])
+            //                    self.performSegue(withIdentifier: "FeedVC", sender: nil)
+            //                }
+            //            }
         })
         let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) -> Void in
         }
@@ -97,32 +97,31 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
                 self.locationLbl.text = dictionary["location"] as? String
                 self.aboutLbl.text = dictionary["about"] as? String
                 self.navigationItem.title = dictionary["username"] as? String
-                    guard let profileUrl = dictionary["profileImgUrl"] as? String else {
-                        return
-                    }
-                    if profileUrl == (dictionary["profileImgUrl"] as? String)! {
-                        let storage = FIRStorage.storage()
-                        let storageRef = storage.reference(forURL: profileUrl)
-                        storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
-                            if error != nil {
-                                print("Unable to download image from firebase")
-                            } else {
-                                let profileImg = UIImage(data: data!)
-                                self.profileImg.image = profileImg
-                            }
+                guard let profileUrl = dictionary["profileImgUrl"] as? String else {
+                    return
+                }
+                if profileUrl == (dictionary["profileImgUrl"] as? String)! {
+                    let storage = FIRStorage.storage()
+                    let storageRef = storage.reference(forURL: profileUrl)
+                    storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
+                        if error != nil {
+                            print("Unable to download image from firebase")
+                        } else {
+                            let profileImg = UIImage(data: data!)
+                            self.profileImg.image = profileImg
                         }
                     }
-//                }
+                }
             }
         })
     }
-//    override func viewDidAppear(_ animated: Bool) {
-//        DataService.ds.REF_CURRENT_USER.child("user-personal").child("HasFilledOutProfileOnce").observe( .value, with: { (snapshot) in
-//            if let _ = snapshot.value as? NSNull {
-//                print("FIRST time viewing profile")
-//            } else {
-//                print("NOT first time viewing profile")
-//            }
-//        })
-//    }
+    //    override func viewDidAppear(_ animated: Bool) {
+    //        DataService.ds.REF_CURRENT_USER.child("user-personal").child("HasFilledOutProfileOnce").observe( .value, with: { (snapshot) in
+    //            if let _ = snapshot.value as? NSNull {
+    //                print("FIRST time viewing profile")
+    //            } else {
+    //                print("NOT first time viewing profile")
+    //            }
+    //        })
+    //    }
 }
