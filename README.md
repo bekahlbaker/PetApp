@@ -2,6 +2,9 @@
 
 An instagram-like app just for your pets!
 
+Test the app using the email example@example.com and password 123456
+This account will allow you to view all areas of the app but will not allow you post content.
+
 ## Built With
 
 * [Swift](https://developer.apple.com/swift/) 
