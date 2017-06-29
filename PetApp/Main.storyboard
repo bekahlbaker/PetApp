@@ -2122,10 +2122,11 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wr2-v3-HSP">
-                                <rect key="frame" x="0.0" y="424" width="320" height="30"/>
+                                <rect key="frame" x="60" y="424" width="200" height="30"/>
                                 <color key="backgroundColor" red="0.97550159690000005" green="0.11483331770000001" blue="0.3364585638" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="Snm-a4-Gv8"/>
+                                    <constraint firstAttribute="width" constant="200" id="nIj-zP-idl"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="24"/>
                                 <state key="normal" title="Post">
@@ -2162,16 +2163,15 @@
                             <constraint firstItem="iaT-PM-N7O" firstAttribute="height" secondItem="zGo-cJ-yz9" secondAttribute="height" id="G3S-gZ-oIb"/>
                             <constraint firstItem="M8N-Ws-NoO" firstAttribute="height" secondItem="zGo-cJ-yz9" secondAttribute="height" id="Gsl-5O-WO7"/>
                             <constraint firstAttribute="trailing" secondItem="T4z-6s-bC7" secondAttribute="trailing" id="MPO-5g-Iz5"/>
+                            <constraint firstItem="wr2-v3-HSP" firstAttribute="centerX" secondItem="els-HE-nDL" secondAttribute="centerX" id="Nkv-dQ-CQR"/>
                             <constraint firstItem="M8N-Ws-NoO" firstAttribute="centerY" secondItem="zGo-cJ-yz9" secondAttribute="centerY" id="YDx-6y-aND"/>
                             <constraint firstItem="iaT-PM-N7O" firstAttribute="centerY" secondItem="zGo-cJ-yz9" secondAttribute="centerY" id="bsa-Au-AAx"/>
                             <constraint firstItem="M8N-Ws-NoO" firstAttribute="centerX" secondItem="zGo-cJ-yz9" secondAttribute="centerX" id="di8-nZ-Vi7"/>
-                            <constraint firstAttribute="trailing" secondItem="wr2-v3-HSP" secondAttribute="trailing" id="eep-O0-hSN"/>
                             <constraint firstItem="Cl2-Qa-D0j" firstAttribute="top" secondItem="elW-wd-vws" secondAttribute="bottom" constant="4" id="gey-p9-nXo"/>
                             <constraint firstItem="M8N-Ws-NoO" firstAttribute="width" secondItem="zGo-cJ-yz9" secondAttribute="width" id="hkh-wq-HsC"/>
                             <constraint firstAttribute="trailing" secondItem="zGo-cJ-yz9" secondAttribute="trailing" id="i5K-Kc-9NP"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Cl2-Qa-D0j" secondAttribute="trailing" id="ive-m7-qZZ"/>
                             <constraint firstItem="07w-Tv-g9o" firstAttribute="centerY" secondItem="els-HE-nDL" secondAttribute="centerY" id="jQt-Zy-GT2"/>
-                            <constraint firstItem="wr2-v3-HSP" firstAttribute="leading" secondItem="els-HE-nDL" secondAttribute="leading" id="kGx-43-5oW"/>
                             <constraint firstAttribute="trailing" secondItem="elW-wd-vws" secondAttribute="trailing" constant="8" id="sbd-fM-jd9"/>
                             <constraint firstItem="iaT-PM-N7O" firstAttribute="width" secondItem="zGo-cJ-yz9" secondAttribute="width" id="sjY-9d-JWn"/>
                             <constraint firstItem="zGo-cJ-yz9" firstAttribute="leading" secondItem="els-HE-nDL" secondAttribute="leading" id="xPE-up-L4t"/>
