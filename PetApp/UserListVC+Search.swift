@@ -9,53 +9,44 @@
 import UIKit
 import Foundation
 import Firebase
+import SwiftKeychainWrapper
 
 extension UserListVC {
-    func getUserKey(username: String, completionHandler: @escaping (_ userKey: String) -> Void) {
-        var string = String()
-        DataService.ds.REF_USERS.queryOrdered(byChild: "user-info/username").queryEqual(toValue: username).observeSingleEvent(of: .value, with: { (snapshot) in
-            if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
-                for snap in snapshot {
-                    string = snap.key
-//                    self.userKeyToPass = snap.key
-//                    print(self.userKeyToPass)
-                    completionHandler(string)
-                }
-            }
-        })
-    }
     func getUserList() {
-        DataService.ds.REF_ACTIVE_USERS.observeSingleEvent(of: .value, with: { (snapshot) in
-            self.userList = []
+        self.userList = []
+        self.userKeys = []
+        DataService.ds.REF_USERS.observeSingleEvent(of: .value, with: { (snapshot) in
             if let _ = snapshot.value as? NSNull {
                 print("No users")
             } else {
                 if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     for snap in snapshot {
-                        self.userList.append(snap.key)
-                        self.filterOutCurrentUser(user: self.currentUsername)
+                        self.userKeys.append(snap.key)
+                        self.filterOutCurrentUser(user: KeychainWrapper.standard.string(forKey: KEY_UID)! as String)
                     }
                 }
             }
-            if self.userList.count > 0 {
-                self.tableView.reloadData()
-            }
-        })
-    }
-    func getCurrentUsername() {
-        DataService.ds.REF_CURRENT_USER.child("user-info").observe( .value, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String: Any] {
-                if let currentUser = dictionary["username"] as? String {
-                    self.currentUsername = currentUser as String!
-                }
+            for i in 0..<self.userKeys.count {
+                DataService.ds.REF_USERS.child(self.userKeys[i]).child("user-personal").observeSingleEvent(of: .value, with: { (snapshot) in
+                    if let dictionary = snapshot.value as? [String: AnyObject] {
+                        if let username = dictionary["username"] as? String {
+                            self.usernames.append(username)
+                        }
+                        let user = User(userKey: self.userKeys[i], userData: dictionary)
+                        self.userList.append(user)
+                        if self.userList.count > 0 {
+                            self.tableView.reloadData()
+                        }
+                    }
+                })
             }
         })
     }
     func filterOutCurrentUser(user: String) {
         let userToRemove = user
-        while self.userList.contains(user) {
-            if let itemToRemoveIndex = self.userList.index(of: userToRemove) {
-                self.userList.remove(at: itemToRemoveIndex)
+        while self.userKeys.contains(user) {
+            if let itemToRemoveIndex = self.userKeys.index(of: userToRemove) {
+                self.userKeys.remove(at: itemToRemoveIndex)
             }
         }
     }
@@ -78,12 +69,25 @@ extension UserListVC {
         tableView.tableHeaderView = searchController.searchBar
     }
     func updateSearchResults(for searchController: UISearchController) {
-        let searchString = searchController.searchBar.text
-        filteredUserList = userList.filter({ (user) -> Bool in
-            let userText: NSString = user as NSString
-            return (userText.range(of: searchString!, options: NSString.CompareOptions.caseInsensitive).location) != NSNotFound
-        })
-        tableView.reloadData()
+        if let searchString = searchController.searchBar.text {
+            self.filteredUsernames = []
+            self.filteredUsernames = self.usernames.filter({ (user) -> Bool in
+                let userText: NSString = user as NSString
+                return (userText.range(of: searchString, options: NSString.CompareOptions.caseInsensitive).location) != NSNotFound
+            })
+            for i in 0..<self.filteredUsernames.count {
+                DataService.ds.REF_USERS.child(self.userKeys[i]).child("user-personal").observe(.value, with: { (snapshot) in
+                    self.filteredUserList = []
+                    if let dictionary = snapshot.value as? [String: AnyObject] {
+                        let user = User(userKey: snapshot.key, userData: dictionary)
+                        self.filteredUserList.append(user)
+                        if self.filteredUserList.count > 0 {
+                            self.tableView.reloadData()
+                        }
+                    }
+                })
+            }
+        }
     }
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         inSearchMode = true

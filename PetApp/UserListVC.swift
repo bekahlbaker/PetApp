@@ -11,18 +11,21 @@
 import UIKit
 import Foundation
 import Firebase
+import SwiftKeychainWrapper
 
 class UserListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
     var searchController: UISearchController!
     @IBOutlet weak var tableView: UITableView!
-    var userList = [String]()
-    var filteredUserList = [String]()
+    var userKeys = [String]()
+    var userList = [User]()
+    var filteredUserList = [User]()
+    var usernames = [String]()
+    var filteredUsernames = [String]()
     var inSearchMode = false
     var userKeyToPass: String!
     var currentUsername: String!
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.getCurrentUsername()
         tableView.delegate = self
         tableView.dataSource = self
         configureSearchController()
@@ -42,49 +45,39 @@ class UserListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         return self.userList.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell")!
         if inSearchMode {
-            cell.textLabel?.text = filteredUserList[indexPath.row]
-//            let username = cell.textLabel?.text
-//            self.getUserKey(username: username!) { (userKey) in
-//                self.userKeyToPass = userKey
-//            }
+            let user = self.filteredUserList[indexPath.row]
+            if  let cell = tableView.dequeueReusableCell(withIdentifier: "UsernameListCell") as? UsernameListCell {
+                cell.configureCell(user: user)
+                return cell
+            } else {
+                return UsernameListCell()
+            }
         } else {
-            cell.textLabel?.text = userList[indexPath.row]
-//            let username = cell.textLabel?.text
-//            self.getUserKey(username: username!) { (userKey) in
-//                self.userKeyToPass = userKey
-//                print("USERKEY TO PASS: \(self.userKeyToPass)")
-//            }
+            let user = self.userList[indexPath.row]
+            if  let cell = tableView.dequeueReusableCell(withIdentifier: "UsernameListCell") as? UsernameListCell {
+                cell.configureCell(user: user)
+                return cell
+            } else {
+                return UsernameListCell()
+            }
         }
-        return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "UserCell")!
         if inSearchMode {
-            cell.textLabel?.text = filteredUserList[indexPath.row]
-            let username = cell.textLabel?.text
-            self.getUserKey(username: username!) { (userKey) in
-                self.userKeyToPass = userKey
-                print("USERKEY TO PASS: \(self.userKeyToPass)")
-                self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
-            }
+            let user = self.filteredUserList[indexPath.row]
+            self.userKeyToPass = user.userKey
+            self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
         } else {
-            cell.textLabel?.text = userList[indexPath.row]
-            let username = cell.textLabel?.text
-            self.getUserKey(username: username!) { (userKey) in
-                self.userKeyToPass = userKey
-                print("USERKEY TO PASS: \(self.userKeyToPass)")
-                self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
-            }
+            let user = self.userList[indexPath.row]
+            self.userKeyToPass = user.userKey
+            self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
         }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ViewUserVC" {
             let myVC = segue.destination as! ViewUserVC
-                myVC.userKeyPassed = self.userKeyToPass
-            print("USERKEY BEING PASSED: \(self.userKeyToPass)")
-                print("SEGUE: \(myVC.userKeyPassed)")
+            myVC.userKeyPassed = self.userKeyToPass
         }
     }
 }

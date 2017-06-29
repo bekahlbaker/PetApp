@@ -42,4 +42,16 @@ class UsernameListCell: UITableViewCell {
             }
         })
     }
+    func configureCellForExploreUsers(user: User) {
+        self.user = user
+        DataService.ds.REF_CURRENT_USER.child("following").child(user.userKey).observe(.value, with: { (snapshot) in
+            if let _ = snapshot.value as? NSNull {
+                self.isFollowing = false
+                self.followingImg.image = UIImage(named: "add")
+            } else {
+                self.isFollowing = true
+                self.followingImg.image = UIImage(named: "following")
+            }
+        })
+    }
 }

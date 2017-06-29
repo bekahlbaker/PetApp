@@ -1001,18 +1001,65 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XhN-yu-hM6">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XhN-yu-hM6">
                                 <rect key="frame" x="0.0" y="20" width="320" height="499"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UserCell" id="fJw-EY-Syb" customClass="UserCell" customModule="PetApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UsernameListCell" rowHeight="50" id="fJw-EY-Syb" customClass="UsernameListCell" customModule="PetApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fJw-EY-Syb" id="w0n-Ga-acx">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="49.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="following" translatesAutoresizingMaskIntoConstraints="NO" id="utm-xu-yxz">
+                                                    <rect key="frame" x="274" y="10" width="30" height="30"/>
+                                                </imageView>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wpg-NL-fl0">
+                                                    <rect key="frame" x="274" y="10" width="30" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="30" id="v01-SH-bsj"/>
+                                                        <constraint firstAttribute="width" constant="30" id="zgL-Zc-dLW"/>
+                                                    </constraints>
+                                                    <connections>
+                                                        <action selector="followBtnTapped:" destination="fJw-EY-Syb" eventType="touchUpInside" id="Z0M-11-7IE"/>
+                                                    </connections>
+                                                </button>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dog-in-wig" translatesAutoresizingMaskIntoConstraints="NO" id="BNu-rs-dGM" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
+                                                    <rect key="frame" x="16" y="5" width="40" height="40"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="40" id="bco-bh-Gdq"/>
+                                                        <constraint firstAttribute="width" constant="40" id="okv-dc-PhM"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Username" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pmq-LE-iXm">
+                                                    <rect key="frame" x="64" y="17" width="202" height="15.5"/>
+                                                    <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="13"/>
+                                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="BNu-rs-dGM" firstAttribute="leading" secondItem="w0n-Ga-acx" secondAttribute="leading" constant="16" id="0t4-UW-fLx"/>
+                                                <constraint firstItem="Pmq-LE-iXm" firstAttribute="leading" secondItem="BNu-rs-dGM" secondAttribute="trailing" constant="8" id="72v-zk-GfY"/>
+                                                <constraint firstItem="utm-xu-yxz" firstAttribute="height" secondItem="Wpg-NL-fl0" secondAttribute="height" id="9za-I1-SNE"/>
+                                                <constraint firstItem="Pmq-LE-iXm" firstAttribute="centerY" secondItem="w0n-Ga-acx" secondAttribute="centerY" id="EBi-lj-Yca"/>
+                                                <constraint firstItem="Wpg-NL-fl0" firstAttribute="centerY" secondItem="w0n-Ga-acx" secondAttribute="centerY" id="I9M-vG-vnD"/>
+                                                <constraint firstItem="BNu-rs-dGM" firstAttribute="centerY" secondItem="w0n-Ga-acx" secondAttribute="centerY" id="KgU-Bi-stS"/>
+                                                <constraint firstItem="utm-xu-yxz" firstAttribute="centerY" secondItem="Wpg-NL-fl0" secondAttribute="centerY" id="Qsf-Mi-frb"/>
+                                                <constraint firstAttribute="trailing" secondItem="Wpg-NL-fl0" secondAttribute="trailing" constant="16" id="U3P-PL-tqN"/>
+                                                <constraint firstItem="Wpg-NL-fl0" firstAttribute="leading" secondItem="Pmq-LE-iXm" secondAttribute="trailing" constant="8" id="kLq-hm-138"/>
+                                                <constraint firstItem="utm-xu-yxz" firstAttribute="width" secondItem="Wpg-NL-fl0" secondAttribute="width" id="lf6-En-8T6"/>
+                                                <constraint firstItem="utm-xu-yxz" firstAttribute="centerX" secondItem="Wpg-NL-fl0" secondAttribute="centerX" id="ykt-Jh-dYK"/>
+                                            </constraints>
                                         </tableViewCellContentView>
+                                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="15" maxY="0.0"/>
+                                        <connections>
+                                            <outlet property="followingImg" destination="utm-xu-yxz" id="DaV-mr-Zrq"/>
+                                            <outlet property="profileImg" destination="BNu-rs-dGM" id="j6Q-9Z-dvp"/>
+                                            <outlet property="usernameLbl" destination="Pmq-LE-iXm" id="I6b-fC-9BG"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -1035,7 +1082,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J14-8c-mV2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5169" y="1805"/>
+            <point key="canvasLocation" x="5460" y="1805"/>
         </scene>
         <!--Follow ListVC-->
         <scene sceneID="qZs-2e-Meh">
@@ -1049,7 +1096,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="78" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tYH-55-YsQ">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tYH-55-YsQ">
                                 <rect key="frame" x="0.0" y="20" width="320" height="548"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
