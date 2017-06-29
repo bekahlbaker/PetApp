@@ -29,7 +29,7 @@ class UserListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        configureSearchController()
+//        configureSearchController()
         self.automaticallyAdjustsScrollViewInsets = false
         self.title = "Users"
     }

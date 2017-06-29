@@ -78,6 +78,7 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
         getUserInfo()
         self.captionTextView.layer.borderColor = UIColor.lightGray.cgColor
         self.captionTextView.layer.borderWidth = 0.5
+        self.originalTopConstraint = self.topConstraint.constant
     }
     var profileImg: String!
     var currentUsername: String!
@@ -183,5 +184,7 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshMyTableView"), object: nil)
         }
     }
-    @IBOutlet weak var captionTextViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
+    var originalTopConstraint: CGFloat!
+    var keyBoardActive = false
 }

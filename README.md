@@ -11,6 +11,8 @@ This account will allow you to view all areas of the app but will not allow you 
 * [XCode](https://developer.apple.com/xcode/)
 * [Firebase](https://firebase.google.com/)
 * [Bugsnag](https://www.bugsnag.com/)
+* [SwiftLint](https://github.com/realm/SwiftLint)
+* [Crashlytics](https://fabric.io/kits/ios/crashlytics)
 
 ## Versioning
 
