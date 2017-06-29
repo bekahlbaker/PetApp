@@ -12,6 +12,7 @@ import UIKit
 import Foundation
 import Firebase
 import SwiftKeychainWrapper
+import Crashlytics
 
 class UserListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchResultsUpdating, UISearchBarDelegate {
     var searchController: UISearchController!

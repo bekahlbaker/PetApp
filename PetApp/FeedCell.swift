@@ -11,6 +11,7 @@ import UIKit
 import Firebase
 import Kingfisher
 import SwiftKeychainWrapper
+import Crashlytics
 
 class FeedCell: UITableViewCell, UITextFieldDelegate {
 

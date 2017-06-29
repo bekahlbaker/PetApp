@@ -10,6 +10,7 @@ import UIKit
 import Foundation
 import Firebase
 import SwiftKeychainWrapper
+import Crashlytics
 
 extension UserListVC {
     func getUserList() {

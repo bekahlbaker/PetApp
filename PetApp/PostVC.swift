@@ -86,15 +86,22 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     @IBOutlet weak var characterCount: UILabel!
     @IBOutlet weak var saveBtn: UIButton!
     @IBAction func saveBtnTapped(_ sender: Any) {
-        if self.imageSelected == true {
-            self.activityIndicator.startAnimating()
-            self.saveBtn.isEnabled = false
-            self.captionTextView.isEditable = false
-            DispatchQueue.global().async {
-                self.saveImageToFireBase()
+        if KeychainWrapper.standard.string(forKey: KEY_UID)! as String != "v2PvUj0ddqVe0kJRoeIWtVZR9dj1" {
+            if self.imageSelected == true {
+                self.activityIndicator.startAnimating()
+                self.saveBtn.isEnabled = false
+                self.captionTextView.isEditable = false
+                DispatchQueue.global().async {
+                    self.saveImageToFireBase()
+                }
+            } else {
+                let alert = UIAlertController(title: nil, message: "Please choose a photo ", preferredStyle: UIAlertControllerStyle.alert)
+                let okay = UIAlertAction(title: "Okay", style: .default, handler: nil)
+                alert.addAction(okay)
+                present(alert, animated: true, completion: nil)
             }
         } else {
-            let alert = UIAlertController(title: nil, message: "Please choose a photo ", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "This account cannot create new posts.", message: "Please create a new account.", preferredStyle: UIAlertControllerStyle.alert)
             let okay = UIAlertAction(title: "Okay", style: .default, handler: nil)
             alert.addAction(okay)
             present(alert, animated: true, completion: nil)
