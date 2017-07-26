@@ -173,33 +173,40 @@ class FeedCell: UITableViewCell, UITextFieldDelegate {
         }
     }
     func likeTapped(_ sender: UITapGestureRecognizer) {
-        likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
-            if let _ = snapshot.value as? NSNull {
-                self.likesImg.image = UIImage(named: "paw-print")
-                self.post.adjustLikes(true)
-                self.likesRef.setValue(true)
-                self.likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
-                    if let _ = snapshot.value as? NSNull {
-                        self.likesImg.image = UIImage(named: "paw-print")
-                    } else {
-                        self.likesImg.image = UIImage(named: "like-paw-print")
-                    }
-                })
-                self.likes.text = String(self.post.likes)
-            } else {
-                self.likesImg.image = UIImage(named: "like-paw-print")
-                self.post.adjustLikes(false)
-                self.likesRef.removeValue()
-                self.likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
-                    if let _ = snapshot.value as? NSNull {
-                        self.likesImg.image = UIImage(named: "paw-print")
-                    } else {
-                        self.likesImg.image = UIImage(named: "like-paw-print")
-                    }
-                })
-                self.likes.text = String(self.post.likes)
-            }
-        })
+        if KeychainWrapper.standard.string(forKey: KEY_UID)! as String != "v2PvUj0ddqVe0kJRoeIWtVZR9dj1" {
+            likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                if let _ = snapshot.value as? NSNull {
+                    self.likesImg.image = UIImage(named: "paw-print")
+                    self.post.adjustLikes(true)
+                    self.likesRef.setValue(true)
+                    self.likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                        if let _ = snapshot.value as? NSNull {
+                            self.likesImg.image = UIImage(named: "paw-print")
+                        } else {
+                            self.likesImg.image = UIImage(named: "like-paw-print")
+                        }
+                    })
+                    self.likes.text = String(self.post.likes)
+                } else {
+                    self.likesImg.image = UIImage(named: "like-paw-print")
+                    self.post.adjustLikes(false)
+                    self.likesRef.removeValue()
+                    self.likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                        if let _ = snapshot.value as? NSNull {
+                            self.likesImg.image = UIImage(named: "paw-print")
+                        } else {
+                            self.likesImg.image = UIImage(named: "like-paw-print")
+                        }
+                    })
+                    self.likes.text = String(self.post.likes)
+                }
+            })
+        } else {
+            let alert = UIAlertController(title: "You cannot like posts while viewing as a guest.", message: "Please log out and create your own account.", preferredStyle: UIAlertControllerStyle.alert)
+            let okay = UIAlertAction(title: "Okay", style: .default, handler: nil)
+            alert.addAction(okay)
+            self.delegate?.present(alert, animated: true, completion: nil)
+        }
     }
     func removeFromFollowersWall(key: String) {
         DataService.ds.REF_CURRENT_USER.child("followers").observeSingleEvent(of: .value, with: { (snapshot) in
@@ -234,14 +241,21 @@ class FeedCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var sendCommentBtn: UIButton!
     var currentUsername: String!
     @IBAction func sendCommentBtnTapped(_ sender: Any) {
-        let comment: [String: Any] = [
-            "comment": self.commentTextField.text! as String,
-            "username": self.currentUsername as String,
-            "userKey": KeychainWrapper.standard.string(forKey: KEY_UID)! as String
-        ]
-        let firebasePost = DataService.ds.REF_POSTS.child(self.post.postKey)
-        firebasePost.child("comments").childByAutoId().setValue(comment)
-        self.commentTextField.text = ""
+        if KeychainWrapper.standard.string(forKey: KEY_UID)! as String != "v2PvUj0ddqVe0kJRoeIWtVZR9dj1" {
+            let comment: [String: Any] = [
+                "comment": self.commentTextField.text! as String,
+                "username": self.currentUsername as String,
+                "userKey": KeychainWrapper.standard.string(forKey: KEY_UID)! as String
+            ]
+            let firebasePost = DataService.ds.REF_POSTS.child(self.post.postKey)
+            firebasePost.child("comments").childByAutoId().setValue(comment)
+            self.commentTextField.text = ""
+        } else {
+            let alert = UIAlertController(title: "You cannot comment on posts while viewing as a guest.", message: "Please log out and create your own account.", preferredStyle: UIAlertControllerStyle.alert)
+            let okay = UIAlertAction(title: "Okay", style: .default, handler: nil)
+            alert.addAction(okay)
+            self.delegate?.present(alert, animated: true, completion: nil)
+        }
     }
     @IBOutlet weak var commentTextField: UITextField!
     @IBOutlet weak var commentTextFieldView: UIView!

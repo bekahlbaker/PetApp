@@ -15,11 +15,19 @@ class UsernameListCell: UITableViewCell {
     @IBOutlet weak var followingImg: UIImageView!
     @IBOutlet weak var usernameLbl: UILabel!
     var userKey = KeychainWrapper.standard.string(forKey: KEY_UID)! as String
+    weak var delegate: UIViewController?
     @IBAction func followBtnTapped(_ sender: Any) {
-        if isFollowing == true {
-            DataService.ds.REF_CURRENT_USER.child("following").child(user.userKey).removeValue()
+        if KeychainWrapper.standard.string(forKey: KEY_UID)! as String != "v2PvUj0ddqVe0kJRoeIWtVZR9dj1" {
+            if isFollowing == true {
+                DataService.ds.REF_CURRENT_USER.child("following").child(user.userKey).removeValue()
+            } else {
+                DataService.ds.REF_CURRENT_USER.child("following").updateChildValues([user.userKey: true])
+            }
         } else {
-            DataService.ds.REF_CURRENT_USER.child("following").updateChildValues([user.userKey: true])
+            let alert = UIAlertController(title: "You cannot follow or unfollow accounts while viewing as a guest.", message: "Please log out and create your own account.", preferredStyle: UIAlertControllerStyle.alert)
+            let okay = UIAlertAction(title: "Okay", style: .default, handler: nil)
+            alert.addAction(okay)
+            self.delegate?.present(alert, animated: true, completion: nil)
         }
     }
     var user: User!

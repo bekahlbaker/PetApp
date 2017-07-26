@@ -77,4 +77,15 @@ class SignInVC: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
         super.touchesBegan(touches, with: event)
     }
+    @IBAction func enterAsGuestTapped(_ sender: Any) {
+        FIRAuth.auth()?.signIn(withEmail: "example@example.com", password: "123456", completion: { (user, error) in
+            if error == nil {
+                if let user = user {
+                    let userData = ["provider": user.providerID, "IsGuestUser": "true"]
+                    DataService.ds.completeSignIn("v2PvUj0ddqVe0kJRoeIWtVZR9dj1", userData: userData)
+                    self.performSegue(withIdentifier: "toFeedVC", sender: nil)
+                }
+            }
+        })
+        }
 }

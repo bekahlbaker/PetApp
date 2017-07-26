@@ -14,62 +14,47 @@ import SwiftKeychainWrapper
 extension ProfileVC {
     //SAVE and UPLOAD profile info & image
     func save() {
-        print("Saving pprofile")
-        if self.profileImg.image != nil {
-//            ProfileVC.profileCache.setObject(self.profileImg.image!, forKey: "\(self.currentUserKey)" as NSString)
-            //save profile image
-            let imageName = UUID().uuidString
-            let metadata = FIRStorageMetadata()
-            metadata.contentType = "image/png"
-            if let uploadData = UIImagePNGRepresentation(self.profileImg.image!) {
-                DataService.ds.REF_USER_PROFILE.child(imageName).put(uploadData, metadata: metadata, completion: { (metadata, error) in
-                    if error != nil {
-                        print(error as Any)
-                        return
-                    }
-                    if let profileImageUrl =  metadata?.downloadURL()?.absoluteString {
-                        self.createUserInfo("profileImgUrl", value: profileImageUrl)
-                    }
-                })
-            }
-        } else {
-            print("No profile image to save")
-        }
-        //save profile info
-        createUserInfo("full-name", value: self.fullNameLbl.text! as String)
-        createUserInfo("parents-name", value: parentsNameLbl.text! as String)
-        createUserInfo("species", value: speciesLbl.text! as String)
-        createUserInfo("breed", value: breedLbl.text! as String)
-        createUserInfo("location", value: locationLbl.text! as String)
-        createUserInfo("about", value: aboutLbl.text! as String)
-        DataService.ds.REF_CURRENT_USER.child("user-personal").child("HasFilledOutProfileOnce").observeSingleEvent(of: .value, with: { (snapshot) in
-            if let _ = snapshot.value as? NSNull {
-                DataService.ds.REF_CURRENT_USER.child("user-personal").updateChildValues(["HasFilledOutProfileOnce": true])
-                self.performSegue(withIdentifier: "FeedVC", sender: nil)
+        if KeychainWrapper.standard.string(forKey: KEY_UID)! as String != "v2PvUj0ddqVe0kJRoeIWtVZR9dj1" {
+            if self.profileImg.image != nil {
+                let imageName = UUID().uuidString
+                let metadata = FIRStorageMetadata()
+                metadata.contentType = "image/png"
+                if let uploadData = UIImagePNGRepresentation(self.profileImg.image!) {
+                    DataService.ds.REF_USER_PROFILE.child(imageName).put(uploadData, metadata: metadata, completion: { (metadata, error) in
+                        if error != nil {
+                            print(error as Any)
+                            return
+                        }
+                        if let profileImageUrl =  metadata?.downloadURL()?.absoluteString {
+                            self.createUserInfo("profileImgUrl", value: profileImageUrl)
+                        }
+                    })
+                }
             } else {
-                _ = self.navigationController?.popViewController(animated: true)
+                print("No profile image to save")
             }
-        })
-//        checkIfHasFilledOutProfileOnce { (hasFilledOutProfile) in
-//            if hasFilledOutProfile {
-//                _ = self.navigationController?.popViewController(animated: true)
-//            } else {
-//                DataService.ds.REF_CURRENT_USER.child("user-personal").updateChildValues(["HasFilledOutProfileOnce": true])
-//                self.performSegue(withIdentifier: "FeedVC", sender: nil)
-//            }
-//        }
+            //save profile info
+            createUserInfo("full-name", value: self.fullNameLbl.text! as String)
+            createUserInfo("parents-name", value: parentsNameLbl.text! as String)
+            createUserInfo("species", value: speciesLbl.text! as String)
+            createUserInfo("breed", value: breedLbl.text! as String)
+            createUserInfo("location", value: locationLbl.text! as String)
+            createUserInfo("about", value: aboutLbl.text! as String)
+            DataService.ds.REF_CURRENT_USER.child("user-personal").child("HasFilledOutProfileOnce").observeSingleEvent(of: .value, with: { (snapshot) in
+                if let _ = snapshot.value as? NSNull {
+                    DataService.ds.REF_CURRENT_USER.child("user-personal").updateChildValues(["HasFilledOutProfileOnce": true])
+                    self.performSegue(withIdentifier: "FeedVC", sender: nil)
+                } else {
+                    _ = self.navigationController?.popViewController(animated: true)
+                }
+            })
+        } else {
+            let alert = UIAlertController(title: "You cannot edit this profile while viewing as a guest.", message: "Please log out and create your own account.", preferredStyle: UIAlertControllerStyle.alert)
+            let okay = UIAlertAction(title: "Okay", style: .default, handler: nil)
+            alert.addAction(okay)
+            present(alert, animated: true, completion: nil)
+        }
     }
-//    func checkIfHasFilledOutProfileOnce(completionHandler:@escaping (Bool) -> Void) {
-//        DataService.ds.REF_CURRENT_USER.child("user-personal").child("HasFilledOutProfileOnce").observeSingleEvent(of: .value, with: { (snapshot) in
-//            if let _ = snapshot.value as? NSNull {
-//                print("FIRST time viewing profile")
-//                completionHandler(false)
-//            } else {
-//                print("NOT first time viewing profile")
-//                completionHandler(true)
-//            }
-//        })
-//    }
     func createUserInfo(_ key: String, value: String) {
         let userInfo: [String: Any] = [
             key: value

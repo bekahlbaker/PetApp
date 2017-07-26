@@ -49,6 +49,7 @@ class UserListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         if inSearchMode {
             let user = self.filteredUserList[indexPath.row]
             if  let cell = tableView.dequeueReusableCell(withIdentifier: "UsernameListCell") as? UsernameListCell {
+                cell.delegate = self
                 cell.configureCell(user: user)
                 return cell
             } else {
@@ -57,6 +58,7 @@ class UserListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         } else {
             let user = self.userList[indexPath.row]
             if  let cell = tableView.dequeueReusableCell(withIdentifier: "UsernameListCell") as? UsernameListCell {
+                cell.delegate = self
                 cell.configureCell(user: user)
                 return cell
             } else {

@@ -24,15 +24,22 @@ class CommentsVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     var originalBottomConstraint: CGFloat!
     var originalBottomViewConstraint: CGFloat!
     @IBAction func commentBtnTapped(_ sender: AnyObject) {
-        if self.commentTextField.text != "" {
-            postToFirebase()
-            commentTextField.text = ""
-            commentTextField.resignFirstResponder()
+        if KeychainWrapper.standard.string(forKey: KEY_UID)! as String != "v2PvUj0ddqVe0kJRoeIWtVZR9dj1" {
+            if self.commentTextField.text != "" {
+                postToFirebase()
+                commentTextField.text = ""
+                commentTextField.resignFirstResponder()
+            } else {
+                let alert = UIAlertController(title: "Please enter a comment", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+                let ok = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
+                alert.addAction(ok)
+                self.navigationController?.present(alert, animated: true, completion: nil)
+            }
         } else {
-            let alert = UIAlertController(title: "Please enter a comment", message: nil, preferredStyle: UIAlertControllerStyle.alert)
-            let ok = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
-            alert.addAction(ok)
-            self.navigationController?.present(alert, animated: true, completion: nil)
+            let alert = UIAlertController(title: "You cannot comment on posts while viewing as a guest.", message: "Please log out and create your own account.", preferredStyle: UIAlertControllerStyle.alert)
+            let okay = UIAlertAction(title: "Okay", style: .default, handler: nil)
+            alert.addAction(okay)
+            self.present(alert, animated: true, completion: nil)
         }
     }
     @IBOutlet weak var commentTextField: UITextField!

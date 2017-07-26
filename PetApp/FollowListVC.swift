@@ -47,6 +47,7 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let user = self.users[indexPath.row]
         if  let cell = tableView.dequeueReusableCell(withIdentifier: "UsernameListCell") as? UsernameListCell {
+            cell.delegate = self
             cell.configureCell(user: user)
             return cell
         } else {

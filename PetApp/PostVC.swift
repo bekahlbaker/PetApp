@@ -102,7 +102,7 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
                 present(alert, animated: true, completion: nil)
             }
         } else {
-            let alert = UIAlertController(title: "This account cannot create new posts.", message: "Please create a new account.", preferredStyle: UIAlertControllerStyle.alert)
+            let alert = UIAlertController(title: "You cannot create new posts while viewing as a guest.", message: "Please log out and create your own account.", preferredStyle: UIAlertControllerStyle.alert)
             let okay = UIAlertAction(title: "Okay", style: .default, handler: nil)
             alert.addAction(okay)
             present(alert, animated: true, completion: nil)
