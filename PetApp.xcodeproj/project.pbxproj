@@ -730,6 +730,7 @@
 				PROVISIONING_PROFILE = "8c5915d5-c773-4e05-a251-97286cf14bf4";
 				PROVISIONING_PROFILE_SPECIFIER = PetsPicDevelopmentProfile;
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -754,6 +755,7 @@
 				PROVISIONING_PROFILE = "90f3e4a9-76c4-4d77-bbb7-74da660394ff";
 				PROVISIONING_PROFILE_SPECIFIER = PetsPicDevelopmentProfile;
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

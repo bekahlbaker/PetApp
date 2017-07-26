@@ -70,8 +70,8 @@
                                     </button>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetApp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cjr-4F-ec4">
-                                <rect key="frame" x="89" y="28" width="142" height="62.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetsPic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cjr-4F-ec4">
+                                <rect key="frame" x="92" y="28" width="136.5" height="62.5"/>
                                 <fontDescription key="fontDescription" name="Lobster1.4" family="Lobster 1.4" pointSize="50"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -114,11 +114,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dog-in-wig" translatesAutoresizingMaskIntoConstraints="NO" id="uJK-A5-jAJ">
+                            <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dog-in-wig" translatesAutoresizingMaskIntoConstraints="NO" id="uJK-A5-jAJ">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetApp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sYl-M0-VAb">
-                                <rect key="frame" x="24" y="20" width="272" height="63"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetsPic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sYl-M0-VAb">
+                                <rect key="frame" x="24" y="20" width="272" height="62.5"/>
                                 <fontDescription key="fontDescription" name="Lobster1.4" family="Lobster 1.4" pointSize="50"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -138,7 +138,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wcy-ke-xmD">
-                                <rect key="frame" x="186" y="365" width="118" height="30"/>
+                                <rect key="frame" x="186" y="364.5" width="118" height="30"/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
                                 <state key="normal" title="Need to sign up?">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -148,7 +148,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eFv-9J-UgZ">
-                                <rect key="frame" x="180" y="335" width="124" height="30"/>
+                                <rect key="frame" x="180" y="334.5" width="124" height="30"/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
                                 <state key="normal" title="Forgot password?">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -158,7 +158,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QPA-HF-giO">
-                                <rect key="frame" x="55" y="233" width="249" height="35"/>
+                                <rect key="frame" x="55" y="232.5" width="249" height="35"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="PJp-Vs-ty3">
                                         <rect key="frame" x="16" y="8" width="233" height="19"/>
@@ -177,7 +177,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l4Q-up-93w">
-                                <rect key="frame" x="55" y="292" width="249" height="35"/>
+                                <rect key="frame" x="55" y="291.5" width="249" height="35"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="password" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="0Xy-Dd-fa3">
                                         <rect key="frame" x="8" y="8" width="241" height="19"/>
@@ -196,7 +196,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fna-68-SCm">
-                                <rect key="frame" x="16" y="292" width="35" height="35"/>
+                                <rect key="frame" x="16" y="291.5" width="35" height="35"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lock" translatesAutoresizingMaskIntoConstraints="NO" id="LfO-p8-tOu">
                                         <rect key="frame" x="8" y="8" width="20" height="20"/>
@@ -216,7 +216,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Oam-7a-lH9">
-                                <rect key="frame" x="16" y="233" width="35" height="35"/>
+                                <rect key="frame" x="16" y="232.5" width="35" height="35"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paw-print" translatesAutoresizingMaskIntoConstraints="NO" id="efS-T4-I66">
                                         <rect key="frame" x="8" y="7" width="20" height="20"/>
@@ -235,18 +235,27 @@
                                     <constraint firstItem="efS-T4-I66" firstAttribute="centerY" secondItem="Oam-7a-lH9" secondAttribute="centerY" id="hWB-RP-ZP6"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQu-bI-9l1">
-                                <rect key="frame" x="16" y="403" width="288" height="20"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c6B-yh-npT">
+                                <rect key="frame" x="0.0" y="474" width="320" height="34"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQu-bI-9l1">
+                                        <rect key="frame" x="8" y="8" width="304" height="18"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
+                                        <color key="textColor" red="0.97254901959999995" green="0.015686274510000001" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="4De-ep-aFf"/>
+                                    <constraint firstItem="eQu-bI-9l1" firstAttribute="leading" secondItem="c6B-yh-npT" secondAttribute="leading" constant="8" id="1uS-cG-p7P"/>
+                                    <constraint firstAttribute="trailing" secondItem="eQu-bI-9l1" secondAttribute="trailing" constant="8" id="NZy-ru-Bob"/>
+                                    <constraint firstItem="eQu-bI-9l1" firstAttribute="top" secondItem="c6B-yh-npT" secondAttribute="top" constant="8" id="hDP-9f-ccB"/>
+                                    <constraint firstAttribute="bottom" secondItem="eQu-bI-9l1" secondAttribute="bottom" constant="8" id="jqL-m6-nes"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="15"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="sYl-M0-VAb" secondAttribute="trailing" constant="8" id="2aN-Dj-fBh"/>
                             <constraint firstItem="eFv-9J-UgZ" firstAttribute="trailing" secondItem="ae8-V2-dxi" secondAttribute="trailingMargin" id="2sm-3o-jIz"/>
@@ -255,9 +264,10 @@
                             <constraint firstItem="l4Q-up-93w" firstAttribute="leading" secondItem="Fna-68-SCm" secondAttribute="trailing" constant="4" id="8Ha-j5-agU"/>
                             <constraint firstItem="sYl-M0-VAb" firstAttribute="top" secondItem="u0L-vq-NU9" secondAttribute="bottom" id="CIS-Ns-zgu"/>
                             <constraint firstItem="wcy-ke-xmD" firstAttribute="top" secondItem="eFv-9J-UgZ" secondAttribute="bottom" id="Ed3-i7-CgF"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="eQu-bI-9l1" secondAttribute="trailing" id="Gfu-DZ-CS0"/>
+                            <constraint firstItem="23y-r5-JF9" firstAttribute="top" secondItem="c6B-yh-npT" secondAttribute="bottom" id="FWO-3I-VkI"/>
                             <constraint firstAttribute="trailing" secondItem="uJK-A5-jAJ" secondAttribute="trailing" id="HhB-sO-QFh"/>
-                            <constraint firstItem="eQu-bI-9l1" firstAttribute="leading" secondItem="ae8-V2-dxi" secondAttribute="leadingMargin" id="INe-9x-9M1"/>
+                            <constraint firstItem="c6B-yh-npT" firstAttribute="leading" secondItem="ae8-V2-dxi" secondAttribute="leading" id="I3Y-G3-S0V"/>
+                            <constraint firstAttribute="trailing" secondItem="c6B-yh-npT" secondAttribute="trailing" id="LmX-cX-uXY"/>
                             <constraint firstItem="uJK-A5-jAJ" firstAttribute="top" secondItem="ae8-V2-dxi" secondAttribute="top" id="NjS-Uu-cvb"/>
                             <constraint firstItem="QPA-HF-giO" firstAttribute="leading" secondItem="Oam-7a-lH9" secondAttribute="trailing" constant="4" id="Xp4-i5-EWH"/>
                             <constraint firstItem="l4Q-up-93w" firstAttribute="centerY" secondItem="Fna-68-SCm" secondAttribute="centerY" id="a5K-4h-ZcV"/>
@@ -273,12 +283,12 @@
                             <constraint firstAttribute="trailing" secondItem="23y-r5-JF9" secondAttribute="trailing" id="tKs-zF-RLC"/>
                             <constraint firstItem="l4Q-up-93w" firstAttribute="top" secondItem="QPA-HF-giO" secondAttribute="bottom" constant="24" id="tmq-Vv-sNU"/>
                             <constraint firstItem="uJK-A5-jAJ" firstAttribute="leading" secondItem="ae8-V2-dxi" secondAttribute="leading" id="too-fZ-99Y"/>
-                            <constraint firstItem="eQu-bI-9l1" firstAttribute="top" secondItem="wcy-ke-xmD" secondAttribute="bottom" constant="8" id="y9p-Ny-tOA"/>
                             <constraint firstItem="QPA-HF-giO" firstAttribute="top" secondItem="sYl-M0-VAb" secondAttribute="bottom" constant="150" id="zeT-AX-i0m"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="emailField" destination="PJp-Vs-ty3" id="ssg-em-dVc"/>
+                        <outlet property="errorBGView" destination="c6B-yh-npT" id="vvq-UX-jzu"/>
                         <outlet property="errorLbl" destination="eQu-bI-9l1" id="evA-ry-pc5"/>
                         <outlet property="passwordField" destination="0Xy-Dd-fa3" id="xEF-Yn-Ldq"/>
                         <outlet property="resetPassBtn" destination="eFv-9J-UgZ" id="jKn-lR-ev1"/>
@@ -303,7 +313,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetApp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mvb-pT-dPI">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetsPic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mvb-pT-dPI">
                                 <rect key="frame" x="24" y="20" width="272" height="75"/>
                                 <fontDescription key="fontDescription" name="Lobster1.4" family="Lobster 1.4" pointSize="60"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -454,11 +464,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dog-in-wig" translatesAutoresizingMaskIntoConstraints="NO" id="m7Q-4g-Yxx">
+                            <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dog-in-wig" translatesAutoresizingMaskIntoConstraints="NO" id="m7Q-4g-Yxx">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rEI-5b-svs">
-                                <rect key="frame" x="16" y="301.5" width="35" height="35"/>
+                                <rect key="frame" x="16" y="256.5" width="35" height="35"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lock" translatesAutoresizingMaskIntoConstraints="NO" id="dSo-n3-iML">
                                         <rect key="frame" x="8" y="8" width="20" height="20"/>
@@ -478,7 +488,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rij-dn-qFj">
-                                <rect key="frame" x="16" y="254.5" width="35" height="35"/>
+                                <rect key="frame" x="16" y="209.5" width="35" height="35"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Lock" translatesAutoresizingMaskIntoConstraints="NO" id="9dM-7F-SCc">
                                         <rect key="frame" x="8" y="8" width="20" height="20"/>
@@ -498,7 +508,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pQb-R3-CrW">
-                                <rect key="frame" x="16" y="207.5" width="35" height="35"/>
+                                <rect key="frame" x="16" y="162.5" width="35" height="35"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paw-print" translatesAutoresizingMaskIntoConstraints="NO" id="J0K-gI-wqx">
                                         <rect key="frame" x="8" y="8" width="20" height="20"/>
@@ -517,16 +527,25 @@
                                     <constraint firstItem="J0K-gI-wqx" firstAttribute="centerY" secondItem="pQb-R3-CrW" secondAttribute="centerY" id="w5o-nf-TxT"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hu2-zp-dkM">
-                                <rect key="frame" x="16" y="382.5" width="288" height="20"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qcA-Pi-Z5Y">
+                                <rect key="frame" x="0.0" y="474" width="320" height="34"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hu2-zp-dkM">
+                                        <rect key="frame" x="8" y="8" width="304" height="18"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
+                                        <color key="textColor" red="0.97254901959999995" green="0.015686274510000001" blue="0.031372549020000001" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="Gnd-JW-1TB"/>
+                                    <constraint firstAttribute="trailing" secondItem="hu2-zp-dkM" secondAttribute="trailing" constant="8" id="Sa2-6H-KyM"/>
+                                    <constraint firstItem="hu2-zp-dkM" firstAttribute="top" secondItem="qcA-Pi-Z5Y" secondAttribute="top" constant="8" id="Vw3-Vu-SEF"/>
+                                    <constraint firstItem="hu2-zp-dkM" firstAttribute="leading" secondItem="qcA-Pi-Z5Y" secondAttribute="leading" constant="8" id="bIL-oA-1Kp"/>
+                                    <constraint firstAttribute="bottom" secondItem="hu2-zp-dkM" secondAttribute="bottom" constant="8" id="x47-km-wCM"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="15"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BCK-3C-yEu" customClass="RoundedCornerButton" customModule="PetApp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="508" width="320" height="60"/>
                                 <color key="backgroundColor" red="0.97550159692764282" green="0.11483331769704819" blue="0.33645856380462646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -541,14 +560,14 @@
                                     <action selector="logInPressed:" destination="oZP-Ww-SQl" eventType="touchUpInside" id="84A-lZ-QML"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetApp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qWs-K5-cfd">
-                                <rect key="frame" x="24" y="20" width="272" height="63"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetsPic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qWs-K5-cfd">
+                                <rect key="frame" x="24" y="20" width="272" height="62.5"/>
                                 <fontDescription key="fontDescription" name="Lobster1.4" family="Lobster 1.4" pointSize="50"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="29S-Y5-8BN">
-                                <rect key="frame" x="126" y="344.5" width="178" height="30"/>
+                                <rect key="frame" x="126" y="392" width="178" height="30"/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="15"/>
                                 <state key="normal" title="Already have an account?">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -558,7 +577,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="adl-3K-dKx">
-                                <rect key="frame" x="55" y="207.5" width="249" height="35"/>
+                                <rect key="frame" x="55" y="162.5" width="249" height="35"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="email" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="aPg-yI-9yI">
                                         <rect key="frame" x="16" y="8" width="233" height="19"/>
@@ -577,7 +596,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YbW-15-Plj">
-                                <rect key="frame" x="55" y="254.5" width="249" height="35"/>
+                                <rect key="frame" x="55" y="209.5" width="249" height="35"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Create password (6+ characters)" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="8oG-Nn-7jf">
                                         <rect key="frame" x="16" y="8" width="233" height="19"/>
@@ -596,7 +615,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rdR-ny-G4F">
-                                <rect key="frame" x="55" y="301.5" width="249" height="35"/>
+                                <rect key="frame" x="55" y="256.5" width="249" height="35"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your password again" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="f6f-87-u4N">
                                         <rect key="frame" x="16" y="8" width="233" height="19"/>
@@ -614,43 +633,122 @@
                                     <constraint firstAttribute="height" constant="35" id="tBZ-LW-pu3"/>
                                 </constraints>
                             </view>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="g4a-GD-ybr">
+                                <rect key="frame" x="58" y="354" width="246" height="30"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Js4-oS-rvD">
+                                        <rect key="frame" x="0.0" y="0.0" width="113" height="30"/>
+                                        <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="14"/>
+                                        <state key="normal" title="Terms of Service">
+                                            <color key="titleColor" red="0.72156862749999995" green="0.91372549020000005" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="hDx-7v-Kau" kind="show" id="PBn-uZ-oaB"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="and" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="te9-9a-JZs">
+                                        <rect key="frame" x="117" y="0.0" width="26" height="30"/>
+                                        <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="14"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3mU-TR-WvX">
+                                        <rect key="frame" x="147" y="0.0" width="99" height="30"/>
+                                        <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="15"/>
+                                        <state key="normal" title="Privacy Policy">
+                                            <color key="titleColor" red="0.72156862749999995" green="0.91372549020000005" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <segue destination="mJh-J0-qee" kind="show" id="H6C-Yh-3Qx"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I am at least 18 years old" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9A4-Q9-7or">
+                                <rect key="frame" x="59.5" y="301.5" width="165" height="16.5"/>
+                                <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I have read and agree to the " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4lH-AS-3fF">
+                                <rect key="frame" x="58" y="337.5" width="190.5" height="16.5"/>
+                                <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="14"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aJu-Ej-uQW">
+                                <rect key="frame" x="31.5" y="299.5" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="5jA-vx-rM6"/>
+                                    <constraint firstAttribute="height" constant="20" id="syS-5h-ax9"/>
+                                </constraints>
+                                <state key="normal" image="box"/>
+                                <connections>
+                                    <action selector="checkboxForAgeTapped:" destination="oZP-Ww-SQl" eventType="touchUpInside" id="KSw-sR-YfS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bve-IY-SPK">
+                                <rect key="frame" x="31" y="335.5" width="20" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="DIo-Os-b6Q"/>
+                                    <constraint firstAttribute="width" constant="20" id="mfz-Ku-fl2"/>
+                                </constraints>
+                                <state key="normal" image="box"/>
+                                <connections>
+                                    <action selector="checkboxForTOSTapped:" destination="oZP-Ww-SQl" eventType="touchUpInside" id="lW8-W7-cVJ"/>
+                                </connections>
+                            </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="m7Q-4g-Yxx" secondAttribute="trailing" id="1e4-Co-aXl"/>
                             <constraint firstItem="qWs-K5-cfd" firstAttribute="top" secondItem="l93-3Y-m6e" secondAttribute="bottom" id="2r4-hw-pDj"/>
-                            <constraint firstItem="adl-3K-dKx" firstAttribute="top" secondItem="qWs-K5-cfd" secondAttribute="bottom" constant="125" id="6DX-2Y-l0b"/>
+                            <constraint firstItem="adl-3K-dKx" firstAttribute="top" secondItem="qWs-K5-cfd" secondAttribute="bottom" constant="80" id="6DX-2Y-l0b"/>
                             <constraint firstItem="rEI-5b-svs" firstAttribute="leading" secondItem="J0j-24-92X" secondAttribute="leadingMargin" id="8W3-Eu-pOH"/>
-                            <constraint firstItem="hu2-zp-dkM" firstAttribute="leading" secondItem="J0j-24-92X" secondAttribute="leadingMargin" id="Bzt-WW-aSt"/>
+                            <constraint firstItem="bve-IY-SPK" firstAttribute="centerX" secondItem="aJu-Ej-uQW" secondAttribute="centerX" id="90H-0q-15h"/>
+                            <constraint firstAttribute="trailing" secondItem="qcA-Pi-Z5Y" secondAttribute="trailing" id="9RJ-dO-xez"/>
+                            <constraint firstItem="9A4-Q9-7or" firstAttribute="centerY" secondItem="aJu-Ej-uQW" secondAttribute="centerY" id="9se-RB-0fR"/>
+                            <constraint firstItem="29S-Y5-8BN" firstAttribute="top" secondItem="g4a-GD-ybr" secondAttribute="bottom" constant="8" id="9uK-AR-xFX"/>
                             <constraint firstAttribute="trailing" secondItem="BCK-3C-yEu" secondAttribute="trailing" id="D7Z-ZZ-ECY"/>
                             <constraint firstItem="pQb-R3-CrW" firstAttribute="centerY" secondItem="adl-3K-dKx" secondAttribute="centerY" id="DKj-fI-Y6k"/>
                             <constraint firstItem="qWs-K5-cfd" firstAttribute="leading" secondItem="J0j-24-92X" secondAttribute="leadingMargin" constant="8" id="E5c-np-x40"/>
                             <constraint firstAttribute="trailingMargin" secondItem="adl-3K-dKx" secondAttribute="trailing" id="FoN-ND-Yn7"/>
                             <constraint firstItem="cve-eG-bpZ" firstAttribute="top" secondItem="m7Q-4g-Yxx" secondAttribute="bottom" id="J0l-Lh-9xB"/>
-                            <constraint firstItem="hu2-zp-dkM" firstAttribute="top" secondItem="29S-Y5-8BN" secondAttribute="bottom" constant="8" id="N2w-bz-Aii"/>
+                            <constraint firstItem="g4a-GD-ybr" firstAttribute="leading" secondItem="4lH-AS-3fF" secondAttribute="leading" id="JHD-q5-k7X"/>
                             <constraint firstAttribute="trailingMargin" secondItem="rdR-ny-G4F" secondAttribute="trailing" id="Pcp-Oe-Avi"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YbW-15-Plj" secondAttribute="trailing" id="Pr3-2X-N65"/>
+                            <constraint firstItem="g4a-GD-ybr" firstAttribute="top" secondItem="4lH-AS-3fF" secondAttribute="bottom" id="QnS-S8-xCS"/>
                             <constraint firstItem="rij-dn-qFj" firstAttribute="leading" secondItem="J0j-24-92X" secondAttribute="leadingMargin" id="SeK-BY-BCC"/>
                             <constraint firstItem="rdR-ny-G4F" firstAttribute="leading" secondItem="rEI-5b-svs" secondAttribute="trailing" constant="4" id="WAw-RU-TYp"/>
+                            <constraint firstItem="bve-IY-SPK" firstAttribute="top" secondItem="aJu-Ej-uQW" secondAttribute="bottom" constant="16" id="ZXp-Ik-Vgd"/>
                             <constraint firstItem="m7Q-4g-Yxx" firstAttribute="leading" secondItem="J0j-24-92X" secondAttribute="leading" id="Zfl-qh-Kv1"/>
                             <constraint firstAttribute="trailingMargin" secondItem="qWs-K5-cfd" secondAttribute="trailing" constant="8" id="aqO-CZ-CIa"/>
                             <constraint firstItem="YbW-15-Plj" firstAttribute="top" secondItem="adl-3K-dKx" secondAttribute="bottom" constant="12" id="bbn-Vg-ek7"/>
+                            <constraint firstItem="9A4-Q9-7or" firstAttribute="leading" secondItem="aJu-Ej-uQW" secondAttribute="trailing" constant="8" id="bkc-Ue-jIU"/>
                             <constraint firstItem="pQb-R3-CrW" firstAttribute="leading" secondItem="J0j-24-92X" secondAttribute="leadingMargin" id="cRW-3B-UP9"/>
                             <constraint firstItem="cve-eG-bpZ" firstAttribute="top" secondItem="BCK-3C-yEu" secondAttribute="bottom" id="du2-OK-aA2"/>
                             <constraint firstItem="BCK-3C-yEu" firstAttribute="leading" secondItem="J0j-24-92X" secondAttribute="leading" id="f5O-qw-G1T"/>
                             <constraint firstItem="29S-Y5-8BN" firstAttribute="trailing" secondItem="rdR-ny-G4F" secondAttribute="trailing" id="fXq-GT-aEP"/>
                             <constraint firstItem="YbW-15-Plj" firstAttribute="leading" secondItem="rij-dn-qFj" secondAttribute="trailing" constant="4" id="gPj-zX-u35"/>
-                            <constraint firstItem="29S-Y5-8BN" firstAttribute="top" secondItem="rdR-ny-G4F" secondAttribute="bottom" constant="8" id="kZI-oQ-jhA"/>
                             <constraint firstItem="rij-dn-qFj" firstAttribute="centerY" secondItem="YbW-15-Plj" secondAttribute="centerY" id="kkd-dW-fTX"/>
                             <constraint firstItem="adl-3K-dKx" firstAttribute="leading" secondItem="pQb-R3-CrW" secondAttribute="trailing" constant="4" id="lfn-gP-UVk"/>
+                            <constraint firstItem="aJu-Ej-uQW" firstAttribute="centerX" secondItem="rEI-5b-svs" secondAttribute="centerX" constant="8" id="lzT-T8-KTQ"/>
                             <constraint firstItem="rdR-ny-G4F" firstAttribute="top" secondItem="YbW-15-Plj" secondAttribute="bottom" constant="12" id="mJY-zf-sL9"/>
                             <constraint firstItem="rEI-5b-svs" firstAttribute="centerY" secondItem="rdR-ny-G4F" secondAttribute="centerY" id="p2d-T1-3I3"/>
-                            <constraint firstItem="hu2-zp-dkM" firstAttribute="trailing" secondItem="J0j-24-92X" secondAttribute="trailingMargin" id="p6n-1J-YUH"/>
+                            <constraint firstItem="4lH-AS-3fF" firstAttribute="leading" secondItem="bve-IY-SPK" secondAttribute="trailing" constant="7" id="pBE-zB-BCb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="g4a-GD-ybr" secondAttribute="trailing" id="qmT-ck-uab"/>
+                            <constraint firstItem="qcA-Pi-Z5Y" firstAttribute="leading" secondItem="J0j-24-92X" secondAttribute="leading" id="tco-9K-OMN"/>
+                            <constraint firstItem="aJu-Ej-uQW" firstAttribute="top" secondItem="rEI-5b-svs" secondAttribute="bottom" constant="8" id="v8G-Dx-1hk"/>
+                            <constraint firstItem="4lH-AS-3fF" firstAttribute="centerY" secondItem="bve-IY-SPK" secondAttribute="centerY" id="vb1-Wj-AoJ"/>
                             <constraint firstItem="m7Q-4g-Yxx" firstAttribute="top" secondItem="J0j-24-92X" secondAttribute="top" id="wxK-mU-TpH"/>
+                            <constraint firstItem="BCK-3C-yEu" firstAttribute="top" secondItem="qcA-Pi-Z5Y" secondAttribute="bottom" id="x4p-0C-ail"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="checkboxForAge" destination="aJu-Ej-uQW" id="FvS-aa-FDG"/>
+                        <outlet property="checkboxForTOS" destination="bve-IY-SPK" id="ZH4-fG-aHh"/>
                         <outlet property="emailField" destination="aPg-yI-9yI" id="WEO-VD-lrc"/>
+                        <outlet property="errorBGView" destination="qcA-Pi-Z5Y" id="fV6-cO-bux"/>
                         <outlet property="errorLbl" destination="hu2-zp-dkM" id="fXM-4y-QlB"/>
                         <outlet property="password2" destination="f6f-87-u4N" id="avk-9u-4fU"/>
                         <outlet property="passwordField" destination="8oG-Nn-7jf" id="lYM-dP-700"/>
@@ -660,7 +758,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AVh-pW-vPi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-199" y="796"/>
+            <point key="canvasLocation" x="-200.625" y="795.42253521126759"/>
         </scene>
         <!--UsernameVC-->
         <scene sceneID="6LL-Jq-Ipx">
@@ -674,12 +772,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dog-in-wig" translatesAutoresizingMaskIntoConstraints="NO" id="dyl-xf-QFX">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dog-in-wig" translatesAutoresizingMaskIntoConstraints="NO" id="dyl-xf-QFX">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u6x-aR-UY6">
-                                <rect key="frame" x="16" y="207.5" width="35" height="35"/>
+                                <rect key="frame" x="16" y="207" width="35" height="35"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paw-print" translatesAutoresizingMaskIntoConstraints="NO" id="atB-gW-bLv">
                                         <rect key="frame" x="8" y="8" width="20" height="20"/>
@@ -698,8 +795,8 @@
                                     <constraint firstAttribute="height" constant="35" id="xAr-dn-aib"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetApp" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kbg-tp-Q4h">
-                                <rect key="frame" x="24" y="20" width="288" height="63"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PetsPic" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kbg-tp-Q4h">
+                                <rect key="frame" x="24" y="20" width="288" height="62.5"/>
                                 <fontDescription key="fontDescription" name="Lobster1.4" family="Lobster 1.4" pointSize="50"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -719,7 +816,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JLY-YM-vSE">
-                                <rect key="frame" x="55" y="207.5" width="249" height="35"/>
+                                <rect key="frame" x="55" y="207" width="249" height="35"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Choose your username" textAlignment="natural" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="mUP-yB-nyH">
                                         <rect key="frame" x="16" y="8" width="233" height="19"/>
@@ -743,7 +840,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TZv-zB-1zN">
-                                <rect key="frame" x="16" y="254.5" width="288" height="20"/>
+                                <rect key="frame" x="16" y="254" width="288" height="20"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="cC5-G6-M9Z"/>
@@ -753,14 +850,17 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="kbg-tp-Q4h" firstAttribute="leading" secondItem="OXr-Bk-ZHJ" secondAttribute="leadingMargin" constant="8" id="0XG-kz-SM3"/>
+                            <constraint firstItem="dyl-xf-QFX" firstAttribute="leading" secondItem="OXr-Bk-ZHJ" secondAttribute="leading" id="6fg-mX-tqz"/>
                             <constraint firstItem="u6x-aR-UY6" firstAttribute="leading" secondItem="OXr-Bk-ZHJ" secondAttribute="leadingMargin" id="8Rq-fK-PP4"/>
+                            <constraint firstAttribute="bottom" secondItem="dyl-xf-QFX" secondAttribute="bottom" id="IXI-1y-DQ1"/>
                             <constraint firstItem="JLY-YM-vSE" firstAttribute="leading" secondItem="u6x-aR-UY6" secondAttribute="trailing" constant="4" id="IiX-oO-0Sr"/>
                             <constraint firstItem="TZv-zB-1zN" firstAttribute="leading" secondItem="OXr-Bk-ZHJ" secondAttribute="leadingMargin" id="Kkq-mZ-Exx"/>
                             <constraint firstAttribute="trailingMargin" secondItem="TZv-zB-1zN" secondAttribute="trailing" id="QfD-5Q-6yL"/>
+                            <constraint firstItem="dyl-xf-QFX" firstAttribute="top" secondItem="OXr-Bk-ZHJ" secondAttribute="top" id="SoW-vj-0De"/>
                             <constraint firstItem="iax-cg-KRC" firstAttribute="top" secondItem="ivO-UL-Bc3" secondAttribute="bottom" id="WOE-yo-v84"/>
                             <constraint firstItem="kbg-tp-Q4h" firstAttribute="trailing" secondItem="OXr-Bk-ZHJ" secondAttribute="trailingMargin" constant="8" id="YgP-oW-oqi"/>
                             <constraint firstItem="u6x-aR-UY6" firstAttribute="centerY" secondItem="JLY-YM-vSE" secondAttribute="centerY" id="fIX-ZE-DOf"/>
@@ -770,6 +870,7 @@
                             <constraint firstAttribute="trailing" secondItem="ivO-UL-Bc3" secondAttribute="trailing" id="sG2-Q7-x7Y"/>
                             <constraint firstItem="kbg-tp-Q4h" firstAttribute="top" secondItem="Nri-gl-sBI" secondAttribute="bottom" id="t11-vw-tJf"/>
                             <constraint firstItem="JLY-YM-vSE" firstAttribute="top" secondItem="kbg-tp-Q4h" secondAttribute="bottom" constant="125" id="tK9-rx-ngc"/>
+                            <constraint firstAttribute="trailing" secondItem="dyl-xf-QFX" secondAttribute="trailing" id="yag-DV-kb2"/>
                         </constraints>
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="Gr2-jg-ACR" appends="YES" id="cfe-Zi-xAd"/>
@@ -937,6 +1038,26 @@
                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1XV-OJ-qgl">
+                                <rect key="frame" x="24" y="252" width="73" height="26"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <state key="normal" title="Privacy Policy">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="BFv-Pj-QWc" kind="show" id="c1V-0y-HIn"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="331-xq-rSq">
+                                <rect key="frame" x="24" y="278" width="89" height="26"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <state key="normal" title="Terms of Service">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="ecu-Zt-9Dn" kind="show" id="P0X-nW-0cO"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
@@ -948,10 +1069,12 @@
                             <constraint firstItem="zNP-ni-cRH" firstAttribute="height" secondItem="x6N-fR-Pwe" secondAttribute="height" id="GyZ-5r-boT"/>
                             <constraint firstAttribute="trailingMargin" secondItem="4wy-BP-gkC" secondAttribute="trailing" constant="8" id="JoV-Qd-Yu3"/>
                             <constraint firstItem="i7e-E5-EJo" firstAttribute="leading" secondItem="zzj-oC-mws" secondAttribute="leadingMargin" constant="8" id="LF2-Ab-tlm"/>
+                            <constraint firstItem="331-xq-rSq" firstAttribute="top" secondItem="1XV-OJ-qgl" secondAttribute="bottom" id="MYD-1J-bes"/>
                             <constraint firstItem="x6N-fR-Pwe" firstAttribute="top" secondItem="jWt-Gs-7f5" secondAttribute="bottom" constant="8" id="OfJ-Fw-aDh"/>
                             <constraint firstItem="OmQ-2M-Ums" firstAttribute="top" secondItem="zNP-ni-cRH" secondAttribute="bottom" constant="16" id="P3A-Vz-gWw"/>
                             <constraint firstAttribute="trailingMargin" secondItem="R61-QN-fqk" secondAttribute="trailing" constant="8" id="Q2G-nS-apn"/>
                             <constraint firstItem="R61-QN-fqk" firstAttribute="top" secondItem="AK2-mz-5hG" secondAttribute="bottom" constant="8" id="Q4c-h4-OCa"/>
+                            <constraint firstItem="1XV-OJ-qgl" firstAttribute="top" secondItem="AK2-mz-5hG" secondAttribute="bottom" constant="24" id="QaZ-gD-HPl"/>
                             <constraint firstAttribute="trailingMargin" secondItem="44q-PY-byf" secondAttribute="trailing" constant="8" id="Qm4-DX-alK"/>
                             <constraint firstItem="zNP-ni-cRH" firstAttribute="centerY" secondItem="x6N-fR-Pwe" secondAttribute="centerY" id="QyY-wF-hXV"/>
                             <constraint firstItem="44q-PY-byf" firstAttribute="top" secondItem="i7e-E5-EJo" secondAttribute="bottom" constant="8" id="RPb-J5-WO6"/>
@@ -964,9 +1087,11 @@
                             <constraint firstItem="i6O-ev-DOQ" firstAttribute="leading" secondItem="x6N-fR-Pwe" secondAttribute="trailing" constant="16" id="fV3-R5-m1w"/>
                             <constraint firstItem="i6O-ev-DOQ" firstAttribute="top" secondItem="4wy-BP-gkC" secondAttribute="bottom" constant="8" id="fcR-Fv-rRV"/>
                             <constraint firstItem="zNP-ni-cRH" firstAttribute="width" secondItem="x6N-fR-Pwe" secondAttribute="width" id="hi1-ef-Vth"/>
+                            <constraint firstItem="1XV-OJ-qgl" firstAttribute="leading" secondItem="zzj-oC-mws" secondAttribute="leadingMargin" constant="8" id="hqz-Xk-2Zb"/>
                             <constraint firstAttribute="trailingMargin" secondItem="AK2-mz-5hG" secondAttribute="trailing" constant="8" id="inm-hf-Pr7"/>
                             <constraint firstAttribute="trailingMargin" secondItem="OmQ-2M-Ums" secondAttribute="trailing" constant="8" id="kUf-WR-HcR"/>
                             <constraint firstItem="AK2-mz-5hG" firstAttribute="leading" secondItem="zzj-oC-mws" secondAttribute="leadingMargin" constant="8" id="umS-Nl-zL2"/>
+                            <constraint firstItem="331-xq-rSq" firstAttribute="leading" secondItem="zzj-oC-mws" secondAttribute="leadingMargin" constant="8" id="wtX-BL-eEI"/>
                             <constraint firstItem="i7e-E5-EJo" firstAttribute="top" secondItem="OmQ-2M-Ums" secondAttribute="bottom" constant="8" id="xQY-bz-sAE"/>
                             <constraint firstItem="x6N-fR-Pwe" firstAttribute="leading" secondItem="zzj-oC-mws" secondAttribute="leadingMargin" constant="8" id="ys7-qn-LOr"/>
                         </constraints>
@@ -988,6 +1113,173 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HAk-d2-Wgc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6736.8000000000002" y="888.30584707646187"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="T5F-H0-ALm">
+            <objects>
+                <viewController id="ecu-Zt-9Dn" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="iaw-5V-QFs"/>
+                        <viewControllerLayoutGuide type="bottom" id="faF-Sj-WHf"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Hz4-Qa-YkD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="iei-C4-1fc">
+                                <rect key="frame" x="16" y="28" width="288" height="540"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <mutableString key="text">Terms of Use (Rev. 133A18A) 1 / 11State of Texas Rev. 133A18ATERMS OF USE__________Version Date: July 25, 2017TERMS OF USE AGREEMENTThis Terms of Use Agreement (“Agreement”) constitutes a legally binding agreement made between you,whether personally or on behalf of an entity (“user” or “you”) and PetsPic and its affiliated companies(collectively, “Company” or “we” or “us” or “our”), concerning your access to and use of the PetsPic mobile application as well as any other media form, media channel, mobile website or mobile application related orconnected thereto (collectively, the "PetsPic"). PetsPic provides the following service: SocialNetwork experience for pet owners (“Company Services”). Supplemental terms and conditions ordocuments that may be posted on the PetsPic from time to time, are hereby expressly incorporated intothis Agreement by reference.Company makes no representation that PetsPic is appropriate or available in other locations otherthan where it is operated by Company. The information provided on the PetsPic is not intended fordistribution to or use by any person or entity in any jurisdiction or country where such distribution or usewould be contrary to law or regulation or which would subject Company to any registration requirementwithin such jurisdiction or country. Accordingly, those persons who choose to access the PetsPic fromother locations do so on their own initiative and are solely responsible for compliance with local laws, ifand to the extent local laws are applicable.All users who are minors in the jurisdiction in which they reside (generally under the age of 18) are notpermitted to register for the PetsPic or use the Company Services.YOU ACCEPT AND AGREE TO BE BOUND BY THIS AGREEMENT BY ACKNOWLEDGING SUCHACCEPTANCE DURING THE REGISTRATION PROCESS (IF APPLICABLE) AND ALSO BYCONTINUING TO USE THE PetsPic. IF YOU DO NOT AGREE TO ABIDE BY THIS AGREEMENT,OR TO MODIFICATIONS THAT COMPANY MAY MAKE TO THIS AGREEMENT IN THE FUTURE, DONOT USE OR ACCESS OR CONTINUE TO USE OR ACCESS THE COMPANY SERVICES OR THEWEBSITE.USER REPRESENTATIONSRegarding Your RegistrationBy using the Company Services, you represent and warrant that:A.　all registration information you submit is truthful and accurate;B.　you will maintain the accuracy of such information;C.　you will keep your password confidential and will be responsible for all use of your passwordand account;D.　you are not a minor in the jurisdiction in which you reside, or if a minor, you have receivedparental permission to use this Website; andTerms of Use (Rev. 133A18A) 2 / 11E.　your use of the Company Services does not violate any applicable law or regulation.You also agree to: (a) provide true, accurate, current and complete information about yourself asprompted by the PetsPic’s registration form and (b) maintain and promptly update registration data tokeep it true, accurate, current and complete. If you provide any information that is untrue, inaccurate, notcurrent or incomplete, or Company has reasonable grounds to suspect that such information is untrue,inaccurate, not current or incomplete, Company has the right to suspend or terminate your account andrefuse any and all current or future use of the PetsPic (or any portion thereof).We reserve the right to remove or reclaim or change a user name you select if we determine appropriatein our discretion, such as when the user name is obscene or otherwise objectionable or when atrademark owner complains about a username that does not closely relate to a user's actual name.Regarding Content You ProvideThe PetsPic may invite you to chat or participate in blogs, message boards, online forums and otherfunctionality and may provide you with the opportunity to create, submit, post, display, transmit, perform,publish, distribute or broadcast content and materials to Company and/or to or via the PetsPic, including,without limitation, text, writings, video, audio, photographs, graphics, comments, suggestions orpersonally identifiable information or other material (collectively "Contributions"). Any Contributions youtransmit to Company will be treated as non-confidential and non-proprietary. When you create or makeavailable a Contribution, you thereby represent and warrant that:A.　the creation, distribution, transmission, public display and performance, accessing,downloading and copying of your Contribution does not and will not infringe the proprietaryrights, including but not limited to the copyright, patent, trademark, trade secret or moral rightsof any third party;B.　you are the creator and owner of or have the necessary licenses, rights, consents, releasesand permissions to use and to authorize Company and the PetsPic users to use yourContributions as necessary to exercise the licenses granted by you under this Agreement;C.　you have the written consent, release, and/or permission of each and every identifiableindividual person in the Contribution to use the name or likeness of each and every suchidentifiable individual person to enable inclusion and use of the Contribution in the mannercontemplated by this Website;D.　your Contribution is not obscene, lewd, lascivious, filthy, violent, harassing or otherwiseobjectionable (as determined by Company), libelous or slanderous, does not ridicule, mock,disparage, intimidate or abuse anyone, does not advocate the violent overthrow of anygovernment, does not incite, encourage or threaten physical harm against another, does notviolate any applicable law, regulation, or rule, and does not violate the privacy or publicityrights of any third party;E.　your Contribution does not contain material that solicits personal information from anyoneunder 18 or exploit people under the age of 18 in a sexual or violent manner, and does notviolate any federal or state law concerning child pornography or otherwise intended to protectthe health or well-being of minors;F.　your Contribution does not include any offensive comments that are connected to race,national origin, gender, sexual preference or physical handicap;G.　your Contribution does not otherwise violate, or link to material that violates, any provision ofthis Agreement or any applicable law or regulation.Terms of Use (Rev. 133A18A) 3 / 11CONTRIBUTION LICENSEBy posting Contributions to any part of the PetsPic, or making them accessible to the PetsPic by linkingyour account to any of your social network accounts, you automatically grant, and you represent andwarrant that you have the right to grant, to Company an unrestricted, unconditional, unlimited, irrevocable,perpetual, non-exclusive, transferable, royalty-free, fully-paid, worldwide right and license to host, use,copy, reproduce, disclose, sell, resell, publish, broadcast, retitle, archive, store, cache, publicly perform,publicly display, reformat, translate, transmit, excerpt (in whole or in part) and distribute suchContributions (including, without limitation, your image and voice) for any purpose, commercial,advertising, or otherwise, to prepare derivative works of, or incorporate into other works, suchContributions, and to grant and authorize sublicenses of the foregoing. The use and distribution mayoccur in any media formats and through any media channels. Such use and distribution license will applyto any form, media, or technology now known or hereafter developed, and includes our use of your name,company name, and franchise name, as applicable, and any of the trademarks, service marks, tradenames and logos, personal and commercial images you provide. Company does not assert anyownership over your Contributions; rather, as between us and you, subject to the rights granted to us inthis Agreement, you retain full ownership of all of your Contributions and any intellectual property rights orother proprietary rights associated with your Contributions.Company has the right, in our sole and absolute discretion, to (i) edit, redact or otherwise change anyContributions, (ii) re-categorize any Contributions to place them in more appropriate locations or (iii) prescreenor delete any Contributions that are determined to be inappropriate or otherwise in violation of thisAgreement.By uploading your Contributions to the PetsPic, you hereby authorize Company to grant to each end usera personal, limited, non-transferable, perpetual, non-exclusive, royalty-free, fully-paid license to access,download, print and otherwise use your Contributions for their internal purposes and not for distribution,transfer, sale or commercial exploitation of any kind.MOBILE APPLICATION LICENSEUse LicenseIf you are accessing the Company Services via a mobile application, then Company grants you arevocable, non-exclusive, non-transferable, limited right to install and use the application on wirelesshandsets owned and controlled by you, and to access and use the application on such devices strictly inaccordance with the terms and conditions of this license. You shall use the application strictly inaccordance with the terms of this license and shall not: (a) decompile, reverse engineer, disassemble,attempt to derive the source code of, or decrypt the application; (b) make any modification, adaptation,improvement, enhancement, translation or derivative work from the application; (c) violate any applicablelaws, rules or regulations in connection with your access or use of the application; (d) remove, alter orobscure any proprietary notice (including any notice of copyright or trademark) of Company or itsaffiliates, partners, suppliers or the licensors of the application; (e) use the application for any revenuegenerating endeavor, commercial enterprise, or other purpose for which it is not designed or intended; (f)make the application available over a network or other environment permitting access or use by multipledevices or users at the same time; (g) use the application for creating a product, service or software thatis, directly or indirectly, competitive with or in any way a substitute for the application; (h) use theapplication to send automated queries to any website or to send any unsolicited commercial e-mail; or (i)Terms of Use (Rev. 133A18A) 4 / 11use any proprietary information or interfaces of Company or other intellectual property of Company in thedesign, development, manufacture, licensing or distribution of any applications, accessories or devices foruse with the application.Terms Applicable to Apple and Android DevicesThe following terms apply when you use a mobile application obtained from either the Apple Store orGoogle Play to access the Company Services. You acknowledge that this Agreement is concludedbetween you and Company only, and not with Apple Inc. or Google, Inc. (each an “App Distributor”), andCompany, not an App Distributor, is solely responsible for the Company application and the contentthereof. (1) SCOPE OF LICENSE: The license granted to you for the Company application is limited to anon-transferable license to use the Company application on a device that utilizes the Apple iOS orAndroid operating system, as applicable, and in accordance with the usage rules set forth in theapplicable App Distributor terms of service. (2) MAINTENANCE AND SUPPORT: Company is solelyresponsible for providing any maintenance and support services with respect to the Company application,as specified in this Agreement, or as required under applicable law. You acknowledge that each AppDistributor has no obligation whatsoever to furnish any maintenance and support services with respect tothe Company application. (3) WARRANTY: Company is solely responsible for any product warranties,whether express or implied by law, to the extent not effectively disclaimed. In the event of any failure ofthe Company application to conform to any applicable warranty, you may notify an App Distributor, andthe App Distributor, in accordance with its terms and policies, may refund the purchase price, if any, paidfor the Company application, and to the maximum extent permitted by applicable law, an App Distributorwill have no other warranty obligation whatsoever with respect to the Company application, and any otherclaims, losses, liabilities, damages, costs or expenses attributable to any failure to conform to anywarranty will be Company’s sole responsibility. (4) PRODUCT CLAIMS: You acknowledge that Company,not an App Distributor, is responsible for addressing any claims of yours or any third party relating to theCompany application or your possession and/or use of the Company application, including, but not limitedto: (i) product liability claims; (ii) any claim that the Company application fails to conform to any applicablelegal or regulatory requirement; and (iii) claims arising under consumer protection or similar legislation. (5)INTELLECTUAL PROPERTY RIGHTS: You acknowledge that, in the event of any third party claim thatthe Company application or your possession and use of the Company application infringes a third party’sintellectual property rights, the App Distributor will not be responsible for the investigation, defense,settlement and discharge of any such intellectual property infringement claim. (6) LEGAL COMPLIANCE:You represent and warrant that (i) you are not located in a country that is subject to a U.S. governmentembargo, or that has been designated by the U.S. government as a “terrorist supporting” country; and (ii)you are not listed on any U.S. government list of prohibited or restricted parties. (7) THIRD PARTYTERMS OF AGREEMENT: You must comply with applicable third party terms of agreement when usingthe Company application, e.g., if you have a VoIP application, then you must not be in violation of theirwireless data service agreement when using the Company application. (8) THIRD PARTYBENEFICIARY: Company and you acknowledge and agree that the App Distributors, and theirsubsidiaries, are third party beneficiaries of this Agreement, and that, upon your acceptance of the termsand conditions of this Agreement, each App Distributor will have the right (and will be deemed to haveaccepted the right) to enforce this Agreement against you as a third party beneficiary thereof.SUBMISSIONSTerms of Use (Rev. 133A18A) 5 / 11You acknowledge and agree that any questions, comments, suggestions, ideas, feedback or otherinformation about the PetsPic or the Company Services ("Submissions") provided by you to Companyare non-confidential and Company (as well as any designee of Company) shall be entitled to theunrestricted use and dissemination of these Submissions for any purpose, commercial or otherwise,without acknowledgment or compensation to you.PROHIBITED ACTIVITIESYou may not access or use the PetsPic for any other purpose other than that for which Company makesit available. The PetsPic may not be used in connection with any commercial endeavors except thosethat are specifically endorsed or approved by Company. Prohibited activity includes, but is not limited to:A.　attempting to bypass any measures of the PetsPic designed to prevent or restrict access tothe PetsPic, or any portion of the PetsPicB.　attempting to impersonate another user or person or using the username of another userC.　criminal or tortious activityD.　deciphering, decompiling, disassembling or reverse engineering any of the softwarecomprising or in any way making up a part of the PetsPicE.　deleting the copyright or other proprietary rights notice from any Website contentF.　except as may be the result of standard search engine or Internet browser usage, using orlaunching, developing or distributing any automated system, including, without limitation, anyspider, robot (or "bot"), cheat utility, scraper or offline reader that accesses the PetsPic, orusing or launching any unauthorized script or other softwareG.　harassing, annoying, intimidating or threatening any Company employees or agents engagedin providing any portion of the Company Services to youH.　interfering with, disrupting, or creating an undue burden on the PetsPic or the networks orservices connected to the PetsPicI.　making any unauthorized use of the Company Services, including collecting usernames and/oremail addresses of users by electronic or other means for the purpose of sending unsolicitedemail, or creating user accounts by automated means or under false pretensesJ.　selling or otherwise transferring your profileK.　systematic retrieval of data or other content from the PetsPic to create or compile, directly orindirectly, a collection, compilation, database or directory without written permission fromCompanyL.　tricking, defrauding or misleading Company and other users, especially in any attempt to learnsensitive account information such as passwordsM.　using any information obtained from the PetsPic in order to harass, abuse, or harm anotherpersonN.　using the Company Services as part of any effort to compete with Company or to provideservices as a service bureauO.　using the PetsPic in a manner inconsistent with any and all applicable laws and regulationsINTELLECTUAL PROPERTY RIGHTSThe content on the PetsPic (“Company Content”) and the trademarks, service marks and logos containedtherein (“Marks”) are owned by or licensed to Company, and are subject to copyright and otherintellectual property rights under United States and foreign laws and international conventions. CompanyContent, includes, without limitation, all source code, databases, functionality, software, website designs,audio, video, text, photographs and graphics. All Company graphics, logos, designs, page headers,button icons, scripts and service names are registered trademarks, common law trademarks or tradeTerms of Use (Rev. 133A18A) 6 / 11dress of Company in the United States and/or other countries. Company's trademarks and trade dressmay not be used, including as part of trademarks and/or as part of domain names, in connection with anyproduct or service in any manner that is likely to cause confusion and may not be copied, imitated, orused, in whole or in part, without the prior written permission of the Company.Company Content on the PetsPic is provided to you “AS IS” for your information and personal use onlyand may not be used, copied, reproduced, aggregated, distributed, transmitted, broadcast, displayed,sold, licensed, or otherwise exploited for any other purposes whatsoever without the prior written consentof the respective owners. Provided that you are eligible to use the PetsPic, you are granted a limitedlicense to access and use the PetsPic and the Company Content and to download or print a copy of anyportion of the Company Content to which you have properly gained access solely for your personal, noncommercialuse. Company reserves all rights not expressly granted to you in and to the PetsPic andCompany Content and Marks.THIRD PARTY WEBSITES AND CONTENTThe PetsPic contains (or you may be sent through the PetsPic or the Company Services) links to otherwebsites ("Third Party Websites") as well as articles, photographs, text, graphics, pictures, designs,music, sound, video, information, applications, software and other content or items belonging to ororiginating from third parties (the "Third Party Content"). Such Third Party Websites and Third PartyContent are not investigated, monitored or checked for accuracy, appropriateness, or completeness byus, and we are not responsible for any Third Party Websites accessed through the PetsPic or any ThirdParty Content posted on, available through or installed from the PetsPic, including the content, accuracy,offensiveness, opinions, reliability, privacy practices or other policies of or contained in the Third PartyWebsites or the Third Party Content. Inclusion of, linking to or permitting the use or installation of anyThird Party Website or any Third Party Content does not imply approval or endorsement thereof by us. Ifyou decide to leave the PetsPic and access the Third Party Websites or to use or install any Third PartyContent, you do so at your own risk and you should be aware that our terms and policies no longergovern. You should review the applicable terms and policies, including privacy and data gatheringpractices, of any website to which you navigate from the PetsPic or relating to any applications you useor install from the PetsPic. Any purchases you make through Third Party Websites will be through otherwebsites and from other companies, and Company takes no responsibility whatsoever in relation to suchpurchases which are exclusively between you and the applicable third party.SITE MANAGEMENTCompany reserves the right but does not have the obligation to:A.　monitor the PetsPic for violations of this Agreement;B.　take appropriate legal action against anyone who, in Company’s sole discretion, violates thisAgreement, including without limitation, reporting such user to law enforcement authorities;C.　in Company’s sole discretion and without limitation, refuse, restrict access to or availability of,or disable (to the extent technologically feasible) any user’s contribution or any portion thereofthat may violate this Agreement or any Company policy;D.　in Company’s sole discretion and without limitation, notice or liability to remove from theWebsite or otherwise disable all files and content that are excessive in size or are in any wayburdensome to Company’s systems;Terms of Use (Rev. 133A18A) 7 / 11E.　otherwise manage the PetsPic in a manner designed to protect the rights and property ofCompany and others and to facilitate the proper functioning of the PetsPic.PRIVACY POLICYWe care about the privacy of our users. Please review the Company Privacy Policy. By using the PetsPicor Company Services, you are consenting to have your personal data transferred to and processed in theUnited States. By using the PetsPic or the Company Services, you are consenting to the terms of ourPrivacy Policy.TERM AND TERMINATIONThis Agreement shall remain in full force and effect while you use the PetsPic or are otherwise a user ormember of the PetsPic, as applicable. You may terminate your use or participation at any time, for anyreason, by following the instructions for terminating user accounts in your account settings, if available, orby contacting us using the contact information below.WITHOUT LIMITING ANY OTHER PROVISION OF THIS AGREEMENT, COMPANY RESERVES THERIGHT TO, IN COMPANY’S SOLE DISCRETION AND WITHOUT NOTICE OR LIABILITY, DENYACCESS TO AND USE OF THE PetsPic AND THE COMPANY SERVICES, TO ANY PERSON FORANY REASON OR FOR NO REASON AT ALL, INCLUDING WITHOUT LIMITATION FOR BREACH OFANY REPRESENTATION, WARRANTY OR COVENANT CONTAINED IN THIS AGREEMENT, OR OFANY APPLICABLE LAW OR REGULATION, AND COMPANY MAY TERMINATE YOUR USE ORPARTICIPATION IN THE PetsPic AND THE COMPANY SERVICES, DELETE YOUR PROFILE ANDANY CONTENT OR INFORMATION THAT YOU HAVE POSTED AT ANY TIME, WITHOUT WARNING,IN COMPANY’S SOLE DISCRETION.In order to protect the integrity of the PetsPic and Company Services, Company reserves the right at anytime in its sole discretion to block certain IP addresses from accessing the PetsPic and CompanyServices.Any provisions of this Agreement that, in order to fulfill the purposes of such provisions, need to survivethe termination or expiration of this Agreement, shall be deemed to survive for as long as necessary tofulfill such purposes.YOU UNDERSTAND THAT CERTAIN STATES ALLOW YOU TO CANCEL THIS AGREEMENT,WITHOUT ANY PENALTY OR OBLIGATION, AT ANY TIME PRIOR TO MIDNIGHT OF COMPANY’STHIRD BUSINESS DAY FOLLOWING THE DATE OF THIS AGREEMENT, EXCLUDING SUNDAYSAND HOLIDAYS. TO CANCEL, CALL A COMPANY CUSTOMER CARE REPRESENTATIVE DURINGNORMAL BUSINESS HOURS USING THE CONTACT INFORMATION LISTING BELOW IN THISAGREEMENT OR BY ACCESSING YOUR ACCOUNT SETTINGS. THIS SECTION APPLIES ONLY TOINDIVIDUALS RESIDING IN STATES WITH SUCH LAWS.If Company terminates or suspends your account for any reason, you are prohibited from registering andcreating a new account under your name, a fake or borrowed name, or the name of any third party, evenif you may be acting on behalf of the third party. In addition to terminating or suspending your account,Company reserves the right to take appropriate legal action, including without limitation pursuing civil,criminal, and injunctive redress.Terms of Use (Rev. 133A18A) 8 / 11MODIFICATIONSTo AgreementCompany may modify this Agreement from time to time. Any and all changes to this Agreement will beposted on the PetsPic and revisions will be indicated by date. You agree to be bound to any changes tothis Agreement when you use the Company Services after any such modification becomes effective.Company may also, in its discretion, choose to alert all users with whom it maintains email information ofsuch modifications by means of an email to their most recently provided email address. It is thereforeimportant that you regularly review this Agreement and keep your contact information current in youraccount settings to ensure you are informed of changes. You agree that you will periodically check theWebsite for updates to this Agreement and you will read the messages we send you to inform you of anychanges. Modifications to this Agreement shall be effective after posting.To ServicesCompany reserves the right at any time to modify or discontinue, temporarily or permanently, theCompany Services (or any part thereof) with or without notice. You agree that Company shall not beliable to you or to any third party for any modification, suspension or discontinuance of the CompanyServices.DISPUTESBetween UsersIf there is a dispute between users of the PetsPic, or between users and any third party, you understandand agree that Company is under no obligation to become involved. In the event that you have a disputewith one or more other users, you hereby release Company, its officers, employees, agents andsuccessors in rights from claims, demands and damages (actual and consequential) of every kind ornature, known or unknown, suspected and unsuspected, disclosed and undisclosed, arising out of or inany way related to such disputes and/or the Company Services.With CompanyAll questions of law, rights, and remedies regarding any act, event or occurrence undertaken pursuant orrelating to this Website or the Company Services shall be governed and construed by the laws of theState/Commonwealth of Texas, excluding such state’s conflicts of law rules. Any legal action of whatevernature by or against Company arising out of or related in any respect to this Website and the CompanyServices shall be brought solely in either the applicable federal or state courts located in or withjurisdiction over Dallas County, State of Texas; subject, however, to the right of Company, at theCompany's sole discretion, to bring an action to seek injunctive relief to enforce this Agreement or to stopor prevent an infringement of proprietary or other third party rights (or any similar cause of action) in anyapplicable court in any jurisdiction where jurisdiction exists with regard to a user. You hereby consent to(and waive any challenge or objection to) personal jurisdiction and venue in the above-referenced courts.Application of the United Nations Convention on Contracts for the International Sale of Goods is excludedfrom this Agreement. Additionally, application of the Uniform Computer Information Transaction Act(UCITA) is excluded from this Agreement. In no event shall any claim, action or proceeding by you relatedTerms of Use (Rev. 133A18A) 9 / 11in any way to the PetsPic and/or the Company Services (including your visit to or use of the PetsPicand/or the Company Services) be instituted more than two (2) years after the cause of action arose. Youwill be liable for any attorneys' fees and costs if we have to take any legal action to enforce thisAgreement.CORRECTIONSOccasionally there may be information on the PetsPic that contains typographical errors, inaccuracies oromissions that may relate to service descriptions, pricing, availability, and various other information.Company reserves the right to correct any errors, inaccuracies or omissions and to change or update theinformation at any time, without prior notice.DISCLAIMERSCompany cannot control the nature of all of the content available on the PetsPic. By operating theWebsite, Company does not represent or imply that Company endorses any blogs, contributions or othercontent available on or linked to by the PetsPic, including without limitation content hosted on third partywebsites or provided by third party applications, or that Company believes contributions, blogs or othercontent to be accurate, useful or non-harmful. We do not control and are not responsible for unlawful orotherwise objectionable content you may encounter on the PetsPic or in connection with anycontributions. The Company is not responsible for the conduct, whether online or offline, of any user ofthe PetsPic or Company Services.YOU AGREE THAT YOUR USE OF THE PetsPic AND COMPANY SERVICES WILL BE AT YOURSOLE RISK. TO THE FULLEST EXTENT PERMITTED BY LAW, COMPANY, ITS OFFICERS,DIRECTORS, EMPLOYEES, AND AGENTS DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCONNECTION WITH THE PetsPic AND THE COMPANY SERVICES AND YOUR USE THEREOF,INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESSFOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. COMPANY MAKES NO WARRANTIESOR REPRESENTATIONS ABOUT THE ACCURACY OR COMPLETENESS OF THE PetsPic’SCONTENT OR THE CONTENT OF ANY WEBSITES LINKED TO THIS WEBSITE AND ASSUMES NOLIABILITY OR RESPONSIBILITY FOR ANY (A) ERRORS, MISTAKES, OR INACCURACIES OFCONTENT AND MATERIALS, (B) PERSONAL INJURY OR PROPERTY DAMAGE, OF ANY NATUREWHATSOEVER, RESULTING FROM YOUR ACCESS TO AND USE OF OUR WEBSITE, (C) ANYUNAUTHORIZED ACCESS TO OR USE OF OUR SECURE SERVERS AND/OR ANY AND ALLPERSONAL INFORMATION AND/OR FINANCIAL INFORMATION STORED THEREIN, (D) ANYINTERRUPTION OR CESSATION OF TRANSMISSION TO OR FROM THE PetsPic OR COMPANYSERVICES, (E) ANY BUGS, VIRUSES, TROJAN HORSES, OR THE LIKE WHICH MAY BETRANSMITTED TO OR THROUGH THE PetsPic BY ANY THIRD PARTY, AND/OR (F) ANY ERRORSOR OMISSIONS IN ANY CONTENT AND MATERIALS OR FOR ANY LOSS OR DAMAGE OF ANYKIND INCURRED AS A RESULT OF THE USE OF ANY CONTENT POSTED, TRANSMITTED, OROTHERWISE MADE AVAILABLE VIA THE PetsPic. COMPANY DOES NOT WARRANT, ENDORSE,GUARANTEE, OR ASSUME RESPONSIBILITY FOR ANY PRODUCT OR SERVICE ADVERTISED OROFFERED BY A THIRD PARTY THROUGH THE PetsPic OR ANY HYPERLINKED WEBSITE ORFEATURED IN ANY BANNER OR OTHER ADVERTISING, AND COMPANY WILL NOT BE A PARTYTO OR IN ANY WAY BE RESPONSIBLE FOR MONITORING ANY TRANSACTION BETWEEN YOUAND THIRD-PARTY PROVIDERS OF PRODUCTS OR SERVICES.Terms of Use (Rev. 133A18A) 10 / 11LIMITATIONS OF LIABILITYIN NO EVENT SHALL COMPANY OR ITS DIRECTORS, EMPLOYEES, OR AGENTS BE LIABLE TOYOU OR ANY THIRD PARTY FOR ANY DIRECT, INDIRECT, CONSEQUENTIAL, EXEMPLARY,INCIDENTAL, SPECIAL OR PUNITIVE DAMAGES, INCLUDING LOST PROFIT, LOST REVENUE,LOSS OF DATA OR OTHER DAMAGES ARISING FROM YOUR USE OF THE PetsPic ORCOMPANY SERVICES, EVEN IF COMPANY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCHDAMAGES. NOTWITHSTANDING ANYTHING TO THE CONTRARY CONTAINED HEREIN,COMPANY’S LIABILITY TO YOU FOR ANY CAUSE WHATSOEVER AND REGARDLESS OF THEFORM OF THE ACTION, WILL AT ALL TIMES BE LIMITED TO THE AMOUNT PAID, IF ANY, BY YOUTO COMPANY FOR THE COMPANY SERVICES DURING THE PERIOD OF 3 MONTHS PRIOR TOANY CAUSE OF ACTION ARISING.CERTAIN STATE LAWS DO NOT ALLOW LIMITATIONS ON IMPLIED WARRANTIES OR THEEXCLUSION OR LIMITATION OF CERTAIN DAMAGES. IF THESE LAWS APPLY TO YOU, SOME ORALL OF THE ABOVE DISCLAIMERS OR LIMITATIONS MAY NOT APPLY TO YOU, AND YOU MAYHAVE ADDITIONAL RIGHTS.IF YOU ARE A CALIFORNIA RESIDENT, YOU WAIVE CALIFORNIA CIVIL CODE SECTION 1542,WHICH SAYS: "A GENERAL RELEASE DOES NOT EXTEND TO CLAIMS WHICH THE CREDITORDOES NOT KNOW OR SUSPECT TO EXIST IN HIS FAVOR AT THE TIME OF EXECUTING THERELEASE, WHICH, IF KNOWN BY HIM MUST HAVE MATERIALLY AFFECTED HIS SETTLEMENTWITH THE DEBTOR."INDEMNITYYou agree to defend, indemnify and hold Company, its subsidiaries, and affiliates, and their respectiveofficers, agents, partners and employees, harmless from and against, any loss, damage, liability, claim, ordemand, including reasonable attorneys’ fees and expenses, made by any third party due to or arising outof your contributed content, use of the Company Services, and/or arising from a breach of this Agreementand/or any breach of your representations and warranties set forth above. Notwithstanding the foregoing,Company reserves the right, at your expense, to assume the exclusive defense and control of any matterfor which you are required to indemnify Company, and you agree to cooperate, at your expense, withCompany’s defense of such claims. Company will use reasonable efforts to notify you of any such claim,action, or proceeding which is subject to this indemnification upon becoming aware of it.NOTICESExcept as explicitly stated otherwise, any notices given to Company shall be given by email to theaddress listed in the contact information below. Any notices given to you shall be given to the emailaddress you provided during the registration process, or such other address as each party may specify.Notice shall be deemed to be given twenty-four (24) hours after the email is sent, unless the sendingparty is notified that the email address is invalid. We may also choose to send notices by regular mail.USER DATAOur Website will maintain certain data that you transfer to the PetsPic for the purpose of the performanceof the Company Services, as well as data relating to your use of the Company Services. Although weTerms of Use (Rev. 133A18A) 11 / 11perform regular routine backups of data, you are primarily responsible for all data that you havetransferred or that relates to any activity you have undertaken using the Company Services. You agreethat Company shall have no liability to you for any loss or corruption of any such data, and you herebywaive any right of action against Company arising from any such loss or corruption of such data.ELECTRONIC CONTRACTINGYour use of the Company Services includes the ability to enter into agreements and/or to maketransactions electronically. YOU ACKNOWLEDGE THAT YOUR ELECTRONIC SUBMISSIONSCONSTITUTE YOUR AGREEMENT AND INTENT TO BE BOUND BY FOR SUCH AGREEMENTS ANDTRANSACTIONS. YOUR AGREEMENT AND INTENT TO BE BOUND BY ELECTRONICSUBMISSIONS APPLIES TO ALL RECORDS RELATING TO ALL TRANSACTIONS YOU ENTER INTORELATING TO THE COMPANY SERVICES, INCLUDING NOTICES OF CANCELLATION, POLICIES,CONTRACTS, AND APPLICATIONS. In order to access and retain your electronic records, you may berequired to have certain hardware and software, which are your sole responsibility.MISCELLANEOUSThis Agreement constitutes the entire agreement between you and Company regarding the use of theCompany Services. The failure of Company to exercise or enforce any right or provision of thisAgreement shall not operate as a waiver of such right or provision. The section titles in this Agreementare for convenience only and have no legal or contractual effect. This Agreement operates to the fullestextent permissible by law. This Agreement and your account may not be assigned by you without ourexpress written consent. Company may assign any or all of its rights and obligations to others at any time.Company shall not be responsible or liable for any loss, damage, delay or failure to act caused by anycause beyond Company's reasonable control. If any provision or part of a provision of this Agreement isunlawful, void or unenforceable, that provision or part of the provision is deemed severable from thisAgreement and does not affect the validity and enforceability of any remaining provisions. There is nojoint venture, partnership, employment or agency relationship created between you and Company as aresult of this Agreement or use of the PetsPic and Company Services. Upon Company’s request, you willfurnish Company any documentation, substantiation or releases necessary to verify your compliance withthis Agreement. You agree that this Agreement will not be construed against Company by virtue of havingdrafted them. You hereby waive any and all defenses you may have based on the electronic form of thisAgreement and the lack of signing by the parties hereto to execute this Agreement.CONTACT USIn order to resolve a complaint regarding the Company Services or to receive further informationregarding use of the Company Services, please contact Company as set forth below or, if any complaintwith us is not satisfactorily resolved, and you are a California resident, you can contact the ComplaintAssistance Unit of the Division of Consumer Services of the Department of Consumer Affairs in writing at400 "R" Street, Sacramento, California 95814 or by telephone at 1-916-445-1254.PetsPic350 Gran Via #2086Irving, TX 75039Email: bekahlbaker@gmail.comPhone: (903) 714-3504This page intentionally left blank.Terms of Use (Rev. 133A18A)GENERAL INSTRUCTIONSWHAT IS A TERMS OF USEAGREEMENT?A Terms of Use Agreement is a written set ofrules and regulations between two parties, theUser and the Company, that the User mustagree to follow in order to use the Company’swebsite and services.WHEN IS A TERMS OF USEAGREEMENT NEEDED?While Terms and Conditions are not required bylaw, any website, especially e-commerce orsocial networking websites or applications andany website or internet service provider thatstores a User’s personal data, should considerhaving Terms and Conditions.A written set of Terms and Conditions protectsthe Company and acts an instruction manual forits website. It allows the Company to explainthings related to its service or product, including,among other things:• how purchases, payment, and returns arehandled• ownership and use of content and intellectualproperty• how Users must conduct themselves, includingany prohibited behavior• limitations on liability and disclaimers• the Company’s privacy policyWHO NEEDS A TERMS OF USEAGREEMENT?Almost every website or application thatprovides a service or product has a Terms ofUse Agreement.Here are some examples of websites and appsthat use a Terms of Use Agreement:• E-Commerce Company - Ebay, Amazon,Target, Gap• Social Media Website or Application -Facebook, Instagram, Twitter, Snapchat• Search Engine - Google, Yahoo, Bing• Website or Application Providing a Serviceor Product - YouTube, Apple, Uber• Gaming Website or Application -Playstation, Pokemon Go, Candy CrushWHAT SHOULD BE INCLUDED IN ATEMS OF USE?A simple Terms of Service should generallyhave at least the following:• Who is the Company providing the service orproduct• What is the service or product provided by theCompany• Where is the Company’s website• When will the agreement terminate• Why might the User not be granted access tothe PetsPic• How does the User agree to accept the Termsof ServiceThe Company can tailor the rules andregulations, or “terms of use”, according to theservice or product it provides and its specificneeds. The Terms of Use Agreement can beposted on the Company’s website either as abrowsewrap agreement or a clickwrapagreement.OTHER NAMESAs a reference, a Terms of Use Agreement isknown by other names:• Terms of Service Agreement• Terms and Conditions• User Agreement• Statement of Rights and Responsibilities• Disclaimer• TOU• ToS• TOS• TOC</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="faF-Sj-WHf" firstAttribute="top" secondItem="iei-C4-1fc" secondAttribute="bottom" id="dOg-7d-ien"/>
+                            <constraint firstItem="iei-C4-1fc" firstAttribute="top" secondItem="iaw-5V-QFs" secondAttribute="bottom" constant="8" id="tVQ-4y-NLU"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="iei-C4-1fc" secondAttribute="trailing" id="vkA-av-dWZ"/>
+                            <constraint firstItem="iei-C4-1fc" firstAttribute="leading" secondItem="Hz4-Qa-YkD" secondAttribute="leadingMargin" id="yn8-fs-3g8"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tXK-FX-a2f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="8100" y="995"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Axo-qr-bnH">
+            <objects>
+                <viewController id="BFv-Pj-QWc" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DnQ-9T-vNf"/>
+                        <viewControllerLayoutGuide type="bottom" id="Ysh-UE-3ew"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="QSx-85-2jp">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="hWx-eT-KGn">
+                                <rect key="frame" x="16" y="28" width="288" height="540"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <mutableString key="text">PetsPic Privacy Policy
+This privacy policy has been compiled to better serve those who are concerned with how their 'Personally Identifiable Information' (PII) is being used online. PII, as described in US privacy law and information security, is information that can be used on its own or with other information to identify, contact, or locate a single person, or to identify an individual in context. Please read our privacy policy carefully to get a clear understanding of how we collect, use, protect or otherwise handle your Personally Identifiable Information in accordance with our website.
+
+What personal information do we collect from the people that visit our blog, website or app?
+
+When ordering or registering on our site, as appropriate, you may be asked to enter your name, email address or other details to help you with your experience.
+
+When do we collect information?
+
+We collect information from you when you register on our site or enter information on our site.
+
+
+How do we use your information?
+
+We may use the information we collect from you when you register, make a purchase, sign up for our newsletter, respond to a survey or marketing communication, surf PetsPic, or use certain other site features in the following ways:
+
+      • To personalize your experience and to allow us to deliver the type of content and product offerings in which you are most interested.
+
+How do we protect your information?
+
+We do not use vulnerability scanning and/or scanning to PCI standards.
+We only provide articles and information. We never ask for credit card numbers.
+We do not use Malware Scanning.
+
+Your personal information is contained behind secured networks and is only accessible by a limited number of persons who have special access rights to such systems, and are required to keep the information confidential. In addition, all sensitive/credit information you supply is encrypted via Secure Socket Layer (SSL) technology.
+
+We implement a variety of security measures when a user enters, submits, or accesses their information to maintain the safety of your personal information.
+
+All transactions are processed through a gateway provider and are not stored or processed on our servers.
+
+Do we use 'cookies'?
+
+We do not use cookies for tracking purposes
+
+You can choose to have your computer warn you each time a cookie is being sent, or you can choose to turn off all cookies. You do this through your browser settings. Since browser is a little different, look at your browser's Help Menu to learn the correct way to modify your cookies.
+
+If you turn cookies off, Some of the features that make your site experience more efficient may not function properly.that make your site experience more efficient and may not function properly.
+
+
+Third-party disclosure
+
+We do not sell, trade, or otherwise transfer to outside parties your Personally Identifiable Information.
+
+Third-party links
+
+We do not include or offer third-party products or services on our website.
+
+Google
+
+Google's advertising requirements can be summed up by Google's Advertising Principles. They are put in place to provide a positive experience for users. https://support.google.com/adwordspolicy/answer/1316548?hl=en 
+
+We have not enabled Google AdSense on our site but we may do so in the future.
+
+COPPA (Children Online Privacy Protection Act)
+
+When it comes to the collection of personal information from children under the age of 13 years old, the Children's Online Privacy Protection Act (COPPA) puts parents in control. The Federal Trade Commission, United States' consumer protection agency, enforces the COPPA Rule, which spells out what operators of websites and online services must do to protect children's privacy and safety online.
+
+We do not specifically market to children under the age of 13 years old.
+Do we let third-parties, including ad networks or plug-ins collect PII from children under 13?
+
+Fair Information Practices
+
+The Fair Information Practices Principles form the backbone of privacy law in the United States and the concepts they include have played a significant role in the development of data protection laws around the globe. Understanding the Fair Information Practice Principles and how they should be implemented is critical to comply with the various privacy laws that protect personal information.
+
+In order to be in line with Fair Information Practices we will take the following responsive action, should a data breach occur:
+We will notify you via email
+      • Within 7 business days
+We will notify the users via in-site notification
+      • Within 7 business days
+
+We also agree to the Individual Redress Principle which requires that individuals have the right to legally pursue enforceable rights against data collectors and processors who fail to adhere to the law. This principle requires not only that individuals have enforceable rights against data users, but also that individuals have recourse to courts or government agencies to investigate and/or prosecute non-compliance by data processors.
+
+CAN SPAM Act
+
+The CAN-SPAM Act is a law that sets the rules for commercial email, establishes requirements for commercial messages, gives recipients the right to have emails stopped from being sent to them, and spells out tough penalties for violations.
+
+We collect your email address in order to:
+      • Send information, respond to inquiries, and/or other requests or questions
+
+To be in accordance with CANSPAM, we agree to the following:
+      • Not use false or misleading subjects or email addresses.
+      • Identify the message as an advertisement in some reasonable way.
+      • Include the physical address of our business or site headquarters.
+      • Monitor third-party email marketing services for compliance, if one is used.
+      • Honor opt-out/unsubscribe requests quickly.
+      • Allow users to unsubscribe by using the link at the bottom of each email.
+
+If at any time you would like to unsubscribe from receiving future emails, you can email us at
+bekahlbaker@gmail.com and we will promptly remove you from ALL correspondence.
+
+
+Contacting Us
+
+If there are any questions regarding this privacy policy, you may contact us using the information below.
+
+PetsPic
+350 Gran Via
+Irving, TX 75039
+United States
+bekahlbaker@gmail.com
+
+Last Edited on 2017-07-25</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="hWx-eT-KGn" secondAttribute="trailing" id="GXy-VS-HlK"/>
+                            <constraint firstItem="hWx-eT-KGn" firstAttribute="top" secondItem="DnQ-9T-vNf" secondAttribute="bottom" constant="8" id="Na0-KX-GS8"/>
+                            <constraint firstItem="Ysh-UE-3ew" firstAttribute="top" secondItem="hWx-eT-KGn" secondAttribute="bottom" id="ckj-0h-oco"/>
+                            <constraint firstItem="hWx-eT-KGn" firstAttribute="leading" secondItem="QSx-85-2jp" secondAttribute="leadingMargin" id="m1M-Uy-D1J"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="j93-RR-fUq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="9092" y="994"/>
         </scene>
         <!--User ListVC-->
         <scene sceneID="O30-zH-4V0">
@@ -1093,11 +1385,11 @@
                         <viewControllerLayoutGuide type="bottom" id="2qp-eX-yk0"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="TdC-gv-zBC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="50" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tYH-55-YsQ">
-                                <rect key="frame" x="0.0" y="20" width="320" height="499"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UsernameListCell" rowHeight="50" id="hZu-7T-WG7" customClass="UsernameListCell" customModule="PetApp" customModuleProvider="target">
@@ -1199,48 +1491,48 @@
                         <viewControllerLayoutGuide type="bottom" id="Jd9-3E-s8h"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ZLW-Np-koL">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4P5-dl-9XN">
-                                <rect key="frame" x="112" y="32" width="200" height="21.5"/>
+                                <rect key="frame" x="112" y="12" width="200" height="21.5"/>
                                 <fontDescription key="fontDescription" name="Raleway-Bold" family="Raleway" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="01i-MM-O3M">
-                                <rect key="frame" x="112" y="57.5" width="184" height="15.5"/>
+                                <rect key="frame" x="112" y="37.5" width="184" height="15.5"/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="13"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RhO-C9-TOg">
-                                <rect key="frame" x="112" y="36" width="200" height="14.5"/>
+                                <rect key="frame" x="112" y="16" width="200" height="14.5"/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v2L-Iz-1xI">
-                                <rect key="frame" x="112" y="58.5" width="200" height="14.5"/>
+                                <rect key="frame" x="112" y="38.5" width="200" height="14.5"/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VG8-ER-lku">
-                                <rect key="frame" x="112" y="81" width="200" height="21.5"/>
+                                <rect key="frame" x="112" y="61" width="200" height="21.5"/>
                                 <fontDescription key="fontDescription" name="Raleway-Regular" family="Raleway" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="page1" translatesAutoresizingMaskIntoConstraints="NO" id="Yed-wl-IZs">
-                                <rect key="frame" x="150" y="138.5" width="20" height="8"/>
+                                <rect key="frame" x="150" y="118.5" width="20" height="8"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="8" id="Dql-ok-bzu"/>
                                     <constraint firstAttribute="width" constant="20" id="koq-Yc-t4k"/>
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" translatesAutoresizingMaskIntoConstraints="NO" id="avr-Xp-Zut">
-                                <rect key="frame" x="16" y="162.5" width="288" height="41.5"/>
+                                <rect key="frame" x="16" y="142.5" width="288" height="41.5"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="DSP-2d-s9R">
                                         <rect key="frame" x="0.0" y="0.0" width="30.5" height="41.5"/>
@@ -1312,7 +1604,7 @@
                                 </subviews>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dog-in-wig" translatesAutoresizingMaskIntoConstraints="NO" id="zAO-Ga-K6Z" customClass="CircleImage" customModule="PetApp" customModuleProvider="target">
-                                <rect key="frame" x="24" y="28" width="80" height="80"/>
+                                <rect key="frame" x="24" y="8" width="80" height="80"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <constraints>
@@ -1321,7 +1613,7 @@
                                 </constraints>
                             </imageView>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="oXf-0A-NUb">
-                                <rect key="frame" x="0.0" y="212" width="320" height="307"/>
+                                <rect key="frame" x="0.0" y="192" width="320" height="263"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="1ci-ex-6qq">
                                     <size key="itemSize" width="120" height="120"/>
@@ -1562,11 +1854,11 @@
                         <viewControllerLayoutGuide type="bottom" id="FOY-vF-yny"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="EKh-3m-z1H">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="615" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Zwj-MA-RQV">
-                                <rect key="frame" x="0.0" y="20" width="320" height="548"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="SinglePhotoCell" rowHeight="615" id="3eG-hg-LED" customClass="SinglePhotoCell" customModule="PetApp" customModuleProvider="target">
@@ -2227,6 +2519,205 @@
             </objects>
             <point key="canvasLocation" x="4023" y="1806"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="Sli-fR-Sih">
+            <objects>
+                <viewController id="mJh-J0-qee" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EDi-sb-k01"/>
+                        <viewControllerLayoutGuide type="bottom" id="qYe-Y9-PJq"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="cNW-xh-Wl1">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="O0B-Ax-ycU">
+                                <rect key="frame" x="16" y="52" width="288" height="516"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <mutableString key="text">PetsPic Privacy Policy
+This privacy policy has been compiled to better serve those who are concerned with how their 'Personally Identifiable Information' (PII) is being used online. PII, as described in US privacy law and information security, is information that can be used on its own or with other information to identify, contact, or locate a single person, or to identify an individual in context. Please read our privacy policy carefully to get a clear understanding of how we collect, use, protect or otherwise handle your Personally Identifiable Information in accordance with our website.
+
+What personal information do we collect from the people that visit our blog, website or app?
+
+When ordering or registering on our site, as appropriate, you may be asked to enter your name, email address or other details to help you with your experience.
+
+When do we collect information?
+
+We collect information from you when you register on our site or enter information on our site.
+
+
+How do we use your information?
+
+We may use the information we collect from you when you register, make a purchase, sign up for our newsletter, respond to a survey or marketing communication, surf PetsPic, or use certain other site features in the following ways:
+
+      • To personalize your experience and to allow us to deliver the type of content and product offerings in which you are most interested.
+
+How do we protect your information?
+
+We do not use vulnerability scanning and/or scanning to PCI standards.
+We only provide articles and information. We never ask for credit card numbers.
+We do not use Malware Scanning.
+
+Your personal information is contained behind secured networks and is only accessible by a limited number of persons who have special access rights to such systems, and are required to keep the information confidential. In addition, all sensitive/credit information you supply is encrypted via Secure Socket Layer (SSL) technology.
+
+We implement a variety of security measures when a user enters, submits, or accesses their information to maintain the safety of your personal information.
+
+All transactions are processed through a gateway provider and are not stored or processed on our servers.
+
+Do we use 'cookies'?
+
+We do not use cookies for tracking purposes
+
+You can choose to have your computer warn you each time a cookie is being sent, or you can choose to turn off all cookies. You do this through your browser settings. Since browser is a little different, look at your browser's Help Menu to learn the correct way to modify your cookies.
+
+If you turn cookies off, Some of the features that make your site experience more efficient may not function properly.that make your site experience more efficient and may not function properly.
+
+
+Third-party disclosure
+
+We do not sell, trade, or otherwise transfer to outside parties your Personally Identifiable Information.
+
+Third-party links
+
+We do not include or offer third-party products or services on our website.
+
+Google
+
+Google's advertising requirements can be summed up by Google's Advertising Principles. They are put in place to provide a positive experience for users. https://support.google.com/adwordspolicy/answer/1316548?hl=en 
+
+We have not enabled Google AdSense on our site but we may do so in the future.
+
+COPPA (Children Online Privacy Protection Act)
+
+When it comes to the collection of personal information from children under the age of 13 years old, the Children's Online Privacy Protection Act (COPPA) puts parents in control. The Federal Trade Commission, United States' consumer protection agency, enforces the COPPA Rule, which spells out what operators of websites and online services must do to protect children's privacy and safety online.
+
+We do not specifically market to children under the age of 13 years old.
+Do we let third-parties, including ad networks or plug-ins collect PII from children under 13?
+
+Fair Information Practices
+
+The Fair Information Practices Principles form the backbone of privacy law in the United States and the concepts they include have played a significant role in the development of data protection laws around the globe. Understanding the Fair Information Practice Principles and how they should be implemented is critical to comply with the various privacy laws that protect personal information.
+
+In order to be in line with Fair Information Practices we will take the following responsive action, should a data breach occur:
+We will notify you via email
+      • Within 7 business days
+We will notify the users via in-site notification
+      • Within 7 business days
+
+We also agree to the Individual Redress Principle which requires that individuals have the right to legally pursue enforceable rights against data collectors and processors who fail to adhere to the law. This principle requires not only that individuals have enforceable rights against data users, but also that individuals have recourse to courts or government agencies to investigate and/or prosecute non-compliance by data processors.
+
+CAN SPAM Act
+
+The CAN-SPAM Act is a law that sets the rules for commercial email, establishes requirements for commercial messages, gives recipients the right to have emails stopped from being sent to them, and spells out tough penalties for violations.
+
+We collect your email address in order to:
+      • Send information, respond to inquiries, and/or other requests or questions
+
+To be in accordance with CANSPAM, we agree to the following:
+      • Not use false or misleading subjects or email addresses.
+      • Identify the message as an advertisement in some reasonable way.
+      • Include the physical address of our business or site headquarters.
+      • Monitor third-party email marketing services for compliance, if one is used.
+      • Honor opt-out/unsubscribe requests quickly.
+      • Allow users to unsubscribe by using the link at the bottom of each email.
+
+If at any time you would like to unsubscribe from receiving future emails, you can email us at
+bekahlbaker@gmail.com and we will promptly remove you from ALL correspondence.
+
+
+Contacting Us
+
+If there are any questions regarding this privacy policy, you may contact us using the information below.
+
+PetsPic
+350 Gran Via
+Irving, TX 75039
+United States
+bekahlbaker@gmail.com
+
+Last Edited on 2017-07-25</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UCh-Jb-ij1">
+                                <rect key="frame" x="0.0" y="8" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Privacy Policy" id="eUM-UK-sJx">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="hev-Nm-rR5">
+                                            <color key="tintColor" red="0.97550159690000005" green="0.11483331770000001" blue="0.3364585638" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <segue destination="oZP-Ww-SQl" kind="show" customClass="LeftToRightSegue" customModule="PetApp" customModuleProvider="target" id="QMC-4a-AdJ"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="qYe-Y9-PJq" firstAttribute="top" secondItem="O0B-Ax-ycU" secondAttribute="bottom" id="7tp-a7-HO3"/>
+                            <constraint firstItem="UCh-Jb-ij1" firstAttribute="top" secondItem="cNW-xh-Wl1" secondAttribute="top" constant="8" id="EKd-T6-Wco"/>
+                            <constraint firstItem="UCh-Jb-ij1" firstAttribute="leading" secondItem="cNW-xh-Wl1" secondAttribute="leading" id="OhT-qk-GtU"/>
+                            <constraint firstAttribute="trailing" secondItem="UCh-Jb-ij1" secondAttribute="trailing" id="Zm0-hO-vCe"/>
+                            <constraint firstItem="O0B-Ax-ycU" firstAttribute="trailing" secondItem="cNW-xh-Wl1" secondAttribute="trailingMargin" id="cIf-4I-34h"/>
+                            <constraint firstItem="O0B-Ax-ycU" firstAttribute="top" secondItem="UCh-Jb-ij1" secondAttribute="bottom" id="hbN-W1-oCf"/>
+                            <constraint firstItem="O0B-Ax-ycU" firstAttribute="leading" secondItem="cNW-xh-Wl1" secondAttribute="leadingMargin" id="in8-Zu-ViO"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="4QJ-0o-jMq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1284.375" y="-825"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="E8r-Lj-rSr">
+            <objects>
+                <viewController id="hDx-7v-Kau" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Lfs-vr-uWE"/>
+                        <viewControllerLayoutGuide type="bottom" id="6Xj-Eu-cCW"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zoS-rZ-fKk">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Nuo-dh-Hy3">
+                                <rect key="frame" x="16" y="52" width="288" height="516"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <mutableString key="text">Terms of Use (Rev. 133A18A) 1 / 11State of Texas Rev. 133A18ATERMS OF USE__________Version Date: July 25, 2017TERMS OF USE AGREEMENTThis Terms of Use Agreement (“Agreement”) constitutes a legally binding agreement made between you,whether personally or on behalf of an entity (“user” or “you”) and PetsPic and its affiliated companies(collectively, “Company” or “we” or “us” or “our”), concerning your access to and use of the PetsPic mobile application as well as any other media form, media channel, mobile website or mobile application related orconnected thereto (collectively, the "PetsPic"). PetsPic provides the following service: SocialNetwork experience for pet owners (“Company Services”). Supplemental terms and conditions ordocuments that may be posted on the PetsPic from time to time, are hereby expressly incorporated intothis Agreement by reference.Company makes no representation that PetsPic is appropriate or available in other locations otherthan where it is operated by Company. The information provided on the PetsPic is not intended fordistribution to or use by any person or entity in any jurisdiction or country where such distribution or usewould be contrary to law or regulation or which would subject Company to any registration requirementwithin such jurisdiction or country. Accordingly, those persons who choose to access the PetsPic fromother locations do so on their own initiative and are solely responsible for compliance with local laws, ifand to the extent local laws are applicable.All users who are minors in the jurisdiction in which they reside (generally under the age of 18) are notpermitted to register for the PetsPic or use the Company Services.YOU ACCEPT AND AGREE TO BE BOUND BY THIS AGREEMENT BY ACKNOWLEDGING SUCHACCEPTANCE DURING THE REGISTRATION PROCESS (IF APPLICABLE) AND ALSO BYCONTINUING TO USE THE PetsPic. IF YOU DO NOT AGREE TO ABIDE BY THIS AGREEMENT,OR TO MODIFICATIONS THAT COMPANY MAY MAKE TO THIS AGREEMENT IN THE FUTURE, DONOT USE OR ACCESS OR CONTINUE TO USE OR ACCESS THE COMPANY SERVICES OR THEWEBSITE.USER REPRESENTATIONSRegarding Your RegistrationBy using the Company Services, you represent and warrant that:A.　all registration information you submit is truthful and accurate;B.　you will maintain the accuracy of such information;C.　you will keep your password confidential and will be responsible for all use of your passwordand account;D.　you are not a minor in the jurisdiction in which you reside, or if a minor, you have receivedparental permission to use this Website; andTerms of Use (Rev. 133A18A) 2 / 11E.　your use of the Company Services does not violate any applicable law or regulation.You also agree to: (a) provide true, accurate, current and complete information about yourself asprompted by the PetsPic’s registration form and (b) maintain and promptly update registration data tokeep it true, accurate, current and complete. If you provide any information that is untrue, inaccurate, notcurrent or incomplete, or Company has reasonable grounds to suspect that such information is untrue,inaccurate, not current or incomplete, Company has the right to suspend or terminate your account andrefuse any and all current or future use of the PetsPic (or any portion thereof).We reserve the right to remove or reclaim or change a user name you select if we determine appropriatein our discretion, such as when the user name is obscene or otherwise objectionable or when atrademark owner complains about a username that does not closely relate to a user's actual name.Regarding Content You ProvideThe PetsPic may invite you to chat or participate in blogs, message boards, online forums and otherfunctionality and may provide you with the opportunity to create, submit, post, display, transmit, perform,publish, distribute or broadcast content and materials to Company and/or to or via the PetsPic, including,without limitation, text, writings, video, audio, photographs, graphics, comments, suggestions orpersonally identifiable information or other material (collectively "Contributions"). Any Contributions youtransmit to Company will be treated as non-confidential and non-proprietary. When you create or makeavailable a Contribution, you thereby represent and warrant that:A.　the creation, distribution, transmission, public display and performance, accessing,downloading and copying of your Contribution does not and will not infringe the proprietaryrights, including but not limited to the copyright, patent, trademark, trade secret or moral rightsof any third party;B.　you are the creator and owner of or have the necessary licenses, rights, consents, releasesand permissions to use and to authorize Company and the PetsPic users to use yourContributions as necessary to exercise the licenses granted by you under this Agreement;C.　you have the written consent, release, and/or permission of each and every identifiableindividual person in the Contribution to use the name or likeness of each and every suchidentifiable individual person to enable inclusion and use of the Contribution in the mannercontemplated by this Website;D.　your Contribution is not obscene, lewd, lascivious, filthy, violent, harassing or otherwiseobjectionable (as determined by Company), libelous or slanderous, does not ridicule, mock,disparage, intimidate or abuse anyone, does not advocate the violent overthrow of anygovernment, does not incite, encourage or threaten physical harm against another, does notviolate any applicable law, regulation, or rule, and does not violate the privacy or publicityrights of any third party;E.　your Contribution does not contain material that solicits personal information from anyoneunder 18 or exploit people under the age of 18 in a sexual or violent manner, and does notviolate any federal or state law concerning child pornography or otherwise intended to protectthe health or well-being of minors;F.　your Contribution does not include any offensive comments that are connected to race,national origin, gender, sexual preference or physical handicap;G.　your Contribution does not otherwise violate, or link to material that violates, any provision ofthis Agreement or any applicable law or regulation.Terms of Use (Rev. 133A18A) 3 / 11CONTRIBUTION LICENSEBy posting Contributions to any part of the PetsPic, or making them accessible to the PetsPic by linkingyour account to any of your social network accounts, you automatically grant, and you represent andwarrant that you have the right to grant, to Company an unrestricted, unconditional, unlimited, irrevocable,perpetual, non-exclusive, transferable, royalty-free, fully-paid, worldwide right and license to host, use,copy, reproduce, disclose, sell, resell, publish, broadcast, retitle, archive, store, cache, publicly perform,publicly display, reformat, translate, transmit, excerpt (in whole or in part) and distribute suchContributions (including, without limitation, your image and voice) for any purpose, commercial,advertising, or otherwise, to prepare derivative works of, or incorporate into other works, suchContributions, and to grant and authorize sublicenses of the foregoing. The use and distribution mayoccur in any media formats and through any media channels. Such use and distribution license will applyto any form, media, or technology now known or hereafter developed, and includes our use of your name,company name, and franchise name, as applicable, and any of the trademarks, service marks, tradenames and logos, personal and commercial images you provide. Company does not assert anyownership over your Contributions; rather, as between us and you, subject to the rights granted to us inthis Agreement, you retain full ownership of all of your Contributions and any intellectual property rights orother proprietary rights associated with your Contributions.Company has the right, in our sole and absolute discretion, to (i) edit, redact or otherwise change anyContributions, (ii) re-categorize any Contributions to place them in more appropriate locations or (iii) prescreenor delete any Contributions that are determined to be inappropriate or otherwise in violation of thisAgreement.By uploading your Contributions to the PetsPic, you hereby authorize Company to grant to each end usera personal, limited, non-transferable, perpetual, non-exclusive, royalty-free, fully-paid license to access,download, print and otherwise use your Contributions for their internal purposes and not for distribution,transfer, sale or commercial exploitation of any kind.MOBILE APPLICATION LICENSEUse LicenseIf you are accessing the Company Services via a mobile application, then Company grants you arevocable, non-exclusive, non-transferable, limited right to install and use the application on wirelesshandsets owned and controlled by you, and to access and use the application on such devices strictly inaccordance with the terms and conditions of this license. You shall use the application strictly inaccordance with the terms of this license and shall not: (a) decompile, reverse engineer, disassemble,attempt to derive the source code of, or decrypt the application; (b) make any modification, adaptation,improvement, enhancement, translation or derivative work from the application; (c) violate any applicablelaws, rules or regulations in connection with your access or use of the application; (d) remove, alter orobscure any proprietary notice (including any notice of copyright or trademark) of Company or itsaffiliates, partners, suppliers or the licensors of the application; (e) use the application for any revenuegenerating endeavor, commercial enterprise, or other purpose for which it is not designed or intended; (f)make the application available over a network or other environment permitting access or use by multipledevices or users at the same time; (g) use the application for creating a product, service or software thatis, directly or indirectly, competitive with or in any way a substitute for the application; (h) use theapplication to send automated queries to any website or to send any unsolicited commercial e-mail; or (i)Terms of Use (Rev. 133A18A) 4 / 11use any proprietary information or interfaces of Company or other intellectual property of Company in thedesign, development, manufacture, licensing or distribution of any applications, accessories or devices foruse with the application.Terms Applicable to Apple and Android DevicesThe following terms apply when you use a mobile application obtained from either the Apple Store orGoogle Play to access the Company Services. You acknowledge that this Agreement is concludedbetween you and Company only, and not with Apple Inc. or Google, Inc. (each an “App Distributor”), andCompany, not an App Distributor, is solely responsible for the Company application and the contentthereof. (1) SCOPE OF LICENSE: The license granted to you for the Company application is limited to anon-transferable license to use the Company application on a device that utilizes the Apple iOS orAndroid operating system, as applicable, and in accordance with the usage rules set forth in theapplicable App Distributor terms of service. (2) MAINTENANCE AND SUPPORT: Company is solelyresponsible for providing any maintenance and support services with respect to the Company application,as specified in this Agreement, or as required under applicable law. You acknowledge that each AppDistributor has no obligation whatsoever to furnish any maintenance and support services with respect tothe Company application. (3) WARRANTY: Company is solely responsible for any product warranties,whether express or implied by law, to the extent not effectively disclaimed. In the event of any failure ofthe Company application to conform to any applicable warranty, you may notify an App Distributor, andthe App Distributor, in accordance with its terms and policies, may refund the purchase price, if any, paidfor the Company application, and to the maximum extent permitted by applicable law, an App Distributorwill have no other warranty obligation whatsoever with respect to the Company application, and any otherclaims, losses, liabilities, damages, costs or expenses attributable to any failure to conform to anywarranty will be Company’s sole responsibility. (4) PRODUCT CLAIMS: You acknowledge that Company,not an App Distributor, is responsible for addressing any claims of yours or any third party relating to theCompany application or your possession and/or use of the Company application, including, but not limitedto: (i) product liability claims; (ii) any claim that the Company application fails to conform to any applicablelegal or regulatory requirement; and (iii) claims arising under consumer protection or similar legislation. (5)INTELLECTUAL PROPERTY RIGHTS: You acknowledge that, in the event of any third party claim thatthe Company application or your possession and use of the Company application infringes a third party’sintellectual property rights, the App Distributor will not be responsible for the investigation, defense,settlement and discharge of any such intellectual property infringement claim. (6) LEGAL COMPLIANCE:You represent and warrant that (i) you are not located in a country that is subject to a U.S. governmentembargo, or that has been designated by the U.S. government as a “terrorist supporting” country; and (ii)you are not listed on any U.S. government list of prohibited or restricted parties. (7) THIRD PARTYTERMS OF AGREEMENT: You must comply with applicable third party terms of agreement when usingthe Company application, e.g., if you have a VoIP application, then you must not be in violation of theirwireless data service agreement when using the Company application. (8) THIRD PARTYBENEFICIARY: Company and you acknowledge and agree that the App Distributors, and theirsubsidiaries, are third party beneficiaries of this Agreement, and that, upon your acceptance of the termsand conditions of this Agreement, each App Distributor will have the right (and will be deemed to haveaccepted the right) to enforce this Agreement against you as a third party beneficiary thereof.SUBMISSIONSTerms of Use (Rev. 133A18A) 5 / 11You acknowledge and agree that any questions, comments, suggestions, ideas, feedback or otherinformation about the PetsPic or the Company Services ("Submissions") provided by you to Companyare non-confidential and Company (as well as any designee of Company) shall be entitled to theunrestricted use and dissemination of these Submissions for any purpose, commercial or otherwise,without acknowledgment or compensation to you.PROHIBITED ACTIVITIESYou may not access or use the PetsPic for any other purpose other than that for which Company makesit available. The PetsPic may not be used in connection with any commercial endeavors except thosethat are specifically endorsed or approved by Company. Prohibited activity includes, but is not limited to:A.　attempting to bypass any measures of the PetsPic designed to prevent or restrict access tothe PetsPic, or any portion of the PetsPicB.　attempting to impersonate another user or person or using the username of another userC.　criminal or tortious activityD.　deciphering, decompiling, disassembling or reverse engineering any of the softwarecomprising or in any way making up a part of the PetsPicE.　deleting the copyright or other proprietary rights notice from any Website contentF.　except as may be the result of standard search engine or Internet browser usage, using orlaunching, developing or distributing any automated system, including, without limitation, anyspider, robot (or "bot"), cheat utility, scraper or offline reader that accesses the PetsPic, orusing or launching any unauthorized script or other softwareG.　harassing, annoying, intimidating or threatening any Company employees or agents engagedin providing any portion of the Company Services to youH.　interfering with, disrupting, or creating an undue burden on the PetsPic or the networks orservices connected to the PetsPicI.　making any unauthorized use of the Company Services, including collecting usernames and/oremail addresses of users by electronic or other means for the purpose of sending unsolicitedemail, or creating user accounts by automated means or under false pretensesJ.　selling or otherwise transferring your profileK.　systematic retrieval of data or other content from the PetsPic to create or compile, directly orindirectly, a collection, compilation, database or directory without written permission fromCompanyL.　tricking, defrauding or misleading Company and other users, especially in any attempt to learnsensitive account information such as passwordsM.　using any information obtained from the PetsPic in order to harass, abuse, or harm anotherpersonN.　using the Company Services as part of any effort to compete with Company or to provideservices as a service bureauO.　using the PetsPic in a manner inconsistent with any and all applicable laws and regulationsINTELLECTUAL PROPERTY RIGHTSThe content on the PetsPic (“Company Content”) and the trademarks, service marks and logos containedtherein (“Marks”) are owned by or licensed to Company, and are subject to copyright and otherintellectual property rights under United States and foreign laws and international conventions. CompanyContent, includes, without limitation, all source code, databases, functionality, software, website designs,audio, video, text, photographs and graphics. All Company graphics, logos, designs, page headers,button icons, scripts and service names are registered trademarks, common law trademarks or tradeTerms of Use (Rev. 133A18A) 6 / 11dress of Company in the United States and/or other countries. Company's trademarks and trade dressmay not be used, including as part of trademarks and/or as part of domain names, in connection with anyproduct or service in any manner that is likely to cause confusion and may not be copied, imitated, orused, in whole or in part, without the prior written permission of the Company.Company Content on the PetsPic is provided to you “AS IS” for your information and personal use onlyand may not be used, copied, reproduced, aggregated, distributed, transmitted, broadcast, displayed,sold, licensed, or otherwise exploited for any other purposes whatsoever without the prior written consentof the respective owners. Provided that you are eligible to use the PetsPic, you are granted a limitedlicense to access and use the PetsPic and the Company Content and to download or print a copy of anyportion of the Company Content to which you have properly gained access solely for your personal, noncommercialuse. Company reserves all rights not expressly granted to you in and to the PetsPic andCompany Content and Marks.THIRD PARTY WEBSITES AND CONTENTThe PetsPic contains (or you may be sent through the PetsPic or the Company Services) links to otherwebsites ("Third Party Websites") as well as articles, photographs, text, graphics, pictures, designs,music, sound, video, information, applications, software and other content or items belonging to ororiginating from third parties (the "Third Party Content"). Such Third Party Websites and Third PartyContent are not investigated, monitored or checked for accuracy, appropriateness, or completeness byus, and we are not responsible for any Third Party Websites accessed through the PetsPic or any ThirdParty Content posted on, available through or installed from the PetsPic, including the content, accuracy,offensiveness, opinions, reliability, privacy practices or other policies of or contained in the Third PartyWebsites or the Third Party Content. Inclusion of, linking to or permitting the use or installation of anyThird Party Website or any Third Party Content does not imply approval or endorsement thereof by us. Ifyou decide to leave the PetsPic and access the Third Party Websites or to use or install any Third PartyContent, you do so at your own risk and you should be aware that our terms and policies no longergovern. You should review the applicable terms and policies, including privacy and data gatheringpractices, of any website to which you navigate from the PetsPic or relating to any applications you useor install from the PetsPic. Any purchases you make through Third Party Websites will be through otherwebsites and from other companies, and Company takes no responsibility whatsoever in relation to suchpurchases which are exclusively between you and the applicable third party.SITE MANAGEMENTCompany reserves the right but does not have the obligation to:A.　monitor the PetsPic for violations of this Agreement;B.　take appropriate legal action against anyone who, in Company’s sole discretion, violates thisAgreement, including without limitation, reporting such user to law enforcement authorities;C.　in Company’s sole discretion and without limitation, refuse, restrict access to or availability of,or disable (to the extent technologically feasible) any user’s contribution or any portion thereofthat may violate this Agreement or any Company policy;D.　in Company’s sole discretion and without limitation, notice or liability to remove from theWebsite or otherwise disable all files and content that are excessive in size or are in any wayburdensome to Company’s systems;Terms of Use (Rev. 133A18A) 7 / 11E.　otherwise manage the PetsPic in a manner designed to protect the rights and property ofCompany and others and to facilitate the proper functioning of the PetsPic.PRIVACY POLICYWe care about the privacy of our users. Please review the Company Privacy Policy. By using the PetsPicor Company Services, you are consenting to have your personal data transferred to and processed in theUnited States. By using the PetsPic or the Company Services, you are consenting to the terms of ourPrivacy Policy.TERM AND TERMINATIONThis Agreement shall remain in full force and effect while you use the PetsPic or are otherwise a user ormember of the PetsPic, as applicable. You may terminate your use or participation at any time, for anyreason, by following the instructions for terminating user accounts in your account settings, if available, orby contacting us using the contact information below.WITHOUT LIMITING ANY OTHER PROVISION OF THIS AGREEMENT, COMPANY RESERVES THERIGHT TO, IN COMPANY’S SOLE DISCRETION AND WITHOUT NOTICE OR LIABILITY, DENYACCESS TO AND USE OF THE PetsPic AND THE COMPANY SERVICES, TO ANY PERSON FORANY REASON OR FOR NO REASON AT ALL, INCLUDING WITHOUT LIMITATION FOR BREACH OFANY REPRESENTATION, WARRANTY OR COVENANT CONTAINED IN THIS AGREEMENT, OR OFANY APPLICABLE LAW OR REGULATION, AND COMPANY MAY TERMINATE YOUR USE ORPARTICIPATION IN THE PetsPic AND THE COMPANY SERVICES, DELETE YOUR PROFILE ANDANY CONTENT OR INFORMATION THAT YOU HAVE POSTED AT ANY TIME, WITHOUT WARNING,IN COMPANY’S SOLE DISCRETION.In order to protect the integrity of the PetsPic and Company Services, Company reserves the right at anytime in its sole discretion to block certain IP addresses from accessing the PetsPic and CompanyServices.Any provisions of this Agreement that, in order to fulfill the purposes of such provisions, need to survivethe termination or expiration of this Agreement, shall be deemed to survive for as long as necessary tofulfill such purposes.YOU UNDERSTAND THAT CERTAIN STATES ALLOW YOU TO CANCEL THIS AGREEMENT,WITHOUT ANY PENALTY OR OBLIGATION, AT ANY TIME PRIOR TO MIDNIGHT OF COMPANY’STHIRD BUSINESS DAY FOLLOWING THE DATE OF THIS AGREEMENT, EXCLUDING SUNDAYSAND HOLIDAYS. TO CANCEL, CALL A COMPANY CUSTOMER CARE REPRESENTATIVE DURINGNORMAL BUSINESS HOURS USING THE CONTACT INFORMATION LISTING BELOW IN THISAGREEMENT OR BY ACCESSING YOUR ACCOUNT SETTINGS. THIS SECTION APPLIES ONLY TOINDIVIDUALS RESIDING IN STATES WITH SUCH LAWS.If Company terminates or suspends your account for any reason, you are prohibited from registering andcreating a new account under your name, a fake or borrowed name, or the name of any third party, evenif you may be acting on behalf of the third party. In addition to terminating or suspending your account,Company reserves the right to take appropriate legal action, including without limitation pursuing civil,criminal, and injunctive redress.Terms of Use (Rev. 133A18A) 8 / 11MODIFICATIONSTo AgreementCompany may modify this Agreement from time to time. Any and all changes to this Agreement will beposted on the PetsPic and revisions will be indicated by date. You agree to be bound to any changes tothis Agreement when you use the Company Services after any such modification becomes effective.Company may also, in its discretion, choose to alert all users with whom it maintains email information ofsuch modifications by means of an email to their most recently provided email address. It is thereforeimportant that you regularly review this Agreement and keep your contact information current in youraccount settings to ensure you are informed of changes. You agree that you will periodically check theWebsite for updates to this Agreement and you will read the messages we send you to inform you of anychanges. Modifications to this Agreement shall be effective after posting.To ServicesCompany reserves the right at any time to modify or discontinue, temporarily or permanently, theCompany Services (or any part thereof) with or without notice. You agree that Company shall not beliable to you or to any third party for any modification, suspension or discontinuance of the CompanyServices.DISPUTESBetween UsersIf there is a dispute between users of the PetsPic, or between users and any third party, you understandand agree that Company is under no obligation to become involved. In the event that you have a disputewith one or more other users, you hereby release Company, its officers, employees, agents andsuccessors in rights from claims, demands and damages (actual and consequential) of every kind ornature, known or unknown, suspected and unsuspected, disclosed and undisclosed, arising out of or inany way related to such disputes and/or the Company Services.With CompanyAll questions of law, rights, and remedies regarding any act, event or occurrence undertaken pursuant orrelating to this Website or the Company Services shall be governed and construed by the laws of theState/Commonwealth of Texas, excluding such state’s conflicts of law rules. Any legal action of whatevernature by or against Company arising out of or related in any respect to this Website and the CompanyServices shall be brought solely in either the applicable federal or state courts located in or withjurisdiction over Dallas County, State of Texas; subject, however, to the right of Company, at theCompany's sole discretion, to bring an action to seek injunctive relief to enforce this Agreement or to stopor prevent an infringement of proprietary or other third party rights (or any similar cause of action) in anyapplicable court in any jurisdiction where jurisdiction exists with regard to a user. You hereby consent to(and waive any challenge or objection to) personal jurisdiction and venue in the above-referenced courts.Application of the United Nations Convention on Contracts for the International Sale of Goods is excludedfrom this Agreement. Additionally, application of the Uniform Computer Information Transaction Act(UCITA) is excluded from this Agreement. In no event shall any claim, action or proceeding by you relatedTerms of Use (Rev. 133A18A) 9 / 11in any way to the PetsPic and/or the Company Services (including your visit to or use of the PetsPicand/or the Company Services) be instituted more than two (2) years after the cause of action arose. Youwill be liable for any attorneys' fees and costs if we have to take any legal action to enforce thisAgreement.CORRECTIONSOccasionally there may be information on the PetsPic that contains typographical errors, inaccuracies oromissions that may relate to service descriptions, pricing, availability, and various other information.Company reserves the right to correct any errors, inaccuracies or omissions and to change or update theinformation at any time, without prior notice.DISCLAIMERSCompany cannot control the nature of all of the content available on the PetsPic. By operating theWebsite, Company does not represent or imply that Company endorses any blogs, contributions or othercontent available on or linked to by the PetsPic, including without limitation content hosted on third partywebsites or provided by third party applications, or that Company believes contributions, blogs or othercontent to be accurate, useful or non-harmful. We do not control and are not responsible for unlawful orotherwise objectionable content you may encounter on the PetsPic or in connection with anycontributions. The Company is not responsible for the conduct, whether online or offline, of any user ofthe PetsPic or Company Services.YOU AGREE THAT YOUR USE OF THE PetsPic AND COMPANY SERVICES WILL BE AT YOURSOLE RISK. TO THE FULLEST EXTENT PERMITTED BY LAW, COMPANY, ITS OFFICERS,DIRECTORS, EMPLOYEES, AND AGENTS DISCLAIM ALL WARRANTIES, EXPRESS OR IMPLIED, INCONNECTION WITH THE PetsPic AND THE COMPANY SERVICES AND YOUR USE THEREOF,INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESSFOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT. COMPANY MAKES NO WARRANTIESOR REPRESENTATIONS ABOUT THE ACCURACY OR COMPLETENESS OF THE PetsPic’SCONTENT OR THE CONTENT OF ANY WEBSITES LINKED TO THIS WEBSITE AND ASSUMES NOLIABILITY OR RESPONSIBILITY FOR ANY (A) ERRORS, MISTAKES, OR INACCURACIES OFCONTENT AND MATERIALS, (B) PERSONAL INJURY OR PROPERTY DAMAGE, OF ANY NATUREWHATSOEVER, RESULTING FROM YOUR ACCESS TO AND USE OF OUR WEBSITE, (C) ANYUNAUTHORIZED ACCESS TO OR USE OF OUR SECURE SERVERS AND/OR ANY AND ALLPERSONAL INFORMATION AND/OR FINANCIAL INFORMATION STORED THEREIN, (D) ANYINTERRUPTION OR CESSATION OF TRANSMISSION TO OR FROM THE PetsPic OR COMPANYSERVICES, (E) ANY BUGS, VIRUSES, TROJAN HORSES, OR THE LIKE WHICH MAY BETRANSMITTED TO OR THROUGH THE PetsPic BY ANY THIRD PARTY, AND/OR (F) ANY ERRORSOR OMISSIONS IN ANY CONTENT AND MATERIALS OR FOR ANY LOSS OR DAMAGE OF ANYKIND INCURRED AS A RESULT OF THE USE OF ANY CONTENT POSTED, TRANSMITTED, OROTHERWISE MADE AVAILABLE VIA THE PetsPic. COMPANY DOES NOT WARRANT, ENDORSE,GUARANTEE, OR ASSUME RESPONSIBILITY FOR ANY PRODUCT OR SERVICE ADVERTISED OROFFERED BY A THIRD PARTY THROUGH THE PetsPic OR ANY HYPERLINKED WEBSITE ORFEATURED IN ANY BANNER OR OTHER ADVERTISING, AND COMPANY WILL NOT BE A PARTYTO OR IN ANY WAY BE RESPONSIBLE FOR MONITORING ANY TRANSACTION BETWEEN YOUAND THIRD-PARTY PROVIDERS OF PRODUCTS OR SERVICES.Terms of Use (Rev. 133A18A) 10 / 11LIMITATIONS OF LIABILITYIN NO EVENT SHALL COMPANY OR ITS DIRECTORS, EMPLOYEES, OR AGENTS BE LIABLE TOYOU OR ANY THIRD PARTY FOR ANY DIRECT, INDIRECT, CONSEQUENTIAL, EXEMPLARY,INCIDENTAL, SPECIAL OR PUNITIVE DAMAGES, INCLUDING LOST PROFIT, LOST REVENUE,LOSS OF DATA OR OTHER DAMAGES ARISING FROM YOUR USE OF THE PetsPic ORCOMPANY SERVICES, EVEN IF COMPANY HAS BEEN ADVISED OF THE POSSIBILITY OF SUCHDAMAGES. NOTWITHSTANDING ANYTHING TO THE CONTRARY CONTAINED HEREIN,COMPANY’S LIABILITY TO YOU FOR ANY CAUSE WHATSOEVER AND REGARDLESS OF THEFORM OF THE ACTION, WILL AT ALL TIMES BE LIMITED TO THE AMOUNT PAID, IF ANY, BY YOUTO COMPANY FOR THE COMPANY SERVICES DURING THE PERIOD OF 3 MONTHS PRIOR TOANY CAUSE OF ACTION ARISING.CERTAIN STATE LAWS DO NOT ALLOW LIMITATIONS ON IMPLIED WARRANTIES OR THEEXCLUSION OR LIMITATION OF CERTAIN DAMAGES. IF THESE LAWS APPLY TO YOU, SOME ORALL OF THE ABOVE DISCLAIMERS OR LIMITATIONS MAY NOT APPLY TO YOU, AND YOU MAYHAVE ADDITIONAL RIGHTS.IF YOU ARE A CALIFORNIA RESIDENT, YOU WAIVE CALIFORNIA CIVIL CODE SECTION 1542,WHICH SAYS: "A GENERAL RELEASE DOES NOT EXTEND TO CLAIMS WHICH THE CREDITORDOES NOT KNOW OR SUSPECT TO EXIST IN HIS FAVOR AT THE TIME OF EXECUTING THERELEASE, WHICH, IF KNOWN BY HIM MUST HAVE MATERIALLY AFFECTED HIS SETTLEMENTWITH THE DEBTOR."INDEMNITYYou agree to defend, indemnify and hold Company, its subsidiaries, and affiliates, and their respectiveofficers, agents, partners and employees, harmless from and against, any loss, damage, liability, claim, ordemand, including reasonable attorneys’ fees and expenses, made by any third party due to or arising outof your contributed content, use of the Company Services, and/or arising from a breach of this Agreementand/or any breach of your representations and warranties set forth above. Notwithstanding the foregoing,Company reserves the right, at your expense, to assume the exclusive defense and control of any matterfor which you are required to indemnify Company, and you agree to cooperate, at your expense, withCompany’s defense of such claims. Company will use reasonable efforts to notify you of any such claim,action, or proceeding which is subject to this indemnification upon becoming aware of it.NOTICESExcept as explicitly stated otherwise, any notices given to Company shall be given by email to theaddress listed in the contact information below. Any notices given to you shall be given to the emailaddress you provided during the registration process, or such other address as each party may specify.Notice shall be deemed to be given twenty-four (24) hours after the email is sent, unless the sendingparty is notified that the email address is invalid. We may also choose to send notices by regular mail.USER DATAOur Website will maintain certain data that you transfer to the PetsPic for the purpose of the performanceof the Company Services, as well as data relating to your use of the Company Services. Although weTerms of Use (Rev. 133A18A) 11 / 11perform regular routine backups of data, you are primarily responsible for all data that you havetransferred or that relates to any activity you have undertaken using the Company Services. You agreethat Company shall have no liability to you for any loss or corruption of any such data, and you herebywaive any right of action against Company arising from any such loss or corruption of such data.ELECTRONIC CONTRACTINGYour use of the Company Services includes the ability to enter into agreements and/or to maketransactions electronically. YOU ACKNOWLEDGE THAT YOUR ELECTRONIC SUBMISSIONSCONSTITUTE YOUR AGREEMENT AND INTENT TO BE BOUND BY FOR SUCH AGREEMENTS ANDTRANSACTIONS. YOUR AGREEMENT AND INTENT TO BE BOUND BY ELECTRONICSUBMISSIONS APPLIES TO ALL RECORDS RELATING TO ALL TRANSACTIONS YOU ENTER INTORELATING TO THE COMPANY SERVICES, INCLUDING NOTICES OF CANCELLATION, POLICIES,CONTRACTS, AND APPLICATIONS. In order to access and retain your electronic records, you may berequired to have certain hardware and software, which are your sole responsibility.MISCELLANEOUSThis Agreement constitutes the entire agreement between you and Company regarding the use of theCompany Services. The failure of Company to exercise or enforce any right or provision of thisAgreement shall not operate as a waiver of such right or provision. The section titles in this Agreementare for convenience only and have no legal or contractual effect. This Agreement operates to the fullestextent permissible by law. This Agreement and your account may not be assigned by you without ourexpress written consent. Company may assign any or all of its rights and obligations to others at any time.Company shall not be responsible or liable for any loss, damage, delay or failure to act caused by anycause beyond Company's reasonable control. If any provision or part of a provision of this Agreement isunlawful, void or unenforceable, that provision or part of the provision is deemed severable from thisAgreement and does not affect the validity and enforceability of any remaining provisions. There is nojoint venture, partnership, employment or agency relationship created between you and Company as aresult of this Agreement or use of the PetsPic and Company Services. Upon Company’s request, you willfurnish Company any documentation, substantiation or releases necessary to verify your compliance withthis Agreement. You agree that this Agreement will not be construed against Company by virtue of havingdrafted them. You hereby waive any and all defenses you may have based on the electronic form of thisAgreement and the lack of signing by the parties hereto to execute this Agreement.CONTACT USIn order to resolve a complaint regarding the Company Services or to receive further informationregarding use of the Company Services, please contact Company as set forth below or, if any complaintwith us is not satisfactorily resolved, and you are a California resident, you can contact the ComplaintAssistance Unit of the Division of Consumer Services of the Department of Consumer Affairs in writing at400 "R" Street, Sacramento, California 95814 or by telephone at 1-916-445-1254.PetsPic350 Gran Via #2086Irving, TX 75039Email: bekahlbaker@gmail.comPhone: (903) 714-3504This page intentionally left blank.Terms of Use (Rev. 133A18A)GENERAL INSTRUCTIONSWHAT IS A TERMS OF USEAGREEMENT?A Terms of Use Agreement is a written set ofrules and regulations between two parties, theUser and the Company, that the User mustagree to follow in order to use the Company’swebsite and services.WHEN IS A TERMS OF USEAGREEMENT NEEDED?While Terms and Conditions are not required bylaw, any website, especially e-commerce orsocial networking websites or applications andany website or internet service provider thatstores a User’s personal data, should considerhaving Terms and Conditions.A written set of Terms and Conditions protectsthe Company and acts an instruction manual forits website. It allows the Company to explainthings related to its service or product, including,among other things:• how purchases, payment, and returns arehandled• ownership and use of content and intellectualproperty• how Users must conduct themselves, includingany prohibited behavior• limitations on liability and disclaimers• the Company’s privacy policyWHO NEEDS A TERMS OF USEAGREEMENT?Almost every website or application thatprovides a service or product has a Terms ofUse Agreement.Here are some examples of websites and appsthat use a Terms of Use Agreement:• E-Commerce Company - Ebay, Amazon,Target, Gap• Social Media Website or Application -Facebook, Instagram, Twitter, Snapchat• Search Engine - Google, Yahoo, Bing• Website or Application Providing a Serviceor Product - YouTube, Apple, Uber• Gaming Website or Application -Playstation, Pokemon Go, Candy CrushWHAT SHOULD BE INCLUDED IN ATEMS OF USE?A simple Terms of Service should generallyhave at least the following:• Who is the Company providing the service orproduct• What is the service or product provided by theCompany• Where is the Company’s website• When will the agreement terminate• Why might the User not be granted access tothe PetsPic• How does the User agree to accept the Termsof ServiceThe Company can tailor the rules andregulations, or “terms of use”, according to theservice or product it provides and its specificneeds. The Terms of Use Agreement can beposted on the Company’s website either as abrowsewrap agreement or a clickwrapagreement.OTHER NAMESAs a reference, a Terms of Use Agreement isknown by other names:• Terms of Service Agreement• Terms and Conditions• User Agreement• Statement of Rights and Responsibilities• Disclaimer• TOU• ToS• TOS• TOC</mutableString>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VHJ-qa-o23">
+                                <rect key="frame" x="0.0" y="8" width="320" height="44"/>
+                                <items>
+                                    <navigationItem title="Terms of Service" id="7MQ-nC-lKQ">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" id="IPf-5u-Yty">
+                                            <color key="tintColor" red="0.97550159690000005" green="0.11483331770000001" blue="0.3364585638" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <connections>
+                                                <segue destination="oZP-Ww-SQl" kind="show" customClass="LeftToRightSegue" customModule="PetApp" customModuleProvider="target" id="Msb-Ik-6mN"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="VHJ-qa-o23" secondAttribute="trailing" id="0Um-vU-IvH"/>
+                            <constraint firstItem="6Xj-Eu-cCW" firstAttribute="top" secondItem="Nuo-dh-Hy3" secondAttribute="bottom" id="84V-v7-d7o"/>
+                            <constraint firstItem="VHJ-qa-o23" firstAttribute="leading" secondItem="zoS-rZ-fKk" secondAttribute="leading" id="94P-eU-0EL"/>
+                            <constraint firstItem="VHJ-qa-o23" firstAttribute="top" secondItem="zoS-rZ-fKk" secondAttribute="top" constant="8" id="EQf-V6-QhB"/>
+                            <constraint firstItem="Nuo-dh-Hy3" firstAttribute="top" secondItem="VHJ-qa-o23" secondAttribute="bottom" id="IIS-pi-Xtj"/>
+                            <constraint firstItem="Nuo-dh-Hy3" firstAttribute="leading" secondItem="zoS-rZ-fKk" secondAttribute="leadingMargin" id="IK6-Ik-r6V"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Nuo-dh-Hy3" secondAttribute="trailing" id="q8q-NV-A7S"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BB1-9q-y8R" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-232.5" y="-825"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="5zZ-pO-s5C">
             <objects>
@@ -2260,7 +2751,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <color key="tintColor" red="0.71977680921554565" green="0.9154353141784668" blue="0.52597159147262573" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="selectedImageTintColor" red="0.71977680921554565" green="0.9154353141784668" blue="0.52597159147262573" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" red="0.72156862745098038" green="0.9137254901960784" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
                         <segue destination="EJG-Ml-KKs" kind="relationship" relationship="viewControllers" id="7kn-Ze-7As"/>
@@ -2348,6 +2839,7 @@
         <image name="GO-left" width="18" height="31"/>
         <image name="Lock" width="40" height="50"/>
         <image name="blur" width="640" height="426"/>
+        <image name="box" width="40" height="40"/>
         <image name="camera" width="39" height="31"/>
         <image name="camera-selected" width="38" height="29"/>
         <image name="cat-multiple" width="35" height="30"/>
@@ -2368,14 +2860,14 @@
         <image name="send" width="38" height="28"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="61S-To-qrI"/>
-        <segue reference="r8q-Eq-6Ug"/>
-        <segue reference="uEA-SO-mV1"/>
-        <segue reference="2Kt-Wg-gAt"/>
-        <segue reference="NaD-hV-ZAh"/>
-        <segue reference="Lqk-g8-n0s"/>
-        <segue reference="qjm-9E-NXw"/>
-        <segue reference="Q43-Jq-XXi"/>
+        <segue reference="PM7-ev-GOT"/>
+        <segue reference="xu2-ih-vp3"/>
         <segue reference="SJM-lh-SJu"/>
+        <segue reference="q4Y-mR-hg2"/>
+        <segue reference="2Kt-Wg-gAt"/>
+        <segue reference="Lqk-g8-n0s"/>
+        <segue reference="NaD-hV-ZAh"/>
+        <segue reference="r8q-Eq-6Ug"/>
+        <segue reference="61S-To-qrI"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -13,12 +13,14 @@ import SwiftKeychainWrapper
 class SignInVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailField: UITextField!
     @IBOutlet weak var passwordField: UITextField!
+    @IBOutlet weak var errorBGView: UIView!
     @IBOutlet weak var errorLbl: UILabel!
     @IBOutlet weak var signUpBtn: UIButton!
     @IBOutlet weak var resetPassBtn: UIButton!
     @IBAction func loginPressed(_ sender: AnyObject) {
         if let email = emailField.text, let password = passwordField.text {
             if passwordField.text == "" {
+                self.showErrorView()
                 self.errorLbl.text = "Please enter a valid password."
             }
             FIRAuth.auth()?.signIn(withEmail: email, password: password, completion: { (user, error) in
@@ -26,12 +28,16 @@ class SignInVC: UIViewController, UITextFieldDelegate {
                     if let errCode = FIRAuthErrorCode(rawValue: error!._code) {
                         switch errCode {
                         case .errorCodeInvalidEmail:
+                            self.showErrorView()
                             self.errorLbl.text = "Please enter a valid email address."
                         case .errorCodeUserNotFound:
+                            self.showErrorView()
                             self.errorLbl.text = "There is not an account for that email. Do you need to sign up?"
                         case .errorCodeTooManyRequests:
+                            self.showErrorView()
                             self.errorLbl.text = "Too many requests. Please wait before trying to sign in again."
                         case .errorCodeWrongPassword:
+                            self.showErrorView()
                             self.errorLbl.text = "Password is incorrect. Do you need to reset your password?"
                         default:
                             print("Create User Error: \(String(describing: error))")
@@ -52,6 +58,19 @@ class SignInVC: UIViewController, UITextFieldDelegate {
                     }
                 }
             })
+        }
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        errorBGView.isHidden = true
+        errorLbl.isHidden = true
+    }
+    func showErrorView() {
+        if errorBGView.isHidden {
+            UIView.animate(withDuration: 0.35) {
+                self.errorLbl.isHidden = false
+                self.errorBGView.isHidden = false
+            }
         }
     }
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

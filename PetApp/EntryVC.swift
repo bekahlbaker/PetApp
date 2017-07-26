@@ -14,6 +14,7 @@ class EntryVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.isNavigationBarHidden = true
     }
     override func viewDidAppear(_ animated: Bool) {
 //        KeychainWrapper.standard.removeObject(forKey: KEY_UID)
@@ -21,7 +22,8 @@ class EntryVC: UIViewController {
             print("ID and username found in Keychain.")
             performSegue(withIdentifier: "toFeedVC", sender: nil)
         } else {
-            print(KeychainWrapper.standard.string(forKey: KEY_UID))
+//            print(KeychainWrapper.standard.string(forKey: KEY_UID))
+            print("No user found")
         }
 //        for (key, value) in UserDefaults.standard.dictionaryRepresentation() {
 //            print("\(key) = \(value) \n")

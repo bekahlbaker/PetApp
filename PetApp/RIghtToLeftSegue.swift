@@ -14,7 +14,7 @@ class RIghtToLeftSegue: UIStoryboardSegue {
         let dst: UIViewController = self.destination
         let transition: CATransition = CATransition()
         let timeFunc: CAMediaTimingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
-        transition.duration = 0.25
+        transition.duration = 0.35
         transition.timingFunction = timeFunc
         transition.type = kCATransitionPush
         transition.subtype = kCATransitionFromRight
