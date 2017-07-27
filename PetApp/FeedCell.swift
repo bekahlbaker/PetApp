@@ -14,7 +14,7 @@ import SwiftKeychainWrapper
 import Crashlytics
 
 class FeedCell: UITableViewCell, UITextFieldDelegate {
-
+    
     @IBOutlet weak var cellContentView: UIView!
     @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
     @IBOutlet weak var feedImageView: UIImageView!
@@ -29,52 +29,59 @@ class FeedCell: UITableViewCell, UITextFieldDelegate {
     weak var delegate: UIViewController?
     @IBOutlet weak var moreBtn: UIButton!
     @IBAction func moreBtnTapped(_ sender: Any) {
-        if self.isCurrentUser == false {
-            let alertController = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
-            let report = UIAlertAction(title: "Report", style: .destructive, handler: { (_) -> Void in
-                let alert = UIAlertController(title: "Are you sure you want to report this post?", message: "This post will not appear on your feed any longer.", preferredStyle: UIAlertControllerStyle.alert)
-                let deletePost = UIAlertAction(title: "Report Post", style: .destructive, handler: { (_) -> Void in
-//Handle reporting a post
-                    DataService.ds.REF_BASE.child("flagged-posts").child(KeychainWrapper.standard.string(forKey: KEY_UID)! as String).updateChildValues([self.post.postKey: true])
-                    DataService.ds.REF_CURRENT_USER.child("wall").child(self.post.postKey).removeValue()
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshMyTableView"), object: nil)
+        if KeychainWrapper.standard.string(forKey: KEY_UID)! as String != "v2PvUj0ddqVe0kJRoeIWtVZR9dj1" {
+            if self.isCurrentUser == false {
+                let alertController = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
+                let report = UIAlertAction(title: "Report", style: .destructive, handler: { (_) -> Void in
+                    let alert = UIAlertController(title: "Are you sure you want to report this post?", message: "This post will not appear on your feed any longer.", preferredStyle: UIAlertControllerStyle.alert)
+                    let deletePost = UIAlertAction(title: "Report Post", style: .destructive, handler: { (_) -> Void in
+                        //Handle reporting a post
+                        DataService.ds.REF_BASE.child("flagged-posts").child(KeychainWrapper.standard.string(forKey: KEY_UID)! as String).updateChildValues([self.post.postKey: true])
+                        DataService.ds.REF_CURRENT_USER.child("wall").child(self.post.postKey).removeValue()
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshMyTableView"), object: nil)
+                    })
+                    let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) -> Void in
+                    }
+                    alert.addAction(deletePost)
+                    alert.addAction(cancel)
+                    self.delegate?.present(alert, animated: true, completion: nil)
                 })
-                let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) -> Void in
-                }
-                alert.addAction(deletePost)
-                alert.addAction(cancel)
-                self.delegate?.present(alert, animated: true, completion: nil)
-            })
-            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) -> Void in
-            })
-            alertController.addAction(report)
-            alertController.addAction(cancel)
-            delegate?.present(alertController, animated: true, completion: nil)
-        } else if self.isCurrentUser == true {
-            let alertController = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
-            let edit = UIAlertAction(title: "Edit", style: .default, handler: { (_) -> Void in
-                self.moreBtn.isEnabled = false
-                self.caption.isHidden = true
-            })
-            let delete = UIAlertAction(title: "Delete", style: .destructive, handler: { (_) -> Void in
-                let alert = UIAlertController(title: "Are you sure you want to delete this post?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
-                let deletePost = UIAlertAction(title: "Delete Post", style: .destructive, handler: { (_) -> Void in
-                    DataService.ds.REF_POSTS.child(self.post.postKey).removeValue()
-                    self.removeFromFollowersWall(key: self.post.postKey)
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshMyTableView"), object: nil)
+                let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) -> Void in
                 })
-                let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) -> Void in
-                }
-                alert.addAction(deletePost)
-                alert.addAction(cancel)
-                self.delegate?.present(alert, animated: true, completion: nil)
-            })
-            let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) -> Void in
-            })
-            alertController.addAction(edit)
-            alertController.addAction(delete)
-            alertController.addAction(cancel)
-            delegate?.present(alertController, animated: true, completion: nil)
+                alertController.addAction(report)
+                alertController.addAction(cancel)
+                delegate?.present(alertController, animated: true, completion: nil)
+            } else if self.isCurrentUser == true {
+                let alertController = UIAlertController(title:nil, message: nil, preferredStyle: .actionSheet)
+                let edit = UIAlertAction(title: "Edit", style: .default, handler: { (_) -> Void in
+                    self.moreBtn.isEnabled = false
+                    self.caption.isHidden = true
+                })
+                let delete = UIAlertAction(title: "Delete", style: .destructive, handler: { (_) -> Void in
+                    let alert = UIAlertController(title: "Are you sure you want to delete this post?", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+                    let deletePost = UIAlertAction(title: "Delete Post", style: .destructive, handler: { (_) -> Void in
+                        DataService.ds.REF_POSTS.child(self.post.postKey).removeValue()
+                        self.removeFromFollowersWall(key: self.post.postKey)
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshMyTableView"), object: nil)
+                    })
+                    let  cancel = UIAlertAction(title: "Cancel", style: .cancel) { (_) -> Void in
+                    }
+                    alert.addAction(deletePost)
+                    alert.addAction(cancel)
+                    self.delegate?.present(alert, animated: true, completion: nil)
+                })
+                let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: { (_) -> Void in
+                })
+                alertController.addAction(edit)
+                alertController.addAction(delete)
+                alertController.addAction(cancel)
+                delegate?.present(alertController, animated: true, completion: nil)
+            }
+        } else {
+            let alert = UIAlertController(title: "You cannot report or delete posts while viewing as a guest.", message: "Please log out and create your own account.", preferredStyle: UIAlertControllerStyle.alert)
+            let okay = UIAlertAction(title: "Okay", style: .default, handler: nil)
+            alert.addAction(okay)
+            self.delegate?.present(alert, animated: true, completion: nil)
         }
     }
     var post: Post!
@@ -133,8 +140,28 @@ class FeedCell: UITableViewCell, UITextFieldDelegate {
             } else {
                 self.isCurrentUser = false
             }
+            if let imgURL = URL(string: post.imageURL) {
+                DispatchQueue.main.async {
+                    self.feedImageView.kf.setImage(with: imgURL)
+                }
+            } else {
+                let ref = FIRStorage.storage().reference(forURL: post.imageURL)
+                ref.data(withMaxSize: 3 * 1024 * 1024, completion: { (data, error) in
+                    if error != nil {
+                        print("Unable to Download image from Firebase storage.")
+                    } else {
+                        if let imgData = data {
+                            if let img = UIImage(data: imgData) {
+                                DispatchQueue.main.async {
+                                    self.feedImageView.image = img
+                                    self.activitySpinner.stopAnimating()
+                                }
+                            }
+                        }
+                    }
+                })
+            }
         }
-        DispatchQueue.main.async {
             self.downloadComments()
             self.activitySpinner.startAnimating()
             self.likesRef = DataService.ds.REF_CURRENT_USER.child("likes").child(post.postKey)
@@ -146,23 +173,6 @@ class FeedCell: UITableViewCell, UITextFieldDelegate {
                 self.cellContentView.transform = right
                 self.goViewImage.image = UIImage(named: "GO-left")
             }, completion: nil)
-            if let imgURL = URL(string: post.imageURL) {
-                self.feedImageView.kf.setImage(with: imgURL)
-            } else {
-                let ref = FIRStorage.storage().reference(forURL: post.imageURL)
-                ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
-                    if error != nil {
-                        print("Unable to Download image from Firebase storage.")
-                    } else {
-                        if let imgData = data {
-                            if let img = UIImage(data: imgData) {
-                                self.feedImageView.image = img
-                                self.activitySpinner.stopAnimating()
-                            }
-                        }
-                    }
-                })
-            }
             self.likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
                 if let _ = snapshot.value as? NSNull {
                     self.likesImg.image = UIImage(named: "paw-print")
@@ -171,7 +181,6 @@ class FeedCell: UITableViewCell, UITextFieldDelegate {
                 }
             })
         }
-    }
     func likeTapped(_ sender: UITapGestureRecognizer) {
         if KeychainWrapper.standard.string(forKey: KEY_UID)! as String != "v2PvUj0ddqVe0kJRoeIWtVZR9dj1" {
             likesRef.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -242,14 +251,21 @@ class FeedCell: UITableViewCell, UITextFieldDelegate {
     var currentUsername: String!
     @IBAction func sendCommentBtnTapped(_ sender: Any) {
         if KeychainWrapper.standard.string(forKey: KEY_UID)! as String != "v2PvUj0ddqVe0kJRoeIWtVZR9dj1" {
-            let comment: [String: Any] = [
-                "comment": self.commentTextField.text! as String,
-                "username": self.currentUsername as String,
-                "userKey": KeychainWrapper.standard.string(forKey: KEY_UID)! as String
-            ]
-            let firebasePost = DataService.ds.REF_POSTS.child(self.post.postKey)
-            firebasePost.child("comments").childByAutoId().setValue(comment)
-            self.commentTextField.text = ""
+            if self.commentTextField.text != "" {
+                let comment: [String: Any] = [
+                    "comment": self.commentTextField.text! as String,
+                    "username": self.currentUsername as String,
+                    "userKey": KeychainWrapper.standard.string(forKey: KEY_UID)! as String
+                ]
+                let firebasePost = DataService.ds.REF_POSTS.child(self.post.postKey)
+                firebasePost.child("comments").childByAutoId().setValue(comment)
+                self.commentTextField.text = ""
+            } else {
+                let alert = UIAlertController(title: "Please enter a comment", message: nil, preferredStyle: UIAlertControllerStyle.alert)
+                let ok = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
+                alert.addAction(ok)
+                self.delegate?.present(alert, animated: true, completion: nil)
+            }
         } else {
             let alert = UIAlertController(title: "You cannot comment on posts while viewing as a guest.", message: "Please log out and create your own account.", preferredStyle: UIAlertControllerStyle.alert)
             let okay = UIAlertAction(title: "Okay", style: .default, handler: nil)

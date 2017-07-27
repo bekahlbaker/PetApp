@@ -87,41 +87,38 @@ class ProfileVC: UIViewController, UIImagePickerControllerDelegate, UINavigation
         downloadUserInfo()
     }
     func downloadUserInfo() {
-        //download profile info & image
-        DataService.ds.REF_CURRENT_USER.child("user-info").observe(.value, with: { (snapshot) in
-            if let dictionary = snapshot.value as? [String: Any] {
-                self.fullNameLbl.text = dictionary["full-name"] as? String
-                self.parentsNameLbl.text = dictionary["parents-name"] as? String
-                self.speciesLbl.text = dictionary["species"] as? String
-                self.breedLbl.text = dictionary["breed"] as? String
-                self.locationLbl.text = dictionary["location"] as? String
-                self.aboutLbl.text = dictionary["about"] as? String
-                self.navigationItem.title = dictionary["username"] as? String
-                guard let profileUrl = dictionary["profileImgUrl"] as? String else {
-                    return
-                }
-                if profileUrl == (dictionary["profileImgUrl"] as? String)! {
-                    let storage = FIRStorage.storage()
-                    let storageRef = storage.reference(forURL: profileUrl)
-                    storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
-                        if error != nil {
-                            print("Unable to download image from firebase")
-                        } else {
-                            let profileImg = UIImage(data: data!)
-                            self.profileImg.image = profileImg
+        DispatchQueue.global().async {
+            DataService.ds.REF_CURRENT_USER.child("user-info").observe(.value, with: { (snapshot) in
+                if let dictionary = snapshot.value as? [String: Any] {
+                    DispatchQueue.main.async {
+                        self.fullNameLbl.text = dictionary["full-name"] as? String
+                        self.parentsNameLbl.text = dictionary["parents-name"] as? String
+                        self.speciesLbl.text = dictionary["species"] as? String
+                        self.breedLbl.text = dictionary["breed"] as? String
+                        self.locationLbl.text = dictionary["location"] as? String
+                        self.aboutLbl.text = dictionary["about"] as? String
+                        self.navigationItem.title = dictionary["username"] as? String
+                    }
+                    guard let profileUrl = dictionary["profileImgUrl"] as? String else {
+                        return
+                    }
+                    if profileUrl == (dictionary["profileImgUrl"] as? String)! {
+                        let storage = FIRStorage.storage()
+                        let storageRef = storage.reference(forURL: profileUrl)
+                        storageRef.data(withMaxSize: 3 * 1024 * 1024) { (data, error) in
+                            if error != nil {
+                                print("Unable to download image from firebase")
+                            } else {
+                                DispatchQueue.main.async {
+                                    let profileImg = UIImage(data: data!)
+                                    self.profileImg.image = profileImg
+                                }
+                            }
                         }
                     }
                 }
-            }
-        })
+            })
+
+        }
     }
-    //    override func viewDidAppear(_ animated: Bool) {
-    //        DataService.ds.REF_CURRENT_USER.child("user-personal").child("HasFilledOutProfileOnce").observe( .value, with: { (snapshot) in
-    //            if let _ = snapshot.value as? NSNull {
-    //                print("FIRST time viewing profile")
-    //            } else {
-    //                print("NOT first time viewing profile")
-    //            }
-    //        })
-    //    }
 }

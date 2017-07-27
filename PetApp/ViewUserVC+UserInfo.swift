@@ -25,7 +25,7 @@ extension ViewUserVC {
                         if profileUrl == (userDict["profileImgUrl"] as? String)! {
                             let storage = FIRStorage.storage()
                             let storageRef = storage.reference(forURL: profileUrl)
-                            storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
+                            storageRef.data(withMaxSize: 3 * 1024 * 1024) { (data, error) in
                                 if error != nil {
                                     print("Unable to download image from firebase")
                                 } else {
@@ -56,7 +56,7 @@ extension ViewUserVC {
                         if profileUrl == (userDict["profileImgUrl"] as? String)! {
                             let storage = FIRStorage.storage()
                             let storageRef = storage.reference(forURL: profileUrl)
-                            storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
+                            storageRef.data(withMaxSize: 3 * 1024 * 1024) { (data, error) in
                                 if error != nil {
                                     print("Unable to download image from firebase")
                                 } else {

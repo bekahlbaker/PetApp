@@ -22,7 +22,6 @@ extension FeedCell {
                 if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     var i = 1
                     for snap in snapshot {
-                        print("VALUE OF I : \(i)")
                         if let postDict = snap.value as? [String: AnyObject] {
                             if let username = postDict["username"] as? String {
                                 switch i {

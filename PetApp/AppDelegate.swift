@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         if let url = dictionary["profileImgUrl"] as? String {
                             let storage = FIRStorage.storage()
                             let storageRef = storage.reference(forURL: url)
-                            storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
+                            storageRef.data(withMaxSize: 3 * 1024 * 1024) { (data, error) in
                                 if error != nil {
                                     print("Unable to download image from firebase")
                                 } else {
@@ -75,7 +75,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         if let url = dictionary["profileImgUrl"] as? String {
                             let storage = FIRStorage.storage()
                             let storageRef = storage.reference(forURL: url)
-                            storageRef.data(withMaxSize: 2 * 1024 * 1024) { (data, error) in
+                            storageRef.data(withMaxSize: 3 * 1024 * 1024) { (data, error) in
                                 if error != nil {
                                     print("Unable to download image from firebase")
                                 } else {

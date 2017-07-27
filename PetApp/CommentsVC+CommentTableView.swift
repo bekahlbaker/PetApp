@@ -26,7 +26,7 @@ extension CommentsVC {
                 if let dictionary = snapshot.value as? [String: Any] {
                     if let profileURL = dictionary["profileImgUrl"] as? String {
                         let ref = FIRStorage.storage().reference(forURL: profileURL)
-                        ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
+                        ref.data(withMaxSize: 3 * 1024 * 1024, completion: { (data, error) in
                             if error != nil {
                                 print("Unable to Download profile image from Firebase storage.")
                             } else {

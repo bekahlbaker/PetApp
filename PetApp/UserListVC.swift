@@ -51,6 +51,24 @@ class UserListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             if  let cell = tableView.dequeueReusableCell(withIdentifier: "UsernameListCell") as? UsernameListCell {
                 cell.delegate = self
                 cell.configureCell(user: user)
+                DataService.ds.REF_USERS.child(user.userKey).child("user-info").observe( .value, with: { (snapshot) in
+                    if let dictionary = snapshot.value as? [String: Any] {
+                        if let profileURL = dictionary["profileImgUrl"] as? String {
+                            let ref = FIRStorage.storage().reference(forURL: profileURL)
+                            ref.data(withMaxSize: 3 * 1024 * 1024, completion: { (data, error) in
+                                if error != nil {
+                                    print("Unable to Download profile image from Firebase storage.")
+                                } else {
+                                    if let imgData = data {
+                                        if let profileImg = UIImage(data: imgData) {
+                                            cell.profileImg.image = profileImg
+                                        }
+                                    }
+                                }
+                            })
+                        }
+                    }
+                })
                 return cell
             } else {
                 return UsernameListCell()
@@ -60,6 +78,24 @@ class UserListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             if  let cell = tableView.dequeueReusableCell(withIdentifier: "UsernameListCell") as? UsernameListCell {
                 cell.delegate = self
                 cell.configureCell(user: user)
+                DataService.ds.REF_USERS.child(user.userKey).child("user-info").observe( .value, with: { (snapshot) in
+                    if let dictionary = snapshot.value as? [String: Any] {
+                        if let profileURL = dictionary["profileImgUrl"] as? String {
+                            let ref = FIRStorage.storage().reference(forURL: profileURL)
+                            ref.data(withMaxSize: 3 * 1024 * 1024, completion: { (data, error) in
+                                if error != nil {
+                                    print("Unable to Download profile image from Firebase storage. \(error)")
+                                } else {
+                                    if let imgData = data {
+                                        if let profileImg = UIImage(data: imgData) {
+                                            cell.profileImg.image = profileImg
+                                        }
+                                    }
+                                }
+                            })
+                        }
+                    }
+                })
                 return cell
             } else {
                 return UsernameListCell()
