@@ -9,7 +9,7 @@
 import UIKit
 import Firebase
 
-class ResetPassVC: UIViewController {
+class ResetPassVC: UIViewController, UITextFieldDelegate {
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var errorLbl: UILabel!
     @IBOutlet weak var signUpBtn: UIButton!
@@ -42,5 +42,14 @@ class ResetPassVC: UIViewController {
         self.signUpBtn.isHidden = true
         self.successLbl.isHidden = true
         self.signInBtn.isHidden = true
+        emailTextField.delegate = self
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+        super.touchesBegan(touches, with: event)
     }
 }

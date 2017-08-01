@@ -11,7 +11,7 @@ import UIKit
 import Firebase
 import SwiftKeychainWrapper
 
-class SinglePhotoCell: UITableViewCell {
+class SinglePhotoCell: UITableViewCell, UITextFieldDelegate {
     @IBOutlet weak var feedImageView: UIImageView!
     @IBOutlet weak var caption: UILabel!
     @IBOutlet weak var profileImg: CircleImage!
@@ -75,14 +75,13 @@ class SinglePhotoCell: UITableViewCell {
     var post: Post!
     var likesRef: FIRDatabaseReference!
     var isCurrentUser: Bool!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         let tap = UITapGestureRecognizer(target: self, action: #selector(likeTapped))
         tap.numberOfTapsRequired = 1
         likesImg.addGestureRecognizer(tap)
         likesImg.isUserInteractionEnabled = true
-        self.commentTextFieldVIew.layer.borderColor = UIColor.lightGray.cgColor
-        self.commentTextFieldVIew.layer.borderWidth = 0.5
     }
     func configureCell(_ post: Post, completionHandler:@escaping (Bool) -> Void) {
         self.post = post
@@ -183,32 +182,6 @@ class SinglePhotoCell: UITableViewCell {
                 }
             }
         })
-    }
-    @IBOutlet weak var commentTextFieldVIew: UIView!
-    @IBOutlet weak var commentTextField: UITextField!
-    @IBAction func sendCommentTapped(_ sender: Any) {
-        if KeychainWrapper.standard.string(forKey: KEY_UID)! as String != "v2PvUj0ddqVe0kJRoeIWtVZR9dj1" {
-            if self.commentTextField.text != "" {
-                let comment: [String: Any] = [
-                    "comment": self.commentTextField.text! as String,
-                    "username": self.post.username as String,
-                    "userKey": KeychainWrapper.standard.string(forKey: KEY_UID)! as String
-                ]
-                let firebasePost = DataService.ds.REF_POSTS.child(self.post.postKey)
-                firebasePost.child("comments").childByAutoId().setValue(comment)
-                self.commentTextField.text = ""
-            } else {
-                let alert = UIAlertController(title: "Please enter a comment", message: nil, preferredStyle: UIAlertControllerStyle.alert)
-                let ok = UIAlertAction(title: "Okay", style: .cancel, handler: nil)
-                alert.addAction(ok)
-                self.delegate?.present(alert, animated: true, completion: nil)
-            }
-        } else {
-            let alert = UIAlertController(title: "You cannot comment on posts while viewing as a guest.", message: "Please log out and create your own account.", preferredStyle: UIAlertControllerStyle.alert)
-            let okay = UIAlertAction(title: "Okay", style: .default, handler: nil)
-            alert.addAction(okay)
-            self.delegate?.present(alert, animated: true, completion: nil)
-        }
     }
     func downloadCommentCount() {
         DataService.ds.REF_POSTS.child(self.post.postKey).child("comments").observe(.value, with: { (snapshot) in

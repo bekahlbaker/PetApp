@@ -96,6 +96,12 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
             })
         }
     }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        emailField.delegate = self
+        passwordField.delegate = self
+        password2.delegate = self
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         errorBGView.isHidden = true
@@ -105,6 +111,11 @@ class SignUpVC: UIViewController, UITextFieldDelegate {
         view.endEditing(true)
         super.touchesBegan(touches, with: event)
     }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
     func showErrorView() {
         if errorBGView.isHidden {
             UIView.animate(withDuration: 0.35) {

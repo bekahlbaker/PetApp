@@ -19,7 +19,7 @@ extension ProfileVC {
                 let imageName = UUID().uuidString
                 let metadata = FIRStorageMetadata()
                 metadata.contentType = "image/png"
-                if let uploadData = UIImagePNGRepresentation(self.profileImg.image!) {
+                if let uploadData = UIImageJPEGRepresentation(self.profileImg.image!, 0.2) {
                     DataService.ds.REF_USER_PROFILE.child(imageName).put(uploadData, metadata: metadata, completion: { (metadata, error) in
                         if error != nil {
                             print(error as Any)

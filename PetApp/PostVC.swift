@@ -142,7 +142,7 @@ class PostVC: UIViewController, UIImagePickerControllerDelegate, UINavigationCon
     }
     func saveImageToFireBase() {
         if let img = self.imageToFilter.image {
-            if let imgData = UIImagePNGRepresentation(img) {
+            if let imgData = UIImageJPEGRepresentation(img, 0.5) {
                 let imgUid = NSUUID().uuidString
                 let metadata = FIRStorageMetadata()
                 metadata.contentType = "image/png"

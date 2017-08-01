@@ -14,7 +14,6 @@ import SwiftKeychainWrapper
 import Crashlytics
 
 class FeedCell: UITableViewCell, UITextFieldDelegate {
-    
     @IBOutlet weak var cellContentView: UIView!
     @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
     @IBOutlet weak var feedImageView: UIImageView!

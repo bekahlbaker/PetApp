@@ -34,7 +34,11 @@ class UserListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         self.title = "Users"
     }
     override func viewDidAppear(_ animated: Bool) {
-        getUserList()
+        getUserList {(success) in
+            if success {
+                self.tableView.reloadData()
+            }
+        }
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -77,7 +81,7 @@ class UserListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             let user = self.userList[indexPath.row]
             if  let cell = tableView.dequeueReusableCell(withIdentifier: "UsernameListCell") as? UsernameListCell {
                 cell.delegate = self
-                cell.configureCell(user: user)
+                cell.configureCellForExploreUsers(user: user)
                 DataService.ds.REF_USERS.child(user.userKey).child("user-info").observe( .value, with: { (snapshot) in
                     if let dictionary = snapshot.value as? [String: Any] {
                         if let profileURL = dictionary["profileImgUrl"] as? String {

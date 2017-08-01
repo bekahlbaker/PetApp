@@ -60,6 +60,11 @@ class SignInVC: UIViewController, UITextFieldDelegate {
             })
         }
     }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        emailField.delegate = self
+        passwordField.delegate = self
+    }
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(true)
         errorBGView.isHidden = true
@@ -76,6 +81,10 @@ class SignInVC: UIViewController, UITextFieldDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)
         super.touchesBegan(touches, with: event)
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     @IBAction func enterAsGuestTapped(_ sender: Any) {
         FIRAuth.auth()?.signIn(withEmail: "example@example.com", password: "123456", completion: { (user, error) in

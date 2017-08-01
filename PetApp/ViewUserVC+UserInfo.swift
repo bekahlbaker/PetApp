@@ -91,7 +91,7 @@ extension ViewUserVC {
                 self.ageAndBreedLbl.text = user.species
             }
         }
-        self.profileImg.image = UIImage(named: "user-sm")
+        self.profileImg.image = UIImage(named: "dog-in-wig")
         DataService.ds.REF_USERS.child(userKey).child("following").observe(.value, with: { (snapshot) in
             if let _ = snapshot.value as? NSNull {
                 print("Not following anyone")

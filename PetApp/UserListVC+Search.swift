@@ -13,7 +13,7 @@ import SwiftKeychainWrapper
 import Crashlytics
 
 extension UserListVC {
-    func getUserList() {
+    func getUserList(completionHandler:@escaping (Bool) -> Void) {
         self.userList = []
         self.userKeys = []
         DataService.ds.REF_USERS.observeSingleEvent(of: .value, with: { (snapshot) in
@@ -22,24 +22,18 @@ extension UserListVC {
             } else {
                 if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     for snap in snapshot {
-                        self.userKeys.append(snap.key)
-                        self.filterOutCurrentUser(user: KeychainWrapper.standard.string(forKey: KEY_UID)! as String)
+                        DataService.ds.REF_USERS.child(snap.key).child("user-personal").observeSingleEvent(of: .value, with: { (snapshot) in
+                            if let dictionary = snapshot.value as? [String: AnyObject] {
+                                if let username = dictionary["username"] as? String {
+                                    self.usernames.append(username)
+                                }
+                                let user = User(userKey: snap.key, userData: dictionary)
+                                self.userList.append(user)
+                            
+                            }
+                        })
                     }
                 }
-            }
-            for i in 0..<self.userKeys.count {
-                DataService.ds.REF_USERS.child(self.userKeys[i]).child("user-personal").observeSingleEvent(of: .value, with: { (snapshot) in
-                    if let dictionary = snapshot.value as? [String: AnyObject] {
-                        if let username = dictionary["username"] as? String {
-                            self.usernames.append(username)
-                        }
-                        let user = User(userKey: self.userKeys[i], userData: dictionary)
-                        self.userList.append(user)
-                        if self.userList.count > 0 {
-                            self.tableView.reloadData()
-                        }
-                    }
-                })
             }
         })
     }

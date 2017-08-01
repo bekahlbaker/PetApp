@@ -65,7 +65,7 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SinglePhotoCell") as? SinglePhotoCell {
-            cell.profileImg.image = UIImage(named: "user-sm")
+            cell.profileImg.image = UIImage(named: "dog-in-wig")
             cell.delegate = self
             let post = self.posts[indexPath.row]
             cell.configureCell(post, completionHandler: { (success) -> Void in
