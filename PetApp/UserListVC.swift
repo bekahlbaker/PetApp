@@ -44,14 +44,41 @@ class UserListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if inSearchMode {
-            return filteredUserList.count
-        }
+//        if inSearchMode {
+//            return filteredUserList.count
+//        }
         return self.userList.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if inSearchMode {
-            let user = self.filteredUserList[indexPath.row]
+//        if inSearchMode {
+//            let user = self.filteredUserList[indexPath.row]
+//            if  let cell = tableView.dequeueReusableCell(withIdentifier: "UsernameListCell") as? UsernameListCell {
+//                cell.delegate = self
+//                cell.configureCell(user: user)
+//                DataService.ds.REF_USERS.child(user.userKey).child("user-info").observe( .value, with: { (snapshot) in
+//                    if let dictionary = snapshot.value as? [String: Any] {
+//                        if let profileURL = dictionary["profileImgUrl"] as? String {
+//                            let ref = FIRStorage.storage().reference(forURL: profileURL)
+//                            ref.data(withMaxSize: 3 * 1024 * 1024, completion: { (data, error) in
+//                                if error != nil {
+//                                    print("Unable to Download profile image from Firebase storage.")
+//                                } else {
+//                                    if let imgData = data {
+//                                        if let profileImg = UIImage(data: imgData) {
+//                                            cell.profileImg.image = profileImg
+//                                        }
+//                                    }
+//                                }
+//                            })
+//                        }
+//                    }
+//                })
+//                return cell
+//            } else {
+//                return UsernameListCell()
+//            }
+//        } else {
+            let user = self.userList[indexPath.row]
             if  let cell = tableView.dequeueReusableCell(withIdentifier: "UsernameListCell") as? UsernameListCell {
                 cell.delegate = self
                 cell.configureCell(user: user)
@@ -61,7 +88,7 @@ class UserListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
                             let ref = FIRStorage.storage().reference(forURL: profileURL)
                             ref.data(withMaxSize: 3 * 1024 * 1024, completion: { (data, error) in
                                 if error != nil {
-                                    print("Unable to Download profile image from Firebase storage.")
+                                    print("Unable to Download profile image from Firebase storage. \(String(describing: error))")
                                 } else {
                                     if let imgData = data {
                                         if let profileImg = UIImage(data: imgData) {
@@ -77,45 +104,18 @@ class UserListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
             } else {
                 return UsernameListCell()
             }
-        } else {
-            let user = self.userList[indexPath.row]
-            if  let cell = tableView.dequeueReusableCell(withIdentifier: "UsernameListCell") as? UsernameListCell {
-                cell.delegate = self
-                cell.configureCellForExploreUsers(user: user)
-                DataService.ds.REF_USERS.child(user.userKey).child("user-info").observe( .value, with: { (snapshot) in
-                    if let dictionary = snapshot.value as? [String: Any] {
-                        if let profileURL = dictionary["profileImgUrl"] as? String {
-                            let ref = FIRStorage.storage().reference(forURL: profileURL)
-                            ref.data(withMaxSize: 3 * 1024 * 1024, completion: { (data, error) in
-                                if error != nil {
-                                    print("Unable to Download profile image from Firebase storage. \(error)")
-                                } else {
-                                    if let imgData = data {
-                                        if let profileImg = UIImage(data: imgData) {
-                                            cell.profileImg.image = profileImg
-                                        }
-                                    }
-                                }
-                            })
-                        }
-                    }
-                })
-                return cell
-            } else {
-                return UsernameListCell()
-            }
-        }
+//        }
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if inSearchMode {
-            let user = self.filteredUserList[indexPath.row]
-            self.userKeyToPass = user.userKey
-            self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
-        } else {
+//        if inSearchMode {
+//            let user = self.filteredUserList[indexPath.row]
+//            self.userKeyToPass = user.userKey
+//            self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
+//        } else {
             let user = self.userList[indexPath.row]
             self.userKeyToPass = user.userKey
             self.performSegue(withIdentifier: "ViewUserVC", sender: nil)
-        }
+//        }
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ViewUserVC" {

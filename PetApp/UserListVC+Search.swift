@@ -23,13 +23,13 @@ extension UserListVC {
                 if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
                     for snap in snapshot {
                         DataService.ds.REF_USERS.child(snap.key).child("user-personal").observeSingleEvent(of: .value, with: { (snapshot) in
+                            completionHandler(true)
                             if let dictionary = snapshot.value as? [String: AnyObject] {
                                 if let username = dictionary["username"] as? String {
                                     self.usernames.append(username)
                                 }
                                 let user = User(userKey: snap.key, userData: dictionary)
                                 self.userList.append(user)
-                            
                             }
                         })
                     }
