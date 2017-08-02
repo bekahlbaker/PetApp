@@ -74,8 +74,7 @@ class SinglePhotoCell: UITableViewCell, UITextFieldDelegate {
     }
     var post: Post!
     var likesRef: FIRDatabaseReference!
-    var isCurrentUser: Bool!
-    
+    var isCurrentUser: Bool!    
     override func awakeFromNib() {
         super.awakeFromNib()
         let tap = UITapGestureRecognizer(target: self, action: #selector(likeTapped))

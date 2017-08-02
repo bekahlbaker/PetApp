@@ -25,6 +25,7 @@ class UserListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
     var inSearchMode = false
     var userKeyToPass: String!
     var currentUsername: String!
+    var refreshControl: UIRefreshControl!
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
@@ -32,13 +33,28 @@ class UserListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
 //        configureSearchController()
         self.automaticallyAdjustsScrollViewInsets = false
         self.title = "Users"
+        refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(refreshList(notification:)), for: UIControlEvents.valueChanged)
+        tableView.addSubview(refreshControl)
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshList(notification:)), name:NSNotification.Name(rawValue: "refreshMyTableView"), object: nil)
     }
-    override func viewDidAppear(_ animated: Bool) {
-        getUserList {(success) in
-            if success {
+    func refreshList(notification: NSNotification) {
+        getUserList { (successDownloadingData) in
+            if successDownloadingData {
+                self.refreshControl.endRefreshing()
                 self.tableView.reloadData()
+            } else {
+                print("Unable to download data, try again")
             }
         }
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshMyTableView"), object: nil)
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        DataService.ds.REF_USERS.removeAllObservers()
     }
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
@@ -88,7 +104,7 @@ class UserListVC: UIViewController, UITableViewDelegate, UITableViewDataSource, 
                             let ref = FIRStorage.storage().reference(forURL: profileURL)
                             ref.data(withMaxSize: 3 * 1024 * 1024, completion: { (data, error) in
                                 if error != nil {
-                                    print("Unable to Download profile image from Firebase storage. \(String(describing: error))")
+//                                    print("Unable to Download profile image from Firebase storage. \(String(describing: error))")
                                 } else {
                                     if let imgData = data {
                                         if let profileImg = UIImage(data: imgData) {

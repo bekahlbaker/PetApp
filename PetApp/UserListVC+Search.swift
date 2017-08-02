@@ -14,22 +14,19 @@ import Crashlytics
 
 extension UserListVC {
     func getUserList(completionHandler:@escaping (Bool) -> Void) {
-        self.userList = []
-        self.userKeys = []
+        DataService.ds.REF_USERS.keepSynced(true)
         DataService.ds.REF_USERS.observeSingleEvent(of: .value, with: { (snapshot) in
             if let _ = snapshot.value as? NSNull {
                 print("No users")
             } else {
                 if let snapshot = snapshot.children.allObjects as? [FIRDataSnapshot] {
+                    self.userList = []
                     for snap in snapshot {
                         DataService.ds.REF_USERS.child(snap.key).child("user-personal").observeSingleEvent(of: .value, with: { (snapshot) in
-                            completionHandler(true)
                             if let dictionary = snapshot.value as? [String: AnyObject] {
-                                if let username = dictionary["username"] as? String {
-                                    self.usernames.append(username)
-                                }
                                 let user = User(userKey: snap.key, userData: dictionary)
                                 self.userList.append(user)
+                                completionHandler(true)
                             }
                         })
                     }

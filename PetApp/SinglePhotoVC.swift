@@ -63,6 +63,11 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
     }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let minHeight: CGFloat = 500
+        let tHeight = tableView.bounds.height
+        return tHeight > minHeight ? tHeight : minHeight
+    }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "SinglePhotoCell") as? SinglePhotoCell {
             cell.profileImg.image = UIImage(named: "dog-in-wig")
@@ -88,7 +93,7 @@ class SinglePhotoVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
                                     let ref = FIRStorage.storage().reference(forURL: profileURL)
                                     ref.data(withMaxSize: 2 * 1024 * 1024, completion: { (data, error) in
                                         if error != nil {
-                                            print("Unable to Download profile image from Firebase storage.")
+//                                            print("Unable to Download profile image from Firebase storage.")
                                         } else {
                                             if let imgData = data {
                                                 if let profileImg = UIImage(data: imgData) {

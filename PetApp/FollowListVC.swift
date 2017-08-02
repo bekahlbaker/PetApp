@@ -55,7 +55,7 @@ class FollowListVC: UIViewController, UITableViewDelegate, UITableViewDataSource
                         let ref = FIRStorage.storage().reference(forURL: profileURL)
                         ref.data(withMaxSize: 3 * 1024 * 1024, completion: { (data, error) in
                             if error != nil {
-                                print("Unable to Download profile image from Firebase storage.")
+//                                print("Unable to Download profile image from Firebase storage.")
                             } else {
                                 if let imgData = data {
                                     if let profileImg = UIImage(data: imgData) {
